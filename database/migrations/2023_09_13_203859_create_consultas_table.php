@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('ea')->nullable();
             $table->string('tension_arterial')->nullable();
             $table->string('indice_mc')->nullable();
-            $table->string('embarazo')->nulleable();
-            $table->string('edad_geatacional')->nulleable();
+            $table->string('embarazo')->default('no');
+            $table->string('edad_geatacional')->default('no');
             $table->string('estado');
             $table->softDeletes();
             $table->timestamps();
