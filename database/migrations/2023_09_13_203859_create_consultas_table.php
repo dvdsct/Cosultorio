@@ -18,12 +18,12 @@ return new class extends Migration
             ->references('id')
             ->on('perfils')
             ->onDelete('cascade');
-            $table->date('fecha_consulta');
-            $table->string('fum');
-            $table->string('temperatura');
-            $table->string('ea');
-            $table->string('tension_arterial');
-            $table->string('indice_mc');
+            $table->dateTime('fecha_consulta');
+            $table->string('fum')->nullable();
+            $table->string('temperatura')->nullable();
+            $table->string('ea')->nullable();
+            $table->string('tension_arterial')->nullable();
+            $table->string('indice_mc')->nullable();
             $table->string('embarazo')->nulleable();
             $table->string('edad_geatacional')->nulleable();
             $table->string('estado');
