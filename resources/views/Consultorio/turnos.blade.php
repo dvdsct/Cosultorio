@@ -3,32 +3,16 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Turnos</h1>
+<div class="row">
+    <div class="col-2"><h1>TURNOS</h1></div>
+    <div class="col-1"><button type="button" class="btn btn-block btn-success">Nuevo</button></div>
+</div>
 @stop
 
 @section('content')
 
 
-<table>
-    <thead>
-        <th>Paciente</th>
-        <th>OS</th>
-        <th>Abono</th>
-        <th></th>
-    </thead>
-    <tbody>
-        @foreach ($turnos as $turno )
-
-            <tr>
-                <td>{{  }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-        @endforeach
-    </tbody>
-</table>
+@livewire('agenda')
 
 
 
@@ -36,9 +20,11 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"> </script>
+    <script> let table = new DataTable('#myTable'); </script>
 @stop
