@@ -12,7 +12,6 @@ class Agenda extends Component
 {
     public $turnos;
     public $fecha;
-    public $aa;
 
     public function mount(){
 
@@ -29,6 +28,7 @@ class Agenda extends Component
 
     public function set_date(){
 
+
         $this->turnos = Consulta::select('consultas.fecha_consulta', 'perfils.persona_id', 'personas.nombre', 'personas.apellido', 'personas.dni', 'obra_social_x_perfils.plan', 'obra_social_x_perfils.nro_afil', 'obra_socials.descripcion')
         ->leftJoin('perfils', 'consultas.perfil_id', '=', 'perfils.id')
         ->leftJoin('personas', 'perfils.persona_id', '=', 'personas.id')
@@ -38,6 +38,20 @@ class Agenda extends Component
         ->get();
     }
 
+    public function change_day($day){
+
+
+        if($day == 'yes'){
+            $this->fecha = Carbon::parse($this->fecha)->subDay();
+            $this->set_date();
+        }
+        if($day == 'tmw'){
+            $this->fecha = Carbon::parse($this->fecha)->addDay();
+            $this->set_date();
+        }
+
+
+    }
 
 
 

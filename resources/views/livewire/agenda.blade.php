@@ -2,7 +2,9 @@
     <div class="row d-flex justify-content-between">
         <div class="col-2">
 
+            <button wire:click='change_day("yes")'><</button>
             <input type="date"  wire:model.lazy="fecha" wire:change='set_date'>
+            <button wire:click='change_day("tmw")'>></button>
 
 
         </div>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConsultasController;
+use App\Http\Controllers\TurnosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,13 @@ use App\Http\Controllers\ConsultasController;
 |
 */
 
-Route::resource('turnos', ConsultasController::class);
+Route::resource('turnos', TurnosController::class);
+Route::resource('consulta', ConsultasController::class);
+
+
+Route::get('/', function () {
+    return redirect('turnos');
+});
 
 Route::middleware([
     'auth:sanctum',

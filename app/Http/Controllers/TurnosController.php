@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ConsultasController extends Controller
+class TurnosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('Consultorio.Consulta.index');
+        return view('Consultorio.turnos');
+
     }
 
     /**
@@ -35,8 +36,7 @@ class ConsultasController extends Controller
      */
     public function show(string $id)
     {
-        return view('Consultorio.Consulta.show');
-
+        //
     }
 
     /**
