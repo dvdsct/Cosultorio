@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ConsultasController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('turnos', function () {
-    return view('Consultorio.turnos');
-});
+Route::resource('turnos', ConsultasController::class);
 
 Route::middleware([
     'auth:sanctum',

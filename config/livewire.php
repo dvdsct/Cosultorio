@@ -100,7 +100,7 @@ return [
     |
     */
 
-    'legacy_model_binding' => false,
+    'legacy_model_binding' => true,
 
     /*
     |---------------------------------------------------------------------------
@@ -141,7 +141,7 @@ return [
     |
     */
 
-    'inject_morph_markers' => true,
+    'inject_morph_markers' => false,
 
     /*
     |---------------------------------------------------------------------------

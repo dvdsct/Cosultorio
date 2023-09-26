@@ -2,10 +2,9 @@
     <div class="row d-flex justify-content-between">
         <div class="col-2">
 
-            <input type="date"  wire:model.lazy="fecha">
+            <input type="date"  wire:model.lazy="fecha" wire:change='set_date'>
 
-            <input type="text" wire:model.lazy='aa'>
-            {{ $aa .'lkjl' }}
+
         </div>
         <div class="col-2">
             <h1>{{ Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ') }}</h1>
