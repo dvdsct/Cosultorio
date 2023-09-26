@@ -302,6 +302,12 @@ return [
             'url'         => 'turnos',
             'icon'        => 'far fa-fw fa-file',
         ],
+
+        [
+            'text'        => 'Paps',
+            'url'         => 'paps',
+            'icon'        => 'far fa-fw fa-file',
+        ],
         [
             'text'        => 'Pacientes',
             'url'         => 'pacientes',

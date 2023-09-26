@@ -54,10 +54,6 @@ class Agenda extends Component
     }
 
 
-
-
-
-
     public function render()
     {
         // $this->turnos = Consulta::select('consultas.fecha_consulta', 'perfils.persona_id', 'personas.nombre', 'personas.apellido', 'personas.dni', 'obra_social_x_perfils.plan', 'obra_social_x_perfils.nro_afil', 'obra_socials.descripcion')

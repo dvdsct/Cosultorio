@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConsultasController;
 use App\Http\Controllers\TurnosController;
+use App\Http\Controllers\PapsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\TurnosController;
 
 Route::resource('turnos', TurnosController::class);
 Route::resource('consulta', ConsultasController::class);
+Route::resource('paps', PapsController::class);
 
 
 Route::get('/', function () {
