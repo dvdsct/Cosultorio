@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->bind('path.public', function() {
+            // return your own correct path.
+            return realpath(base_path('../'));
+       });
     }
 }
