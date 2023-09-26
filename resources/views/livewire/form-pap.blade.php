@@ -42,6 +42,7 @@
       <label for="">Centro de Toma de Muestra:</label> <input type="text">
 
       <h4>Responsable de la Toma(Nombre y Apellido, N° de Matrícula, DNI)</h4>
+      <input type="text">
 
 
       <h3>LABORATORIO DE CITOLOGÍA</h3>
