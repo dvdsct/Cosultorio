@@ -7,7 +7,7 @@
 @section('content')
 
 
-    @livewire('agenda')
+    @livewire('form-colon')
 
 
 

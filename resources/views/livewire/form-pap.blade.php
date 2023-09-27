@@ -14,11 +14,11 @@
       <label for="">Cúpula Vaginal</label> <input type="checkbox">
 
       <h4>Método Toma Muestra:</h4>
-      <label for="">Espátula</label> <input type="checkbox">
-      <label for="">Cepillo</label> <input type="checkbox">
-      <label for="">Espátula y Cepillo</label> <input type="checkbox">
-      <label for="">Hisopo Líquido</label> <input type="checkbox">
-      <label for="">Sin Datos</label> <input type="checkbox">
+      <label for="">Espátula</label> <input type="checkbox" wire:model='met_mues' >
+      <label for="">Cepillo</label> <input type="checkbox" wire:model='met_mues'>
+      <label for="">Espátula y Cepillo</label> <input type="checkbox" wire:model='met_mues'>
+      <label for="">Hisopo Líquido</label> <input type="checkbox" wire:model='met_mues'>
+      <label for="">Sin Datos</label> <input type="checkbox" wire:model='met_mues'>
 
       <h3>TAMIZAJE ANTERIOR</h3>
       <h4>Test de VPH</h4>
@@ -26,7 +26,7 @@
       <label for="">NO</label>
 
       <h4>PAP Previo</h4>
-      <label for="">NO</label><input type="checkbox"> <h7>(de 1° vez)</h7>
+      <label for="">NO</label><input type="checkbox">
       <label for="">SI</label> <input type="checkbox"><input type="date">
       <br>
       <label for="">- de 3 años</label><input type="checkbox">

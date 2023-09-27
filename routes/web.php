@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConsultasController;
 use App\Http\Controllers\TurnosController;
 use App\Http\Controllers\PapsController;
-
+use App\Http\Controllers\ColonscopiaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,18 +20,19 @@ use App\Http\Controllers\PapsController;
 Route::resource('turnos', TurnosController::class);
 Route::resource('consulta', ConsultasController::class);
 Route::resource('paps', PapsController::class);
+Route::resource('col', ColonscopiaController::class);
 
 
 Route::get('/', function () {
     return redirect('turnos');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+     Route::get('/dashboard', function () {
+        return view('dashboard');})->name('dashboard');
+
+
+
+        
 });
