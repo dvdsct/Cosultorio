@@ -12,7 +12,7 @@
             <h1>{{ Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ') }}</h1>
             {{ $fecha . 'aqui' }}
         </div>
-        <div class="col-1"><button type="button" class="btn btn-block btn-success">Nuevo</button></div>
+        <div class="col-2"><button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#modal-default">Nuevo Turno</button></div>
     </div>
     <div class="row">
         <div class="col-12">
@@ -43,5 +43,8 @@
 
         </div>
     </div>
+
+    @livewire('form-turno')
+
 
 </div>
