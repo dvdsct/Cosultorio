@@ -14,4 +14,11 @@ class Perfil extends Model
 
         return $this->hasOne(Persona::class);
     }
+
+    public function obrasociales (){
+
+        return $this->belongsToMany(ObraSocial::class,'obra_social_x_perfils');
+    }
+
+
 }
