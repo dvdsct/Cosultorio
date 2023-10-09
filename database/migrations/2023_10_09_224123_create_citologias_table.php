@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colonoscopias', function (Blueprint $table) {
+        Schema::create('citologias', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('asc-us');
+            $table->string('l_sil');
+            $table->string('asc_h');
+            $table->string('hsil');
+            $table->string('ca');
+            $table->string('otros');
             $table->string('estado');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colonoscopias');
+        Schema::dropIfExists('citologias');
     }
 };
