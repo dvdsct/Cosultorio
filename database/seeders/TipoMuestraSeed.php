@@ -20,10 +20,11 @@ class TipoMuestraSeed extends Seeder
             '4'
         ];
 
-        foreach($tipos as $tipo)[
-            'estado'=>'1',
-            'descripcion'=> $tipo
+        foreach($tipos as $tipo){
+          TipoMuestra::create([
 
-        ];
+            'estado'=>'1',
+            'descripcion'=> $tipo ]);
+        };
     }
 }

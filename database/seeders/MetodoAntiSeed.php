@@ -20,10 +20,12 @@ class MetodoAntiSeed extends Seeder
             '4'
         ];
 
-        foreach($metodos as $metodo)[
-            'estado'=>'1',
+        foreach($metodos as $metodo){
+            MetodoAnticonceptivo::create([            'estado'=>'1',
             'descripcion'=> $metodo
 
-        ];
+        ]);
+
+        };
     }
 }

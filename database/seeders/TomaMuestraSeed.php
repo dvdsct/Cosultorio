@@ -20,10 +20,11 @@ class TomaMuestraSeed extends Seeder
             '4'
         ];
 
-        foreach($tomas as $toma)[
+        foreach($tomas as $toma){
+            TomaMuestra::create([
             'estado'=>'1',
             'descripcion'=> $toma
-
-        ];
+        ]);
+    };
     }
 }

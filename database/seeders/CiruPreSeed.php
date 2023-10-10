@@ -19,10 +19,11 @@ class CiruPreSeed extends Seeder
             '4'
         ];
 
-        foreach($cirujias as $cirujia)[
+        foreach($cirujias as $cirujia){
+          CirujiasPrevias::create([
             'estado'=>'1',
             'descripcion'=> $cirujia
-
-        ];
+        ]);
+        };
     }
 }
