@@ -22,10 +22,12 @@ class FormTurno extends Component
     public $apellido;
     public $persona;
     public $hora;
+    public $fecha;
 
 
     public function mount(){
         $this->oss = ObraSocial::all();
+        // $this->fecha = $fecha;
     }
     public function addTurno(){
 

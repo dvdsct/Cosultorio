@@ -28,7 +28,7 @@ class PacienteSeeder extends Seeder
                 'nombre'=> $persona,
                 'apellido'=> 'Perez',
                 'fecha_de_nacimiento'=> '1995-11-11',
-                'dni'=> '3984849',
+                'dni'=> '3984849' +1,
                 'ocupacion' => 'estudiante',
                 'tipo'=> 'fisica',
                 'estado'=> '1'
