@@ -22,6 +22,16 @@ class FormPap extends Component
     public $ciru_prev;
     public $cirus_prevs;
 
+    public $tamizaje;
+    public $fec_tam;
+    public $fum;
+    public $menop;
+    public $causales;
+    public $embarazo;
+    public $trat_rad;
+    public $quimio;
+
+
     public function add_pap(){
 
     $pap = new Pap;

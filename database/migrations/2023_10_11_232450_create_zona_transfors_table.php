@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('citologias', function (Blueprint $table) {
+        Schema::create('zona_transfors', function (Blueprint $table) {
             $table->id();
-            $table->string('asc_us');
-            $table->string('l_sil');
-            $table->string('asc_h');
-            $table->string('hsil');
-            $table->string('ca');
-            $table->string('otros');
-            $table->string('estado');
             $table->timestamps();
         });
     }
@@ -29,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('citologias');
+        Schema::dropIfExists('zona_transfors');
     }
 };
