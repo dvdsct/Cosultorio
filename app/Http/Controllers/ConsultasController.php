@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consulta;
 use Illuminate\Http\Request;
 
 class ConsultasController extends Controller
@@ -35,7 +36,10 @@ class ConsultasController extends Controller
      */
     public function show(string $id)
     {
-        return view('Consultorio.Consulta.show');
+        $consulta = Consulta::find($id);
+        return view('Consultorio.Consulta.show',[
+            'consulta' => $consulta
+        ]);
 
     }
 
