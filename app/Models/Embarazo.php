@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Embarazo extends Model
 {
     use HasFactory;
+
+    public function perfiles (){
+
+        return $this->belongsTo(Perfil::class);
+    }
 }
