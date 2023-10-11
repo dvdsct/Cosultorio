@@ -21,7 +21,8 @@ class MetodoAntiSeed extends Seeder
         ];
 
         foreach($metodos as $metodo){
-            MetodoAnticonceptivo::create([            'estado'=>'1',
+            MetodoAnticonceptivo::create([
+            'estado'=>'1',
             'descripcion'=> $metodo
 
         ]);
