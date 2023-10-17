@@ -12,7 +12,27 @@ class ConsultasController extends Controller
      */
     public function index()
     {
-        return view('Consultorio.Consulta.index');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     /**
