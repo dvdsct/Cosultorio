@@ -14,10 +14,11 @@ class TomaMuestraSeed extends Seeder
     public function run(): void
     {
         $tomas = [
-            '1',
-            '2',
-            '3',
-            '4'
+            'Espátula',
+            'Cepillo',
+            'Espátula y Cepillo',
+            'Hisopo Liquido',
+            'Sin Datos'
         ];
 
         foreach($tomas as $toma){

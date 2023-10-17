@@ -14,10 +14,10 @@ class TipoMuestraSeed extends Seeder
     public function run(): void
     {
         $tipos = [
-            '1',
-            '2',
-            '3',
-            '4'
+            'Exocervical (C)',
+            'Endocervical (E)',
+            'Exo y Endo Cervical (CE)',
+            'Cúpula Vaginal'
         ];
 
         foreach($tipos as $tipo){

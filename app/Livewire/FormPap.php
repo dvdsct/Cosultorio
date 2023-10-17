@@ -13,6 +13,11 @@ use App\Models\CirujiasPrevias;
 class FormPap extends Component
 {
 
+   public $v_pp='disabled';
+   public $check_pap;
+   public $fec_pap_previo;
+
+
     public $tipo_muestra;
     public $tipos_muestras;
     public $toma_muestra;
@@ -31,6 +36,16 @@ class FormPap extends Component
     public $trat_rad;
     public $quimio;
 
+
+    public function pap_previo(){
+      if($this->check_pap == 1){
+        $this->v_pp = '';
+      }else{
+        $this->v_pp ='disabled';
+        $this->fec_pap_previo = '';
+      }
+     
+    }
 
     public function add_pap(){
 
