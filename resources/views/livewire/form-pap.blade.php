@@ -1,13 +1,5 @@
 <div>
   <form wire:submit="add_pap">
-    <div>
-      {{-- <h3>TOMA DE MUESTRA</h3>
-      <h4>Test VPH</h4>
-      <label for="">SI</label>  <input type= "radio">
-      <label for="">NO</label>  <input type="radio">
-      <label for="">PAP de Tamizaje </label><input type="radio">
-      <label for="">PAP de Seguimiento </label> <input type="radio"> --}}
-    </div>
 
     <div class="card card-primary">
       <div class="card-header">
@@ -20,16 +12,16 @@
           <div class="row">
             <div class="col-md-6">
               <div class="row">
-              <label> FUM </label> <input type="date" wire:model='fum'>
+                <label> FUM </label> <input type="date" wire:model='fum' class="form-control">
               </div>
-              
 
-              <h5>Menopausia</h5>
-              <label for="">SI</label> <input type="checkbox" wire:model='menop'>
-              <label for="">NO</label> <input type="radio">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitchMeno" wire:model='menop'>
+                <label class="custom-control-label" for="customSwitchMeno">Menopausia </label>
+              </div>
 
-              <h3>Método Anticonceptivo</h3>
-              <select class="form-select" aria-label="Default select example" wire:model='metodo_anti'>
+              <label>Método Anticonceptivo</label>
+              <select class="custom-select rounded-0" aria-label="Default select example" wire:model='metodo_anti'>
                 @foreach ($metodos_antis as $ma )
 
                 <option value="{{$ma->id}}">{{$ma->descripcion}}</option>
@@ -38,8 +30,8 @@
               <label for="">Otro: </label><input type="text">
 
 
-              <h3>Cirugías Previas</h3>
-              <select class="form-select" aria-label="Default select example" wire:model='ciru_prev'>
+              <label>Cirugías Previas</label>
+              <select class="custom-select rounded-0" aria-label="Default select example" wire:model='ciru_prev'>
                 @foreach ($cirus_prevs as $cp )
 
                 <option value="{{$cp->id}}">{{$cp->descripcion}}</option>
@@ -50,20 +42,25 @@
             </div>
 
             <div class="col-md-6">
-              <h3>Terapia Hormonal de Reemplazo(THR)</h3>
-              <label for="">SI</label> <input type="checkbox" wire:model='thr'>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitchTHR" wire:model='thr'>
+                <label class="custom-control-label" for="customSwitchTHR">Terapia Hormonal de Reemplazo(THR) </label>
+              </div>
 
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitchEA" wire:model.live='embarazo'>
+                <label class="custom-control-label" for="customSwitchEA">Embarazo Actual </label>
+              </div>
 
-              <h3> Embarazo Actual </h3>
-              <label for="">SI</label> <input type="checkbox" wire:model.live='embarazo'>
-              {{$embarazo}}
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitchTR" wire:model='trat_rad'>
+                <label class="custom-control-label" for="customSwitchTR">Tratamiento Radiante </label>
+              </div>
 
-              <h3> Tratamiento Radiante </h3>
-              <label for="">SI</label> <input type="checkbox" wire:model='trat_rad'>
-
-
-              <h3> Quimioterapia </h3>
-              <label for="">SI</label> <input type="checkbox" wire:model='quimio'>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitchQuimio" wire:model='quimio'>
+                <label class="custom-control-label" for="customSwitchQuimio">Quimioterapia </label>
+              </div>
             </div>
           </div>
           <hr>
@@ -90,7 +87,7 @@
           <hr>
 
 
-          <h4>TAMIZAJE ANTERIOR</h4>
+          <h5>Tamizaje Anterior</h5>
           <div class="row">
             <div class="col-md-4">
               <div class="custom-control custom-switch">
@@ -107,11 +104,11 @@
                 <input type="checkbox" class="custom-control-input" id="customSwitch2" wire:click='pap_previo' wire:model='check_pap'>
                 <label class="custom-control-label" for="customSwitch2">PAP Previo </label>
               </div>
-              <input type="date" class="form-control mt-3" {{$v_pp}} wire:model='fec_pap_previo' >
+              <input type="date" class="form-control mt-3" {{$v_pp}} wire:model='fec_pap_previo'>
             </div>
 
             <div class="col-md-4">
-              <h4> Resultado PAP previo </h4>
+              <label> Resultado PAP previo </label>
               <select class="custom-select">
                 <option>option 1</option>
                 <option>option 2</option>

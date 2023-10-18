@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Carbon\Carbon;
 use Livewire\Component;
 
+
 class Parametros extends Component
 {
     public $consulta;
@@ -153,7 +154,12 @@ class Parametros extends Component
             $this->c_fum ='pink';
             $this->eg = ceil(Carbon::now()->diffInDays($this->fum) / 7);
 
-            $this->fpp = Carbon::parse($this->consulta->fum)->subMonths(3)->addDays(7)->format('d-m-Y');
+            $this->fpp = Carbon::parse($this->consulta->fum)
+            ->subMonths(3)
+            ->addDays(7)
+            ->addYear()
+            ->locale('es') // Establecer la localización a español
+            ->isoFormat('D [de] MMMM [del] YYYY');
 
         }
 

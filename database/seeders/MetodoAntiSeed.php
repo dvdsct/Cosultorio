@@ -14,10 +14,10 @@ class MetodoAntiSeed extends Seeder
     public function run(): void
     {
         $metodos = [
-            '1',
-            '2',
-            '3',
-            '4'
+            'Hormonal',
+            'Barrera',
+            'DIU',
+            'Otros'
         ];
 
         foreach($metodos as $metodo){

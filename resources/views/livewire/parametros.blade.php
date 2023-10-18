@@ -32,14 +32,19 @@
                     <label class="{{ $in_fum }}" for="embarazo">Embarazo</label>
                     <input type="checkbox" class="{{ $in_fum }}" id="embarazo" wire:model='in_emb' wire:keydown.enter='setFum'>
 
+                    <div class="{{ $emb }} ">
+                        <div class="row">
+                            <label> Transcurso: </label>
+                            <p class="{{ $emb }}"> Semana {{ $eg }}</p>
+                        </div>
 
-                </div>
-                <div class="{{ $emb }}">
-                    <p class="{{ $emb }}">semana {{ $eg }}</p>
-                    <p class="{{ $emb }}">{{ $fpp }}</p>
+                        <label>Fecha posible de parto: </label>
+                        <p class="{{ $emb }}">{{ $fpp }}</p>
 
-                    <i class="ion ion-pie-graph"></i>
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
                 </div>
+
                 <div class="small-box-footer d-flex justify-content-end">
                     <a wire:click="setFumClass" class="pr-3"><i class="fas fa-edit"></i></a>
                 </div>

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\CirujiasPrevias;
+
 class CiruPreSeed extends Seeder
 {
     /**
@@ -13,17 +14,16 @@ class CiruPreSeed extends Seeder
     public function run(): void
     {
         $cirujias = [
-            '1',
-            '2',
-            '3',
-            '4'
+            'Histerectomía',
+            'LEEP',
+            'Cono'
         ];
 
-        foreach($cirujias as $cirujia){
-          CirujiasPrevias::create([
-            'estado'=>'1',
-            'descripcion'=> $cirujia
-        ]);
+        foreach ($cirujias as $cirujia) {
+            CirujiasPrevias::create([
+                'estado' => '1',
+                'descripcion' => $cirujia
+            ]);
         };
     }
 }
