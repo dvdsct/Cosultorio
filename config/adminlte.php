@@ -313,6 +313,11 @@ return [
             'url'         => 'pacientes',
             'icon'        => 'far fa-fw fa-file',
         ],
+        [
+            'text'        => 'Consultas',
+            'url'         => 'consulta',
+            'icon'        => 'far fa-fw fa-file',
+        ],
 
     ],
 
