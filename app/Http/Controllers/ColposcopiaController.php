@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ColonscopiaController extends Controller
+class ColposcopiaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view ('Consultorio.Practicas.Colposcopia.index');
+
     }
 
     /**
@@ -19,7 +20,8 @@ class ColonscopiaController extends Controller
      */
     public function create()
     {
-        //
+
+//
     }
 
     /**

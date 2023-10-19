@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('varios');
             $table->string('biopsia');
             $table->string('ecc');
-            $table->string('test_schiller');
+            $table->string('test_schiller')->nullable;
             $table->string('estado');
             $table->timestamps();
         });
