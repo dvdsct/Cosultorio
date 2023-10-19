@@ -28,9 +28,19 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Pedidos</h3>
                                     <div class="d-flex justify-content-end">
-                                        <a class="btn btn-info"></a>
-                                        <a class="btn btn-danger"></a>
-                                        <a class="btn btn-info"></a>
+
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                            data-target="#modal-receta">
+                                            Receta </button>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                            data-target="#modal-laboratorio">
+                                            Laboratorio </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#modal-imagen">
+                                            Imagen </button>
+
+
                                     </div>
                                 </div>
 
@@ -51,8 +61,8 @@
                                                 <td>1.</td>
                                                 <td>Cortizol</td>
                                                 <td>
-                                                    <div >
-                                                     Receta
+                                                    <div>
+                                                        Receta
                                                     </div>
                                                 </td>
                                                 <td>
@@ -80,7 +90,7 @@
         </div>
     </div>
 
-</div>
-
-
+    @livewire('receta')
+    @livewire('laboratorio')
+    @livewire('imagen')
 </div>

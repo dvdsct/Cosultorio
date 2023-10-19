@@ -29,10 +29,10 @@
                 <div class="inner">
                     <h3>FUM</h3>
                     <p class="{{ $l_fum }}">{{ $fum }}</p>
-                    <input type="date" class="{{ $in_fum }}" wire:model='fum'>
+                    <input type="date" class="{{ $in_fum }}" wire:model='fum' wire:keydown.enter='setFum'>
                     <label class="{{ $in_fum }}" for="embarazo">Embarazo</label>
-                    <input type="checkbox" class="{{ $in_fum }}" id="embarazo" wire:model='in_emb'>
-
+                    <input type="checkbox" class="{{ $in_fum }}" id="embarazo" wire:model.live='in_emb'>
+                    {{ $in_emb }}
 
                 </div>
                 <div class="{{ $emb }}">

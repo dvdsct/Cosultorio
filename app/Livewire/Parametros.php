@@ -38,7 +38,7 @@ class Parametros extends Component
     public $fpp;
     public $emb = 'd-none';
     public $in_fum = 'd-none';
-    public $in_emb;
+    public $in_emb = true;
 
     public function mount()
     {
@@ -46,6 +46,7 @@ class Parametros extends Component
         $this->tension = $this->consulta->tension_arterial;
         $this->imc = $this->consulta->indice_mc;
         $this->temperatura = $this->consulta->temperatura;
+        $this->in_emb = $this->consulta->embarazo;
     }
 
     // TA Changes
@@ -120,11 +121,24 @@ class Parametros extends Component
         $this->l_fum = '';
         $this->in_fum = 'd-none';
 
-        $this->consulta->update(
-            [
-                'fum' =>  $this->fum
-            ]
-        );
+        if($this->in_emb == 1){
+            $this->consulta->update(
+                [
+                    'fum' =>  $this->fum,
+                    'embarazo' => '1'
+                ]
+            );
+        }else{
+            $this->consulta->update(
+                [
+                    'fum' =>  $this->fum,
+                    'embarazo' => '0'
+
+                ]
+            );
+        }
+
+
     }
 
 
@@ -150,7 +164,7 @@ class Parametros extends Component
         }
         $this->fum = Carbon::parse($this->consulta->fum)->format('d-m-Y');
 
-        if($this->consulta->embarazo == 'si'){
+        if($this->consulta->embarazo == '1'){
             $this->l_fum ='d-none';
             $this->emb ='';
             $this->c_fum ='pink';
