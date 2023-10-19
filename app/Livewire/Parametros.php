@@ -82,11 +82,10 @@ class Parametros extends Component
         $this->l_imc = '';
         $this->in_imc = 'd-none';
         $this->imc = floatval($this->peso) / (floatval($this->altura) * floatval($this->altura));
-        $this->consulta->update(
-            [
-                'indice_mc' =>  $this->imc
-            ]
-        );
+
+
+
+
     }
 
     // Temperatura
@@ -127,6 +126,10 @@ class Parametros extends Component
             ]
         );
     }
+
+
+
+
     public function render()
     {
         if(floatval($this->imc) < 24.9 and floatval($this->imc) >18.5 ){
@@ -153,7 +156,7 @@ class Parametros extends Component
             $this->c_fum ='pink';
             $this->eg = ceil(Carbon::now()->diffInDays($this->fum) / 7);
 
-            $this->fpp = Carbon::parse($this->consulta->fum)->subMonths(3)->addDays(7)->format('d-m-Y');
+            $this->fpp = Carbon::parse($this->consulta->fum)->subMonths(3)->addDays(7)->addYear()->format('d-m-Y');
 
         }
 

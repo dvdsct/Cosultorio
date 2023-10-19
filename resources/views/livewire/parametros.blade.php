@@ -7,6 +7,7 @@
                 <div class="inner">
                     <h3>TA</h3>
                     <div>
+                        {{ $tension }}
                         <!-- Contenido del elemento -->
                         <p class="{{ $l_ta }}">{{ $tension }}</p>
                     </div>
@@ -28,9 +29,9 @@
                 <div class="inner">
                     <h3>FUM</h3>
                     <p class="{{ $l_fum }}">{{ $fum }}</p>
-                    <input type="date" class="{{ $in_fum }}" wire:model='fum' wire:keydown.enter='setFum'>
+                    <input type="date" class="{{ $in_fum }}" wire:model='fum'>
                     <label class="{{ $in_fum }}" for="embarazo">Embarazo</label>
-                    <input type="checkbox" class="{{ $in_fum }}" id="embarazo" wire:model='in_emb' wire:keydown.enter='setFum'>
+                    <input type="checkbox" class="{{ $in_fum }}" id="embarazo" wire:model='in_emb'>
 
 
                 </div>
