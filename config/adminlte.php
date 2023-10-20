@@ -318,6 +318,11 @@ return [
             'url'         => 'consulta',
             'icon'        => 'far fa-fw fa-file',
         ],
+        [
+            'text'        => 'Colposcopias',
+            'url'         => 'colpos',
+            'icon'        => 'far fa-fw fa-file',
+        ],
 
     ],
 

@@ -7,6 +7,7 @@
                 <div class="inner">
                     <h3>TA</h3>
                     <div>
+                        {{ $tension }}
                         <!-- Contenido del elemento -->
                         <p class="{{ $l_ta }}">{{ $tension }}</p>
                     </div>
@@ -28,9 +29,9 @@
                 <div class="inner">
                     <h3>FUM</h3>
                     <p class="{{ $l_fum }}">{{ $fum }}</p>
-                    <input type="date" class="{{ $in_fum }}" wire:model='fum' wire:keydown.enter='setFum'>
+                    <input type="date" class="{{ $in_fum }}" wire:model='fum' wire:keydown.enter=setFum>
                     <label class="{{ $in_fum }}" for="embarazo">Embarazo</label>
-                    <input type="checkbox" class="{{ $in_fum }}" id="embarazo" wire:model='in_emb' wire:keydown.enter='setFum'>
+                    <input type="checkbox" class="{{ $in_fum }}" id="embarazo" wire:model='in_emb'>
 
                     <div class="{{ $emb }} ">
                         <div class="row">
@@ -46,7 +47,7 @@
                 </div>
 
                 <div class="small-box-footer d-flex justify-content-end">
-                    <a wire:click="setFumClass" class="pr-3"><i class="fas fa-edit"></i></a>
+                    <a wire:click="setFumClass" class="pr-3"><i class="fas fa-edit text-white"></i></a>
                 </div>
             </div>
         </div>
@@ -54,7 +55,7 @@
 
 
         {{-- Temperatura --}}
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-3 col-6 ">
 
             <div class="small-box bg-{{ $v_temp }}">
                 <div class="inner">

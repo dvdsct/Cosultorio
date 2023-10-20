@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('indice_mc')->nullable();
             $table->string('embarazo')->default('no');
             $table->string('edad_geatacional')->default('no');
+            $table->string('observaciones')->nullable();
             $table->string('estado');
             $table->softDeletes();
             $table->timestamps();

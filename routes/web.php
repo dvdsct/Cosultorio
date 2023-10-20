@@ -20,7 +20,7 @@ use App\Http\Controllers\ColonscopiaController;
 Route::resource('turnos', TurnosController::class);
 Route::resource('consulta', ConsultasController::class);
 Route::resource('paps', PapsController::class);
-Route::resource('col', ColonscopiaController::class);
+Route::resource('colpos', ColonscopiaController::class);
 
 
 Route::get('/', function () {
