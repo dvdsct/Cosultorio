@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('biopsias', function (Blueprint $table) {
             $table->id();
-            $table->string('negativo');
-            $table->string('cin_1');
-            $table->string('cin_2');
-            $table->string('cin_3');
-            $table->string('cis');
-            $table->string('ca_invasor');
-            $table->string('adenocis');
-            $table->string('ac_invasor');
-            $table->string('otros');
-            $table->string('estado');
+            $table->string('negativo')->nullable;
+            $table->string('cin_1')->nullable;
+            $table->string('cin_2')->nullable;
+            $table->string('cin_3')->nullable;
+            $table->string('cis')->nullable;
+            $table->string('ca_invasor')->nullable;
+            $table->string('adenocis')->nullable;
+            $table->string('ac_invasor')->nullable;
+            $table->string('otros')->nullable;
+            $table->string('estado')->nullable;
             $table->timestamps();
         });
     }

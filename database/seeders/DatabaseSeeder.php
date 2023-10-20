@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
        $this->call(TomaMuestraSeed::class);
        $this->call(MetodoAntiSeed::class);
        $this->call(CiruPreSeed::class);
+       $this->call(CitologiaSeed::class);
+       $this->call(HallazgosSeed::class);
+       $this->call(TratamientoSeed::class);
+       $this->call(ZonaTransforSeed::class);
     }
 }

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConsultasController;
 use App\Http\Controllers\TurnosController;
 use App\Http\Controllers\PapsController;
-use App\Http\Controllers\ColonscopiaController;
+use App\Http\Controllers\ColposcopiaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,12 +20,17 @@ use App\Http\Controllers\ColonscopiaController;
 Route::resource('turnos', TurnosController::class);
 Route::resource('consulta', ConsultasController::class);
 Route::resource('paps', PapsController::class);
+<<<<<<< HEAD
 Route::resource('colpos', ColonscopiaController::class);
+=======
+Route::resource('colpos', ColposcopiaController::class);
+>>>>>>> vale
 
 
 Route::get('/', function () {
     return redirect('turnos');
 });
+
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
 ])->group(function () {
