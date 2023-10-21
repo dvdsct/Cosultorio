@@ -9,7 +9,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>One fine body…</p>
+                    <form action="addd_lab">PEDIDO IMAGENES
+
+                    <label for="">Eco Ginecologica</label><input type="checkbox" wire:model='eco_gin'>
+                    <label for="">Eco Obstetrica</label><input type="checkbox" wire:model='eco_obs'>
+                    <label for="">Eco Abdominal</label><input type="checkbox" wire:model='eco_abd'>
+                    <label for="">Eco Tiroidea</label><input type="checkbox" wire:model='eco_tiro'>
+                    <label for="">RMN Pelviana</label><input type="checkbox" wire:model='rmn_pelv'>
+                    <label for="">TAC Abdominal</label><input type="checkbox" wire:model='tac_abd'>
+                    <label for="">TAC Pelviana</label><input type="checkbox" wire:model='tac_pel'>
+
+                    </form>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
