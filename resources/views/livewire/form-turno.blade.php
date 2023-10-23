@@ -10,8 +10,9 @@
                     </button>
                 </div>
 
-                <form>
+                <form wire:submit='addTurno'>
                     <div class="card-body">
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -25,6 +26,13 @@
                                     <input type="text" class="form-control" id="dni" wire:model='dni' wire:keydown='upPaciente' placeholder="12345678">
                                 </div>
                             </div>
+
+                        <div class="form-group">
+                            <label for="input_nombre">DNI</label>
+                            <input type="text" class="form-control" id="nombre" wire:model='dni'
+                                wire:keydown='upPaciente' placeholder="12345678">
+                            {{ $persona }}
+
                         </div>
 
 

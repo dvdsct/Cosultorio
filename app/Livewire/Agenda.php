@@ -15,11 +15,6 @@ class Agenda extends Component
 
     public $perfil;
 
-
-
-
-
-
     public function mount()
     {
 
@@ -33,8 +28,6 @@ class Agenda extends Component
             ->whereDate('consultas.fecha_consulta', '=', $this->fecha)
             ->get();
     }
-
-
 
     public function change_day($day)
     {
