@@ -27,7 +27,7 @@
 
                         <div class="form-check">
                             <label for="">Hemograma</label><input type="checkbox" checked='' wire:model='hemo'>
-{{ $hemo }}
+{{ $consulta }}
                         </div>
 
 

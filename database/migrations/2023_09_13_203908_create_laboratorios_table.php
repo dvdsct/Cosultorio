@@ -14,8 +14,36 @@ return new class extends Migration
         Schema::create('laboratorios', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('tipo_practica');
-            $table->string('practica');
+            $table->string('hemo');
+            $table->string('hb');
+            $table->string('hto') ;
+            $table->string('glucem') ;
+            $table->string('ptog') ;
+            $table->string('hb_glico') ;
+            $table->string('grupo') ;
+            $table->string('factor_rh') ;
+            $table->string('orina') ;
+            $table->string('urocult') ;
+            $table->string('fibrino') ;
+            $table->string('flujo_vag') ;
+            $table->string('coagulogram') ;
+            $table->string('tsh') ;
+            $table->string('fsh') ;
+            $table->string('lh') ;
+            $table->string('dhea') ;
+            $table->string('testost_l') ;
+            $table->string('testost_b') ;
+            $table->string('h_antimull') ;
+            $table->string('glucosauria') ;
+            $table->string('ferritina') ;
+            $table->string('transferri') ;
+            $table->string('anti_ttg') ;
+            $table->string('gliadina') ;
+            $table->string('chagas') ;
+            $table->string('toxo') ;
+            $table->string('vdrl_cual') ;
+            $table->string('hbs_ag') ;
+            $table->string('hiv') ;
         });
     }
 

@@ -3,9 +3,10 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-
+use App\Models\LaboratorioXConsulta;
 class Laboratorio extends Component
 {
+     public $consulta;
      public $todas;
      public $hemo;
      public $hb;
@@ -109,9 +110,54 @@ class Laboratorio extends Component
         }
 
 
+         public function add_lab(){
+
+          $lab = new Laboratorio;
+          $lab->hemo= $this->hemo;
+          $lab->hb= $this->hb;
+          $lab->hto= $this->hto;
+          $lab->glucem= $this->glucem;
+          $lab->ptog= $this->ptog;
+          $lab->hb_glico= $this->hb_glico;
+          $lab->grupo= $this->grupo;
+          $lab->factor_rh= $this->factor_rh;
+          $lab->orina= $this->orina;
+          $lab->urocult= $this->urocult;
+          $lab->fibrino= $this->fibrino;
+          $lab->flujo_vag= $this->flujo_vag;
+          $lab->coagulogram= $this->coagulogram;
+          $lab->tsh= $this->tsh;
+          $lab->fsh= $this->fsh;
+          $lab->lh= $this->lh;
+          $lab->dhea= $this->dhea;
+          $lab->testost_l= $this->testost_l;
+          $lab->testost_b= $this->testost_b;
+          $lab->h_antimull= $this->h_antimull;
+          $lab->glucosauria= $this->glucosauria;
+          $lab->ferritina= $this->ferritina;
+          $lab->transferri= $this->transferri;
+          $lab->anti_ttg= $this->anti_ttg;
+          $lab->gliadina= $this->gliadina;
+          $lab->chagas= $this->chagas;
+          $lab->toxo= $this->toxo;
+          $lab->vdrl_cual= $this->vdrl_cual;
+          $lab->hbs_ag= $this->hbs_ag;
+          $lab->hiv= $this->hiv;
+          $lab->save();
+
+          $lxc = new LaboratorioXConsulta;
+          $lxc->consulta_id=$this-> consulta->id;
+          $lxc->laboratorio_id=$lab->id;
+          $lxc->save();
+
+         }
 
 
-        
+
+
+
+
+
 
     public function render()
     {

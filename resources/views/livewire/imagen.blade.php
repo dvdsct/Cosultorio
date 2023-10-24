@@ -9,7 +9,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="addd_lab">PEDIDO IMAGENES
+                    <form action="add_imag">PEDIDO IMAGENES
 
                     <label for="">Eco Ginecologica</label><input type="checkbox" wire:model='eco_gin'>
                     <label for="">Eco Obstetrica</label><input type="checkbox" wire:model='eco_obs'>

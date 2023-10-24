@@ -14,8 +14,13 @@ return new class extends Migration
         Schema::create('imagens', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('tipo_imagen');
-            $table->string('imagen');
+            $table->string('eco_gin');
+            $table->string('eco_obs');
+            $table->string('eco_abd');
+            $table->string('eco_tiro');
+            $table->string('rmn_pelv');
+            $table->string('tac_abd');
+            $table->string('tac_pel');
         });
     }
 
