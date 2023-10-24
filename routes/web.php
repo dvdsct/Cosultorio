@@ -20,11 +20,9 @@ use App\Http\Controllers\ColposcopiaController;
 Route::resource('turnos', TurnosController::class);
 Route::resource('consulta', ConsultasController::class);
 Route::resource('paps', PapsController::class);
-<<<<<<< HEAD
-Route::resource('colpos', ColonscopiaController::class);
-=======
+
+
 Route::resource('colpos', ColposcopiaController::class);
->>>>>>> vale
 
 
 Route::get('/', function () {
