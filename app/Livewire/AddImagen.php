@@ -3,9 +3,10 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Imagen;
 use App\Models\ImagenXConsulta;
 
-class Imagen extends Component
+class AddImagen extends Component
 {
     public $eco_gin;
     public $eco_obs;
@@ -45,17 +46,19 @@ class Imagen extends Component
         $imag->eco_abd= $this->eco_abd;
         $imag->eco_tiro= $this->eco_tiro;
         $imag->rmn_pelv= $this->rmn_pelv;
-        $imag->tac_abd= $this->tac_adb;
+        $imag->tac_abd= $this->tac_abd;
         $imag->tac_pel= $this->tac_pel;
         $imag->save();
 
         $ixc = new ImagenXConsulta;
         $ixc->consulta_id=$this->consulta->id;
         $ixc->imagen_id=$imag->id;
+        $ixc->descripcion='vacio';
+        $ixc->estado='1';
         $ixc->save();
     }
     public function render()
     {
-        return view('livewire.imagen');
+        return view('livewire.add-imagen');
     }
 }

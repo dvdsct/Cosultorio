@@ -4,7 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\LaboratorioXConsulta;
-class Laboratorio extends Component
+use App\Models\Laboratorio;
+class AddLaboratorio extends Component
 {
      public $consulta;
      public $todas;
@@ -28,7 +29,7 @@ class Laboratorio extends Component
      public $testost_l ;
      public $testost_b ;
      public $h_antimull ;
-     public $glucosauria ;
+     public $glucosuria ;
      public $ferritina ;
      public $transferri ;
      public $anti_ttg ;
@@ -64,7 +65,7 @@ class Laboratorio extends Component
                 $this->testost_l = false ;
                 $this->testost_b = false ;
                 $this->h_antimull = false ;
-                $this->glucosauria = false ;
+                $this->glucosuria = false ;
                 $this->ferritina = false ;
                 $this->transferri = false ;
                 $this->anti_ttg = false ;
@@ -95,7 +96,7 @@ class Laboratorio extends Component
                 $this->testost_l = true ;
                 $this->testost_b = true ;
                 $this->h_antimull = true ;
-                $this->glucosauria = true ;
+                $this->glucosuria = true ;
                 $this->ferritina = true ;
                 $this->transferri = true ;
                 $this->anti_ttg = true ;
@@ -133,7 +134,7 @@ class Laboratorio extends Component
           $lab->testost_l= $this->testost_l;
           $lab->testost_b= $this->testost_b;
           $lab->h_antimull= $this->h_antimull;
-          $lab->glucosauria= $this->glucosauria;
+          $lab->glucosuria= $this->glucosuria;
           $lab->ferritina= $this->ferritina;
           $lab->transferri= $this->transferri;
           $lab->anti_ttg= $this->anti_ttg;
@@ -146,10 +147,13 @@ class Laboratorio extends Component
           $lab->save();
 
           $lxc = new LaboratorioXConsulta;
-          $lxc->consulta_id=$this-> consulta->id;
+          $lxc->consulta_id=$this->consulta->id;
           $lxc->laboratorio_id=$lab->id;
+          $lxc->descripcion= 'vacio';
+          $lxc->estado= '1';
           $lxc->save();
 
+          //dd('hasta aqui');
          }
 
 
@@ -161,6 +165,6 @@ class Laboratorio extends Component
 
     public function render()
     {
-        return view('livewire.laboratorio');
+        return view('livewire.add-laboratorio');
     }
 }

@@ -9,10 +9,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="add_lab">PEDIDOS LABORATORIO
+                    <form wire:submit="add_lab">PEDIDOS LABORATORIO
 
                         <label for="">Todas</label><input type="checkbox" wire:model='todas' wire:click='selectAll'>
-                        {{ $todas }}
 
 
 
@@ -27,8 +26,7 @@
 
                         <div class="form-check">
                             <label for="">Hemograma</label><input type="checkbox" checked='' wire:model='hemo'>
-{{ $consulta }}
-                        </div>
+                            </div>
 
 
                         <label for="">Hb</label><input type="checkbox" wire:model='hb'>
@@ -60,12 +58,13 @@
                         <label for="">VDRL Cual</label><input type="checkbox" wire:model='vdrl_cual'>
                         <label for="">HBsAg</label><input type="checkbox" wire:model='hbs_ag'>
                         <label for="">HIV</label><input type="checkbox" wire:model='hiv'>
-                    </form>
+
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+            </form>
             </div>
 
         </div>

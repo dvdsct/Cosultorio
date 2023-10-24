@@ -91,6 +91,6 @@
     </div>
 
     @livewire('receta')
-    @livewire('laboratorio')
-    @livewire('imagen')
+    @livewire('add-laboratorio',['consulta' => $consulta])
+    @livewire('add-imagen',['consulta'=>$consulta])
 </div>

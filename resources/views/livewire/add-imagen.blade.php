@@ -1,5 +1,5 @@
 <div>
-    <div class="modal fade" id="modal-imagen" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="modal-imagen" style="display: none;" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -9,7 +9,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="add_imag">PEDIDO IMAGENES
+                    <form wire:submit="add_imag">PEDIDO IMAGENES
 
                     <label for="">Eco Ginecologica</label><input type="checkbox" wire:model='eco_gin'>
                     <label for="">Eco Obstetrica</label><input type="checkbox" wire:model='eco_obs'>
@@ -19,13 +19,13 @@
                     <label for="">TAC Abdominal</label><input type="checkbox" wire:model='tac_abd'>
                     <label for="">TAC Pelviana</label><input type="checkbox" wire:model='tac_pel'>
 
-                    </form>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
+        </form>
 
         </div>
 
