@@ -10,33 +10,37 @@
         <div class="col-md-6">
           <label class="mr-5"> FUM </label>
           <input type="date" wire:model='fum' {{$v_fum}} class="form-control col-md-6">
-<!-- FUM -->
+          <!-- FUM -->
           <div class="custom-control custom-switch mt-3">
             <input type="checkbox" class="custom-control-input" id="customSwitchMeno" wire:model='menop' wire:click='fum_meno'>
             <label class="custom-control-label" for="customSwitchMeno">Menopausia </label>
           </div>
 
           <label class="mt-3">Método Anticonceptivo</label> <br>
-            <select class="custom-select rounded-0 col-md-6" aria-label="Default select example" wire:model='metodo_anti' wire:change='setStatus'>
-              @foreach ($metodos_antis as $ma )
+          <select class="custom-select rounded-0 col-md-6" aria-label="Default select example" wire:model='metodo_anti' wire:change='setStatus'>
+            @foreach ($metodos_antis as $ma )
 
-              <option value="{{$ma->id}}">{{$ma->descripcion}}</option>
-              @endforeach
-            </select>
-            <input type="text" class="form-control col-md-6 mt-3 {{$in_otros}}" placeholder="Agregar otros metodos..">
+            <option value="{{$ma->id}}">{{$ma->descripcion}}</option>
+            @endforeach
+          </select>
+          <input type="text" class="form-control col-md-6 mt-3 {{$in_otros}}" placeholder="Agregar otros metodos..">
 
         </div>
 
         <div class="col-md-6">
-        <label >Cirugías Previas</label> <br>
-          <select class="custom-select rounded-0 col-md-6" aria-label="Default select example" wire:model='ciru_prev'>
+          <div class="custom-control custom-switch mt-3">
+            <input type="checkbox" class="custom-control-input" id="customSwitchCP" wire:model='check_cp' wire:click='cir_previas'>
+            <label class="custom-control-label" for="customSwitchCP">Cirugías Previas</label>
+          </div>
+          <br>
+          <select class="custom-select rounded-0 col-md-6" aria-label="Default select example" wire:model='ciru_prev' {{$v_cp}}>
             @foreach ($cirus_prevs as $cp )
 
             <option value="{{$cp->id}}">{{$cp->descripcion}}</option>
             @endforeach
           </select> <br>
 
-          <label class="mt-3">Causa o Lesión </label><input type="text" wire:model='causales' class="form-control col-md-6">
+          <label class="mt-3">Causa o Lesión </label><input type="text" wire:model='causales' class="form-control col-md-6" {{$v_cp}}>
 
           <div class="custom-control custom-switch mt-3">
             <input type="checkbox" class="custom-control-input" id="customSwitchTHR" wire:model='thr'>
@@ -84,7 +88,7 @@
 
 
       <h5>Tamizaje Anterior</h5>
-<!-- CREAR O VINCULAR EL MODELO PARA EL TEST VPH -->
+      <!-- CREAR O VINCULAR EL MODELO PARA EL TEST VPH -->
       <div class="row">
         <div class="col-md-4">
           <div class="row">
@@ -92,20 +96,20 @@
               <input type="checkbox" class="custom-control-input" id="customSwitch1" wire:click='test_vph' wire:model='check_vph'>
               <label class="custom-control-label" for="customSwitch1">Test de VPH </label>
             </div>
-<!-- CREAR EL MODELO PARA TEST POSITIVO Y NEGATIVO -->
+            <!-- CREAR EL MODELO PARA TEST POSITIVO Y NEGATIVO -->
             <div class="row pl-5">
               <label for="customSwitch3" class="pr-2"> - </label>
-              <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+              <div class="custom-control custom-switch {{$switch}}" >
                 <input type="checkbox" class="custom-control-input" id="customSwitch3" wire:model='masmenos'>
                 <label class="custom-control-label" for="customSwitch3">+</label>
               </div>
             </div>
           </div>
 
-          <input type="date" class="form-control mt-2" {{$v_test}}  wire:model='fec_tam' class="form-control">
+          <input type="date" class="form-control mt-2" {{$v_test}} wire:model='fec_tam' class="form-control">
         </div>
 
-<!-- -------------------------------------------------------------- -->
+        <!-- -------------------------------------------------------------- -->
         <div class="col-md-4">
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="customSwitch2" wire:click='pap_previo' wire:model='check_pap'>
@@ -113,7 +117,7 @@
           </div>
           <input type="date" class="form-control mt-3" {{$v_pp}} wire:model='fec_pap_previo'>
         </div>
-          <!--  AGREGAR EL MODELO DEL RESULTADO DEL PAP PREVIO  -->
+        <!--  AGREGAR EL MODELO DEL RESULTADO DEL PAP PREVIO  -->
         <div class="col-md-4">
           <label> Resultado PAP previo </label>
           <select class="custom-select rounded-0  mt-2" aria-label="Default select example" wire:model='pap_prev'>
@@ -121,7 +125,7 @@
             <option value="{{$pp->id}}">{{$pp->descripcion}}</option>
             @endforeach
           </select>
-        
+
 
         </div>
       </div>

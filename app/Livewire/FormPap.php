@@ -13,6 +13,10 @@ use App\Models\CirujiasPrevias;
 
 class FormPap extends Component
 {
+  public $switch = '';
+  public $check_cp;
+  public $v_cp = 'disabled';
+
   public $v_fum = '';
 
   public $check_vph;
@@ -44,6 +48,16 @@ class FormPap extends Component
   public $trat_rad;
   public $quimio;
 
+
+  /* Metodo para habilitar y desabilitar Cirugias precias */
+  public function cir_previas(){
+    if($this->check_cp == 1){
+      $this->v_cp = '';
+    }else{
+      $this->v_cp = 'disabled';
+    }
+  }
+
   /* Metodo para habilitar o desabilitar FUM */
   public function fum_meno()
   {
@@ -70,6 +84,7 @@ class FormPap extends Component
   {
     if ($this->check_vph == 1) {
       $this->v_test = '';
+      $this->switch = 'custom-switch-off-danger custom-switch-on-success';
     } else {
       $this->v_test = 'disabled';
       $this->fec_tam = '';
