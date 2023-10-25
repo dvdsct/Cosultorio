@@ -39,6 +39,7 @@
                             <p class="{{ $emb }}"> Semana {{ $eg }}</p>
                         </div>
 
+
                         <label>Fecha posible de parto: </label>
                         <p class="{{ $emb }}">{{ $fpp }}</p>
 
