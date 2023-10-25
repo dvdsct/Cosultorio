@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Pap;
+use App\Models\PapPrevio;
 use App\Models\TipoMuestra;
 use App\Models\TomaMuestra;
 use App\Models\MetodoAnticonceptivo;
@@ -15,11 +16,13 @@ class FormPap extends Component
   public $v_fum = '';
 
   public $check_vph;
+  public $masmenos;
   public $v_test = 'disabled';
 
   public $v_pp = 'disabled';
   public $check_pap;
   public $fec_pap_previo;
+  public $pap_prev;
   public $in_otros = 'd-none';
 
   public $tipo_muestra;
@@ -33,6 +36,7 @@ class FormPap extends Component
 
   public $tamizaje;
   public $fec_tam;
+
   public $fum;
   public $menop;
   public $causales;
@@ -116,7 +120,7 @@ class FormPap extends Component
     $this->tomas_muestras = TomaMuestra::all();
     $this->metodos_antis = MetodoAnticonceptivo::all();
     $this->cirus_prevs = CirujiasPrevias::all();
-
+    $this->pap_prev = PapPrevio::all();
 
 
     return view('livewire.form-pap');

@@ -23,7 +23,7 @@
               <option value="{{$ma->id}}">{{$ma->descripcion}}</option>
               @endforeach
             </select>
-            <input type="text" class="form-control col-md-6 mt-3 {{$in_otros}}" placeholder="Agregar otros metodos..">        
+            <input type="text" class="form-control col-md-6 mt-3 {{$in_otros}}" placeholder="Agregar otros metodos..">
 
         </div>
 
@@ -96,7 +96,7 @@
             <div class="row pl-5">
               <label for="customSwitch3" class="pr-2"> - </label>
               <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                <input type="checkbox" class="custom-control-input" id="customSwitch3" wire:model='masmenos'>
                 <label class="custom-control-label" for="customSwitch3">+</label>
               </div>
             </div>
@@ -116,11 +116,12 @@
           <!--  AGREGAR EL MODELO DEL RESULTADO DEL PAP PREVIO  -->
         <div class="col-md-4">
           <label> Resultado PAP previo </label>
-          <select class="custom-select rounded-0  mt-2" aria-label="Default select example" wire:model='tipo_muestra'>
-            @foreach ($tipos_muestras as $tp)
-            <option value="{{$tp->id}}">{{$tp->descripcion}}</option>
+          <select class="custom-select rounded-0  mt-2" aria-label="Default select example" wire:model='pap_prev'>
+            @foreach ($pap_prev as $pp)
+            <option value="{{$pp->id}}">{{$pp->descripcion}}</option>
             @endforeach
           </select>
+        
 
         </div>
       </div>
