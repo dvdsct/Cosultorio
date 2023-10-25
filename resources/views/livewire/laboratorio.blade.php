@@ -12,7 +12,6 @@
                     <form action="add_lab">PEDIDOS LABORATORIO
 
                         <label for="">Todas</label><input type="checkbox" wire:model='todas' wire:click='selectAll'>
-                        {{ $todas }}
 
 
 

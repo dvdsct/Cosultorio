@@ -1,6 +1,7 @@
 <div>
     <!-- MODAL  -->
-    <div class="modal fade show" id="modal-default" aria-modal="true" role="dialog" wire:ignore.self>
+
+    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -32,6 +33,8 @@
                             <input type="text" class="form-control" id="nombre" wire:model='dni'
                                 wire:keydown='upPaciente' placeholder="12345678">
                             {{ $persona }}
+                            {{ $fecha
+                             .'dsa'}}
 
                         </div>
 

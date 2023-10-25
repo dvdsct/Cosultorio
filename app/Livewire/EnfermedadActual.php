@@ -10,9 +10,10 @@ class EnfermedadActual extends Component
     public $obs;
     public $consulta;
 
-    public function mount()
+    public function mount($consulta)
     {
 
+        $this->consulta = $consulta;
         $this->ea = $this->consulta->ea;
         $this->obs = $this->consulta->observaciones;
     }
@@ -34,6 +35,8 @@ class EnfermedadActual extends Component
 
     public function render()
     {
-        return view('livewire.enfermedad-actual');
+        return view('livewire.enfermedad-actual',[
+            'consulta' => $this->consulta
+        ]);
     }
 }

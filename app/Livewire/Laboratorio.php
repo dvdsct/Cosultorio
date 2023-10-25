@@ -37,6 +37,7 @@ class Laboratorio extends Component
      public $vdrl_cual ;
      public $hbs_ag ;
      public $hiv ;
+     public $consulta;
 
 
      public function selectAll(){
@@ -111,7 +112,7 @@ class Laboratorio extends Component
 
 
 
-        
+
 
     public function render()
     {

@@ -3,10 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Persona;
+use App\Models\Perfil;
 use App\Models\Consulta;
 use App\Models\ObraSocial;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+
+use App\Models\ObraSocialXPerfil;
 
 
 
@@ -15,45 +18,84 @@ class FormTurno extends Component
 
     public $dni;
     public $nombre;
-    public $oss =[];
+    public $oss = [];
 
     public $os;
     public $abono;
     public $apellido;
     public $persona;
     public $hora;
+    public $fecha;
 
 
-    public function mount(){
+    public function mount($fecha)
+    {
         $this->oss = ObraSocial::all();
+        $this->fecha = $fecha;
     }
-    public function addTurno(){
 
-        $turno = new Consulta;
+
+
+    public function addTurno()
+    {
+
+
 
         if (count($this->persona) >= 1) {
+            dd('a1');
             $this->nombre = $this->persona[0]->nombre;
             $this->apellido = $this->persona[0]->apellido;
             $this->oss = $this->persona;
+
+            $turno = new Consulta;
+            dd('a');
+            $turno->save();
         } else {
-            // $persona = [];
-            $this->nombre = '';
-            $this->apellido = '';
-            $this->oss =  ObraSocial::all();
-            // $this->per = '';
-            // dd(count($persona));
+            // dd('b1');
+
+            $persona = new Persona;
+
+            $persona->nombre = $this->nombre;
+            $persona->apellido = $this->apellido;
+            $persona->dni = $this->dni;
+            $persona->tipo = 'fisica';
+            $persona->estado = '1';
+            $persona->save();
+
+            $perfil = new Perfil;
+
+            $perfil->persona_id = $persona->id;
+            $perfil->descripcion = 'paciente';
+            $perfil->estado = '1';
+            $perfil->save();
+
+            $osxp = new ObraSocialXPerfil;
+            $osxp->perfil_id = $perfil->id;
+            $osxp->obra_social_id = $this->os;
+            $osxp->save();
+
+
+
+
+
+
+
+            $turno = new Consulta;
+            $turno->perfil_id = $perfil->id;
+            $turno->estado = '2';
+            $turno->fecha_consulta = $this->fecha .' '. $this->horario;
+
+
+            $turno->save();
+
+            $this->dispatch('added');
         }
-
-
-
-
-
     }
 
 
     public function upPaciente()
     {
-        if (strlen($this->dni) > 1) {
+        if (strlen($this->dni) > 1 ) {
 
 
             $persona = DB::table('personas')
@@ -78,15 +120,19 @@ class FormTurno extends Component
                 $this->apellido = $persona[0]->apellido;
                 $this->oss = $persona;
             } else {
-                // $persona = [];
                 $this->nombre = '';
                 $this->apellido = '';
                 $this->oss =  ObraSocial::all();
-                // $this->per = '';
-                // dd(count($persona));
+
             }
         }
     }
+
+
+
+
+
+
     public function render()
     {
 
