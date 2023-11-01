@@ -19,49 +19,36 @@ class PacienteSeeder extends Seeder
             'David',
             'Nahuel',
             'Saso',
-            'Valentina'
+            'Valentina',
+            'Dany',
+            'Nahir'
           ];
+
         foreach ($personas as $persona){
 
-            Persona::create([
+
+
+            $p = Persona::create([
 
                 'nombre'=> $persona,
                 'apellido'=> 'Perez',
                 'fecha_de_nacimiento'=> '1995-11-11',
-                'dni'=> '3984849',
+                'dni'=> rand(20000000, 60000000),
                 'ocupacion' => 'estudiante',
                 'tipo'=> 'fisica',
                 'estado'=> '1'
             ]);
+            Perfil::create([
+
+                'persona_id'=> $p->id,
+                'descripcion'=> 'paciente',
+                'estado'=> '1'
+            ]);
         }
 
-              Perfil::create([
 
-                  'persona_id'=> '1',
-                  'descripcion'=> 'paciente',
-                  'estado'=> '1'
-              ]);
 
-              Perfil::create([
 
-                  'persona_id'=> '2',
-                  'descripcion'=> 'paciente',
-                  'estado'=> '1'
-              ]);
-
-              Perfil::create([
-
-                  'persona_id'=> '3',
-                  'descripcion'=> 'paciente',
-                  'estado'=> '1'
-              ]);
-
-              Perfil::create([
-
-                  'persona_id'=> '3',
-                  'descripcion'=> 'paciente',
-                  'estado'=> '1'
-              ]);
 
 
 

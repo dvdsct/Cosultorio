@@ -23,10 +23,10 @@ return new class extends Migration
             ->references('id')
             ->on('obra_socials')
             ->onDelete('cascade');
-            $table->string('plan');
-            $table->string('nro_afil');
-            $table->string('descripcion');
-            $table->string('estado');
+            $table->string('plan')->nullable();
+            $table->string('nro_afil')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('estado')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

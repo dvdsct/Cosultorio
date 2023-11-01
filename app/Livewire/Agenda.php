@@ -26,17 +26,13 @@ class Agenda extends Component
     public $dni;
     public $nombre;
     public $oss = [];
-
-
-
-
-
+    public $modal;
 
     public $os;
     public $abono;
     public $apellido;
     public $persona;
-    public $hora;
+    public $horario;
 
 
 
@@ -82,18 +78,19 @@ class Agenda extends Component
 
 
 
-        if (count($this->persona) >= 1) {
-            dd('a1');
-            $this->nombre = $this->persona[0]->nombre;
-            $this->apellido = $this->persona[0]->apellido;
-            $this->oss = $this->persona;
+            if (count($this->persona) >= 1) {
+                // $this->nombre = $this->persona[0]->nombre;
+                // $this->apellido = $this->persona[0]->apellido;
+                // $this->oss = $this->persona;
 
-            $turno = new Consulta;
-            dd('a');
-            $turno->save();
-
-        } else {
-            // dd('b1');
+                $turno = new Consulta;
+                $turno->perfil_id = '9';
+                $turno->fecha_consulta = $this->fecha .' ' . $this->horario;
+                $turno->estado = '1';
+                $turno->save();
+                $this->modal = 'none';
+            }
+            else {
 
             $persona = new Persona;
 
@@ -114,6 +111,7 @@ class Agenda extends Component
             $osxp = new ObraSocialXPerfil;
             $osxp->perfil_id = $perfil->id;
             $osxp->obra_social_id = $this->os;
+            $osxp->plan = 'defecto';
             $osxp->save();
 
             $abono = new Abono;
@@ -141,6 +139,7 @@ class Agenda extends Component
 
 
             $this->dispatch('added');
+
         }
     }
 
@@ -196,10 +195,11 @@ class Agenda extends Component
 
 
 
-    #[On('added')]
+    // #[On('refresh-turn')]
     public function render()
     {
 
+            $this->modal = 'none';
 
         $this->turnos = Consulta::select('consultas.fecha_consulta', 'perfils.persona_id', 'personas.nombre', 'personas.apellido', 'personas.dni', 'obra_social_x_perfils.plan', 'obra_social_x_perfils.nro_afil', 'obra_socials.descripcion')
             ->leftJoin('perfils', 'consultas.perfil_id', '=', 'perfils.id')

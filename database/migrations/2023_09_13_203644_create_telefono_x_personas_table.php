@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('telefono_x_personas', function (Blueprint $table) {
             $table->id();
-            $table->foreign('persona_id');
-            $table->unsignedBigInteger('persona_id')
+            $table->unsignedBigInteger('persona_id');
+            $table->foreign('persona_id')
             ->references('id')
             ->on('personas')
             ->onDelete('cascade');
+
             $table->unsignedBigInteger('telefono_id');
             $table->foreign('telefono_id')
             ->references('id')
             ->on('telefonos')
             ->onDelete('cascade');
+
             $table->string('estado')->default('1');
             $table->timestamps();
         });

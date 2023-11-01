@@ -23,7 +23,7 @@ return new class extends Migration
             ->references('id')
             ->on('abonos')
             ->onDelete('cascade');
-            $table->string('estado');
+            $table->string('estado')->nullable();
             $table->timestamps();
         });
     }
