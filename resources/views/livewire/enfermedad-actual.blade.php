@@ -1,8 +1,6 @@
 <div>
     <div class="row">
-
-
-        <div class="card card-info col">
+        <div class="card card-info col mx-2 px-0">
             <div class="card-header">
                 <h3 class="card-title">Enfermedad Actual</h3>
             </div>
@@ -25,24 +23,22 @@
                         </div>
                         <div class="col-5">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header bg-info">
                                     <h3 class="card-title">Pedidos</h3>
-                                    <div class="d-flex justify-content-end">
+                                </div>
 
+                                <div class="pt-3">
+                                    <div class="d-flex justify-content-around">
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-info" data-toggle="modal"
-                                            data-target="#modal-receta">
+                                        <button type="button" class="btn btn-info col-3" data-toggle="modal" data-target="#modal-receta">
                                             Receta </button>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal"
-                                            data-target="#modal-laboratorio">
+                                        <button type="button" class="btn btn-warning col-3" data-toggle="modal" data-target="#modal-laboratorio">
                                             Laboratorio </button>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#modal-imagen">
+                                        <button type="button" class="btn btn-danger col-3" data-toggle="modal" data-target="#modal-imagen">
                                             Imagen </button>
-
-
                                     </div>
                                 </div>
+
 
                                 <div class="card-body">
                                     <table class="table table-bordered">
@@ -50,7 +46,7 @@
                                             <tr>
                                                 <th style="width: 10px">#</th>
                                                 <th>Descripcion</th>
-                                                <th>tipo</th>
+                                                <th>Tipo</th>
                                                 <th style="width: 40px">
 
                                                 </th>
@@ -66,8 +62,14 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-info"></a>
-                                                    <a class="btn btn-danger"></a>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
 
