@@ -13,6 +13,8 @@ use App\Models\CirujiasPrevias;
 
 class FormPap extends Component
 {
+
+  public $check_tvph = '';
   public $switch = '';
   public $check_cp;
   public $v_cp = 'disabled';
@@ -85,9 +87,12 @@ class FormPap extends Component
     if ($this->check_vph == 1) {
       $this->v_test = '';
       $this->switch = 'custom-switch-off-danger custom-switch-on-success';
+      $this->check_tvph = '';
     } else {
       $this->v_test = 'disabled';
       $this->fec_tam = '';
+      $this->switch = '';
+      $this->check_tvph = 'disabled';
     }
   }
 

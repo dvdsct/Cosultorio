@@ -3,30 +3,59 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Large Modal</h4>
+                    <h4 class="modal-title">Nuevo pedido de Imagen</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form wire:submit="add_imag">PEDIDO IMAGENES
+                    <form wire:submit="add_imag">
 
-                    <label for="">Eco Ginecologica</label><input type="checkbox" wire:model='eco_gin'>
-                    <label for="">Eco Obstetrica</label><input type="checkbox" wire:model='eco_obs'>
-                    <label for="">Eco Abdominal</label><input type="checkbox" wire:model='eco_abd'>
-                    <label for="">Eco Tiroidea</label><input type="checkbox" wire:model='eco_tiro'>
-                    <label for="">RMN Pelviana</label><input type="checkbox" wire:model='rmn_pelv'>
-                    <label for="">TAC Abdominal</label><input type="checkbox" wire:model='tac_abd'>
-                    <label for="">TAC Pelviana</label><input type="checkbox" wire:model='tac_pel'>
+                        <div class="form-check">
+                            <input type="checkbox" wire:model='eco_gin'>
+                            <label class="form-check-label">Eco Ginecologica</label>
+                        </div>
 
+                        <div class="form-check">
+                            <input type="checkbox" wire:model='eco_obs'>
+                            <label class="form-check-label">Eco Obstetrica</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" wire:model='eco_abd'>
+                            <label class="form-check-label">Eco Abdominal</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" wire:model='eco_tiro'>
+                            <label class="form-check-label">Eco Tiroidea</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" wire:model='rmn_pelv'>
+                            <label class="form-check-label">RMN Pelviana</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" wire:model='tac_abd'>
+                            <label class="form-check-label">TAC Abdominal</label>
+                        </div>
+
+
+                        <div class="form-check">
+                            <input type="checkbox" wire:model='tac_pel'>
+                            <label class="form-check-label">TAC Pelviana</label>
+                        </div>
                 </div>
+
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
-        </form>
+            </form>
 
         </div>
 
-    </div></div>
+    </div>
+</div>

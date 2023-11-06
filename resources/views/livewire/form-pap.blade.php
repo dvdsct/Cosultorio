@@ -88,7 +88,7 @@
 
 
       <h5>Tamizaje Anterior</h5>
-      <!-- CREAR O VINCULAR EL MODELO PARA EL TEST VPH -->
+
       <div class="row">
         <div class="col-md-4">
           <div class="row">
@@ -96,11 +96,11 @@
               <input type="checkbox" class="custom-control-input" id="customSwitch1" wire:click='test_vph' wire:model='check_vph'>
               <label class="custom-control-label" for="customSwitch1">Test de VPH </label>
             </div>
-            <!-- CREAR EL MODELO PARA TEST POSITIVO Y NEGATIVO -->
+
             <div class="row pl-5">
               <label for="customSwitch3" class="pr-2"> - </label>
               <div class="custom-control custom-switch {{$switch}}" >
-                <input type="checkbox" class="custom-control-input" id="customSwitch3" wire:model='masmenos'>
+                <input type="checkbox" class="custom-control-input" id="customSwitch3" {{$check_tvph}} wire:model='masmenos'>
                 <label class="custom-control-label" for="customSwitch3">+</label>
               </div>
             </div>
@@ -112,7 +112,7 @@
         <!-- -------------------------------------------------------------- -->
         <div class="col-md-4">
           <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch2" wire:click='pap_previo' wire:model='check_pap'>
+            <input type="checkbox" class="custom-control-input" id="customSwitch2" wire:click='pap_previo'  wire:model='check_pap'>
             <label class="custom-control-label" for="customSwitch2">PAP Previo </label>
           </div>
           <input type="date" class="form-control mt-3" {{$v_pp}} wire:model='fec_pap_previo'>
