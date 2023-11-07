@@ -9,7 +9,7 @@
                     <div>
                         {{ $tension }}
                         <!-- Contenido del elemento -->
-                        <p class="{{ $l_ta }}">{{ $tension }}</p>
+                        <h4 class="{{ $l_ta }}">{{ $tension }}</h4>
                     </div>
                     <input type="text" class="{{ $in_ta }}" wire:model='tension' wire:keydown.enter='setTension'>
                 </div>
@@ -34,14 +34,14 @@
                     <input type="checkbox" class="{{ $in_fum }}" id="embarazo" wire:model='in_emb'>
 
                     <div class="{{ $emb }} ">
-                        <div class="row">
-                            <label> Transcurso: </label>
-                            <p class="{{ $emb }}"> Semana {{ $eg }}</p>
+                        <div class="row pl-2">
+                            <h5> <strong> Transcurso: </strong> </h5>
+                            <h5 class="{{ $emb }} mb-0"> Semana {{ $eg }}</h5>
                         </div>
 
 
-                        <label>Fecha posible de parto: </label>
-                        <p class="{{ $emb }}">{{ $fpp }}</p>
+                        <h5 class="mb-0"> <strong> Fecha posible de parto: </strong> </h5>
+                        <h5 class="{{ $emb }} mb-0">{{ $fpp }}</h5>
 
                         <i class="ion ion-pie-graph"></i>
                     </div>
@@ -61,7 +61,7 @@
             <div class="small-box bg-warning d-flex flex-column h-100 {{ $v_temp }}">
                 <div class="inner">
                     <h3>Temperatura</h3>
-                    <p class="{{ $l_temp }}">{{ $temperatura }}</p>
+                    <h4 class="{{ $l_temp }} "> {{ $temperatura }} </h4>
                 </div>
                 <input type="text" class="{{ $in_temp }}" wire:model='temperatura' wire:keydown.enter='setTemp'>
 
@@ -78,7 +78,7 @@
             <div class="small-box bg-danger d-flex flex-column h-100 {{ $v_imc }}">
                 <div class="inner">
                     <h3>IMC</h3>
-                    <p class="{{ $l_imc }}">{{ $imc }}</p>
+                    <h4 class="{{ $l_imc }}">{{ $imc }}</h4>
 
                     <form wire:submit='setImc'>
                         @csrf

@@ -27,11 +27,6 @@ class Agenda extends Component
     public $nombre;
     public $oss = [];
 
-
-
-
-
-
     public $os;
     public $abono;
     public $apellido;

@@ -2,8 +2,8 @@
     <div class="modal fade" id="modal-imagen" style="display: none;" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Nuevo pedido de Imagen</h4>
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title"> <strong> Nuevo pedido de Imagen </strong></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -49,8 +49,8 @@
                 </div>
 
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-secondary">Aceptar</button>
                 </div>
             </div>
             </form>
