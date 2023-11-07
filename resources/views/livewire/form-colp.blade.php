@@ -141,58 +141,60 @@
             </div>
         </div>
 
-        <div class="row pt-3">
-            <div class="col-md-6">
-                <label> Hallazgos Colposcópicos IFCPC 2011</label>
+        <label> Hallazgos Colposcópicos IFCPC 2011</label>
+        <div class="d-flex justify-content-around">
 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_hnormal" wire:model='hall_normales'>
-                    <label class="form-check-label" for="Checkbox_hnormal">
-                        Hallazgos Normales
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_a1" wire:model='anormales1'>
-                    <label class="form-check-label" for="Checkbox_a1">
-                        Anormales Grado I (menor)
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_a2" wire:model='anormales2'>
-                    <label class="form-check-label" for="Checkbox_a2">
-                        Grado II(mayor)
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_noEspe" wire:model='no_especifico'>
-                    <label class="form-check-label" for="Checkbox_noEspe">
-                        No Especifico
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_sospe" wire:model='sospecha_inv'>
-                    <label class="form-check-label" for="Checkbox_sospe">
-                        Sospecha de Invasión
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_sospe" wire:model='hall_varios'>
-                    <label class="form-check-label" for="Checkbox_sospe">
-                        Hallazgos Varios
-                    </label>
-                </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Checkbox_hnormal" wire:model='hall_normales'>
+                <label class="form-check-label" for="Checkbox_hnormal">
+                    Hallazgos Normales
+                </label>
             </div>
 
-            <div class="col-md-6">
-                <label for="">Biopsia</label> <input type="checkbox" wire:model='biopsia'>
-                <label for="">ECC (Evaluacion Conducto Cervical)</label> <input type="checkbox" wire:model='evaluacion'>
-                {{-- <label for="">Test de Schiller</label> <input type="checkbox"> --}}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Checkbox_a1" wire:model='anormales1'>
+                <label class="form-check-label" for="Checkbox_a1">
+                    Anormales Grado I (menor)
+                </label>
             </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Checkbox_a2" wire:model='anormales2'>
+                <label class="form-check-label" for="Checkbox_a2">
+                    Grado II(mayor)
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Checkbox_noEspe" wire:model='no_especifico'>
+                <label class="form-check-label" for="Checkbox_noEspe">
+                    No Especifico
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Checkbox_sospe" wire:model='sospecha_inv'>
+                <label class="form-check-label" for="Checkbox_sospe">
+                    Sospecha de Invasión
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Checkbox_sospe" wire:model='hall_varios'>
+                <label class="form-check-label" for="Checkbox_sospe">
+                    Hallazgos Varios
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox_bio"  wire:model='biopsia'>
+                <label class="form-check-label" for="checkbox_bio">Biopsia</label>
+            </div>
+
+            <label for="">ECC (Evaluacion Conducto Cervical)</label> <input type="checkbox" wire:model='evaluacion'>
+            {{-- <label for="">Test de Schiller</label> <input type="checkbox"> --}}
         </div>
 
 

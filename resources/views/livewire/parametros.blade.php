@@ -1,9 +1,9 @@
 <div>
     {{-- {{ $consulta }} --}}
-    <div class="row border m-0 p-1">
-        {{-- Tension arterial --}}
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
+    <div class="row border m-0 p-1 equal-height-cols">
+        <!-- {{-- Tension arterial --}} -->
+        <div class="col-lg-3 col-6 flex-fill">
+            <div class="small-box bg-info d-flex flex-column h-100">
                 <div class="inner">
                     <h3>TA</h3>
                     <div>
@@ -16,16 +16,16 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <div class="small-box-footer d-flex justify-content-end">
-                    <a wire:click="setTaClass" class="pr-3"><i class="fas fa-edit"></i></a>
+                <div class="small-box-footer d-flex justify-content-end mt-auto">
+                    <a wire:click="setTaClass" class="pr-3"><i class="fas fa-edit text-white"></i></a>
                 </div>
             </div>
         </div>
 
         {{-- FUM --}}
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-3 col-6 flex-fill">
 
-            <div class="small-box bg-{{ $c_fum }}">
+            <div class="small-box bg-success d-flex flex-column h-100 {{ $c_fum }}">
                 <div class="inner">
                     <h3>FUM</h3>
                     <p class="{{ $l_fum }}">{{ $fum }}</p>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="small-box-footer d-flex justify-content-end">
+                <div class="small-box-footer d-flex justify-content-end mt-auto">
                     <a wire:click="setFumClass" class="pr-3"><i class="fas fa-edit text-white"></i></a>
                 </div>
             </div>
@@ -56,26 +56,26 @@
 
 
         {{-- Temperatura --}}
-        <div class="col-lg-3 col-6 ">
+        <div class="col-lg-3 col-6 flex-fill">
 
-            <div class="small-box bg-{{ $v_temp }}">
+            <div class="small-box bg-warning d-flex flex-column h-100 {{ $v_temp }}">
                 <div class="inner">
                     <h3>Temperatura</h3>
                     <p class="{{ $l_temp }}">{{ $temperatura }}</p>
                 </div>
                 <input type="text" class="{{ $in_temp }}" wire:model='temperatura' wire:keydown.enter='setTemp'>
 
-                <div class="small-box-footer d-flex justify-content-end">
-                    <a wire:click="setTempClass" class="pr-3"><i class="fas fa-edit"></i></a>
+                <div class="small-box-footer d-flex justify-content-end mt-auto">
+                    <a wire:click="setTempClass" class="pr-3"><i class="fas fa-edit text-white"></i></a>
                 </div>
             </div>
         </div>
 
 
         {{-- IMC --}}
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-3 col-6 flex-fill">
 
-            <div class="small-box bg-{{ $v_imc }}">
+            <div class="small-box bg-danger d-flex flex-column h-100 {{ $v_imc }}">
                 <div class="inner">
                     <h3>IMC</h3>
                     <p class="{{ $l_imc }}">{{ $imc }}</p>
@@ -89,8 +89,8 @@
                     </form>
                 </div>
 
-                <div class="small-box-footer d-flex justify-content-end">
-                    <a wire:click="setImcClass" class="pr-3"><i class="fas fa-edit"></i></a>
+                <div class="small-box-footer d-flex justify-content-end mt-auto">
+                    <a wire:click="setImcClass" class="pr-3"><i class="fas fa-edit text-white"></i></a>
                 </div>
             </div>
         </div>
