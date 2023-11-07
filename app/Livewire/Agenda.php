@@ -66,8 +66,11 @@ class Agenda extends Component
     }
 
 
+    public function delTurn(){
 
-
+        dd($this->turnos);
+        // Consulta::find($turno)->delete();
+    }
 
 
 
@@ -76,7 +79,13 @@ class Agenda extends Component
     public function addTurno()
     {
 
-
+        $validated = $this->validate([
+            'fecha' => 'required|min:3',
+            'horario' => 'required|min:3',
+            'dni' => 'required|min:3',
+            'nombre' => 'required|min:3',
+            'apellido' => 'required|min:3',
+        ]);
 
             if (count($this->persona) >= 1) {
                 // $this->nombre = $this->persona[0]->nombre;
@@ -84,7 +93,7 @@ class Agenda extends Component
                 // $this->oss = $this->persona;
 
                 $turno = new Consulta;
-                $turno->perfil_id = '9';
+                $turno->perfil_id = $this->persona[0]->id;
                 $turno->fecha_consulta = $this->fecha .' ' . $this->horario;
                 $turno->estado = '1';
                 $turno->save();
@@ -173,7 +182,6 @@ class Agenda extends Component
             if (count($persona) >= 1) {
                 $this->nombre = $persona[0]->nombre;
                 $this->apellido = $persona[0]->apellido;
-                // $this->dni = $persona[0]->dni;
                 $this->oss = $persona;
             } else {
                 $this->nombre = '';
@@ -201,7 +209,7 @@ class Agenda extends Component
 
             $this->modal = 'none';
 
-        $this->turnos = Consulta::select('consultas.fecha_consulta', 'perfils.persona_id', 'personas.nombre', 'personas.apellido', 'personas.dni', 'obra_social_x_perfils.plan', 'obra_social_x_perfils.nro_afil', 'obra_socials.descripcion')
+        $this->turnos = Consulta::select('consultas.id', 'consultas.fecha_consulta', 'perfils.persona_id', 'personas.nombre', 'personas.apellido', 'personas.dni', 'obra_social_x_perfils.plan', 'obra_social_x_perfils.nro_afil', 'obra_socials.descripcion')
             ->leftJoin('perfils', 'consultas.perfil_id', '=', 'perfils.id')
             ->leftJoin('personas', 'perfils.persona_id', '=', 'personas.id')
             ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.perfil_id', '=', 'perfils.id')
