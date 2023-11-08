@@ -144,24 +144,22 @@ class AddLaboratorio extends Component
           $lab->vdrl_cual= $this->vdrl_cual;
           $lab->hbs_ag= $this->hbs_ag;
           $lab->hiv= $this->hiv;
+          $lab->estado= '2';
           $lab->save();
 
           $lxc = new LaboratorioXConsulta;
           $lxc->consulta_id=$this->consulta->id;
           $lxc->laboratorio_id=$lab->id;
           $lxc->descripcion= 'vacio';
-          $lxc->estado= '1';
+          $lxc->estado= '2';
           $lxc->save();
 
           //dd('hasta aqui');
-         }
+          $this->dispatch('added')->to(EnfermedadActual::class);
+        }
 
 
-
-
-
-
-
+        
 
     public function render()
     {

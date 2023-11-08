@@ -53,26 +53,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1.</td>
-                                                <td>Cortizol</td>
-                                                <td>
-                                                    <div>
-                                                        Receta
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-info">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+@foreach ($laboratorios as $lab)
+<tr>
+    <td>{{ $lab->id }}</td>
+    <td>Pedido labaoratorio</td>
+    <td>
 
+    </td>
+    <td>
+        <div class="btn-group">
+            <button class="btn btn-info">
+                <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-danger">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </td>
+</tr>
+
+@endforeach
                                         </tbody>
                                     </table>
                                 </div>

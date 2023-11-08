@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('laboratorios', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('hemo')->nullable();
             $table->string('hb')->nullable();
             $table->string('hto')->nullable();
@@ -44,6 +43,8 @@ return new class extends Migration
             $table->string('vdrl_cual')->nullable();
             $table->string('hbs_ag')->nullable();
             $table->string('hiv')->nullable();
+            $table->string('estado')->nullable();
+            $table->timestamps();
         });
     }
 

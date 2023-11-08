@@ -2,13 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Models\Laboratorio;
 use Livewire\Component;
-
+use Livewire\Attributes\On;
 class EnfermedadActual extends Component
 {
     public $ea = 'sajgdsag';
     public $obs;
     public $consulta;
+    public $laboratorios;
 
     public function mount($consulta)
     {
@@ -33,8 +35,10 @@ class EnfermedadActual extends Component
 
 
 
+    #[On('added')]
     public function render()
-    {
+    {   $this->laboratorios = Laboratorio::where('estado','2')->get();
+
         return view('livewire.enfermedad-actual',[
             'consulta' => $this->consulta
         ]);
