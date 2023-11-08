@@ -16,8 +16,6 @@ use App\Models\ObraSocialXPerfil;
 use Livewire\Attributes\On;
 
 
-
-
 class Agenda extends Component
 {
     public $turnos;

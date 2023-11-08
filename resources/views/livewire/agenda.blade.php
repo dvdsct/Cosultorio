@@ -3,7 +3,7 @@
         <div class="col-3 d-flex align-items-center">
 
             <button wire:click='change_day("yes")' class="btn btn-info btn-sm">
-                << /button>
+                <</button>
                     <input type="date" wire:model.lazy="fecha" class="form-control">
                     <button wire:click='change_day("tmw")' class="btn btn-info btn-sm">></button>
 
@@ -43,7 +43,7 @@
                                             data-toggle="dropdown" aria-expanded="false">
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
-                                        <div class="dropdown-menu" role="menu" style="">
+                                        <div class="dropdown-menu" role="menu">
                                             <a class="dropdown-item" href="#">Action</a>
                                             <a class="dropdown-item" href="#">Another action</a>
                                             <a class="dropdown-item" href="#">Something else here</a>
@@ -75,8 +75,7 @@
 
     <!-- MODAL  -->
 
-    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self
-        style="display:{{ $modal }}">
+    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
