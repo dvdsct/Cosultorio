@@ -3,7 +3,7 @@
         <div class="col-3 d-flex align-items-center">
 
             <button wire:click='change_day("yes")' class="btn btn-info btn-sm">
-                <</button>
+                << /button>
                     <input type="date" wire:model.lazy="fecha" class="form-control">
                     <button wire:click='change_day("tmw")' class="btn btn-info btn-sm">></button>
 
@@ -54,7 +54,10 @@
                                     <button type="button" class="btn btn-warning btn-sm">
                                         <i class="fas fa-pen"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-sm">
+                                    <button class="btn btn-danger btn-sm"
+                                     type="button"
+                                      wire:click="delTurn"
+                                        wire:confirm="Are you sure you want to delete this post?">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -68,11 +71,12 @@
 
         </div>
     </div>
-
+    {{ $persona }}
 
     <!-- MODAL  -->
 
-    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
+    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self
+        style="display:{{ $modal }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -104,9 +108,14 @@
 
 
                             <div class="form-group">
-                                <label for="input_nombre">Paciente</label>
+                                <label for="input_nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" wire:model='nombre'
-                                    placeholder="Nombre paciente">
+                                    placeholder="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="input_nombre">Apellido</label>
+                                <input type="text" class="form-control" id="nombre" wire:model='apellido'
+                                    placeholder="Apellido">
                             </div>
 
                             <div class="form-group">
@@ -124,8 +133,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="text" class="form-control" id="abono" wire:model='abono'
-                                        value="$">
+                                    <input type="text" class="form-control" id="abono" wire:model='abono'>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +141,7 @@
 
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-info">Guardar</button>
+                            <button type="submit" class="btn btn-info">Guardar</button>
                         </div>
                 </form>
             </div>

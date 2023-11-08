@@ -18,11 +18,13 @@ return new class extends Migration
             ->references('id')
             ->on('personas')
             ->onDelete('cascade');
+
             $table->unsignedBigInteger('telefono_id');
             $table->foreign('telefono_id')
             ->references('id')
             ->on('telefonos')
             ->onDelete('cascade');
+
             $table->string('estado')->default('1');
             $table->timestamps();
         });
