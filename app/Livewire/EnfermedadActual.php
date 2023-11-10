@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 class EnfermedadActual extends Component
 {
-    public $ea = 'sajgdsag';
+    public $ea ;
     public $obs;
     public $consulta;
     public $laboratorios;

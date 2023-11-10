@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
        $this->call(TratamientoSeed::class);
        $this->call(ZonaTransforSeed::class);
        $this->call(PapPrevioSeed::class);
+       $this->call(VademecumSeeder::class);
     }
 }
