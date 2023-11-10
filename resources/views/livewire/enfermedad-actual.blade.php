@@ -44,35 +44,34 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th style="width: 10px">#</th>
-                                                <th>Descripcion</th>
                                                 <th>Tipo</th>
+                                                <th>Descripcion</th>
                                                 <th style="width: 40px">
 
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-@foreach ($laboratorios as $lab)
-<tr>
-    <td>{{ $lab->id }}</td>
-    <td>Pedido labaoratorio</td>
-    <td>
+                                            @foreach ($laboratorios as $lab)
+                                            <tr>
+                                                <!--  <td>{{ $lab->id }}</td> -->
+                                                <td> Labaoratorio </td>
+                                                <td>
 
-    </td>
-    <td>
-        <div class="btn-group">
-            <button class="btn btn-info">
-                <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-danger">
-                <i class="fas fa-trash"></i>
-            </button>
-        </div>
-    </td>
-</tr>
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
-@endforeach
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -300,28 +300,28 @@ return [
         [
             'text'        => 'Turnos',
             'url'         => 'turnos',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-calendar-check',
         ],
 
         [
             'text'        => 'Paps',
             'url'         => 'paps',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-file-alt',
         ],
         [
             'text'        => 'Pacientes',
             'url'         => 'pacientes',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'far fas fa-users',
         ],
         [
             'text'        => 'Consultas',
             'url'         => 'consulta',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'far fas fa-stethoscope',
         ],
         [
             'text'        => 'Colposcopias',
             'url'         => 'colpos',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'far fas fa-eye',
         ],
 
     ],

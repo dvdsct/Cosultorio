@@ -22,6 +22,11 @@ class Consulta extends Model
     ];
 
 
+    public function abonos (){
+
+        return $this->belongsToMany(Abono::class,'abono_x_consultas');
+    }
+
 
     public function perfiles (){
 

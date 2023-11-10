@@ -140,10 +140,9 @@
                 </select>
             </div>
         </div>
-
+        <hr>
         <label> Hallazgos Colposcópicos IFCPC 2011</label>
-        <div class="d-flex justify-content-around">
-
+        <div class="row mb-3 pl-2">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="Checkbox_hnormal" wire:model='hall_normales'>
                 <label class="form-check-label" for="Checkbox_hnormal">
@@ -151,107 +150,135 @@
                 </label>
             </div>
 
-            <div class="form-check">
+            <div class="form-check pl-5">
                 <input class="form-check-input" type="checkbox" id="Checkbox_a1" wire:model='anormales1'>
                 <label class="form-check-label" for="Checkbox_a1">
                     Anormales Grado I (menor)
                 </label>
             </div>
 
-            <div class="form-check">
+            <div class="form-check pl-5">
                 <input class="form-check-input" type="checkbox" id="Checkbox_a2" wire:model='anormales2'>
                 <label class="form-check-label" for="Checkbox_a2">
                     Grado II(mayor)
                 </label>
             </div>
 
-            <div class="form-check">
+            <div class="form-check pl-5">
                 <input class="form-check-input" type="checkbox" id="Checkbox_noEspe" wire:model='no_especifico'>
                 <label class="form-check-label" for="Checkbox_noEspe">
                     No Especifico
                 </label>
             </div>
 
-            <div class="form-check">
+            <div class="form-check pl-5">
                 <input class="form-check-input" type="checkbox" id="Checkbox_sospe" wire:model='sospecha_inv'>
                 <label class="form-check-label" for="Checkbox_sospe">
                     Sospecha de Invasión
                 </label>
             </div>
+        </div>
 
+        <div class="row pl-2">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="Checkbox_sospe" wire:model='hall_varios'>
                 <label class="form-check-label" for="Checkbox_sospe">
                     Hallazgos Varios
                 </label>
             </div>
-        </div>
 
-        <div class="col-md-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="checkbox_bio"  wire:model='biopsia'>
+            <div class="form-check pl-5">
+                <input class="form-check-input" type="checkbox" id="checkbox_bio" wire:model='biopsia'>
                 <label class="form-check-label" for="checkbox_bio">Biopsia</label>
             </div>
 
-            <label for="">ECC (Evaluacion Conducto Cervical)</label> <input type="checkbox" wire:model='evaluacion'>
-            {{-- <label for="">Test de Schiller</label> <input type="checkbox"> --}}
+            <div class="form-check pl-5">
+                <input type="checkbox" wire:model='evaluacion'>
+                <label class="form-check-label">ECC (Evaluacion Conducto Cervical)</label>
+            </div>
+
+            <div class="form-check pl-5">
+            <input type="checkbox"> 
+            <label>Test de Schiller</label> 
+            </div>
         </div>
+        <hr>
 
+        <div class="row">
+            <div class="col-md-6">
+                <label>Resultados de la Biopsia</label>
+                <div class="row mb-3 pl-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="Checkbox_negat" wire:model='negat'>
+                        <label class="form-check-label" for="Checkbox_negat">
+                            Negativo
+                        </label>
+                    </div>
 
-        <div>
-            <label>Resultados de la Biopsia</label>
-            <div class="row pl-2">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_negat" wire:model='negat'>
-                    <label class="form-check-label" for="Checkbox_negat">
-                        Negativo
-                    </label>
+                    <div class="form-check pl-5">
+                        <input class="form-check-input" type="checkbox" id="Checkbox_cin1" wire:model='cin1'>
+                        <label class="form-check-label" for="Checkbox_cin1">
+                            CIN I
+                        </label>
+                    </div>
+
+                    <div class="form-check pl-5">
+                        <input class="form-check-input" type="checkbox" id="Checkbox_cin2" wire:model='cin2'>
+                        <label class="form-check-label" for="Checkbox_cin2">
+                            CIN II
+                        </label>
+                    </div>
+
+                    <div class="form-check pl-5">
+                        <input class="form-check-input" type="checkbox" id="Checkbox_cin3" wire:model='cin3'>
+                        <label class="form-check-label" for="Checkbox_cin3">
+                            CIN III
+                        </label>
+                    </div>
+
+                    <div class="form-check pl-5">
+                        <input class="form-check-input" type="checkbox" id="Checkbox_cis" wire:model='cis'>
+                        <label class="form-check-label" for="Checkbox_cis">
+                            CIS
+                        </label>
+                    </div>
                 </div>
 
-                <div class="form-check pl-5">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_cin1" wire:model='cin1'>
-                    <label class="form-check-label" for="Checkbox_cin1">
-                        CIN I
-                    </label>
-                </div>
+                <div class="row pl-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" wire:model='ca_inv'>
+                        <label class="form-check-label">Ca Invasor</label>
+                    </div>
 
-                <div class="form-check pl-5">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_cin2" wire:model='cin2'>
-                    <label class="form-check-label" for="Checkbox_cin2">
-                        CIN II
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <input type="checkbox" wire:model='adenocis'>
+                        <label class="form-check-label">Adenocis</label>
+                    </div>
 
-                <div class="form-check pl-5">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_cin3" wire:model='cin3'>
-                    <label class="form-check-label" for="Checkbox_cin3">
-                        CIN III
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <input type="checkbox" wire:model='adeno_ca_inv'>
+                        <label class="form-check-label">Adeno Ca Invasor</label>
+                    </div>
 
-                <div class="form-check pl-5">
-                    <input class="form-check-input" type="checkbox" id="Checkbox_cis" wire:model='cis'>
-                    <label class="form-check-label" for="Checkbox_cis">
-                        CIS
-                    </label>
+                    <div class="form-check">
+                        <input type="checkbox" wire:model='bio_otros'>
+                        <label class="form-check-label">Otros</label>
+                    </div>
                 </div>
             </div>
 
-            <label for="">Ca Invasor</label> <input type="checkbox" wire:model='ca_inv'>
-            <label for="">Adenocis</label> <input type="checkbox" wire:model='adenocis'>
-            <label for="">Adeno Ca Invasor</label> <input type="checkbox" wire:model='adeno_ca_inv'>
-            <label for="">Otros</label><input type="checkbox" wire:model='bio_otros'>
+            <div class="col-md-6">
+                <label>Tratamiento</label>
+                <h5>Escisión:</h5>
+                <select class="form-select" aria-label="Default select example" wire:model='tratam'>
+                    @foreach ($tratamientos as $t)
+                    <option value="{{ $t->id }}">{{ $t->descripcion }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
+        <hr>
 
-        <div>
-            <label>Tratamiento</label>
-            <h4>Escisión:</h4>
-            <select class="form-select" aria-label="Default select example" wire:model='tratam'>
-                @foreach ($tratamientos as $t)
-                <option value="{{ $t->id }}">{{ $t->descripcion }}</option>
-                @endforeach
-            </select>
-        </div>
 
         <div>
             <label>Seguimiento</label>
