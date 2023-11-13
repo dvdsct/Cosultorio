@@ -31,11 +31,11 @@
                                     <div class="d-flex justify-content-around">
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-info col-3" data-toggle="modal" data-target="#modal-receta">
-                                            Receta </button>
+                                         <strong>  Receta  </strong> </button>
                                         <button type="button" class="btn btn-warning col-3" data-toggle="modal" data-target="#modal-laboratorio">
-                                            Laboratorio </button>
+                                           <strong> Laboratorio </strong> </button>
                                         <button type="button" class="btn btn-danger col-3" data-toggle="modal" data-target="#modal-imagen">
-                                            Imagen </button>
+                                           <strong> Imagen  </strong> </button>
                                     </div>
                                 </div>
 
@@ -59,7 +59,7 @@
                                                 <td>
 
                                                 </td>
-                                                <td>
+                                                <td class="p-0">
                                                     <div class="btn-group">
                                                         <button class="btn btn-info">
                                                             <i class="fas fa-edit"></i>

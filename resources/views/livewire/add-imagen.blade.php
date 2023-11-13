@@ -10,41 +10,47 @@
                 </div>
                 <div class="modal-body">
                     <form wire:submit="add_imag">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input type="checkbox" wire:model='eco_gin'>
+                                    <label class="form-check-label">Eco Ginecologica</label>
+                                </div>
 
-                        <div class="form-check">
-                            <input type="checkbox" wire:model='eco_gin'>
-                            <label class="form-check-label">Eco Ginecologica</label>
-                        </div>
+                                <div class="form-check">
+                                    <input type="checkbox" wire:model='eco_obs'>
+                                    <label class="form-check-label">Eco Obstetrica</label>
+                                </div>
 
-                        <div class="form-check">
-                            <input type="checkbox" wire:model='eco_obs'>
-                            <label class="form-check-label">Eco Obstetrica</label>
-                        </div>
+                                <div class="form-check">
+                                    <input type="checkbox" wire:model='eco_abd'>
+                                    <label class="form-check-label">Eco Abdominal</label>
+                                </div>
 
-                        <div class="form-check">
-                            <input type="checkbox" wire:model='eco_abd'>
-                            <label class="form-check-label">Eco Abdominal</label>
-                        </div>
+                                <div class="form-check">
+                                    <input type="checkbox" wire:model='eco_tiro'>
+                                    <label class="form-check-label">Eco Tiroidea</label>
+                                </div>
+                            </div>
 
-                        <div class="form-check">
-                            <input type="checkbox" wire:model='eco_tiro'>
-                            <label class="form-check-label">Eco Tiroidea</label>
-                        </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input type="checkbox" wire:model='rmn_pelv'>
+                                    <label class="form-check-label">RMN Pelviana</label>
+                                </div>
+                            </div>
 
-                        <div class="form-check">
-                            <input type="checkbox" wire:model='rmn_pelv'>
-                            <label class="form-check-label">RMN Pelviana</label>
-                        </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input type="checkbox" wire:model='tac_abd'>
+                                    <label class="form-check-label">TAC Abdominal</label>
+                                </div>
 
-                        <div class="form-check">
-                            <input type="checkbox" wire:model='tac_abd'>
-                            <label class="form-check-label">TAC Abdominal</label>
-                        </div>
-
-
-                        <div class="form-check">
-                            <input type="checkbox" wire:model='tac_pel'>
-                            <label class="form-check-label">TAC Pelviana</label>
+                                <div class="form-check">
+                                    <input type="checkbox" wire:model='tac_pel'>
+                                    <label class="form-check-label">TAC Pelviana</label>
+                                </div>
+                            </div>
                         </div>
                 </div>
 

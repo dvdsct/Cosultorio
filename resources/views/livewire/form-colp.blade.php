@@ -197,9 +197,13 @@
                 <label class="form-check-label">ECC (Evaluacion Conducto Cervical)</label>
             </div>
 
-            <div class="form-check pl-5">
-            <input type="checkbox"> 
-            <label>Test de Schiller</label> 
+            <!-- VINCULAR VARIABLE PARA TEST DE SCHILLER -->
+            <div class="row pl-5">
+                <label for="customSwitch3" class="pr-2 font-weight-normal">Test de Schiller: - </label>
+                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input" id="customSwitchSchiller">
+                    <label class="custom-control-label font-weight-normal" for="customSwitchSchiller">+</label>
+                </div>
             </div>
         </div>
         <hr>
@@ -269,8 +273,9 @@
 
             <div class="col-md-6">
                 <label>Tratamiento</label>
-                <h5>Escisión:</h5>
-                <select class="form-select" aria-label="Default select example" wire:model='tratam'>
+                <br>
+                <label class="form-check-label">Escisión:</label>
+                <select class="custom-select rounded-0" aria-label="Default select example" wire:model='tratam'>
                     @foreach ($tratamientos as $t)
                     <option value="{{ $t->id }}">{{ $t->descripcion }}</option>
                     @endforeach
