@@ -14,31 +14,41 @@ return new class extends Migration
     {
         Schema::create('colposcopias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('biopsia_id');
+            $table->unsignedBigInteger('perfil_id');
+
+            $table->foreign('perfil_id')
+                ->references('id')
+                ->on('perfils')
+                ->onDelete('cascade');
+            $table->dateTime('fecha_consulta');
+
+            $table->string('fum')->nullable();
+
+            $table->unsignedBigInteger('biopsia_id')->nullable();
             $table->foreign('biopsia_id')
             ->references('id')
             ->on('biopsias')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('citologia_id');
+            $table->unsignedBigInteger('citologia_id')->nullable();
             $table->foreign('citologia_id')
             ->references('id')
             ->on('citologias')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('hallazgo_id');
+            $table->unsignedBigInteger('hallazgo_id')->nullable();
             $table->foreign('hallazgo_id')
             ->references('id')
             ->on('hallazgos')
             ->onDelete('cascade');
-            $table->string('responsable');
-            $table->string('establecimiento');
-            $table->string('localidad');
-            $table->string('test_vph');
-            $table->string('observaciones');
-            $table->string('evaluacion');
-            $table->string('zona_trans');
-            $table->string('tratamiento');
-            $table->string('seguimiento');
-            $table->string('estado');
+            $table->string('responsable')->nullable();
+            $table->string('establecimiento')->nullable();
+            $table->string('localidad')->nullable();
+            $table->string('test_vph')->nullable();
+            $table->string('observaciones')->nullable();
+            $table->string('evaluacion')->nullable();
+            $table->string('zona_trans')->nullable();
+            $table->string('tratamiento')->nullable();
+            $table->string('seguimiento')->nullable();
+            $table->string('estado')->default('1');
             $table->timestamps();
         });
     }

@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Persona;
 use App\Models\Perfil;
 use App\Models\ObraSocialXPerfil;
-
+use App\Models\Pap;
+use App\Models\Colposcopia;
 use Livewire\Attributes\On;
 
 
@@ -31,6 +32,7 @@ class Agenda extends Component
     public $apellido;
     public $persona;
     public $horario;
+    public $motivo;
 
 
 
@@ -64,7 +66,8 @@ class Agenda extends Component
     }
 
 
-    public function delTurn(){
+    public function delTurn()
+    {
 
         dd($this->turnos);
         // Consulta::find($turno)->delete();
@@ -84,20 +87,34 @@ class Agenda extends Component
             'nombre' => 'required|min:3',
             'apellido' => 'required|min:3',
         ]);
+        if ($this->motivo == '1') {
+            $tipo = new Pap;
+            $this->add_consulta($tipo);
+        }
+        if ($this->motivo == '2') {
 
-            if (count($this->persona) >= 1) {
-                // $this->nombre = $this->persona[0]->nombre;
-                // $this->apellido = $this->persona[0]->apellido;
-                // $this->oss = $this->persona;
+            $tipo = new Colposcopia;
+            $this->add_consulta($tipo);
+        }
+        if ($this->motivo == '3') {
+            $tipo = new Consulta;
+            $this->add_consulta($tipo);
+        }
+    }
+    public function add_consulta($tipo)
+    {
+        if (count($this->persona) >= 1) {
 
-                $turno = new Consulta;
-                $turno->perfil_id = $this->persona[0]->id;
-                $turno->fecha_consulta = $this->fecha .' ' . $this->horario;
-                $turno->estado = '1';
-                $turno->save();
-                $this->modal = 'none';
-            }
-            else {
+            $turno =
+             $tipo;
+            $turno->perfil_id = $this->persona[0]->id;
+            $turno->fecha_consulta = $this->fecha . ' ' . $this->horario;
+            $turno->estado = '1';
+            $turno->save();
+            $this->modal = 'none';
+        }
+        else
+        {
 
             $persona = new Persona;
 
@@ -129,7 +146,7 @@ class Agenda extends Component
 
 
 
-            $turno = new Consulta;
+            $turno = new $tipo;
             $turno->perfil_id = $perfil->id;
             $turno->estado = '2';
             $turno->fecha_consulta = $this->fecha . ' ' . $this->horario;
@@ -145,8 +162,9 @@ class Agenda extends Component
             $this->reset('dni',);
 
 
-            $this->dispatch('added');
 
+
+            $this->dispatch('added');
         }
     }
 
@@ -205,7 +223,7 @@ class Agenda extends Component
     public function render()
     {
 
-            $this->modal = 'none';
+        $this->modal = 'none';
 
         $this->turnos = Consulta::select('consultas.id', 'consultas.fecha_consulta', 'perfils.persona_id', 'personas.nombre', 'personas.apellido', 'personas.dni', 'obra_social_x_perfils.plan', 'obra_social_x_perfils.nro_afil', 'obra_socials.descripcion')
             ->leftJoin('perfils', 'consultas.perfil_id', '=', 'perfils.id')
