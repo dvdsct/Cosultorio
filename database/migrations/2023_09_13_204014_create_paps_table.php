@@ -13,26 +13,31 @@ return new class extends Migration
     {
         Schema::create('paps', function (Blueprint $table) {
             $table->id();
-                      $table->unsignedBigInteger('perfil_id');
+            $table->unsignedBigInteger('perfil_id');
             $table->foreign('perfil_id')
-            ->references('id')
-            ->on('perfils')
-            ->onDelete('cascade');
-            $table->string('descripcion');
-            $table->string('estado');
-            $table->string('tipo_muestra');
-            $table->string('met_toma_mue'); /* Metodo toma muestra */
-            $table->string('tamizaje');
-            $table->string('fecha_tami'); /* Fecha Tamizaje */
-            $table->string('fum');
-            $table->string('menopausia');
-            $table->string('metodo_anti_con'); /* Metodo Anticonceptivo */
-            $table->string('cirujias_pre'); /* Cirujias Previas */
-            $table->string('causa_lesion');
-            $table->string('thr'); /* Terapia Hormonal de Reemplazo */
-            $table->string('embarazo_actual');
-            $table->string('trata_rad'); /* Tratamiento Radiante */
-            $table->string('quimio');
+                ->references('id')
+                ->on('perfils')
+                ->onDelete('cascade');
+
+            $table->dateTime('fecha_consulta');
+
+
+
+
+            $table->string('estado')->default('1');
+            $table->string('tipo_muestra')->nullable();
+            $table->string('met_toma_mue')->nullable(); /* Metodo toma muestra */
+            $table->string('tamizaje')->nullable();
+            $table->string('fecha_tami')->nullable(); /* Fecha Tamizaje */
+            $table->string('fum')->nullable();
+            $table->string('menopausia')->nullable();
+            $table->string('metodo_anti_con')->nullable(); /* Metodo Anticonceptivo */
+            $table->string('cirujias_pre')->nullable(); /* Cirujias Previas */
+            $table->string('causa_lesion')->nullable();
+            $table->string('thr')->nullable(); /* Terapia Hormonal de Reemplazo */
+            $table->string('embarazo_actual')->nullable();
+            $table->string('trata_rad')->nullable(); /* Tratamiento Radiante */
+            $table->string('quimio')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

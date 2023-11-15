@@ -34,7 +34,7 @@
                             <td> {{ Carbon\Carbon::parse($turno->fecha_consulta)->format('H:i') }} </td>
                             <td> {{ $turno->apellido }} {{ $turno->nombre }} </td>
                             <td> {{ $turno->descripcion }} </td>
-                            <td> {{ $turno->abonos->first()->monto }} </td>
+                            {{-- <td> {{ $turno->abonos->first()->monto ?? $turno->abonos->monto }} </td> --}}
                             <td> {{ $turno->estado }}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info">Action</button>
@@ -137,14 +137,13 @@
                                     </div>
                                 </div>
                             </div>
-    <!-- Vincular a variables correctas para el select de MoTivo de consulta: Consulta - PAP - Colposcopia -->
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="input_obra_soc">Motivo</label>
-                                    <select class="form-control" id="obra_soc" wire:model='os'>
-                                        @foreach ($oss as $o)
-                                        <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
-                                        @endforeach
+                                    <label  >Motivo</label>
+                                    <select class="form-control"  wire:model='motivo'>
+                                        <option value="1">PAP</option>
+                                        <option value="2">Colpo</option>
+                                        <option value="3">Consulta</option>
                                     </select>
                                 </div>
                             </div>
