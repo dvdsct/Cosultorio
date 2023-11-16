@@ -2,46 +2,45 @@
     <div class="row">
         <div class="card card-info col mx-2 px-0">
             <div class="card-header">
-                <h3 class="card-title">Enfermedad Actual</h3>
+                <h3 class="card-title"> <strong>ENFERMEDAD ACTUAL </strong></h3>
             </div>
 
-            <div class="card-body ">
+            <!-- Contenedor de Enfermedad Actual -->
+            <div class="card-body">
                 <form>
                     <div class="row">
-
                         <div class="col-7">
-
-                            <div class="form-group">
-                                <label>Enfermedad Actual</label>
-                                <textarea class="form-control" placeholder="" wire:model='ea'></textarea>
+                            <div class="form-group" style="height: 40%;">
+                                <label>Diagnóstico</label>
+                                <textarea class="form-control" style="height: 80%;" placeholder="" wire:model='ea'></textarea>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-0" style="height: 40%;">
                                 <label>Observaciones</label>
-                                <textarea class="form-control" placeholder="" wire:model='obs' wire:keydown.enter='setEa'></textarea>
+                                <textarea class="form-control" style="height: 80%;" placeholder="" wire:model='obs' wire:keydown.enter='setEa'></textarea>
                             </div>
                         </div>
-                        <div class="col-5">
-                            <div class="card">
+                        <div class="col-5 ">
+                            <div class="card" style="min-height: 31vh;">
                                 <div class="card-header bg-info">
-                                    <h3 class="card-title">Pedidos</h3>
+                                    <h3 class="card-title"> <strong>PEDIDOS </strong></h3>
                                 </div>
 
-                                <div class="pt-3">
+                                <div class=" table pt-3">
                                     <div class="d-flex justify-content-around">
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-info col-3" data-toggle="modal" data-target="#modal-receta">
-                                         <strong>  Receta  </strong> </button>
+                                            <strong> Receta </strong> </button>
                                         <button type="button" class="btn btn-warning col-3" data-toggle="modal" data-target="#modal-laboratorio">
-                                           <strong> Laboratorio </strong> </button>
+                                            Laboratorio </button>
                                         <button type="button" class="btn btn-danger col-3" data-toggle="modal" data-target="#modal-imagen">
-                                           <strong> Imagen  </strong> </button>
+                                            <strong> Imagen </strong> </button>
                                     </div>
                                 </div>
 
 
-                                <div class="card-body">
-                                    <table class="table table-bordered">
+                                <div class="card-body pt-0">
+                                    <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>Tipo</th>
@@ -53,13 +52,13 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($laboratorios as $lab)
-                                            <tr>
+                                            <tr class="table-border-bottom">
                                                 <!--  <td>{{ $lab->id }}</td> -->
                                                 <td> Labaoratorio </td>
                                                 <td>
 
                                                 </td>
-                                                <td class="p-0">
+                                                <td class="p-1">
                                                     <div class="btn-group">
                                                         <button class="btn btn-info">
                                                             <i class="fas fa-edit"></i>
@@ -79,7 +78,6 @@
 
                             </div>
                         </div>
-
                     </div>
                 </form>
             </div>
