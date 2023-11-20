@@ -1,5 +1,5 @@
 <div>
-    <div class="row d-flex justify-content-between" style="padding-top: 20px;">
+    {{-- <div class="row d-flex justify-content-between" style="padding-top: 20px;">
         <div class="col-3 d-flex align-items-center">
 
             <button wire:click='change_day("yes")' class="btn btn-info btn-sm">
@@ -13,8 +13,8 @@
             <h1>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }}</h1>
         </div>
         <div class="col-2"><button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal-turno">Nuevo Turno</button></div>
-    </div>
-
+    </div> --}}
+{{--
     <div class="table-responsive">
         <div class="col-12">
             <div class="card">
@@ -31,21 +31,15 @@
                     <tbody>
                         @foreach ($turnos as $turno)
                         <tr>
-                            <td> {{ Carbon\Carbon::parse($turno->fecha_consulta)->format('H:i') }} </td>
+                            <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
                             <td> {{ $turno->apellido }} {{ $turno->nombre }} </td>
                             <td> {{ $turno->descripcion }} </td>
-                            {{-- <td> {{ $turno->abonos->first()->monto ?? $turno->abonos->monto }} </td> --}}
+                            <td> {{ $turno->abonos->first()->monto ?? $turno->abonos->monto }} </td>
                             <td> {{ $turno->estado }}
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-info">Action</button>
-                                    <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item" href="#">Consulta</a>
-                                        <a class="dropdown-item" href="#">PAP</a>
-                                        <a class="dropdown-item" href="#">Colposcopia</a>
-                                    </div>
+                                    <a type="button" href="{{url('consulta')}}/{{$turno->id}}" class="btn btn-info">Atender -></a>
+
+
                                 </div>
                             </td>
                             <td>
@@ -68,12 +62,11 @@
             </div>
 
         </div>
-    </div>
-    {{ $persona }}
+    </div> --}}
 
     <!-- MODAL  -->
 
-    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
+    {{-- <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-info">
@@ -158,8 +151,12 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
+@foreach ($turnos as $t)
 
+{{$t->abonos}}
+
+@endforeach
 </div>

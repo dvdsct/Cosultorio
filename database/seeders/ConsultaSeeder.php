@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Consulta;
+use App\Models\Turno;
 
 class ConsultaSeeder extends Seeder
 {
@@ -21,16 +22,33 @@ class ConsultaSeeder extends Seeder
            '2022-08-22 09:11:00',
            '2022-08-22 16:55:33'
         ];
-    //  foreach($consultas as $consulta){
+        $a = 1;
+     foreach($consultas as $consulta){
 
-    //     Consulta::create([
+        Turno::create([
 
-    //         'perfil_id'=>'3',
-    //         'fecha_consulta'=>$consulta,
-    //         'estado'=>'2'
-    //     ]);
+            'perfil_id'=>$a,
+            'fecha_turno'=>$consulta,
+            'motivo' => 'PAP',
+            'estado'=>'2'
+        ]);
+        Turno::create([
 
-    //  }
+            'perfil_id'=>$a,
+            'fecha_turno'=>$consulta,
+            'motivo' => 'Colp',
+            'estado'=>'2'
+        ]);
+        Turno::create([
+
+            'perfil_id'=>$a,
+            'fecha_turno'=>$consulta,
+            'motivo' => 'Consulta',
+            'estado'=>'2'
+        ]);
+        $a += 1 ;
+
+     }
           Consulta::create([
 
         'perfil_id'=>'2',
