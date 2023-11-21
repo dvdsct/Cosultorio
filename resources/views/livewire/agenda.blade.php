@@ -1,9 +1,9 @@
 <div>
-    {{-- <div class="row d-flex justify-content-between" style="padding-top: 20px;">
+    <div class="row d-flex justify-content-between" style="padding-top: 20px;">
         <div class="col-3 d-flex align-items-center">
 
             <button wire:click='change_day("yes")' class="btn btn-info btn-sm">
-                <</button>
+                << /button>
                     <input type="date" wire:model.lazy="fecha" class="form-control">
                     <button wire:click='change_day("tmw")' class="btn btn-info btn-sm">></button>
 
@@ -12,9 +12,9 @@
         <div class="col-3">
             <h1>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }}</h1>
         </div>
-        <div class="col-2"><button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal-turno">Nuevo Turno</button></div>
-    </div> --}}
-{{--
+        <div class="col-2"><button type="button" class="btn btn-block btn-info" data-toggle="modal"
+                data-target="#modal-turno">Nuevo Turno</button></div>
+    </div>
     <div class="table-responsive">
         <div class="col-12">
             <div class="card">
@@ -30,30 +30,32 @@
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
-                        <tr>
-                            <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
-                            <td> {{ $turno->apellido }} {{ $turno->nombre }} </td>
-                            <td> {{ $turno->descripcion }} </td>
-                            <td> {{ $turno->abonos->first()->monto ?? $turno->abonos->monto }} </td>
-                            <td> {{ $turno->estado }}
-                                <div class="btn-group">
-                                    <a type="button" href="{{url('consulta')}}/{{$turno->id}}" class="btn btn-info">Atender -></a>
+                            <tr>
+                                <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
+                                <td> {{ $turno->apellido }} {{ $turno->nombre }} </td>
+                                <td> {{ $turno->descripcion }} </td>
+                                <td> {{ $turno->monto  }} </td>
+                                <td> {{ $turno->estado }}
+                                    <div class="btn-group">
+                                        <a type="button" href="{{ url('consulta') }}/{{ $turno->id }}"
+                                            class="btn btn-info">Atender -></a>
 
 
-                                </div>
-                            </td>
-                            <td>
+                                    </div>
+                                </td>
+                                <td>
 
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-pen"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn" wire:confirm="Are you sure you want to delete this post?">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn"
+                                        wire:confirm="Are you sure you want to delete this post?">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -62,15 +64,16 @@
             </div>
 
         </div>
-    </div> --}}
+    </div>
 
     <!-- MODAL  -->
 
-    {{-- <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
+    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-info">
-                    <h4 class="modal-title"><strong> Nuevo Turno para el {{Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ') }} </strong></h4>
+                    <h4 class="modal-title"><strong> Nuevo Turno para el
+                            {{ Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ') }} </strong></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -90,21 +93,24 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">DNI</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='dni' wire:keydown='upPaciente' placeholder="12345678">
+                                    <input type="text" class="form-control" id="nombre" wire:model='dni'
+                                        wire:keydown='upPaciente' placeholder="12345678">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='nombre' placeholder="Nombre">
+                                    <input type="text" class="form-control" id="nombre" wire:model='nombre'
+                                        placeholder="Nombre">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">Apellido</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='apellido' placeholder="Apellido">
+                                    <input type="text" class="form-control" id="nombre" wire:model='apellido'
+                                        placeholder="Apellido">
                                 </div>
                             </div>
 
@@ -113,7 +119,7 @@
                                     <label for="input_obra_soc">Obra Social</label>
                                     <select class="form-control" id="obra_soc" wire:model='os'>
                                         @foreach ($oss as $o)
-                                        <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
+                                            <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -126,14 +132,15 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="text" class="form-control" id="abono" wire:model='abono'>
+                                        <input type="text" class="form-control" id="abono"
+                                            wire:model='abono'>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label  >Motivo</label>
-                                    <select class="form-control"  wire:model='motivo'>
+                                    <label>Motivo</label>
+                                    <select class="form-control" wire:model='motivo'>
                                         <option value="1">PAP</option>
                                         <option value="2">Colpo</option>
                                         <option value="3">Consulta</option>
@@ -151,12 +158,8 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
 
 
-@foreach ($turnos as $t)
 
-{{$t->abonos}}
-
-@endforeach
 </div>
