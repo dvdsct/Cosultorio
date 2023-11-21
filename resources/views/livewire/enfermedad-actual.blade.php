@@ -53,13 +53,12 @@
                                         <tbody>
                                             @foreach ($laboratorios as $lab)
                                             <tr class="table-border-bottom">
-                                                <!--  <td>{{ $lab->id }}</td> -->
                                                 <td> Labaoratorio </td>
                                                 <td>
 
                                                 </td>
-                                                <td class="p-1">
-                                                    <div class="btn-group">
+                                                <td class="p-2">
+                                                    <div class="btn-group btn-group-sm">
                                                         <button class="btn btn-info">
                                                             <i class="fas fa-edit"></i>
                                                         </button>

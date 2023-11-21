@@ -1,5 +1,5 @@
 <div>
-    {{-- <div class="row d-flex justify-content-between" style="padding-top: 20px;">
+     <div class="row d-flex justify-content-between" style="padding-top: 20px;">
         <div class="col-3 d-flex align-items-center">
 
             <button wire:click='change_day("yes")' class="btn btn-info btn-sm">
@@ -13,8 +13,8 @@
             <h1>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }}</h1>
         </div>
         <div class="col-2"><button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal-turno">Nuevo Turno</button></div>
-    </div> --}}
-{{--
+    </div> 
+
     <div class="table-responsive">
         <div class="col-12">
             <div class="card">
@@ -62,11 +62,11 @@
             </div>
 
         </div>
-    </div> --}}
+    </div>
 
     <!-- MODAL  -->
 
-    {{-- <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
+    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-info">
@@ -151,12 +151,6 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div> 
 
-
-@foreach ($turnos as $t)
-
-{{$t->abonos}}
-
-@endforeach
 </div>
