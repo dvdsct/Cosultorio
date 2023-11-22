@@ -284,11 +284,15 @@ class Agenda extends Component
                 'abonos.monto',
                 'perfils.persona_id',
                 'personas.*',
-                'turnos.motivo as descripcion'
+                'turnos.motivo as motivo',
+                'obra_socials.*'
+
             )
             ->leftJoin('abono_x_turnos', 'abono_x_turnos.turno_id', '=', 'turnos.id')
             ->leftJoin('abonos', 'abono_x_turnos.abono_id', '=', 'abonos.id')
             ->leftJoin('perfils', 'turnos.perfil_id', '=', 'perfils.id')
+            ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.perfil_id', '=', 'perfils.id')
+            ->leftJoin('obra_socials', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
             ->leftJoin('personas', 'perfils.persona_id', '=', 'personas.id')
             ->whereDate('turnos.fecha_turno', '=', $this->fecha)
             ->get();
