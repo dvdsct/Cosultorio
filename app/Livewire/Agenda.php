@@ -117,7 +117,7 @@ class Agenda extends Component
     }
     public function add_consulta($tipo)
     {
-        // dd($this->persona[0]->perfil_id);
+
         if (count($this->persona) >= 1) {
 
             $turno = Turno::create([
@@ -129,8 +129,12 @@ class Agenda extends Component
 
             ]);
 
-
-
+            $tipo->create(
+                [
+                    'perfil_id' => $this->persona[0]->id,
+                    'turno_id' => $turno->id
+                ]
+            );
 
             $abono = new Abono;
             $abono->monto = $this->abono;
@@ -195,6 +199,7 @@ class Agenda extends Component
 
             $this->dispatch('added');
         }
+
     }
 
 

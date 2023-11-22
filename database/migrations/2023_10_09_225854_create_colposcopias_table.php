@@ -20,25 +20,30 @@ return new class extends Migration
                 ->references('id')
                 ->on('perfils')
                 ->onDelete('cascade');
-            $table->dateTime('fecha_consulta');
+            $table->unsignedBigInteger('turno_id');
+
+            $table->foreign('turno_id')
+                ->references('id')
+                ->on('turnos')
+                ->onDelete('cascade');
 
             $table->string('fum')->nullable();
 
             $table->unsignedBigInteger('biopsia_id')->nullable();
             $table->foreign('biopsia_id')
-            ->references('id')
-            ->on('biopsias')
-            ->onDelete('cascade');
+                ->references('id')
+                ->on('biopsias')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('citologia_id')->nullable();
             $table->foreign('citologia_id')
-            ->references('id')
-            ->on('citologias')
-            ->onDelete('cascade');
+                ->references('id')
+                ->on('citologias')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('hallazgo_id')->nullable();
             $table->foreign('hallazgo_id')
-            ->references('id')
-            ->on('hallazgos')
-            ->onDelete('cascade');
+                ->references('id')
+                ->on('hallazgos')
+                ->onDelete('cascade');
             $table->string('responsable')->nullable();
             $table->string('establecimiento')->nullable();
             $table->string('localidad')->nullable();

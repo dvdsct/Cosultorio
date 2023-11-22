@@ -18,8 +18,13 @@ return new class extends Migration
                 ->references('id')
                 ->on('perfils')
                 ->onDelete('cascade');
+            $table->unsignedBigInteger('turno_id');
 
-            $table->dateTime('fecha_consulta');
+            $table->foreign('turno_id')
+                ->references('id')
+                ->on('turnos')
+                ->onDelete('cascade');
+
 
 
 

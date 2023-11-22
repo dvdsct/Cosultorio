@@ -37,7 +37,9 @@ class ConsultasController extends Controller
      */
     public function show(string $id)
     {
+            
         $consulta = Consulta::find($id);
+        dd($consulta);
         return view('Consultorio.Consulta.show',[
             'consulta' => $consulta
         ]);
