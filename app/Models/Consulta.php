@@ -30,4 +30,8 @@ class Consulta extends Model
         return $this->belongsTo(Perfil::class,'perfil_id');
     }
 
+    public function turnos(){
+        return $this->belongsTo(Turnos::class);
+    }
+
 }

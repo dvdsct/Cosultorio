@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
        $this->call(PacienteSeeder::class);
        $this->call(OsSeeder::class);
-       $this->call(ConsultaSeeder::class);
+    //    $this->call(ConsultaSeeder::class);
        $this->call(TipoMuestraSeed::class);
        $this->call(TomaMuestraSeed::class);
        $this->call(MetodoAntiSeed::class);

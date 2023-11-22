@@ -15,14 +15,19 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('perfil_id');
             $table->foreign('perfil_id')
-            ->references('id')
-            ->on('perfils')
-            ->onDelete('cascade');
+                ->references('id')
+                ->on('perfils')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('turno_id');
 
-            $table->dateTime('fecha_consulta');
+            $table->foreign('turno_id')
+                ->references('id')
+                ->on('turnos')
+                ->onDelete('cascade');
+
 
             $table->string('fum')->nullable();
-            
+
             $table->string('temperatura')->nullable();
             $table->string('ea')->nullable();
             $table->string('tension_arterial')->nullable();

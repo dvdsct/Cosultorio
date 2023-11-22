@@ -20,4 +20,14 @@ class Turno extends Model
 
         return $this->belongsToMany(Abono::class,'abono_x_turnos');
     }
+
+    public function colposcopias(){
+        return $this->hasOne(Colposcopia::class);
+    }
+    public function paps(){
+        return $this->hasOne(Pap::class);
+    }
+    public function consultas(){
+        return $this->hasOne(Consulta::class);
+    }
 }

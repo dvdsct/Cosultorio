@@ -14,4 +14,6 @@ class Abono extends Model
 
         return $this->belongsToMany(Turno::class,'abono_x_turnos');
     }
+
+    
 }

@@ -37,8 +37,9 @@
                                 <td> {{ $turno->monto  }} </td>
                                 <td> {{ $turno->estado }}
                                     <div class="btn-group">
-                                        <a type="button" href="{{ url('consulta') }}/{{ $turno->id }}"
-                                            class="btn btn-info">Atender -></a>
+                                        {{ $turno->consultas  ?? ''}}
+                                        {{-- <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}" --}}
+                                            {{-- class="btn btn-info">Atender -></a> --}}
 
 
                                     </div>
