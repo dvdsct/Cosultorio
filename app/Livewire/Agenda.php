@@ -240,6 +240,7 @@ class Agenda extends Component
 
 
         $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
+
             ->get();
 
         return view(
