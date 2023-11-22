@@ -9,19 +9,9 @@ class Consulta extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-
-    'temperatura',
-    'fum',
-    'ea',
-    'tension_arterial',
-    'indice_mc',
-    'embarazo',
-    'edad_geatacional',
-    'estado'
-    ];
-
-
+    protected $fillable = ['perfil_id',
+    'turno_id'
+];
 
 
 
@@ -31,7 +21,7 @@ class Consulta extends Model
     }
 
     public function turnos(){
-        return $this->belongsTo(Turnos::class);
+        return $this->belongsTo(Turno::class,'id');
     }
 
 }

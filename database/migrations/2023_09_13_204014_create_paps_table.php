@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string('embarazo_actual')->nullable();
             $table->string('trata_rad')->nullable(); /* Tratamiento Radiante */
             $table->string('quimio')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

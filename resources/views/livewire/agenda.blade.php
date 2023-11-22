@@ -30,32 +30,49 @@
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
-                            <tr>
-                                <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
-                                <td> {{ $turno->apellido }} {{ $turno->nombre }} </td>
-                                <td> {{ $turno->descripcion }} </td>
-                                <td> {{ $turno->monto  }} </td>
-                                <td> {{ $turno->estado }}
-                                    <div class="btn-group">
-                                        {{ $turno->consultas  ?? ''}}
-                                        {{-- <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}" --}}
-                                            {{-- class="btn btn-info">Atender -></a> --}}
+                            @if ($turno->estado == '1')
+                                <tr class="bg-success">
+                                    @else
+                                    <tr class="bg-secondary">
+                            @endif
+                            <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
+                            <td> {{ $turno->perfils->personas->nombre }} {{ $turno->perfils->personas->apellido }}
+                            </td>
+                            <td> {{ $turno->perfils->obrasociales->first()->descripcion }} </td>
+                            <td> {{ $turno->abonos->first()->monto }} </td>
+                            <td>
+
+                                {{-- {{ $turno->consultas }} --}}
+                                <div class="btn-group">
+                                    @if ($turno->motivo == '3')
+                                        <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}"
+                                            class="btn btn-info">Atender -></a>
+                                    @endif
+                                    @if ($turno->motivo == '1')
+                                        <a type="button" href="{{ url('paps') }}/{{ $turno->id }}"
+                                            class="btn btn-info">Atender -></a>
+                                    @endif
+                                    @if ($turno->motivo == '2')
+                                        <a type="button" href="{{ url('colposcopia') }}/{{ $turno->id }}"
+                                            class="btn btn-info">Atender -></a>
+                                    @endif
 
 
-                                    </div>
-                                </td>
-                                <td>
 
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-warning btn-sm">
-                                        <i class="fas fa-pen"></i>
-                                    </button>
-                                    <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn"
-                                        wire:confirm="Are you sure you want to delete this post?">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </td>
+                                </div>
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn"
+                                    wire:confirm="Are you sure you want to delete this post?">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </td>
                             </tr>
                         @endforeach
                     </tbody>

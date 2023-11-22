@@ -9,7 +9,11 @@ class Colposcopia extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['perfil_id',
+    'turno_id'];
+
+
     public function turnos(){
-        return $this->belongsTo(Turnos::class);
+        return $this->belongsTo(Turno::class, 'id');
     }
 }
