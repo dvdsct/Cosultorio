@@ -17,6 +17,10 @@
     <div class="table-responsive">
         <div class="col-12">
             <div class="card">
+
+                @if($turnos->isEmpty())
+                <h6 class="font-italic pt-2 pl-3"> Aun no hay turnos asignados para este día!</h6>
+                @else
                 <table class="table table-hover">
                     <thead>
                         <th scope="col"> Horario</th>
@@ -30,15 +34,25 @@
                     <tbody>
                         @foreach ($turnos as $turno)
                         <tr>
-                            <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
-                            <td> {{ $turno->apellido }} {{ $turno->nombre }} </td>
-                            <td> {{ $turno->descripcion }} </td>
-                            <td> {{ $turno->monto  }} </td>
-                            <td> {{ $turno->motivo  }}</td>
-                            <td> Llego </td>
-                            <td>
-                            <div class="btn-group">
-                                    <a type="button" href="{{ url('consulta') }}/{{ $turno->id }}" class="btn btn-info">Atender</a>
+                            <td class="pb-0 pt-1"> @if($turno->fecha_turno) {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} Hs. @endif </td>
+                            <td class="pb-0 pt-1"> {{ $turno->apellido }} {{ $turno->nombre }} </td>
+                            <td class="pb-0 pt-1"> {{ $turno->descripcion }} </td>
+                            <td class="pb-0 pt-1"> @if($turno->monto)
+                                ${{ $turno->monto }}
+                                @endif </td>
+                            <td class="pb-0 pt-0"> @if($turno->motivo=='PAP') <small class="badge badge-warning "> {{ $turno->motivo  }}</small>
+                                @elseif($turno->motivo=='Consulta') <small class="badge badge-primary "> {{ $turno->motivo  }} </small>
+                                @else <small class="badge badge-success "> {{ $turno->motivo  }} @endif</td>
+                            <td class="pb-0 pt-1">
+                                <select class="form-control form-control-sm">
+                                    <option value="1"> <i class="far fa-clock"></i> Aún no llega </option>
+                                    <option value="2"> <i class="far fa-clock"></i> Llegó </option>
+                                    <option value="3"> <i class="far fa-clock"></i> Ausente </option>
+                                </select>
+                            </td>
+                            <td class="pb-0 pt-1">
+                                <div>
+                                    <a type="button" href="{{ url('consulta') }}/{{ $turno->id }}" class="btn btn-info btn-sm">Atender</a>
                                 </div>
                                 <button type="button" class="btn btn-warning btn-sm">
                                     <i class="fas fa-pen"></i>
@@ -51,10 +65,9 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                @endif
 
             </div>
-
         </div>
     </div>
 
