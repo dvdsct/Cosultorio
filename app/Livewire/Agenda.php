@@ -31,7 +31,7 @@ class Agenda extends Component
     public $os;
     public $abono;
     public $apellido;
-    public $persona;
+    public $persona = [];
     public $horario;
     public $motivo;
 
@@ -45,24 +45,8 @@ class Agenda extends Component
 
         $this->fecha = Carbon::now()->format('Y-m-d');
 
-        $this->turnos = DB::table('turnos')
-            ->select(
-                'turnos.motivo',
-                'turnos.fecha_turno',
-                'perfils.persona_id',
-                'personas.nombre',
-                'personas.apellido',
-                'personas.dni',
-                'obra_social_x_perfils.obra_social_id',
-                'obra_social_x_perfils.nro_afil',
-                'obra_socials.descripcion'
-            )
-            ->leftJoin('perfils', 'turnos.perfil_id', '=', 'perfils.id')
-            ->leftJoin('personas', 'perfils.persona_id', '=', 'personas.id')
-            ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.perfil_id', '=', 'perfils.id')
-            ->leftJoin('obra_socials', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
-            ->where('turnos.fecha_turno', 'LIKE', $this->fecha)
-            ->get();
+        $this->turnos =Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
+        ->get();
     }
 
 
@@ -100,54 +84,21 @@ class Agenda extends Component
             'nombre' => 'required|min:3',
             'apellido' => 'required|min:3',
         ]);
-        if ($this->motivo == '1') {
 
-            $tipo = new Pap;
-            $this->add_consulta($tipo);
-        }
-        if ($this->motivo == '2') {
 
-            $tipo = new Colposcopia;
-            $this->add_consulta($tipo);
-        }
-        if ($this->motivo == '3') {
-            $tipo = new Consulta;
-            $this->add_consulta($tipo);
-        }
-    }
-    public function add_consulta($tipo)
-    {
 
         if (count($this->persona) >= 1) {
 
+            $this->perfil = $this->persona[0]->id;
             $turno = Turno::create([
-                'perfil_id' => $this->persona[0]->id,
-                'motivo' => $tipo,
+                'perfil_id' => $this->perfil,
+                'motivo' => $this->motivo,
                 'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                 'estado' => '1'
 
 
             ]);
-
-            $tipo->create(
-                [
-                    'perfil_id' => $this->persona[0]->id,
-                    'turno_id' => $turno->id
-                ]
-            );
-
-            $abono = new Abono;
-            $abono->monto = $this->abono;
-            $abono->tipo = 'plus';
-            $abono->estado = '1';
-            $abono->save();
-
-            $axc = new AbonoXTurno;
-            $axc->turno_id = $turno->id;
-            $axc->abono_id = $abono->id;
-            $axc->save();
         } else {
-
             $persona = new Persona;
 
             $persona->nombre = $this->nombre;
@@ -157,50 +108,77 @@ class Agenda extends Component
             $persona->estado = '1';
             $persona->save();
 
-            $perfil = new Perfil;
+            $p = new Perfil;
 
-            $perfil->persona_id = $persona->id;
-            $perfil->descripcion = 'paciente';
-            $perfil->estado = '1';
-            $perfil->save();
+            $p->persona_id = $persona->id;
+            $p->descripcion = 'paciente';
+            $p->estado = '1';
+            $p->save();
+            $this->perfil = $p->id;
 
             $osxp = new ObraSocialXPerfil;
-            $osxp->perfil_id = $perfil->id;
+            $osxp->perfil_id = $p->id;
             $osxp->obra_social_id = $this->os;
             $osxp->plan = 'defecto';
             $osxp->save();
 
-            $abono = new Abono;
-            $abono->monto = $this->abono;
-            $abono->tipo = 'plus';
-            $abono->estado = '1';
-            $abono->save();
-
-
             $turno = Turno::create([
-                'perfil_id' => $perfil->id,
-                'motivo' => $tipo,
+                'perfil_id' => $p->id,
+                'motivo' => $this->motivo,
                 'fecha_turno' => $this->fecha . ' ' . $this->horario,
                 'estado' => '1'
 
             ]);
-
-            $axc = new AbonoXTurno;
-            $axc->turno_id = $turno->id;
-            $axc->abono_id = $abono->id;
-            $axc->save();
-
-
-
-            $this->reset('dni',);
-
-
-
-
-            $this->dispatch('added');
         }
 
+
+        // dd($this->perfil);
+        if ($this->motivo == '1') {
+            Pap::create(
+                [
+                    'perfil_id' => $this->perfil,
+                    'turno_id' => $turno->id
+                ]
+            );
+        }
+        if ($this->motivo == '2') {
+
+            Colposcopia::create(
+                [
+                    'perfil_id' => $this->perfil,
+                    'turno_id' => $turno->id
+                ]
+            );
+        }
+        if ($this->motivo == '3') {
+            Consulta::create(
+                [
+                    'perfil_id' => $this->perfil,
+                    'turno_id' => $turno->id
+                ]
+            );
+        }
+
+
+        $abono = new Abono;
+        $abono->monto = $this->abono;
+        $abono->tipo = 'plus';
+        $abono->estado = '1';
+        $abono->save();
+
+        $axc = new AbonoXTurno;
+        $axc->turno_id = $turno->id;
+        $axc->abono_id = $abono->id;
+        $axc->save();
+
+
+
+
+        $this->reset('dni', 'nombre', 'apellido', 'abono');
     }
+
+
+
 
 
 
@@ -212,19 +190,6 @@ class Agenda extends Component
     {
         if (strlen($this->dni) > 7) {
 
-            // DB::table('personas')
-            //     ->select(
-            //         'personas.*',
-            //         'perfils.id as perfil_id',
-            //         'obra_social_x_perfils.*',
-            //         'obra_socials.descripcion',
-            //         'personas.dni'
-            //     )
-            //     ->leftJoin('perfils', 'perfils.persona_id', '=', 'personas.id')
-            //     ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.perfil_id', '=', 'perfils.id')
-            //     ->leftJoin('obra_socials', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
-            //     ->where('personas.dni', 'like', $this->dni .'%')
-            //     ->get();
 
             $persona = DB::table('personas')
                 ->select(
@@ -272,34 +237,10 @@ class Agenda extends Component
     public function render()
     {
 
-        $this->modal = 'none';
 
-        // $this->turnos = Consulta::select('consultas.id', 'consultas.fecha_consulta', 'perfils.persona_id', 'personas.nombre', 'personas.apellido', 'personas.dni', 'obra_social_x_perfils.plan', 'obra_social_x_perfils.nro_afil', 'obra_socials.descripcion')
-        //     ->leftJoin('perfils', 'consultas.perfil_id', '=', 'perfils.id')
-        //     ->leftJoin('personas', 'perfils.persona_id', '=', 'personas.id')
-        //     ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.perfil_id', '=', 'perfils.id')
-        //     ->leftJoin('obra_socials', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
-        //     ->whereDate('consultas.fecha_consulta', '=', $this->fecha)
-        //     ->get();
 
-        $this->turnos = DB::table('turnos')
-            ->select(
-                'turnos.*',
-                'abono_x_turnos.abono_id',
-                'abonos.monto',
-                'perfils.persona_id',
-                'personas.*',
-                'turnos.motivo as motivo',
-                'obra_socials.*'
+        $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
 
-            )
-            ->leftJoin('abono_x_turnos', 'abono_x_turnos.turno_id', '=', 'turnos.id')
-            ->leftJoin('abonos', 'abono_x_turnos.abono_id', '=', 'abonos.id')
-            ->leftJoin('perfils', 'turnos.perfil_id', '=', 'perfils.id')
-            ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.perfil_id', '=', 'perfils.id')
-            ->leftJoin('obra_socials', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
-            ->leftJoin('personas', 'perfils.persona_id', '=', 'personas.id')
-            ->whereDate('turnos.fecha_turno', '=', $this->fecha)
             ->get();
 
         return view(

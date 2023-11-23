@@ -10,26 +10,30 @@ class Perfil extends Model
     use HasFactory;
 
 
-    public function personas (){
+    public function personas()
+    {
 
-        return $this->hasOne(Persona::class,'id');
+        return $this->hasOne(Persona::class, 'id');
     }
 
-    public function obrasociales (){
+    public function obrasociales()
+    {
 
-        return $this->belongsToMany(ObraSocial::class,'obra_social_x_perfils');
+        return $this->belongsToMany(ObraSocial::class, 'obra_social_x_perfils');
     }
 
-    public function consultas (){
+    public function consultas()
+    {
 
         return $this->hasMany(Consulta::class);
     }
-    public function embarazos (){
+    public function embarazos()
+    {
 
         return $this->hasMany(Embarazo::class);
     }
-
-
-
-
+    public function turnos()
+    {
+        return $this->hasMany(Turno::class);
+    }
 }

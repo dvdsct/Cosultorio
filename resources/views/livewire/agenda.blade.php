@@ -33,35 +33,51 @@
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
-                        <tr>
-                            <td class="pb-0 pt-1"> @if($turno->fecha_turno) {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} Hs. @endif </td>
-                            <td class="pb-0 pt-1"> {{ $turno->apellido }} {{ $turno->nombre }} </td>
-                            <td class="pb-0 pt-1"> {{ $turno->descripcion }} </td>
-                            <td class="pb-0 pt-1"> @if($turno->monto)
-                                ${{ $turno->monto }}
-                                @endif </td>
-                            <td class="pb-0 pt-0"> @if($turno->motivo=='PAP') <small class="badge badge-warning "> {{ $turno->motivo  }}</small>
-                                @elseif($turno->motivo=='Consulta') <small class="badge badge-primary "> {{ $turno->motivo  }} </small>
-                                @else <small class="badge badge-success "> {{ $turno->motivo  }} @endif</td>
-                            <td class="pb-0 pt-1">
-                                <select class="form-control form-control-sm">
-                                    <option value="1"> <i class="far fa-clock"></i> Aún no llega </option>
-                                    <option value="2"> <i class="far fa-clock"></i> Llegó </option>
-                                    <option value="3"> <i class="far fa-clock"></i> Ausente </option>
-                                </select>
+                            @if ($turno->estado == '1')
+                                <tr class="bg-success">
+                                    @else
+                                    <tr class="bg-secondary">
+                            @endif
+                            <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
+                            <td> {{ $turno->perfils->personas->nombre }} {{ $turno->perfils->personas->apellido }}
                             </td>
-                            <td class="pb-0 pt-1">
-                                <div>
-                                    <a type="button" href="{{ url('consulta') }}/{{ $turno->id }}" class="btn btn-info btn-sm">Atender</a>
+                            <td> {{ $turno->perfils->obrasociales->first()->descripcion }} </td>
+                            <td> {{ $turno->abonos->first()->monto }} </td>
+                            <td>
+
+                                {{-- {{ $turno->consultas }} --}}
+                                <div class="btn-group">
+                                    @if ($turno->motivo == '3')
+                                        <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}"
+                                            class="btn btn-info">Atender -></a>
+                                    @endif
+                                    @if ($turno->motivo == '1')
+                                        <a type="button" href="{{ url('paps') }}/{{ $turno->id }}"
+                                            class="btn btn-info">Atender -></a>
+                                    @endif
+                                    @if ($turno->motivo == '2')
+                                        <a type="button" href="{{ url('colposcopia') }}/{{ $turno->id }}"
+                                            class="btn btn-info">Atender -></a>
+                                    @endif
+
+
+
                                 </div>
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
                                 <button type="button" class="btn btn-warning btn-sm">
                                     <i class="fas fa-pen"></i>
                                 </button>
-                                <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn" wire:confirm="Are you sure you want to delete this post?">
+                                <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn"
+                                    wire:confirm="Are you sure you want to delete this post?">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </td>
-                        </tr>
+                            </tr>
+
                         @endforeach
                     </tbody>
                 </table>
