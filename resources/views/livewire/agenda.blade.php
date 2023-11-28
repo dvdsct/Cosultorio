@@ -41,11 +41,11 @@
                             <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
                             <td> {{ $turno->perfils->personas->nombre }} {{ $turno->perfils->personas->apellido }}
                             </td>
-                            <td> {{ $turno->perfils->obrasociales->first()->descripcion }} </td>
-                            <td> {{ $turno->abonos->first()->monto }} </td>
+                            <td> {{ $turno->perfils->obrasociales->first()->descripcion
+                             }} </td>
+                            <td> {{ $turno->abonos->first()->monto ?? 'Sin abono' }} </td>
                             <td>
 
-                                {{-- {{ $turno->consultas }} --}}
                                 <div class="btn-group">
                                     @if ($turno->motivo == '3')
                                         <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}"

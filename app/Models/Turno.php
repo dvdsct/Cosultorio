@@ -23,7 +23,7 @@ class Turno extends Model
 
 
     public function perfils(){
-        return $this->belongsTo(Perfil::class,'id');
+        return $this->belongsTo(Perfil::class,'perfil_id');
     }
 
 

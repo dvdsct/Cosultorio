@@ -31,7 +31,8 @@ class Agenda extends Component
     public $os;
     public $abono;
     public $apellido;
-    public $persona = [];
+    public $persona;
+    public $personas;
     public $horario;
     public $motivo;
 
@@ -42,11 +43,12 @@ class Agenda extends Component
     public function mount()
     {
         $this->oss = ObraSocial::all();
+        $this->personas;
 
         $this->fecha = Carbon::now()->format('Y-m-d');
 
-        $this->turnos =Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
-        ->get();
+        $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
+            ->get();
     }
 
 
@@ -87,7 +89,7 @@ class Agenda extends Component
 
 
 
-        if (count($this->persona) >= 1) {
+        if (count($this->personas) >= 1) {
 
             $this->perfil = $this->persona[0]->id;
             $turno = Turno::create([
@@ -95,8 +97,6 @@ class Agenda extends Component
                 'motivo' => $this->motivo,
                 'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                 'estado' => '1'
-
-
             ]);
         } else {
             $persona = new Persona;
@@ -108,9 +108,11 @@ class Agenda extends Component
             $persona->estado = '1';
             $persona->save();
 
+            $this->persona = $persona;
+
             $p = new Perfil;
 
-            $p->persona_id = $persona->id;
+            $p->persona_id = $this->persona->id;
             $p->descripcion = 'paciente';
             $p->estado = '1';
             $p->save();
@@ -123,7 +125,7 @@ class Agenda extends Component
             $osxp->save();
 
             $turno = Turno::create([
-                'perfil_id' => $p->id,
+                'perfil_id' => $this->persona->id,
                 'motivo' => $this->motivo,
                 'fecha_turno' => $this->fecha . ' ' . $this->horario,
                 'estado' => '1'
@@ -191,36 +193,25 @@ class Agenda extends Component
         if (strlen($this->dni) > 7) {
 
 
-            $persona = DB::table('personas')
-                ->select(
-                    'personas.nombre as nombre',
-                    'personas.apellido as apellido',
-                    'personas.id',
-                    'perfils.id as perfil_id',
-                    'perfils.persona_id',
-                    'obra_social_x_perfils.obra_social_id',
-                    'obra_socials.descripcion as descripcion',
-                    'personas.dni as dni'
-                )
-                ->leftJoin('perfils', 'perfils.persona_id', '=', 'personas.id')
-                ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.perfil_id', '=', 'perfils.id')
-                ->leftJoin('obra_socials', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
-                ->where('personas.dni', 'like', $this->dni . '%')
-                ->get();
-            $this->persona = $persona;
+            $this->personas = Persona::where('dni', 'LIKE', $this->dni . '%')->get();
+            // dd($this->personas);
 
-            if (count($persona) >= 1) {
-                $this->nombre = $persona[0]->nombre;
-                $this->apellido = $persona[0]->apellido;
-                $this->oss = $persona;
+            $this->persona = $this->personas->first();
+
+            if (count($this->personas) >= 1) {
+                $this->nombre = $this->persona->nombre;
+                $this->apellido = $this->persona->apellido;
+                // dd($this->persona->perfils->first());
+                $this->oss = $this->persona->perfils->first()->obrasociales;
+                // dd($this->oss);
             } else {
                 $this->nombre = '';
                 $this->apellido = '';
                 $this->oss =  ObraSocial::all();
             }
         } else {
-            $this->nombre = '';
-            $this->apellido = '';
+            // $this->nombre = '';
+            // $this->apellido = '';
             $this->oss =  ObraSocial::all();
         }
     }
@@ -242,6 +233,8 @@ class Agenda extends Component
         $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
 
             ->get();
+
+            // dd($this->turnos);
 
         return view(
             'livewire.agenda',
