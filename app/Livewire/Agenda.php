@@ -91,7 +91,8 @@ class Agenda extends Component
 
         if (count($this->personas) >= 1) {
 
-            $this->perfil = $this->persona[0]->id;
+            $this->perfil =  $this->persona->perfils->first()->id;
+            //    dd($this->persona->perfils->first()->id);
             $turno = Turno::create([
                 'perfil_id' => $this->perfil,
                 'motivo' => $this->motivo,
@@ -134,7 +135,6 @@ class Agenda extends Component
         }
 
 
-        // dd($this->perfil);
         if ($this->motivo == '1') {
             Pap::create(
                 [
@@ -144,6 +144,8 @@ class Agenda extends Component
             );
         }
         if ($this->motivo == '2') {
+
+
 
             Colposcopia::create(
                 [
@@ -234,7 +236,7 @@ class Agenda extends Component
 
             ->get();
 
-            // dd($this->turnos);
+        // dd($this->turnos);
 
         return view(
             'livewire.agenda',
