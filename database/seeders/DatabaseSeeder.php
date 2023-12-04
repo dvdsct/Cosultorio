@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
        $this->call(ZonaTransforSeed::class);
        $this->call(PapPrevioSeed::class);
        $this->call(VademecumSeeder::class);
+       $this->call(RoleSeeder::class);
+       $this->call(UserSeeder::class);
     }
 }

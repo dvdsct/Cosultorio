@@ -28,13 +28,13 @@ class Agenda extends Component
     public $oss = [];
     public $modal;
 
-    public $os;
+    public $os = '2';
     public $abono;
     public $apellido;
     public $persona;
     public $personas;
     public $horario;
-    public $motivo;
+    public $motivo = '3';
 
 
 

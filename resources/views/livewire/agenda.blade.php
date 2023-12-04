@@ -12,7 +12,11 @@
         <div class="col-3">
             <h1>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }}</h1>
         </div>
-        <div class="col-2 pt-2 mr-2"><button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal-turno">Nuevo Turno</button></div>
+        <div class="col-2 pt-2 mr-2">
+            @can('crearturno')
+            <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal-turno">Nuevo Turno</button>
+            @endcan
+        </div>
     </div>
     <div class="table-responsive">
         <div class="col-12">
@@ -33,50 +37,55 @@
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
-                            @if ($turno->estado == '1')
-                                <tr class="bg-success">
-                                    @else
-                                    <tr class="bg-secondary">
+                        <td class="p-0 pl-2"> @if($turno->fecha_turno !== null)
+                            {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} hs.
                             @endif
-                            <td> {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} </td>
-                            <td> {{ $turno->perfils->personas->nombre }} {{ $turno->perfils->personas->apellido }}
-                            </td>
-                            <td> {{ $turno->perfils->obrasociales->first()->descripcion
-                             }} </td>
-                            <td> {{ $turno->abonos->first()->monto ?? 'Sin abono' }} </td>
-                            <td>
+                        </td>
 
-                                <div class="btn-group">
-                                    @if ($turno->motivo == '3')
-                                        <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}"
-                                            class="btn btn-info">Atender -></a>
-                                    @endif
-                                    @if ($turno->motivo == '1')
-                                        <a type="button" href="{{ url('paps') }}/{{ $turno->id }}"
-                                            class="btn btn-info">Atender -></a>
-                                    @endif
-                                    @if ($turno->motivo == '2')
-                                        <a type="button" href="{{ url('colpos') }}/{{ $turno->id }}"
-                                            class="btn btn-info">Atender -></a>
-                                    @endif
+                        <td class="p-0 pl-2"> {{ $turno->perfils->personas->nombre }} {{ $turno->perfils->personas->apellido }}
+                        </td>
 
+                        <td class="p-0 pl-2"> {{ $turno->perfils->obrasociales->first()->descripcion}} </td>
 
+                        <td class="p-0 pl-2">
+                            ${{ $turno->abonos->first()->monto ?? 'Sin abono' }}
+                        </td>
+                        <td class="p-0 pl-2">
+                            @if ($turno->motivo == '1')
+                            <small class="badge badge-danger"> PAP </small>
+                            @elseif ($turno->motivo == '2')
+                            <small class="badge badge-warning"> Colposcopia </small>
+                            @elseif ($turno->motivo == '3')
+                            <small class="badge badge-success"> Consulta </small>
+                            @endif
+                        </td>
+                        <td class="p-0 pl-2">
 
-                                </div>
-                            </td>
-                            <td>
-
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-pen"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn"
-                                    wire:confirm="Are you sure you want to delete this post?">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </td>
-                            </tr>
+                        </td>
+                        <td class="p-1 pl-2">
+                            @can('atender')
+                            <div class="btn-group">
+                                @if ($turno->motivo == '3')
+                                <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}" class="btn btn-info btn-sm">Atender</a>
+                                @endif
+                                @if ($turno->motivo == '1')
+                                <a type="button" href="{{ url('paps') }}/{{ $turno->id }}" class="btn btn-info btn-sm">Atender</a>
+                                @endif
+                                @if ($turno->motivo == '2')
+                                <a type="button" href="{{ url('colpos') }}/{{ $turno->id }}" class="btn btn-info btn-sm">Atender</a>
+                                @endif
+                            </div>
+                            @endcan
+                            @can('crearturno')
+                            <button type="button" class="btn btn-warning btn-sm">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn" wire:confirm="Are you sure you want to delete this post?">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                            @endcan
+                        </td>
+                        </tr>
 
                         @endforeach
                     </tbody>

@@ -17,12 +17,7 @@ use App\Http\Controllers\ColposcopiaController;
 |
 */
 
-Route::resource('turnos', TurnosController::class);
-Route::resource('consulta', ConsultasController::class);
-Route::resource('paps', PapsController::class);
 
-
-Route::resource('colpos', ColposcopiaController::class);
 
 
 Route::get('/', function () {
@@ -35,6 +30,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
      Route::get('/dashboard', function () {
         return view('dashboard');})->name('dashboard');
 
+
+
+        Route::resource('turnos', TurnosController::class);
+        Route::resource('consulta', ConsultasController::class);
+        Route::resource('paps', PapsController::class);
+        Route::resource('colpos', ColposcopiaController::class);
 
 
 
