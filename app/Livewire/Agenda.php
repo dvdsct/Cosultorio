@@ -26,7 +26,7 @@ class Agenda extends Component
     public $dni;
     public $nombre;
     public $oss = [];
-    public $modal;
+    public $modal = 'none';
 
     public $os = '2';
     public $abono;
@@ -52,6 +52,15 @@ class Agenda extends Component
     }
 
 
+    public function modalO()
+    {
+        // dd('jhskdjhakj');
+        $this->modal = 'block';
+    }
+
+
+
+    //
     public function change_day($day)
     {
 
@@ -65,14 +74,24 @@ class Agenda extends Component
     }
 
 
-    public function delTurn()
+    public function delTurn($turno)
     {
+        $t = Turno::find($turno);
+        $this->dispatch('mostrar');
 
-        dd($this->turnos);
-        // Consulta::find($turno)->delete();
+        $t->delete();
     }
 
 
+    public function editTurn($turno)
+    {
+        $turno = Turno::find($turno);
+        $this->nombre = $turno->perfils->personas->nombre;
+        $this->apellido = $turno->perfils->personas->apellido;
+        $this->oss =  ObraSocial::all();
+
+        $this->modal = 'block';
+    }
 
 
 
@@ -179,6 +198,7 @@ class Agenda extends Component
 
 
         $this->reset('dni', 'nombre', 'apellido', 'abono');
+        $this->modal = 'none';
     }
 
 

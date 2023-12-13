@@ -5,7 +5,8 @@
             <button wire:click='change_day("yes")' class="btn btn-info btn-sm">
                 <i class="fas fa-arrow-left"></i></button>
             <input type="date" wire:model.lazy="fecha" class="form-control">
-            <button wire:click='change_day("tmw")' class="btn btn-info btn-sm"><i class="fas fa-arrow-right"></i></button>
+            <button wire:click='change_day("tmw")' class="btn btn-info btn-sm"><i
+                    class="fas fa-arrow-right"></i></button>
 
 
         </div>
@@ -14,7 +15,8 @@
         </div>
         <div class="col-2 pt-2 mr-2">
             @can('crearturno')
-            <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#modal-turno">Nuevo Turno</button>
+                <button type="button" class="btn btn-block btn-info" wire:click='modalO' >Nuevo
+                    Turno</button>
             @endcan
         </div>
     </div>
@@ -22,74 +24,80 @@
         <div class="col-12">
             <div class="card">
 
-                @if($turnos->isEmpty())
-                <h6 class="font-italic pt-2 pl-3"> Aun no hay turnos asignados para este día!</h6>
+                @if ($turnos->isEmpty())
+                    <h6 class="font-italic pt-2 pl-3"> Aun no hay turnos asignados para este día!</h6>
                 @else
-                <table class="table table-hover">
-                    <thead>
-                        <th scope="col"> Horario</th>
-                        <th scope="col"> Paciente </th>
-                        <th scope="col"> Obra social</th>
-                        <th scope="col"> Abono </th>
-                        <th scope="col"> Motivo </th>
-                        <th scope="col"> Estado </th>
-                        <th scope="col"> </th>
-                    </thead>
-                    <tbody>
-                        @foreach ($turnos as $turno)
-                        <td class="p-0 pl-2"> @if($turno->fecha_turno !== null)
-                            {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} hs.
-                            @endif
-                        </td>
+                    <table class="table table-hover">
+                        <thead>
+                            <th scope="col"> Horario</th>
+                            <th scope="col"> Paciente </th>
+                            <th scope="col"> Obra social</th>
+                            <th scope="col"> Abono </th>
+                            <th scope="col"> Motivo </th>
+                            <th scope="col"> Estado </th>
+                            <th scope="col"> </th>
+                        </thead>
+                        <tbody>
+                            @foreach ($turnos as $turno)
+                                <td class="p-0 pl-2">
+                                    @if ($turno->fecha_turno !== null)
+                                        {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} hs.
+                                    @endif
+                                </td>
 
-                        <td class="p-0 pl-2"> {{ $turno->perfils->personas->nombre }} {{ $turno->perfils->personas->apellido }}
-                        </td>
+                                <td class="p-0 pl-2"> {{ $turno->perfils->personas->nombre }}
+                                    {{ $turno->perfils->personas->apellido }}
+                                </td>
 
-                        <td class="p-0 pl-2"> {{ $turno->perfils->obrasociales->first()->descripcion}} </td>
+                                <td class="p-0 pl-2"> {{ $turno->perfils->obrasociales->first()->descripcion }} </td>
 
-                        <td class="p-0 pl-2">
-                            ${{ $turno->abonos->first()->monto ?? 'Sin abono' }}
-                        </td>
-                        <td class="p-0 pl-2">
-                            @if ($turno->motivo == '1')
-                            <small class="badge badge-danger"> PAP </small>
-                            @elseif ($turno->motivo == '2')
-                            <small class="badge badge-warning"> Colposcopia </small>
-                            @elseif ($turno->motivo == '3')
-                            <small class="badge badge-success"> Consulta </small>
-                            @endif
-                        </td>
-                        <td class="p-0 pl-2">
+                                <td class="p-0 pl-2">
+                                    ${{ $turno->abonos->first()->monto ?? 'Sin abono' }}
+                                </td>
+                                <td class="p-0 pl-2">
+                                    @if ($turno->motivo == '1')
+                                        <small class="badge badge-danger"> PAP </small>
+                                    @elseif ($turno->motivo == '2')
+                                        <small class="badge badge-warning"> Colposcopia </small>
+                                    @elseif ($turno->motivo == '3')
+                                        <small class="badge badge-success"> Consulta </small>
+                                    @endif
+                                </td>
+                                <td class="p-0 pl-2">
 
-                        </td>
-                        <td class="p-1 pl-2">
-                            @can('atender')
-                            <div class="btn-group">
-                                @if ($turno->motivo == '3')
-                                <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}" class="btn btn-info btn-sm">Atender</a>
-                                @endif
-                                @if ($turno->motivo == '1')
-                                <a type="button" href="{{ url('paps') }}/{{ $turno->id }}" class="btn btn-info btn-sm">Atender</a>
-                                @endif
-                                @if ($turno->motivo == '2')
-                                <a type="button" href="{{ url('colpos') }}/{{ $turno->id }}" class="btn btn-info btn-sm">Atender</a>
-                                @endif
-                            </div>
-                            @endcan
-                            @can('crearturno')
-                            <button type="button" class="btn btn-warning btn-sm">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button class="btn btn-danger btn-sm" type="button" wire:click="delTurn" wire:confirm="Are you sure you want to delete this post?">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                            @endcan
-                        </td>
-                        </tr>
-
-                        @endforeach
-                    </tbody>
-                </table>
+                                </td>
+                                <td class="p-1 pl-2">
+                                    @can('atender')
+                                        <div class="btn-group">
+                                            @if ($turno->motivo == '3')
+                                                <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}"
+                                                    class="btn btn-info btn-sm">Atender</a>
+                                            @endif
+                                            @if ($turno->motivo == '1')
+                                                <a type="button" href="{{ url('paps') }}/{{ $turno->id }}"
+                                                    class="btn btn-info btn-sm">Atender</a>
+                                            @endif
+                                            @if ($turno->motivo == '2')
+                                                <a type="button" href="{{ url('colpos') }}/{{ $turno->id }}"
+                                                    class="btn btn-info btn-sm">Atender</a>
+                                            @endif
+                                        </div>
+                                        @endcan
+                                        @can('crearturno')
+                                        <button type="button" class="btn btn-warning btn-sm"
+                                        wire:click="editTurn({{ $turno->id }})">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" type="button"
+                                            wire:click="delTurn({{ $turno->id }})">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    @endcan
+                                </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 @endif
 
             </div>
@@ -98,7 +106,7 @@
 
     <!-- MODAL  -->
 
-    <div class="modal fade show" id="modal-turno" aria-modal="true" role="dialog" wire:ignore.self>
+    <div class="modal fade show" id="modal-turno" style="display:{{$modal  }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-info">
@@ -123,21 +131,24 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">DNI</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='dni' wire:keydown='upPaciente' placeholder="12345678">
+                                    <input type="text" class="form-control" id="nombre" wire:model='dni'
+                                        wire:keydown='upPaciente' placeholder="12345678">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='nombre' placeholder="Nombre">
+                                    <input type="text" class="form-control" id="nombre" wire:model='nombre'
+                                        placeholder="Nombre">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">Apellido</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='apellido' placeholder="Apellido">
+                                    <input type="text" class="form-control" id="nombre" wire:model='apellido'
+                                        placeholder="Apellido">
                                 </div>
                             </div>
 
@@ -146,7 +157,7 @@
                                     <label for="input_obra_soc">Obra Social</label>
                                     <select class="form-control" id="obra_soc" wire:model='os'>
                                         @foreach ($oss as $o)
-                                        <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
+                                            <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -159,7 +170,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input type="text" class="form-control" id="abono" wire:model='abono'>
+                                        <input type="text" class="form-control" id="abono"
+                                            wire:model='abono'>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +197,30 @@
             </div>
         </div>
     </div>
-
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('mostrar', () => {
+                console.log('aqui');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
 
 </div>
