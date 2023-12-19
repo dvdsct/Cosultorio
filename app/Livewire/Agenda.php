@@ -21,12 +21,15 @@ use Livewire\Attributes\On;
 class Agenda extends Component
 {
     public $turnos;
+    public $turno;
     public $fecha;
     public $perfil;
     public $dni;
     public $nombre;
     public $oss = [];
-    public $modal = 'none';
+    public $modal = false;
+    public $modalclass = '';
+
 
     public $os = '2';
     public $abono;
@@ -35,6 +38,9 @@ class Agenda extends Component
     public $personas;
     public $horario;
     public $motivo = '3';
+    public $onOff;
+    public $onOffedit;
+    public $t;
 
 
 
@@ -52,12 +58,19 @@ class Agenda extends Component
     }
 
 
-    public function modalO()
+    public function openModal()
     {
-        // dd('jhskdjhakj');
-        $this->modal = 'block';
+        $this->modal = true;
     }
 
+    public function closeModal()
+    {
+
+        $this->modal = false;
+        $this->onOff = '';
+        $this->onOffedit = '';
+        $this->reset('dni', 'nombre', 'apellido', 'abono', 'horario');
+    }
 
 
     //
@@ -74,23 +87,37 @@ class Agenda extends Component
     }
 
 
-    public function delTurn($turno)
+    public function eliminar($turno)
     {
-        $t = Turno::find($turno);
+        $this->t = Turno::find($turno);
+        // dd($this->t);
+        $this->dispatch('eliminar?');
+    }
+    public function eliminarElemento()
+    {
+        // $t = Turno::find($turno);
         $this->dispatch('mostrar');
 
-        $t->delete();
+        $this->t->delete();
     }
 
 
     public function editTurn($turno)
     {
-        $turno = Turno::find($turno);
-        $this->nombre = $turno->perfils->personas->nombre;
-        $this->apellido = $turno->perfils->personas->apellido;
+        $this->personas = ['1'];
+        $this->turno = Turno::find($turno);
+        $this->perfil =  $this->turno->perfil_id;
+        $this->motivo = $this->turno->motivo;
+        $this->horario =  \Carbon\Carbon::parse($this->turno->fecha_turno)->format('H:i');
+        $this->nombre = $this->turno->perfils->personas->nombre;
+        $this->dni = $this->turno->perfils->personas->dni;
+        $this->abono = $this->turno->abonos->first()->monto;
+        $this->apellido = $this->turno->perfils->personas->apellido;
         $this->oss =  ObraSocial::all();
+        $this->onOff = 'disabled';
+        $this->onOffedit = 'disabled';
 
-        $this->modal = 'block';
+        $this->openModal();
     }
 
 
@@ -106,99 +133,176 @@ class Agenda extends Component
             'apellido' => 'required|min:3',
         ]);
 
-
-
-        if (count($this->personas) >= 1) {
-
-            $this->perfil =  $this->persona->perfils->first()->id;
-            //    dd($this->persona->perfils->first()->id);
-            $turno = Turno::create([
-                'perfil_id' => $this->perfil,
+        if ($this->turno !== null) {
+            $this->turno->update([
                 'motivo' => $this->motivo,
                 'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
-                'estado' => '1'
             ]);
+
+
+
+            if ($this->motivo == '1') {
+                
+                Pap::create(
+                    [
+                        'perfil_id' => $this->perfil,
+                        'turno_id' => $this->turno->id
+                    ]
+                );
+            }
+            if ($this->motivo == '2') {
+
+
+
+                Colposcopia::create(
+                    [
+                        'perfil_id' => $this->perfil,
+                        'turno_id' => $this->turno->id
+                    ]
+                );
+            }
+            if ($this->motivo == '3') {
+                Consulta::create(
+                    [
+                        'perfil_id' => $this->perfil,
+                        'turno_id' => $this->turno->id
+                    ]
+                );
+            }
+
+
+            $abono = new Abono;
+            $abono->monto = $this->abono;
+            $abono->tipo = 'plus';
+            $abono->estado = '1';
+            $abono->save();
+
+            $axc = new AbonoXTurno;
+            $axc->turno_id = $this->turno->id;
+            $axc->abono_id = $abono->id;
+            $axc->save();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         } else {
-            $persona = new Persona;
 
-            $persona->nombre = $this->nombre;
-            $persona->apellido = $this->apellido;
-            $persona->dni = $this->dni;
-            $persona->tipo = 'fisica';
-            $persona->estado = '1';
-            $persona->save();
 
-            $this->persona = $persona;
 
-            $p = new Perfil;
 
-            $p->persona_id = $this->persona->id;
-            $p->descripcion = 'paciente';
-            $p->estado = '1';
-            $p->save();
-            $this->perfil = $p->id;
+            if (count($this->personas) >= 1) {
+                if ($this->perfil == null) {
+                    $this->perfil =  $this->persona->perfils->first()->id;
+                    $this->turno =  Turno::create([
+                        'perfil_id' => $this->perfil,
+                        'motivo' => $this->motivo,
+                        'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
+                        'estado' => '1'
+                    ]);
+                }
+            } else {
+                $persona = new Persona;
 
-            $osxp = new ObraSocialXPerfil;
-            $osxp->perfil_id = $p->id;
-            $osxp->obra_social_id = $this->os;
-            $osxp->plan = 'defecto';
-            $osxp->save();
+                $persona->nombre = $this->nombre;
+                $persona->apellido = $this->apellido;
+                $persona->dni = $this->dni;
+                $persona->tipo = 'fisica';
+                $persona->estado = '1';
+                $persona->save();
 
-            $turno = Turno::create([
-                'perfil_id' => $this->persona->id,
-                'motivo' => $this->motivo,
-                'fecha_turno' => $this->fecha . ' ' . $this->horario,
-                'estado' => '1'
+                $this->persona = $persona;
 
-            ]);
+                $p = new Perfil;
+
+                $p->persona_id = $this->persona->id;
+                $p->descripcion = 'paciente';
+                $p->estado = '1';
+                $p->save();
+                $this->perfil = $p->id;
+
+                $osxp = new ObraSocialXPerfil;
+                $osxp->perfil_id = $p->id;
+                $osxp->obra_social_id = $this->os;
+                $osxp->plan = 'defecto';
+                $osxp->save();
+
+
+                if ($this->turno !== null) {
+                    $this->turno->update([
+                        'perfil_id' => $this->perfil,
+                        'motivo' => $this->motivo,
+                        'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
+                        'estado' => '1'
+                    ]);
+                } else {
+                    $this->turno =  Turno::create([
+                        'perfil_id' => $this->perfil,
+                        'motivo' => $this->motivo,
+                        'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
+                        'estado' => '1'
+                    ]);
+                }
+            }
+
+
+            if ($this->motivo == '1') {
+                Pap::create(
+                    [
+                        'perfil_id' => $this->perfil,
+                        'turno_id' => $this->turno->id
+                    ]
+                );
+            }
+            if ($this->motivo == '2') {
+
+
+
+                Colposcopia::create(
+                    [
+                        'perfil_id' => $this->perfil,
+                        'turno_id' => $this->turno->id
+                    ]
+                );
+            }
+            if ($this->motivo == '3') {
+                Consulta::create(
+                    [
+                        'perfil_id' => $this->perfil,
+                        'turno_id' => $this->turno->id
+                    ]
+                );
+            }
+
+
+            $abono = new Abono;
+            $abono->monto = $this->abono;
+            $abono->tipo = 'plus';
+            $abono->estado = '1';
+            $abono->save();
+
+            $axc = new AbonoXTurno;
+            $axc->turno_id = $this->turno->id;
+            $axc->abono_id = $abono->id;
+            $axc->save();
         }
 
 
-        if ($this->motivo == '1') {
-            Pap::create(
-                [
-                    'perfil_id' => $this->perfil,
-                    'turno_id' => $turno->id
-                ]
-            );
-        }
-        if ($this->motivo == '2') {
-
-
-
-            Colposcopia::create(
-                [
-                    'perfil_id' => $this->perfil,
-                    'turno_id' => $turno->id
-                ]
-            );
-        }
-        if ($this->motivo == '3') {
-            Consulta::create(
-                [
-                    'perfil_id' => $this->perfil,
-                    'turno_id' => $turno->id
-                ]
-            );
-        }
-
-
-        $abono = new Abono;
-        $abono->monto = $this->abono;
-        $abono->tipo = 'plus';
-        $abono->estado = '1';
-        $abono->save();
-
-        $axc = new AbonoXTurno;
-        $axc->turno_id = $turno->id;
-        $axc->abono_id = $abono->id;
-        $axc->save();
-
-
-
-
-        $this->reset('dni', 'nombre', 'apellido', 'abono');
-        $this->modal = 'none';
+        $this->closeModal();
     }
 
 
@@ -225,11 +329,13 @@ class Agenda extends Component
                 $this->apellido = $this->persona->apellido;
                 // dd($this->persona->perfils->first());
                 $this->oss = $this->persona->perfils->first()->obrasociales;
+                $this->onOff = 'disabled';
                 // dd($this->oss);
             } else {
                 $this->nombre = '';
                 $this->apellido = '';
                 $this->oss =  ObraSocial::all();
+                $this->onOff = '';
             }
         } else {
             // $this->nombre = '';

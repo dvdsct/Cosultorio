@@ -15,8 +15,10 @@
         </div>
         <div class="col-2 pt-2 mr-2">
             @can('crearturno')
-                <button type="button" class="btn btn-block btn-info" wire:click='modalO' >Nuevo
-                    Turno</button>
+                <button type="button" class="btn btn-block btn-info"  data-target="modal-default" wire:click='openModal' >
+                    Nuevo Turno</button>
+
+
             @endcan
         </div>
     </div>
@@ -89,7 +91,7 @@
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         <button class="btn btn-danger btn-sm" type="button"
-                                            wire:click="delTurn({{ $turno->id }})">
+                                            wire:click="eliminar({{ $turno->id }})">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     @endcan
@@ -106,13 +108,35 @@
 
     <!-- MODAL  -->
 
-    <div class="modal fade show" id="modal-turno" style="display:{{$modal  }}">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @if ($modal)
+
+
+    <div class="modal fade show" id="modal-default" aria-labelledby="modal-default"  style="display:block" aria-hidden="true"   >
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-info">
                     <h4 class="modal-title"><strong> Nuevo Turno para el
                             {{ Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ') }} </strong></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"  wire:click='closeModal'>
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -131,7 +155,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">DNI</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='dni'
+                                    <input type="text" class="form-control" id="nombre" {{ $onOffedit }} wire:model='dni'
                                         wire:keydown='upPaciente' placeholder="12345678">
                                 </div>
                             </div>
@@ -139,7 +163,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='nombre'
+                                    <input type="text" class="form-control" id="nombre" {{ $onOff }} wire:model='nombre'
                                         placeholder="Nombre">
                                 </div>
                             </div>
@@ -147,7 +171,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="input_nombre">Apellido</label>
-                                    <input type="text" class="form-control" id="nombre" wire:model='apellido'
+                                    <input type="text" class="form-control" id="nombre" {{ $onOff }} wire:model='apellido'
                                         placeholder="Apellido">
                                 </div>
                             </div>
@@ -190,36 +214,41 @@
 
 
                         <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-default" wire:click='closeModal'>Cancelar</button>
                             <button type="submit" class="btn btn-info">Guardar</button>
                         </div>
                 </form>
             </div>
         </div>
     </div>
+
+
+    @endif
     <script>
         document.addEventListener('livewire:init', () => {
-            Livewire.on('mostrar', () => {
+            Livewire.on('eliminar?', (t) => {
                 console.log('aqui');
+
+
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
+                    title: '¿Estás seguro?',
+                    text: '¡No podrás revertir esto!',
+                    icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminarlo'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
+                        @this.call('eliminarElemento');
                     }
                 });
             });
-        });
+
+
+
+            });
+
     </script>
 
 
