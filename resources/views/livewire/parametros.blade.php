@@ -7,7 +7,6 @@
                 <div class="inner">
                     <h3>TA</h3>
                     <div>
-                        {{ $tension }}
                         <!-- Contenido del elemento -->
                         <h4 class="{{ $l_ta }}">{{ $tension }}</h4>
                     </div>
@@ -57,18 +56,23 @@
 
         <!------------------------------  Temperatura  ----------------------------------->
         <div class="col-lg-3 col-6 flex-fill">
-            <div class="small-box bg-warning d-flex flex-column h-100 {{ $v_temp }}">
-                <div class="inner">
-                    <h3>Temperatura</h3>
-                    <h4 class="{{ $l_temp }} "> {{ $temperatura }} </h4>
+    <div class="small-box bg-warning d-flex flex-column h-100 {{ $v_temp }}">
+        <div class="inner">
+            <h3>Temperatura</h3>
+            @if($temperatura)
+                <h4 class="{{ $l_temp }}">{{ $temperatura }}°</h4>
+            @else
+                <h4 class="{{ $l_temp }}"></h4>
+            @endif
 
-                    <input type="text" class="{{ $in_temp }} form-control bg-warning" wire:model='temperatura' wire:keydown.enter='setTemp'>
-                </div>
-                <div class="small-box-footer d-flex justify-content-end mt-auto">
-                    <a wire:click="setTempClass" class="pr-3"  onmouseover="changeCursor(this, 'pointer')" onmouseout="changeCursor(this, 'auto')"><i class="fas fa-edit text-white"></i></a>
-                </div>
-            </div>
+            <input type="text" class="{{ $in_temp }} form-control bg-warning" wire:model='temperatura' wire:keydown.enter='setTemp'>
         </div>
+        <div class="small-box-footer d-flex justify-content-end mt-auto">
+            <a wire:click="setTempClass" class="pr-3" onmouseover="changeCursor(this, 'pointer')" onmouseout="changeCursor(this, 'auto')"><i class="fas fa-edit text-white"></i></a>
+        </div>
+    </div>
+</div>
+
 
 
        <!-- Indice de Masa Corporal  -->
@@ -77,7 +81,7 @@
             <div class="small-box bg-danger d-flex flex-column h-100 {{ $v_imc }}">
                 <div class="inner">
                     <h3>IMC</h3>
-                    <h4 class="{{ $l_imc }}">{{ $imc }}</h4>
+                    <h4 class="{{ $l_imc }}"> {{ $imc }}</h4>
 
                     <form wire:submit='setImc'>
                         @csrf

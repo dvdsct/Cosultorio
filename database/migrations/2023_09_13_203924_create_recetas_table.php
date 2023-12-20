@@ -13,11 +13,18 @@ return new class extends Migration
     {
         Schema::create('recetas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('vademecum_id');
+            $table->foreign('vademecum_id')
+            ->references('id')
+            ->on('vademecums')
+            ->onDelete('cascade');
+            $table->unsignedBigInteger('cie10_id');
+            $table->foreign('cie10_id')
+            ->references('id')
+            ->on('cie10s')
+            ->onDelete('cascade');
+            $table->string('estado');
             $table->timestamps();
-            $table->string('principio_activo');
-            $table->string('nombre');
-            $table->string('presentacion');
-            $table->string('precio');
         });
     }
 

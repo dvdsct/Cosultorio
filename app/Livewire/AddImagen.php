@@ -56,6 +56,8 @@ class AddImagen extends Component
         $ixc->descripcion='vacio';
         $ixc->estado='1';
         $ixc->save();
+
+        $this->dispatch('added')->to(EnfermedadActual::class);
     }
     public function render()
     {

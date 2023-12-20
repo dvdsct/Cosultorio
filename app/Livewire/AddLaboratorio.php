@@ -112,7 +112,6 @@ class AddLaboratorio extends Component
 
 
          public function add_lab(){
-
           $lab = new Laboratorio;
           $lab->hemo= $this->hemo;
           $lab->hb= $this->hb;
@@ -154,13 +153,8 @@ class AddLaboratorio extends Component
           $lxc->estado= '2';
           $lxc->save();
 
-          //dd('hasta aqui');
           $this->dispatch('added')->to(EnfermedadActual::class);
         }
-
-
-        
-
     public function render()
     {
         return view('livewire.add-laboratorio');

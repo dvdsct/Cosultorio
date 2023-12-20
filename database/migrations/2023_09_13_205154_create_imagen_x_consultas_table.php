@@ -18,12 +18,11 @@ return new class extends Migration
             ->references('id')
             ->on('consultas')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('imagen_id')->nullable();
+            $table->unsignedBigInteger('imagen_id');
             $table->foreign('imagen_id')
             ->references('id')
             ->on('imagens')
             ->onDelete('cascade');
-            $table->string('descripcion');
             $table->string('estado');
             $table->softDeletes();
             $table->timestamps();
