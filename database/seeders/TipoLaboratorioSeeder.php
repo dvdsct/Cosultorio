@@ -41,14 +41,23 @@ class TipoLaboratorioSeeder extends Seeder
             'Toxoplasma',
             'VDRL',
             'HBsAg',
-            'HIV'
+            'HIV',
+            'Glucosuria',
+            'CMV lgG',
+            'CMV lgM',
+            'Ag Chlamidia trachomatis',
+            'micoplasma hominis Ag',
+            'ureaplasma ureliticum Ag',
+            'Lysteria monocitogenes Ag'
+
         ];
 
         foreach ($tiposLaboratorio as $tipo) {
             TipoLaboratorio::create([
 
-                'estado'=>'1',
-                'tipo_laboratorio'=>$tipo ]);
+                'estado' => '1',
+                'tipo_laboratorio' => $tipo
+            ]);
         };
     }
 }

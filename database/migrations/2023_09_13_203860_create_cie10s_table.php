@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cie10s', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo');
             $table->string('descripcion');
             $table->timestamps();
         });

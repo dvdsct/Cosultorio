@@ -15,7 +15,6 @@ class AddLaboratorio extends Component
      public $glucem ;
      public $ptog ;
      public $hb_glico ;
-     public $grupo ;
      public $factor_rh ;
      public $orina ;
      public $urocult ;
@@ -39,11 +38,16 @@ class AddLaboratorio extends Component
      public $vdrl_cual ;
      public $hbs_ag ;
      public $hiv ;
+     public $cmv_lgg;
+     public $cmv_lgm;
+     public $ag_chlamidia;
+     public $microplasma;
+     public $ureaplasma;
+     public $lysteria;
 
 
+     /* Funcion para seleccionar TODAS las practicas */
      public function selectAll(){
-
-
             if($this->todas == false){
                 $this->hemo = false;
                 $this->hb = false;
@@ -51,7 +55,6 @@ class AddLaboratorio extends Component
                 $this->glucem = false ;
                 $this->ptog = false ;
                 $this->hb_glico = false ;
-                $this->grupo = false ;
                 $this->factor_rh = false ;
                 $this->orina = false ;
                 $this->urocult = false ;
@@ -75,6 +78,13 @@ class AddLaboratorio extends Component
                 $this->vdrl_cual = false ;
                 $this->hbs_ag = false ;
                 $this->hiv = false ;
+                $this->cmv_lgg = false;
+                $this->cmv_lgm = false;
+                $this->ag_chlamidia = false;
+                $this->microplasma = false;
+                $this->ureaplasma = false;
+                $this->lysteria = false;
+
             }else{
                 $this->hemo = true;
                 $this->hb = true;
@@ -82,7 +92,6 @@ class AddLaboratorio extends Component
                 $this->glucem = true ;
                 $this->ptog = true ;
                 $this->hb_glico = true ;
-                $this->grupo = true ;
                 $this->factor_rh = true ;
                 $this->orina = true ;
                 $this->urocult = true ;
@@ -106,7 +115,12 @@ class AddLaboratorio extends Component
                 $this->vdrl_cual = true ;
                 $this->hbs_ag = true ;
                 $this->hiv = true ;
-
+                $this->cmv_lgg = true;
+                $this->cmv_lgm = true;
+                $this->ag_chlamidia = true;
+                $this->microplasma = true;
+                $this->ureaplasma = true;
+                $this->lysteria = true;
             }
         }
 
@@ -119,7 +133,6 @@ class AddLaboratorio extends Component
           $lab->glucem= $this->glucem;
           $lab->ptog= $this->ptog;
           $lab->hb_glico= $this->hb_glico;
-          $lab->grupo= $this->grupo;
           $lab->factor_rh= $this->factor_rh;
           $lab->orina= $this->orina;
           $lab->urocult= $this->urocult;
@@ -143,6 +156,12 @@ class AddLaboratorio extends Component
           $lab->vdrl_cual= $this->vdrl_cual;
           $lab->hbs_ag= $this->hbs_ag;
           $lab->hiv= $this->hiv;
+          $lab->cmv_lgg = $this->cmv_lgg;
+          $lab->cmv_lgm = $this->cmv_lgm;
+          $lab->ag_chlamidia = $this->ag_chlamidia;
+          $lab->microplasma = $this->microplasma;
+          $lab->ureaplasma = $this->ureaplasma;
+          $lab->lysteria = $this->lysteria;
           $lab->estado= '2';
           $lab->save();
 

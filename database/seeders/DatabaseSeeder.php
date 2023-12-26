@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
        $this->call(RoleSeeder::class);
        $this->call(UserSeeder::class);
        $this->call(TipoLaboratorioSeeder::class);
-       
+       $this->call(TipoImagenSeeder::class);
 
     }
 }
