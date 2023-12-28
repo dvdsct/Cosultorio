@@ -9,6 +9,12 @@ class AddLaboratorio extends Component
 {
      public $consulta;
      public $todas;
+     public $e_gral;
+     public $e_renal;
+     public $e_gine;
+     public $e_salud;
+     public $e_embabarazo;
+
      public $hemo;
      public $hb;
      public $hto ;
@@ -123,6 +129,120 @@ class AddLaboratorio extends Component
                 $this->lysteria = true;
             }
         }
+
+
+        /* Funcion para seleccionar Evaluacion General y Hematologica */
+     public function selectGeneral(){
+        if($this->e_gral == false){
+            $this->hemo = false;
+            $this->hb = false;
+            $this->hto = false ;
+            $this->glucem = false ;
+            $this->ptog = false ;
+            $this->hb_glico = false ;
+            $this->factor_rh = false ;
+            
+        }else{
+            $this->hemo = true;
+            $this->hb = true;
+            $this->hto = true ;
+            $this->glucem = true ;
+            $this->ptog = true ;
+            $this->hb_glico = true ;
+            $this->factor_rh = true ;
+        }
+    }
+
+    /* Funcion para seleccionar evaluacion Renal y Urinaria */
+    public function selectRenal(){
+        if($this->e_renal == false){
+            $this->orina = false ;
+            $this->urocult = false ;
+
+        }else{
+            $this->orina = true ;
+            $this->urocult = true ;
+        }
+    }
+
+     /* Funcion para seleccionar Evaluacion Ginecologica */
+     public function selectGine(){
+        if($this->e_gine == false){
+            $this->fibrino = false ;
+            $this->flujo_vag = false ;
+            $this->coagulogram = false ;
+            $this->tsh = false ;
+            $this->fsh = false ;
+            $this->lh = false ;
+            $this->dhea = false ;
+            $this->testost_l = false ;
+            $this->testost_b = false ;
+            $this->h_antimull = false ;     
+            $this->ag_chlamidia = false;
+            $this->microplasma = false;
+            $this->ureaplasma = false;
+
+        }else{
+            $this->fibrino = true ;
+            $this->flujo_vag = true ;
+            $this->coagulogram = true ;
+            $this->tsh = true ;
+            $this->fsh = true ;
+            $this->lh = true ;
+            $this->dhea = true ;
+            $this->testost_l = true ;
+            $this->testost_b = true ;
+            $this->h_antimull = true ;
+            $this->ag_chlamidia = true;
+            $this->microplasma = true;
+            $this->ureaplasma = true;
+        }
+    }
+
+     /* Funcion para seleccionar evaluacion salud */
+     public function selectSalud(){
+        if($this->e_salud == false){
+            $this->ferritina = false ;
+            $this->transferri = false ;
+            $this->anti_ttg = false ;
+            $this->gliadina = false ;
+            $this->lysteria = false;
+            $this->glucosuria = false ;
+
+        }else{
+            $this->ferritina = true ;
+            $this->transferri = true ;
+            $this->anti_ttg = true ;
+            $this->gliadina = true ;
+            $this->lysteria = true;
+            $this->glucosuria = true ;
+        }
+    }
+
+         /* Funcion para seleccionar evaluacion embarazo */
+         public function selectEmbarazo(){
+            if($this->e_embabarazo == false){
+                $this->chagas = false ;
+                $this->toxo = false ;
+                $this->vdrl_cual = false ;
+                $this->hbs_ag = false ;
+                $this->hiv = false;
+                $this->cmv_lgg = false ;
+                $this->cmv_lgm = false ;
+    
+            }else{
+                $this->chagas = true ;
+                $this->toxo = true ;
+                $this->vdrl_cual = true ;
+                $this->hbs_ag = true ;
+                $this->hiv = true;
+                $this->cmv_lgg = true ;
+                $this->cmv_lgm = true ;
+            }
+        }
+
+
+
 
 
          public function add_lab(){
