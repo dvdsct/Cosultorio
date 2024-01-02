@@ -36,15 +36,15 @@ class PapsController extends Controller
      */
     public function show(string $id)
     {
-        $pap = Pap::find($id);
-        $turno = $pap->turnos;
+        $consulta = Pap::find($id);
+        $turno = $consulta->turnos;
 
         // dd($turno);
         $turno->update([
             'estado' => '2'
         ]);
         return view('Consultorio.Practicas.Paps.show', [
-            'pap' => $pap
+            'consulta' => $consulta
         ]);
     }
 

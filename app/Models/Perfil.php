@@ -27,6 +27,11 @@ class Perfil extends Model
 
         return $this->hasMany(Consulta::class);
     }
+    public function paps()
+    {
+
+        return $this->hasMany(Pap::class);
+    }
     public function embarazos()
     {
 

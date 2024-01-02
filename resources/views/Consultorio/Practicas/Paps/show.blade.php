@@ -8,6 +8,7 @@
 
 @section('content')
 
+@livewire('datos-per-paciente',['consulta' => $consulta])
 
 @livewire('form-pap')
 
