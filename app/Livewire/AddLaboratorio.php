@@ -128,7 +128,7 @@ class AddLaboratorio extends Component
                 $this->ureaplasma = true;
                 $this->lysteria = true;
             }
-        }
+        }   
 
 
         /* Funcion para seleccionar Evaluacion General y Hematologica */
@@ -297,6 +297,9 @@ class AddLaboratorio extends Component
         }
     public function render()
     {
+
+
+
         return view('livewire.add-laboratorio');
     }
 }

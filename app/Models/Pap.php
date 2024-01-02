@@ -16,4 +16,10 @@ class Pap extends Model
     public function turnos(){
         return $this->belongsTo(Turno::class,'turno_id');
     }
+
+
+    public function perfiles (){
+
+        return $this->belongsTo(Perfil::class,'perfil_id');
+    }
 }
