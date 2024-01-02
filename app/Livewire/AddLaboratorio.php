@@ -141,7 +141,7 @@ class AddLaboratorio extends Component
             $this->ptog = false ;
             $this->hb_glico = false ;
             $this->factor_rh = false ;
-            
+
         }else{
             $this->hemo = true;
             $this->hb = true;
@@ -177,7 +177,7 @@ class AddLaboratorio extends Component
             $this->dhea = false ;
             $this->testost_l = false ;
             $this->testost_b = false ;
-            $this->h_antimull = false ;     
+            $this->h_antimull = false ;
             $this->ag_chlamidia = false;
             $this->microplasma = false;
             $this->ureaplasma = false;
@@ -229,7 +229,7 @@ class AddLaboratorio extends Component
                 $this->hiv = false;
                 $this->cmv_lgg = false ;
                 $this->cmv_lgm = false ;
-    
+
             }else{
                 $this->chagas = true ;
                 $this->toxo = true ;
@@ -246,53 +246,7 @@ class AddLaboratorio extends Component
 
 
          public function add_lab(){
-<<<<<<< HEAD
 
-            dd($this->consulta);
-            $labs = [
-                $this->hemo,
-                $this->hb,
-                $this->hto,
-                $this->glucem,
-                $this->ptog,
-                $this->hb_glico,
-                $this->grupo,
-                $this->factor_rh,
-                $this->orina,
-                $this->urocult,
-                $this->fibrino,
-                $this->flujo_vag,
-                $this->coagulogram,
-                $this->tsh,
-                $this->fsh,
-                $this->lh,
-                $this->dhea,
-                $this->testost_l,
-                $this->testost_b,
-                $this->h_antimull,
-                $this->glucosuria,
-                $this->ferritina,
-                $this->transferri,
-                $this->anti_ttg,
-                $this->gliadina,
-                $this->chagas,
-                $this->toxo,
-                $this->vdrl_cual,
-                $this->hbs_ag,
-                $this->hiv,
-            ];
-            foreach($labs as $lab){
-                if($lab == true){
-
-                    $lab = new Laboratorio;
-                    $lab->estado= '2';
-                    $lab->save();
-
-
-                }
-
-            }
-=======
           $lab = new Laboratorio;
           $lab->hemo= $this->hemo;
           $lab->hb= $this->hb;
@@ -331,7 +285,6 @@ class AddLaboratorio extends Component
           $lab->lysteria = $this->lysteria;
           $lab->estado= '2';
           $lab->save();
->>>>>>> e802992fd6841bb2fe1f00e02790753bf7c1c181
 
           $lxc = new LaboratorioXConsulta;
           $lxc->consulta_id=$this->consulta->id;
