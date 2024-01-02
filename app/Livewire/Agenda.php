@@ -69,6 +69,7 @@ class Agenda extends Component
         $this->modal = false;
         $this->onOff = '';
         $this->onOffedit = '';
+
         $this->reset('dni', 'nombre', 'apellido', 'abono', 'horario');
     }
 
@@ -133,6 +134,7 @@ class Agenda extends Component
             'apellido' => 'required|min:3',
         ]);
 
+        // EDIT
         if ($this->turno !== null) {
             $this->turno->update([
                 'motivo' => $this->motivo,
@@ -142,7 +144,7 @@ class Agenda extends Component
 
 
             if ($this->motivo == '1') {
-                
+
                 Pap::create(
                     [
                         'perfil_id' => $this->perfil,
@@ -169,45 +171,39 @@ class Agenda extends Component
                     ]
                 );
             }
+            $axc = AbonoXTurno::where('turno_id', $this->turno->id)->first();
+            // dd($axc);
+            $abono = Abono::find($axc->abono_id);
+            $abono->update([
+                'monto' => $this->abono,
+            ]);
+        }
+        // Create
 
+        else {
 
-            $abono = new Abono;
-            $abono->monto = $this->abono;
-            $abono->tipo = 'plus';
-            $abono->estado = '1';
-            $abono->save();
+            if(Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->first()){
 
-            $axc = new AbonoXTurno;
-            $axc->turno_id = $this->turno->id;
-            $axc->abono_id = $abono->id;
-            $axc->save();
-
-
-
-
-
+            }else{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        } else {
-
-
-
-
+            //  Verificacion de la existencia del paciente
             if (count($this->personas) >= 1) {
+
                 if ($this->perfil == null) {
                     $this->perfil =  $this->persona->perfils->first()->id;
+
+
+                    //Crea Turno con paciente existente
+                    $this->turno =  Turno::create([
+                        'perfil_id' => $this->perfil,
+                        'motivo' => $this->motivo,
+                        'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
+                        'estado' => '1'
+                    ]);
+                } else {
+                    //Crea Turno con paciente existente
                     $this->turno =  Turno::create([
                         'perfil_id' => $this->perfil,
                         'motivo' => $this->motivo,
@@ -300,8 +296,9 @@ class Agenda extends Component
             $axc->abono_id = $abono->id;
             $axc->save();
         }
+    }
 
-
+        $this->reset('turno');
         $this->closeModal();
     }
 
@@ -338,8 +335,10 @@ class Agenda extends Component
                 $this->onOff = '';
             }
         } else {
-            // $this->nombre = '';
-            // $this->apellido = '';
+            $this->nombre = '';
+            $this->apellido = '';
+            $this->onOff = '';
+
             $this->oss =  ObraSocial::all();
         }
     }

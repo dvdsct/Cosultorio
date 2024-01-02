@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pap;
 use Illuminate\Http\Request;
 
 class PapsController extends Controller
@@ -11,7 +12,7 @@ class PapsController extends Controller
      */
     public function index()
     {
-    return view ('Consultorio.Practicas.Paps.index');
+        return view('Consultorio.Practicas.Paps.index');
     }
 
     /**
@@ -35,7 +36,16 @@ class PapsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pap = Pap::find($id);
+        $turno = $pap->turnos;
+
+        // dd($turno);
+        $turno->update([
+            'estado' => '2'
+        ]);
+        return view('Consultorio.Practicas.Paps.show', [
+            'pap' => $pap
+        ]);
     }
 
     /**

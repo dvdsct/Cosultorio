@@ -32,7 +32,7 @@ class Turno extends Model
     }
 
     public function paps(){
-        return $this->hasMany(Pap::class);
+        return $this->hasOne(Pap::class);
     }
 
     public function consultas(){

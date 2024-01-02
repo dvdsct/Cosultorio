@@ -9,11 +9,12 @@ class Abono extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['monto'];
 
     public function turnos(){
 
         return $this->belongsToMany(Turno::class,'abono_x_turnos');
     }
 
-    
+
 }

@@ -76,7 +76,7 @@
                                                     class="btn btn-info btn-sm">Atender</a>
                                             @endif
                                             @if ($turno->motivo == '1')
-                                                <a type="button" href="{{ url('paps') }}/{{ $turno->id }}"
+                                                <a type="button" href="{{ url('paps') }}/{{ $turno->paps->id }}"
                                                     class="btn btn-info btn-sm">Atender</a>
                                             @endif
                                             @if ($turno->motivo == '2')
@@ -110,21 +110,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
     @if ($modal)
 

@@ -11,7 +11,9 @@ class Pap extends Model
 
     protected $fillable = ['perfil_id',
     'turno_id'];
+
+
     public function turnos(){
-        return $this->belongsTo(Turno::class,'1');
+        return $this->belongsTo(Turno::class,'turno_id');
     }
 }

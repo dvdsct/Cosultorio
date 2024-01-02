@@ -112,39 +112,51 @@ class AddLaboratorio extends Component
 
 
          public function add_lab(){
-          $lab = new Laboratorio;
-          $lab->hemo= $this->hemo;
-          $lab->hb= $this->hb;
-          $lab->hto= $this->hto;
-          $lab->glucem= $this->glucem;
-          $lab->ptog= $this->ptog;
-          $lab->hb_glico= $this->hb_glico;
-          $lab->grupo= $this->grupo;
-          $lab->factor_rh= $this->factor_rh;
-          $lab->orina= $this->orina;
-          $lab->urocult= $this->urocult;
-          $lab->fibrino= $this->fibrino;
-          $lab->flujo_vag= $this->flujo_vag;
-          $lab->coagulogram= $this->coagulogram;
-          $lab->tsh= $this->tsh;
-          $lab->fsh= $this->fsh;
-          $lab->lh= $this->lh;
-          $lab->dhea= $this->dhea;
-          $lab->testost_l= $this->testost_l;
-          $lab->testost_b= $this->testost_b;
-          $lab->h_antimull= $this->h_antimull;
-          $lab->glucosuria= $this->glucosuria;
-          $lab->ferritina= $this->ferritina;
-          $lab->transferri= $this->transferri;
-          $lab->anti_ttg= $this->anti_ttg;
-          $lab->gliadina= $this->gliadina;
-          $lab->chagas= $this->chagas;
-          $lab->toxo= $this->toxo;
-          $lab->vdrl_cual= $this->vdrl_cual;
-          $lab->hbs_ag= $this->hbs_ag;
-          $lab->hiv= $this->hiv;
-          $lab->estado= '2';
-          $lab->save();
+
+            dd($this->consulta);
+            $labs = [
+                $this->hemo,
+                $this->hb,
+                $this->hto,
+                $this->glucem,
+                $this->ptog,
+                $this->hb_glico,
+                $this->grupo,
+                $this->factor_rh,
+                $this->orina,
+                $this->urocult,
+                $this->fibrino,
+                $this->flujo_vag,
+                $this->coagulogram,
+                $this->tsh,
+                $this->fsh,
+                $this->lh,
+                $this->dhea,
+                $this->testost_l,
+                $this->testost_b,
+                $this->h_antimull,
+                $this->glucosuria,
+                $this->ferritina,
+                $this->transferri,
+                $this->anti_ttg,
+                $this->gliadina,
+                $this->chagas,
+                $this->toxo,
+                $this->vdrl_cual,
+                $this->hbs_ag,
+                $this->hiv,
+            ];
+            foreach($labs as $lab){
+                if($lab == true){
+
+                    $lab = new Laboratorio;
+                    $lab->estado= '2';
+                    $lab->save();
+
+
+                }
+
+            }
 
           $lxc = new LaboratorioXConsulta;
           $lxc->consulta_id=$this->consulta->id;
