@@ -19,6 +19,7 @@ return new class extends Migration
                 ->on('perfils')
                 ->onDelete('cascade');
             $table->unsignedBigInteger('turno_id');
+
             $table->foreign('turno_id')
                 ->references('id')
                 ->on('turnos')

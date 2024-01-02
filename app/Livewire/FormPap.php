@@ -46,7 +46,6 @@ class FormPap extends Component
   public $fum;
   public $menop;
   public $causales;
-  public $thr;
   public $embarazo;
   public $trat_rad;
   public $quimio;
@@ -114,8 +113,7 @@ class FormPap extends Component
 
     $pap = new Pap;
     $pap->perfil_id = '1';
-    $pap->turno_id = '1';
-  /*   $pap->descripcion = 'vacio'; */
+    $pap->descripcion = 'vacio';
     $pap->estado = '1';
     $pap->tipo_muestra = $this->tipo_muestra;
     $pap->met_toma_mue = $this->toma_muestra;
