@@ -18,7 +18,7 @@
             <tbody>
                 @foreach ($consultas as $consulta)
                 <tr class="table-border-bottom">
-                    <td style="width: 15%">27 Octubre 23</td>
+                    <td style="width: 15%">{{ $consulta}}</td>
                     <td>{{ $consulta->ea }}</td>
                     <td>{{ $consulta->observaciones }}</td>
                     <td style="width: 10%"> <a class="btn btn-info btn-sm" href="#">

@@ -14,7 +14,9 @@ class Consultas extends Component
     public function render()
     {
         if($this->consulta){
-            $this->consultas = Consulta::where('perfil_id',$this->consulta->perfil_id)->get();
+            $this->consultas = Consulta::where('perfil_id',$this->consulta->perfil_id)
+            ->where('estado', '2')
+            ->get();
 
         }else{
 
