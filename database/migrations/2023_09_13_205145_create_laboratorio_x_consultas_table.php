@@ -23,7 +23,6 @@ return new class extends Migration
             ->references('id')
             ->on('laboratorios')
             ->onDelete('cascade');
-            $table->string('descripcion');
             $table->string('estado');
             $table->softDeletes();
             $table->timestamps();

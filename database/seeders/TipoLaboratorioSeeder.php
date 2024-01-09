@@ -47,7 +47,7 @@ class TipoLaboratorioSeeder extends Seeder
             'Ag Chlamidia trachomatis',
             'micoplasma hominis Ag',
             'ureaplasma ureliticum Ag',
-            'Lysteria monocitogenes Ag'
+            'Lysteria monocitogenes Ag',
 
         ];
 

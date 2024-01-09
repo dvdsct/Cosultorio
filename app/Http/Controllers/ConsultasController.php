@@ -38,8 +38,11 @@ class ConsultasController extends Controller
     public function show(string $id)
     {
         $consulta = Consulta::find($id);
-        $turno = $consulta->turnos;
 
+        $consulta->update([
+            'estado' => '2'
+        ]);
+        $turno = $consulta->turnos;
         $turno->update([
             'estado' => '2'
         ]);
