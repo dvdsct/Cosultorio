@@ -10,7 +10,7 @@
 
 @livewire('datos-per-paciente',['consulta' => $consulta])
 
-@livewire('form-pap')
+@livewire('form-pap',['consulta' => $consulta])
 
 
 

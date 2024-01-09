@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Colposcopia;
 use Illuminate\Http\Request;
 
 class ColposcopiaController extends Controller
@@ -37,7 +38,15 @@ class ColposcopiaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $consulta = Colposcopia::find($id);
+        $turno = $consulta->turnos;
+
+        $turno->update([
+            'estado' => '2'
+        ]);
+        return view('Consultorio.Practicas.Colposcopia.show', [
+            'consulta' => $consulta
+        ]);
     }
 
     /**

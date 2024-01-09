@@ -14,6 +14,7 @@ use App\Models\CirujiasPrevias;
 class FormPap extends Component
 {
 
+  public $pap;
   public $check_tvph = '';
   public $switch = '';
   public $check_cp;
@@ -46,10 +47,14 @@ class FormPap extends Component
   public $fum;
   public $menop;
   public $causales;
+  public $thr;
   public $embarazo;
   public $trat_rad;
   public $quimio;
 
+  public function mount($consulta){
+    $this->pap=$consulta;
+  }
 
   /* Metodo para habilitar y desabilitar Cirugias precias */
   public function cir_previas(){
@@ -109,26 +114,24 @@ class FormPap extends Component
 
   public function add_pap()
   {
+    
+$this->pap->update([
+  
+  'tipo_muestra' => $this -> tipo_muestra,
+  'met_toma_mue' => $this -> toma_muestra,
+  'tamizaje' => $this -> tamizaje,
+  'fecha_tami' => $this -> fec_tam,
+  'fum' => $this -> fum,
+  'menopausia' => $this -> menop,
+  'metodo_anti_con' => $this -> metodo_anti,
+  'cirujias_pre' => $this -> ciru_prev,
+  'causa_lesion' => $this -> causales,
+  'thr' => $this -> thr,
+  'embarazo_actual' => $this -> embarazo,
+  'trata_rad' => $this -> trat_rad,
+  'quimio' => $this -> quimio
+]);
 
-
-    $pap = new Pap;
-    $pap->perfil_id = '1';
-    $pap->descripcion = 'vacio';
-    $pap->estado = '1';
-    $pap->tipo_muestra = $this->tipo_muestra;
-    $pap->met_toma_mue = $this->toma_muestra;
-    $pap->tamizaje = $this->tamizaje;
-    $pap->fecha_tami = $this->fec_tam;
-    $pap->fum = $this->fum;
-    $pap->menopausia = $this->menop;
-    $pap->metodo_anti_con = $this->metodo_anti;
-    $pap->cirujias_pre = $this->ciru_prev;
-    $pap->causa_lesion = $this->causales;
-    $pap->thr = $this->thr;
-    $pap->embarazo_actual = $this->embarazo;
-    $pap->trata_rad = $this->trat_rad;
-    $pap->quimio = $this->quimio;
-    $pap->save();
   }
 
 

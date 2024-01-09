@@ -201,7 +201,7 @@
             <div class="row pl-5">
                 <label for="customSwitch3" class="pr-2 font-weight-normal">Test de Schiller: - </label>
                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input type="checkbox" class="custom-control-input" id="customSwitchSchiller">
+                    <input type="checkbox" class="custom-control-input" id="customSwitchSchiller" wire:model='schiller'>
                     <label class="custom-control-label font-weight-normal" for="customSwitchSchiller">+</label>
                 </div>
             </div>
