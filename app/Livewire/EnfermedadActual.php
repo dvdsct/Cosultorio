@@ -908,7 +908,7 @@ class EnfermedadActual extends Component
         $this->dispatch('added')->to(EnfermedadActual::class);
     }
      public function finConsulta(){
-        if($this->consulta->estado == '2'){
+        if($this->consulta->estado == '1'){
 
             $this->add_lab();
             $this->consulta->update([
