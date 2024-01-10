@@ -56,7 +56,7 @@
                                         <tr>
                                             <td>
                                                 <div class="btn-group" style="width: 80%;">
-                                                    <button type="button" class="btn btn-warning btn-block rounded-left mr-1" style="width: 100%;" data-toggle="modal" data-target="#modal-imagen">
+                                                    <button type="button" class="btn btn-warning btn-block rounded-left mr-1" style="width: 100%;" data-toggle="modal" data-target="#modal-laboratorio">
                                                         <strong> Laboratorio </strong>
                                                     </button>
                                                     <button type="button" class="btn btn-warning btn-flat mr-1">

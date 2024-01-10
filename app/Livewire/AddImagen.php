@@ -14,28 +14,34 @@ class AddImagen extends Component
     public $eco_tiro;
     public $rmn_pelv;
     public $tac_abd;
+    public $tac_abd_cc;
     public $tac_pel;
+    public $tac_pel_cc;
     public $consulta;
 
 
     public function selectAll(){
 
         if($this->todas == false){
-            $this-> eco_gin = false;
+            $this->eco_gin = false;
             $this->eco_obs = false;
             $this->eco_abd = false;
             $this->eco_tiro = false;
             $this->rmn_pelv = false;
             $this->tac_abd = false;
             $this->tac_pel = false;
+            $this->tac_abd_cc = false;
+            $this->tac_pel_cc = false;
         }else{
-            $this-> eco_gin = true;
+            $this->eco_gin = true;
             $this->eco_obs = true;
             $this->eco_abd = true;
             $this->eco_tiro = true;
             $this->rmn_pelv = true;
             $this->tac_abd = true;
             $this->tac_pel = true;
+            $this->tac_abd_cc = true;
+            $this->tac_pel_cc = true;
         }
     }
 
@@ -47,7 +53,9 @@ class AddImagen extends Component
         $imag->eco_tiro= $this->eco_tiro;
         $imag->rmn_pelv= $this->rmn_pelv;
         $imag->tac_abd= $this->tac_abd;
+        $imag->tac_abd_cc= $this->tac_abd_cc;
         $imag->tac_pel= $this->tac_pel;
+        $imag->tac_pel_cc= $this->tac_pel_cc;
         $imag->save();
 
         $ixc = new ImagenXConsulta;

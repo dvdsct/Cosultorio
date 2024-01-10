@@ -52,13 +52,13 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <input type="checkbox" wire:model='tac_abd' style="transform: scale(1.5);">
-                                    <label class="form-check-label pl-2" style="cursor: pointer;">TAC Abdominal (Con contraste)</label>
+                                    <input type="checkbox" id="tac_abd_cc" wire:model='tac_abd_cc' style="transform: scale(1.5);">
+                                    <label class="form-check-label pl-2" for="tac_abd_cc" style="cursor: pointer;">TAC Abdominal (Con contraste)</label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input type="checkbox" wire:model='tac_pel' style="transform: scale(1.5);">
-                                    <label class="form-check-label pl-2" style="cursor: pointer;">TAC Pelviana (Con contraste)</label>
+                                    <input type="checkbox" id="tac_pel_cc" wire:model='tac_pel_cc' style="transform: scale(1.5);">
+                                    <label class="form-check-label pl-2" for="tac_pel_cc" style="cursor: pointer;">TAC Pelviana (Con contraste)</label>
                                 </div>
                             </div>
                         </div>
