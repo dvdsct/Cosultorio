@@ -18,10 +18,10 @@
             <tbody>
                 @foreach ($consultas as $consulta)
                 <tr class="table-border-bottom">
-                    <td style="width: 15%">{{ $consulta}}</td>
+                    <td style="width: 15%">{{ $consulta->ea}}</td>
                     <td>{{ $consulta->ea }}</td>
-                    <td>{{ $consulta->observaciones }}</td>
-                    <td style="width: 10%"> <a class="btn btn-info btn-sm" href="#">
+                    <td>{{ $consulta->id }}</td>
+                    <td style="width: 10%"> <a class="btn btn-info btn-sm" href='{{route("consulta.show" , $consulta->id)}}'>
                             Ver
                         </a></td>
                 </tr>

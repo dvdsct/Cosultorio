@@ -11,11 +11,13 @@ class Consultas extends Component
     public $consultas;
 
 
+
+
     public function render()
     {
         if($this->consulta){
             $this->consultas = Consulta::where('perfil_id',$this->consulta->perfil_id)
-            ->where('estado', '2')
+            ->where('estado', '3')
             ->get();
 
         }else{

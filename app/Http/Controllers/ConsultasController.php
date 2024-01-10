@@ -39,9 +39,12 @@ class ConsultasController extends Controller
     {
         $consulta = Consulta::find($id);
 
-        $consulta->update([
-            'estado' => '2'
-        ]);
+        if($consulta->estado == '1'){
+            $consulta->update([
+                'estado' => '2'
+            ]);
+        }
+
         $turno = $consulta->turnos;
         $turno->update([
             'estado' => '2'
