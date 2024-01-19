@@ -8,6 +8,8 @@ use App\Models\ImagenXConsulta;
 
 class AddImagen extends Component
 {
+    public $consulta;
+    public $todas;
     public $eco_gin;
     public $eco_obs;
     public $eco_abd;
@@ -17,7 +19,8 @@ class AddImagen extends Component
     public $tac_abd_cc;
     public $tac_pel;
     public $tac_pel_cc;
-    public $consulta;
+
+    public $ecografias;
 
 
     public function selectAll(){
@@ -45,8 +48,40 @@ class AddImagen extends Component
         }
     }
 
+/* Funcion que selecciona las Ecografias */
+
+    public function selectEco(){
+
+        if($this->todas == false){
+            $this->eco_gin = false;
+            $this->eco_obs = false;
+            $this->eco_abd = false;
+            $this->eco_tiro = false;
+
+        }else{
+            $this->eco_gin = true;
+            $this->eco_obs = true;
+            $this->eco_abd = true;
+            $this->eco_tiro = true;
+        }
+    }
+
+    /* Funcion que selecciona Resonancia Magnética */
+
+
+/* Funcion que selecciona las Tomografías  */
+
+
     public function add_imag(){
-        $imag = new Imagen;
+        // Categoria General
+        if ($this->e_gral) {
+        
+        
+        }
+
+
+
+       $imag = new Imagen;/*  
         $imag->eco_gin= $this->eco_gin;
         $imag->eco_obs= $this->eco_obs;
         $imag->eco_abd= $this->eco_abd;
@@ -56,7 +91,7 @@ class AddImagen extends Component
         $imag->tac_abd_cc= $this->tac_abd_cc;
         $imag->tac_pel= $this->tac_pel;
         $imag->tac_pel_cc= $this->tac_pel_cc;
-        $imag->save();
+        $imag->save(); */
 
         $ixc = new ImagenXConsulta;
         $ixc->consulta_id=$this->consulta->id;

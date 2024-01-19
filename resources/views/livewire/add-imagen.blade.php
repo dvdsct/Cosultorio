@@ -13,6 +13,10 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-check">
+                                    <input type="checkbox" id="eco_gin" wire:model='eco_gin' style="transform: scale(2.0);">
+                                    <label class="form-check-label pl-2" for="eco_gin" style="cursor: pointer;"> <strong>Ecografías</strong></label>
+                                </div>
+                                <div class="form-check">
                                     <input type="checkbox" id="eco_gin" wire:model='eco_gin' style="transform: scale(1.5);">
                                     <label class="form-check-label pl-2" for="eco_gin" style="cursor: pointer;">Ecografía Ginecologica</label>
                                 </div>
