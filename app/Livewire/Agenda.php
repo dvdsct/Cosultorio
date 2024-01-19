@@ -354,7 +354,7 @@ class Agenda extends Component
 
 
 
-    // #[On('refresh-turn')]
+    #[On('refresh-turn')]
     public function render()
     {
 
