@@ -1,4 +1,5 @@
 <div>
+    <button class="btn btn-primary" wire:click='openModal'></button>
     <div class="row d-flex justify-content-between" style="padding-top: 20px;">
         <div class="col-3 d-flex align-items-center">
 
@@ -110,7 +111,7 @@
 
 
 
-    
+
 
     @if ($modal)
 
@@ -210,6 +211,31 @@
 
 
     @endif
+
+
+
+
+
+    <script>
+
+      // Enable pusher logging - don't include this in production
+      Pusher.logToConsole = true;
+
+      var pusher = new Pusher('3256308c17e4278e362b', {
+        cluster: 'mt1'
+      });
+
+      var channel = pusher.subscribe('my-channel');
+      channel.bind('my-event', function(data) {
+        alert(JSON.stringify(data));
+      });
+    </script>
+
+
+
+
+
+
     <script>
         document.addEventListener('livewire:init', () => {
             Livewire.on('eliminar?', (t) => {
