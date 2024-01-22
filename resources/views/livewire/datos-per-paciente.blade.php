@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-4 d-flex flex-column px-5 py-2">
-                    <h5><strong>Email: </strong> {{ $consulta->perfiles->obrasociales->first()->descripcion }}</h5>
+                    <h5><strong>Email: </strong> {{ $consulta->perfiles->correos->first()-> }}</h5>
                     <h5> <strong> Telefono: </strong> {{ $consulta->per}}</h5>
                 </div>
             </div>
