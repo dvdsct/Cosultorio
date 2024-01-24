@@ -20,7 +20,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <table id="myTable" class="table table-striped">
+                                <table id="myTable">
                                     <thead>
                                         <th>Presentacion</th>
                                         <th>droga</th>
@@ -77,12 +77,11 @@
             </div>
 
         </div>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <script>
+            new DataTable('#myTable');
+        </script>
     @endif
 
-    @push('js')
-        <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-        <script>
-            let table = new DataTable('#myTable');
-        </script>
-    @endpush
 </div>

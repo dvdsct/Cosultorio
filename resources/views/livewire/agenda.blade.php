@@ -268,9 +268,6 @@
             $wire.dispatch('refresh-turn')
 
 
-            // var soundfile = "sounds/videoplayback2.mp3";
-            // var audplay = new Audio(soundfile)
-            // audplay.play();
 
         });
     </script>
