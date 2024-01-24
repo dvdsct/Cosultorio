@@ -26,18 +26,25 @@
                                         <th>droga</th>
                                         <th>Porcentaje Iosep</th>
                                     </thead>
+                                    <tbody>
 
 
-                                    @foreach ($vademecum as $v)
-                                        <tr>
-                                            <td>{{ $v->presentacion }}</td>
-                                            <td>{{ $v->droga }}</td>
-                                            <td>{{ $v->porcentaje_dto }}</td>
-                                            <td><button wire:click='recetar({{ $v->id }})'><i
-                                                        class="bi bi-journal-check"></i></button></td>
 
-                                        </tr>
-                                    @endforeach
+                                        @foreach ($vademecum as $v)
+                                            <tr>
+                                                <td>{{ $v->presentacion }}</td>
+                                                <td>{{ $v->droga }}</td>
+                                                <td>{{ $v->porcentaje_dto }}</td>
+                                                <td><button wire:click='recetar({{ $v->id }})'><i
+                                                            class="bi bi-journal-check"></i></button></td>
+
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+<tfoot>
+    {{ $vademecum->links() }}
+</tfoot>
+
 
                                 </table>
                             </div>
@@ -49,7 +56,7 @@
                                     @foreach ($recetados as $r)
                                         <div class="row">
                                             <div class="col-3">
-                                                <label for="">{{ $r['droga']}}</label>
+                                                <label for="">{{ $r['droga'] }}</label>
                                             </div>
                                             <div class="col-4">
                                                 <label for="">Cantidad</label>
@@ -69,7 +76,7 @@
                     </div>
 
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-default" wire:click='closeModal'>Cancelar</button>
                         <button type="button" class="btn btn-secondary">Aceptar</button>
                     </div>
                 </div>
