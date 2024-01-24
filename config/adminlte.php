@@ -366,8 +366,8 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js',
 
                 ],
                 [
@@ -378,7 +378,7 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => '//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css',
                 ],
             ],
         ],
