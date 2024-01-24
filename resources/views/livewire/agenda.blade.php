@@ -79,7 +79,7 @@
                                                     class="btn btn-info btn-sm">Atender</a>
                                             @endif
                                             @if ($turno->motivo == '2')
-                                                <a type="button" href="{{ url('colpos') }}/{{ $turno->id }}"
+                                                <a type="button" href="{{ url('colpos') }}/{{ $turno->colposcopias->id }}"
                                                     class="btn btn-info btn-sm">Atender</a>
                                             @endif
                                         </div>

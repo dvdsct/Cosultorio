@@ -52,15 +52,17 @@ class FormPap extends Component
   public $trat_rad;
   public $quimio;
 
-  public function mount($consulta){
-    $this->pap=$consulta;
+  public function mount($consulta)
+  {
+    $this->pap = $consulta;
   }
 
   /* Metodo para habilitar y desabilitar Cirugias precias */
-  public function cir_previas(){
-    if($this->check_cp == 1){
+  public function cir_previas()
+  {
+    if ($this->check_cp == 1) {
       $this->v_cp = '';
-    }else{
+    } else {
       $this->v_cp = 'disabled';
     }
   }
@@ -114,24 +116,23 @@ class FormPap extends Component
 
   public function add_pap()
   {
-    
-$this->pap->update([
-  
-  'tipo_muestra' => $this -> tipo_muestra,
-  'met_toma_mue' => $this -> toma_muestra,
-  'tamizaje' => $this -> tamizaje,
-  'fecha_tami' => $this -> fec_tam,
-  'fum' => $this -> fum,
-  'menopausia' => $this -> menop,
-  'metodo_anti_con' => $this -> metodo_anti,
-  'cirujias_pre' => $this -> ciru_prev,
-  'causa_lesion' => $this -> causales,
-  'thr' => $this -> thr,
-  'embarazo_actual' => $this -> embarazo,
-  'trata_rad' => $this -> trat_rad,
-  'quimio' => $this -> quimio
-]);
 
+    $this->pap->update([
+
+      'tipo_muestra' => $this->tipo_muestra,
+      'met_toma_mue' => $this->toma_muestra,
+      'tamizaje' => $this->tamizaje,
+      'fecha_tami' => $this->fec_tam,
+      'fum' => $this->fum,
+      'menopausia' => $this->menop,
+      'metodo_anti_con' => $this->metodo_anti,
+      'cirujias_pre' => $this->ciru_prev,
+      'causa_lesion' => $this->causales,
+      'thr' => $this->thr,
+      'embarazo_actual' => $this->embarazo,
+      'trata_rad' => $this->trat_rad,
+      'quimio' => $this->quimio
+    ]);
   }
 
 

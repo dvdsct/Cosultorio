@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('correo_x_personas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('correo_id');
+            $table->foreign('correo_id')
+            ->references('id')
+            ->on('correos')
+            ->onDelete('cascade');
+            $table->unsignedBigInteger('persona_id');
+            $table->foreign('persona_id')
+            ->references('id')
+            ->on('personas')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
