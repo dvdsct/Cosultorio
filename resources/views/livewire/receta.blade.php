@@ -10,7 +10,7 @@
                 <div class="modal-content">
                     <div class="modal-header bg-info">
                         <h4 class="modal-title"> <strong> Nueva Receta </strong></h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" wire:click='closeModal'>
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
@@ -49,7 +49,7 @@
                                     @foreach ($recetados as $r)
                                         <div class="row">
                                             <div class="col-3">
-                                                <label for="">{{ $r }}</label>
+                                                <label for="">{{ $r['droga']}}</label>
                                             </div>
                                             <div class="col-4">
                                                 <label for="">Cantidad</label>
