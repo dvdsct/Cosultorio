@@ -30,7 +30,10 @@ class Receta extends Component
     {
 
         $remedio = Vademecum::find($id);
+        // dd($remedio->droga);
+
         $this->recetados[] = $remedio->toArray();
+        // dd($this->recetados[0]);
     }
     public function receta()
     {
