@@ -5,13 +5,21 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Vademecum;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 class Receta extends Component
 {
+    use WithPagination;
 
-    public $vademecum;
+
+    // public $vademecum;
     public $recetados = [];
     public $modal = false;
+
+    // public function mount(){
+    //             $this->vademecum = Vademecum::paginate(15);
+
+    // }
 
     #[On('modalOn')]
     public function openModal()
@@ -45,8 +53,8 @@ class Receta extends Component
 
     public function render()
     {
-        $this->vademecum = Vademecum::all();
         return view('livewire.receta', [
+            'vademecum' => Vademecum::paginate(10),
             'recetados' => $this->recetados
         ]);
     }
