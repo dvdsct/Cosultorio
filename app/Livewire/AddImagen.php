@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Imagen;
 use App\Models\ImagenXConsulta;
-
+use Livewire\Attributtes\Locked;
 class AddImagen extends Component
 {
     public $consulta;
