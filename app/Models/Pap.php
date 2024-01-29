@@ -15,7 +15,7 @@ class Pap extends Model
         'estado',
         'tipo_muestra',
         'met_toma_mue',
-        'tamizaje',
+        'res_vph',
         'fecha_tami',
         'fum',
         'menopausia',

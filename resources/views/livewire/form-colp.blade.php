@@ -1,4 +1,4 @@
-<div class="card card-primary">
+<div class="card card-info">
     <div class="card-header">
         <h3 class="card-title">FICHA PARA EL REGISTRO DE COLPOSCOPIA </h3>
     </div>
@@ -38,20 +38,14 @@
                     <!--  <label for="">POSITIVO</label> <input type="checkbox" class="form-check-input" wire:model='vph'> -->
 
                     <div class="row pl-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="Checkbox_VPH_Neg" wire:model=''>
-                            <label class="form-check-label" for="Checkbox_VPH_Neg">
-                                Negativo
-                            </label>
+                            <label for="customSwitch3" class="pr-2"> - </label>
+                            <div class="custom-control custom-switch {{$switchColp}}">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch3"
+                                wire:model.live='vph'>
+                                <label class="custom-control-label" for="customSwitch3">+</label>
+                            </div>
                         </div>
 
-                        <div class="form-check pl-5">
-                            <input class="form-check-input" type="checkbox" id="Checkbox_VPH_Pos" wire:model=''>
-                            <label class="form-check-label" for="Checkbox_VPH_Pos">
-                                Positivo
-                            </label>
-                        </div>
-                    </div>
 
                 </div>
 

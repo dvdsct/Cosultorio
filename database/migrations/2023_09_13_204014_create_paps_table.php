@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('estado')->default('1');
             $table->string('tipo_muestra')->nullable();
             $table->string('met_toma_mue')->nullable(); /* Metodo toma muestra */
-            $table->string('tamizaje')->nullable();
+            $table->string('res_vph')->nullable();
             $table->string('fecha_tami')->nullable(); /* Fecha Tamizaje */
             $table->string('fum')->nullable();
             $table->string('menopausia')->nullable();

@@ -13,6 +13,8 @@ use App\Models\ZonaTransfor;
 class FormColp extends Component
 {
 
+    public $switchColp = 'custom-switch-off-danger custom-switch-on-success';
+
     public $responsable_n;
     public $responsable_a;
     public $establecimiento;

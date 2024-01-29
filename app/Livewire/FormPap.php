@@ -23,7 +23,7 @@ class FormPap extends Component
     public $v_fum = '';
 
     public $check_vph;
-    public $masmenos;
+    public $resultado_vph ='';
     public $v_test = 'disabled';
 
     public $v_pp = 'disabled';
@@ -42,7 +42,6 @@ class FormPap extends Component
     public $ciru_prev;
     public $cirus_prevs;
 
-    public $tamizaje;
     public $fec_tam;
 
     public $fum;
@@ -57,10 +56,6 @@ class FormPap extends Component
   {
     $this->pap = $consulta;
   }
-    public function mount($consulta)
-    {
-        $this->pap = $consulta;
-    }
 
     /* Metodo para habilitar y desabilitar Cirugias precias */
     public function cir_previas()
@@ -100,11 +95,14 @@ class FormPap extends Component
             $this->v_test = '';
             $this->switch = 'custom-switch-off-danger custom-switch-on-success';
             $this->check_tvph = '';
+            /* $this->resultado_vph = ''; */
+
         } else {
             $this->v_test = 'disabled';
             $this->fec_tam = '';
             $this->switch = '';
             $this->check_tvph = 'disabled';
+           /*  $this->resultado_vph = 'disabled'; */
         }
     }
 
@@ -126,7 +124,7 @@ class FormPap extends Component
 
             'tipo_muestra' => $this->tipo_muestra,
             'met_toma_mue' => $this->toma_muestra,
-            'tamizaje' => $this->tamizaje,
+            'res_vph' => $this->resultado_vph,
             'fecha_tami' => $this->fec_tam,
             'fum' => $this->fum,
             'menopausia' => $this->menop,
@@ -136,7 +134,8 @@ class FormPap extends Component
             'thr' => $this->thr,
             'embarazo_actual' => $this->embarazo,
             'trata_rad' => $this->trat_rad,
-            'quimio' => $this->quimio
+            'quimio' => $this->quimio,
+            'estado' => '3'
         ]);
     }
 

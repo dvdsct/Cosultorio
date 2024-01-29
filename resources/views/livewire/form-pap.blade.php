@@ -106,11 +106,11 @@
                             <label class="custom-control-label" for="customSwitch1">Test de VPH </label>
                         </div>
 
-                        <div class="row pl-5">
+                        <div class="row pl-5" id="valor">
                             <label for="customSwitch3" class="pr-2"> - </label>
                             <div class="custom-control custom-switch {{ $switch }}">
                                 <input type="checkbox" class="custom-control-input" id="customSwitch3"
-                                    {{ $check_tvph }} wire:model='masmenos'>
+                                    {{ $check_tvph }} wire:model='resultado_vph'>
                                 <label class="custom-control-label" for="customSwitch3">+</label>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                     <label> Resultado PAP previo </label>
                     <select class="custom-select rounded-0  mt-2" aria-label="Default select example"
                         wire:model='pap_prev'>
-                        @foreach ($pap_prev as $pp)
+                        @foreach ($pap_prevs as $pp)
                             <option value="{{ $pp->id }}">{{ $pp->descripcion }}</option>
                         @endforeach
                     </select>
