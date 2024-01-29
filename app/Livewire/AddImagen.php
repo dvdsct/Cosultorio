@@ -5,9 +5,10 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Imagen;
 use App\Models\ImagenXConsulta;
-
+use Livewire\Attributtes\Locked;
 class AddImagen extends Component
 {
+    #[Locked]
     public $eco_gin;
     public $eco_obs;
     public $eco_abd;

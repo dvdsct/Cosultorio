@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Vademecum;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
@@ -12,14 +13,27 @@ class Receta extends Component
     use WithPagination;
 
 
-    // public $vademecum;
+    #[Locked]
     public $recetados = [];
+
+
+    #[Locked]
     public $modal = false;
 
-    // public function mount(){
-    //             $this->vademecum = Vademecum::paginate(15);
+    public $cantidad;
+    public $horas;
+    public $indicacion;
 
-    // }
+
+
+    public $query = '';
+
+    public function search()
+    {
+        $this->resetPage();
+    }
+
+
 
     #[On('modalOn')]
     public function openModal()
@@ -34,14 +48,26 @@ class Receta extends Component
         $this->modal = false;
     }
 
-    public function recetar($id)
+    public function indicacionar($id){
+        $remedio = Vademecum::find($id);
+        $this->indicacion = [
+            'medicamento' => $remedio,
+            'cantidad' => $this->cantidad,
+            'horas' => $this->horas,
+            'estado' => '0'
+        ];
+
+    }
+
+    public function recetar()
     {
 
-        $remedio = Vademecum::find($id);
-        // dd($remedio->droga);
 
-        $this->recetados[] = $remedio->toArray();
-        // dd($this->recetados[0]);
+
+
+        $this->recetados[] = $this->indicacion;
+        $this->reset('indicacion');
+        // dd($this->recetados);
     }
     public function receta()
     {
@@ -54,7 +80,9 @@ class Receta extends Component
     public function render()
     {
         return view('livewire.receta', [
-            'vademecum' => Vademecum::paginate(10),
+            'vademecum' => Vademecum::where('droga', 'like', '%' . $this->query . '%')
+                ->orWhere('presentacion', 'like', '%' . $this->query . '%')
+                ->paginate(10),
             'recetados' => $this->recetados
         ]);
     }
