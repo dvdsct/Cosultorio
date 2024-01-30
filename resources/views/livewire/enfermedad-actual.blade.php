@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    @livewire('receta')
+    @livewire('recetar', ['consulta' => $consulta])
     @livewire('add-imagen', ['consulta' => $consulta])
 
 

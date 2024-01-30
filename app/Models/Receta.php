@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Receta extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'vademecum_id'  ,
+        'cie10_id' ,
+        'indicacion'  ,
+        'cantidad'  ,
+        'estado' ,
+    ];
 }
