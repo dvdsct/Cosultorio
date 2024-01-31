@@ -24,7 +24,7 @@
                             <option value="{{ $ma->id }}">{{ $ma->descripcion }}</option>
                         @endforeach
                     </select>
-                    <input type="text" class="form-control col-md-6 mt-3 {{ $in_otros }}"
+                    <input type="text" wire:model='anti_otros' class="form-control col-md-6 mt-3 {{ $in_otros }}"
                         placeholder="Agregar otros metodos..">
 
                 </div>
@@ -43,8 +43,8 @@
                         @endforeach
                     </select> <br>
 
-                    <label class="mt-3">Causa o Lesión </label><input type="text" wire:model='causales'
-                        class="form-control col-md-6" {{ $v_cp }}>
+                    <label class="mt-3">Causa o Lesión </label>
+                    <input type="text" wire:model='causales' class="form-control col-md-6" {{ $v_cp }}>
 
                     <div class="custom-control custom-switch mt-3">
                         <input type="checkbox" class="custom-control-input" id="customSwitchTHR" wire:model='thr'>

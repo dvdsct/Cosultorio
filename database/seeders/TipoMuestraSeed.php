@@ -14,6 +14,7 @@ class TipoMuestraSeed extends Seeder
     public function run(): void
     {
         $tipos = [
+            '-Seleccionar-',
             'Exocervical (C)',
             'Endocervical (E)',
             'Exo y Endo Cervical (CE)',

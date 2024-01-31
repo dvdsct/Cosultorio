@@ -41,6 +41,7 @@ class FormPap extends Component
     public $metodos_antis;
     public $ciru_prev;
     public $cirus_prevs;
+    public $anti_otros;
 
     public $fec_tam;
 
@@ -64,6 +65,9 @@ class FormPap extends Component
             $this->v_cp = '';
         } else {
             $this->v_cp = 'disabled';
+            $this->reset('causales','ciru_prev');
+
+            
         }
     }
 
@@ -81,7 +85,7 @@ class FormPap extends Component
     /* Metodo para habilitar o desabilitar input de Metodos Anticonceptivos */
     public function setStatus()
     {
-        if ($this->metodo_anti == '4') {
+        if ($this->metodo_anti == '5') {
             $this->in_otros = '';
         } else {
             $this->in_otros = 'd-none';
@@ -119,16 +123,21 @@ class FormPap extends Component
 
     public function add_pap()
     {
-
+        // Verificar si el valor de 'otros_anti_con' es '-Seleccionar-' y establecerlo como null
+        $otrosAntiCon = $this->anti_otros === '-Seleccionar-' ? null : $this->anti_otros;
+        $tipoMuestra = in_array($this->tipo_muestra, ['-Seleccionar-', '1']) ? null : $this->tipo_muestra;
+        $metodoMuestra = in_array($this->toma_muestra, ['-Seleccionar-', '1']) ? null : $this->toma_muestra;
+        $metodoAnti = in_array($this->metodo_anti, ['-Seleccionar-', '1']) ? null : $this->metodo_anti;
+    
         $this->pap->update([
-
-            'tipo_muestra' => $this->tipo_muestra,
-            'met_toma_mue' => $this->toma_muestra,
+            'tipo_muestra' => $tipoMuestra,
+            'met_toma_mue' => $metodoMuestra,
             'res_vph' => $this->resultado_vph,
             'fecha_tami' => $this->fec_tam,
             'fum' => $this->fum,
             'menopausia' => $this->menop,
-            'metodo_anti_con' => $this->metodo_anti,
+            'metodo_anti_con' => $metodoAnti,
+            'otros_anti_con' => $otrosAntiCon, // Utiliza el valor calculado
             'cirujias_pre' => $this->ciru_prev,
             'causa_lesion' => $this->causales,
             'thr' => $this->thr,
@@ -138,6 +147,7 @@ class FormPap extends Component
             'estado' => '3'
         ]);
     }
+    
 
 
 

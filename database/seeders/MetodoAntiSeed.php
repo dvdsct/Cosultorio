@@ -14,6 +14,7 @@ class MetodoAntiSeed extends Seeder
     public function run(): void
     {
         $metodos = [
+            '-Seleccionar-',
             'Hormonal',
             'Barrera',
             'DIU',
