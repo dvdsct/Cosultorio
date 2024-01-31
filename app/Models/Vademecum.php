@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Vademecum extends Model
 {
     use HasFactory;
+
+    public function recetas(){
+        return $this->hasMany(Receta::class);
+    }
 }

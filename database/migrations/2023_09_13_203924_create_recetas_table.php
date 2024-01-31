@@ -23,6 +23,8 @@ return new class extends Migration
             ->references('id')
             ->on('cie10s')
             ->onDelete('cascade');
+            $table->string('indicacion');
+            $table->string('cantidad');
             $table->string('estado');
             $table->timestamps();
         });

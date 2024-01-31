@@ -6,11 +6,13 @@ use App\Models\Laboratorio;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\LaboratorioXConsulta;
+use App\Models\Receta;
+use App\Models\RecetaXConsulta;
 
 
 class EnfermedadActual extends Component
 {
-    public $ea ;
+    public $ea;
     public $obs;
     public $laboratorios;
 
@@ -65,6 +67,7 @@ class EnfermedadActual extends Component
     public $ureaplasma;
     public $lysteria;
     public $total_lab;
+    public $recetados = [];
 
     public function mount($consulta)
     {
@@ -73,8 +76,6 @@ class EnfermedadActual extends Component
         $this->ea = $this->consulta->ea;
         $this->obs = $this->consulta->observaciones;
     }
-
-
 
     /* Funcion para seleccionar TODAS las practicas */
     public function selectAll()
@@ -907,19 +908,20 @@ class EnfermedadActual extends Component
 
         $this->dispatch('added')->to(EnfermedadActual::class);
     }
-     public function finConsulta(){
-        if($this->consulta->estado == '1'){
+    public function finConsulta()
+    {
+        if ($this->consulta->estado == '1') {
 
             $this->add_lab();
             $this->consulta->update([
                 'estado' => '3'
             ]);
-
         }
-     }
-    public function delAll($categoria){
+    }
+    public function delAll($categoria)
+    {
 
-        if($categoria == 'lab'){
+        if ($categoria == 'lab') {
             $this->todas = false;
             $this->selectAll();
             $this->setEa();
@@ -950,16 +952,43 @@ class EnfermedadActual extends Component
         );
     }
 
+    // Receta
+
+    public function guardarReceta()
+    {
+
+        foreach ($this->recetados as $r) {
+
+            $c10 = $this->cie10->first()->id;
+            $reme = $r['medicamento']['id'];
+            $rec =  Receta::create([
+                'vademecum_id' => $reme,
+                'cie10_id' => $c10,
+                'indicacion' => $r['horas'],
+                'cantidad' => $r['cantidad'],
+                'estado' => '1',
+
+            ]);
+
+            RecetaXConsulta::create([
+                'consulta_id' => $this->consulta->id,
+                'receta_id' => $rec->id,
+                'estado' => '1'
+            ]);
+        }
+        // $this->closeModal();
+    }
 
 
 
-    #[On('added')]
+
+    #[On('added-rem')]
     public function render()
     {
-        
-        $this->total_lab=     $this->l_gral        + $this->l_renal        + $this->l_gine        + $this->l_salud        + $this->l_embarazo;
 
-        return view('livewire.enfermedad-actual',[
+        $this->total_lab =     $this->l_gral        + $this->l_renal        + $this->l_gine        + $this->l_salud        + $this->l_embarazo;
+
+        return view('livewire.enfermedad-actual', [
             'consulta' => $this->consulta
         ]);
     }
