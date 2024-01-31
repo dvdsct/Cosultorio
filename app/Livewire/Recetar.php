@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Cie10;
 use App\Models\Receta;
+use App\Models\RecetaXConsulta;
 use Livewire\Component;
 use App\Models\Vademecum;
 use Livewire\Attributes\Locked;
@@ -17,7 +18,7 @@ class Recetar extends Component
 
 
     #[Locked]
-    public $recetados = [];
+    public $recetados;
 
 
     #[Locked]
@@ -30,11 +31,11 @@ class Recetar extends Component
     public $consulta;
     public $cie10;
 
-    public function mount($consulta){
+    public function mount($consulta)
+    {
 
         $this->consulta = $consulta;
         $this->cie10 = Cie10::all();
-
     }
 
 
@@ -54,6 +55,8 @@ class Recetar extends Component
 
         $this->modal = true;
     }
+
+
     public function closeModal()
     {
 
@@ -66,69 +69,60 @@ class Recetar extends Component
     }
 
     public function borrarRecetado($id)
-    {
-        // Buscar la clave asociada al id
-        $clave = array_search($id, array_column($this->recetados, 'id'));
-
-        // Verificar si se encontró el id
-        if ($clave !== false) {
-            // Eliminar el elemento usando la clave
-            unset($this->recetados[$clave]);
-        }
-
-        // Reindexar el array si es necesario
-        $this->recetados = array_values($this->recetados);
+    {   $med = Receta::find($id);
+        $med->delete();
+        $this->dispatch('added-rem');
     }
 
     public function recetar()
     {
-        $this->indicacion = [
-            'id' => $this->remedio->id,
-            'medicamento' => $this->remedio,
+
+
+        $c10 = $this->cie10->first()->id;
+        $rec =  Receta::create([
+            'vademecum_id' => $this->remedio->id,
+            'cie10_id' => $c10,
+            'indicacion' => $this->horas,
             'cantidad' => $this->cantidad,
-            'horas' => $this->horas,
-        ];
+            'estado' => '1',
+
+        ]);
+
+        RecetaXConsulta::create([
+            'consulta_id' => $this->consulta->id,
+            'receta_id' => $rec->id,
+            'estado' => '1'
+        ]);
 
 
-
-        $this->recetados[] = $this->indicacion;
-        $this->reset('remedio', 'indicacion');
+        $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
+        $this->dispatch('added-rem');
     }
 
-    public function guardarReceta() {
-
-        // dd('here');
-        foreach($this->recetados as $r){
-
-            dd($r['medicamento']['id']);
-            Receta::create([
-                'vademecum_id' => $r['medicamento'],
-                'cie10_id' => $this->cie10,
-                'indicacion' => $r['horas'],
-                'cantidad' => $r['cantidad'],
-                'estado' => '1',
-
-            ]);
+    
 
 
-        }
 
-    }
-    public function receta()
+    public function guardarReceta()
     {
 
-        dd($this->recetados);
+        $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
+        $this->closeModal();
     }
 
 
 
+    #[On('added-rem')]
     public function render()
     {
+        $this->recetados = $this->consulta->recetas;
+        // dd($this->recetados);
+
         return view('livewire.recetar', [
             'vademecum' => Vademecum::where('droga', 'like', '%' . $this->query . '%')
                 ->orWhere('presentacion', 'like', '%' . $this->query . '%')
                 ->paginate(10),
-            'recetados' => $this->recetados,
+            'recetados' => $this->consulta->recetas,
             'cie10' => $this->cie10
         ]);
     }

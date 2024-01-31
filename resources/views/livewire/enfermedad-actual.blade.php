@@ -75,16 +75,16 @@
                                                     <button type="button" class="btn btn-primary btn-block rounded-left border-right mr-1" style="width: 100%;" wire:click='dispatch("modalOn")'>
                                                         <strong> Receta </strong>
                                                     </button>
-                                                    <button type="button" class="btn btn-primary btn-flat mr-1">
+                                                    <button type="button" class="btn btn-primary btn-flat mr-1" wire:click='dispatch("modalOn")'>
                                                         <i class="fas fa-edit"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-primary btn-flat rounded-right">
+                                                    <button type="button" class="btn btn-primary btn-flat rounded-right" >
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
 
                                             </td>
-                                            <td><span class="badge bg-primary">{{$total_lab}}</span></td>
+                                            <td><span class="badge bg-primary">{{count($consulta->recetas)  }}</span></td>
                                         </tr>
                                     </tbody>
 

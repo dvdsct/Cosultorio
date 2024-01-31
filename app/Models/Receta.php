@@ -16,4 +16,12 @@ class Receta extends Model
         'cantidad'  ,
         'estado' ,
     ];
+
+    public function consultas(){
+        return $this->belongsToMany(Consulta::class,'receta_x_consultas');
+    }
+    public function vademecums(){
+        return $this->belongsTo(Vademecum::class,'id');
+    }
+
 }

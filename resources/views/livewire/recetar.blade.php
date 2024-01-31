@@ -51,7 +51,7 @@
                                                 <td>{{ $v->presentacion }}</td>
                                                 <td>{{ $v->droga }}</td>
                                                 <td>{{ $v->porcentaje_dto }}</td>
-                                                <td><button wire:click='indicacionar({{ $v->id }})'><i
+                                                <td><button class="btn btn-primary" wire:click='indicacionar({{ $v->id }})'><i
                                                             class="bi bi-journal-check"></i></button></td>
 
                                             </tr>
@@ -82,17 +82,17 @@
                                     @foreach ($recetados as $r)
                                         <div class="row">
                                             <div class="col-3">
-                                                <h3>{{ $r['medicamento']['droga'] }}</h3>
+                                                <h3>{{ $r->first()->vademecums->droga}}</h3>
                                             </div>
 
                                             <div class="col-4">
 
-                                                <h3>{{ $r['cantidad'] }}</h3>
+                                                <h3>{{ $r->cantidad }}</h3>
                                             </div>
                                             <div class="col-5">
-                                                <h3>{{ $r['horas'] }}</h3>
+                                                <h3>{{ $r->indicacion }}</h3>
                                             </div>
-                                            <div><button wire:click='borrarRecetado({{ $r['id'] }})'>-</button></div>
+                                            <div><button wire:click='borrarRecetado({{ $r->id }})'>-</button></div>
 
 
 
@@ -107,11 +107,11 @@
 
                                         <div class="col-4">
                                             <label for="">Cantidad</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" wire:model='cantidad'>
                                         </div>
                                         <div class="col-5">
                                             <label for="">Horas</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" wire:model='horas'>
                                         </div>
                                         <div>
                                             <button class="btn" wire:click='recetar'>+</button>
@@ -126,7 +126,7 @@
 
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" wire:click='closeModal'>Cancelar</button>
-                        <button type="button" class="btn btn-secondary" wire:click='guardarReceta'>Aceptar</button>
+                        <button type="button" class="btn btn-secondary" wire:click="guardarReceta">Aceptar</button>
                     </div>
                 </div>
 
