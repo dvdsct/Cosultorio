@@ -10,7 +10,7 @@ class Colposcopia extends Model
     use HasFactory;
 
     protected $fillable = ['perfil_id',
-    'turno_id', 'biopsia_id', 'citologia_id', 'hallazgo_id', 'responsable', 'establecimiento', 'localidad', 'test_vph', 'observaciones', 'zona_trans', 'tratamiento', 'seguimiento','estado'];
+    'turno_id', 'biopsia_id', 'citologia_id', 'hallazgo_id', 'responsable', 'establecimiento', 'localidad', 'test_vph', 'observaciones', 'evaluacion', 'zona_trans', 'tratamiento', 'seguimiento','estado'];
 
 
     public function turnos(){

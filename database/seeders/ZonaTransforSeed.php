@@ -9,23 +9,33 @@ use App\Models\ZonaTransfor;
 class ZonaTransforSeed extends Seeder
 {
 
-    public $zona_trans;
-    
-    public function run(): void
-    {
+  public $zona_trans;
 
-        $zonas = [
-            '(1) Union Escamocolumnar (UEC) completamente visible',
-            '(2) UEC parcialmente visible',
-            '(3) UEC no visible'
-        ];
+  protected $listeners = ['resetZonaTrans'];
 
-        foreach($zonas as $zona){
-          ZonaTransfor::create ([
-            'estado'=>'1',
-            'descripcion'=> $zona
+  public function resetZonaTrans()
+  {
+    $this->zona_trans = '-Seleccionar-';
+  }
 
-          ]);
-        };
+  public function run(): void
+  {
+
+    $zonas = [
+      '-Seleccionar-',
+      '(1) Union Escamocolumnar (UEC) completamente visible',
+      '(2) UEC parcialmente visible',
+      '(3) UEC no visible'
+    ];
+
+    foreach ($zonas as $zona) {
+      $estado = $zona === '-Seleccionar-' ? null : '1';
+      
+      ZonaTransfor::firstOrCreate([
+        'descripcion' => $zona
+      ], [
+        'estado' => '1',
+      ]);
     }
+  }
 }
