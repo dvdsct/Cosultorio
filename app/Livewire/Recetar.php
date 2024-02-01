@@ -76,7 +76,7 @@ class Recetar extends Component
 
     public function recetar()
     {
-
+        // dd($this->remedio);
 
         $c10 = $this->cie10->first()->id;
         $rec =  Receta::create([
@@ -99,7 +99,7 @@ class Recetar extends Component
         $this->dispatch('added-rem');
     }
 
-    
+
 
 
 

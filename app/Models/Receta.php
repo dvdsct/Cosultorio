@@ -21,7 +21,7 @@ class Receta extends Model
         return $this->belongsToMany(Consulta::class,'receta_x_consultas');
     }
     public function vademecums(){
-        return $this->belongsTo(Vademecum::class,'id');
+        return $this->belongsTo(Vademecum::class,'vademecum_id');
     }
 
 }
