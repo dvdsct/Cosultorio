@@ -23,7 +23,7 @@ class FormPap extends Component
     public $v_fum = '';
 
     public $check_vph;
-    public $resultado_vph ='';
+    public $resultado_vph ='0';
     public $v_test = 'disabled';
 
     public $v_pp = 'disabled';
@@ -89,6 +89,7 @@ class FormPap extends Component
             $this->in_otros = '';
         } else {
             $this->in_otros = 'd-none';
+            $this->reset('anti_otros');
         }
     }
 
@@ -99,14 +100,15 @@ class FormPap extends Component
             $this->v_test = '';
             $this->switch = 'custom-switch-off-danger custom-switch-on-success';
             $this->check_tvph = '';
-            /* $this->resultado_vph = ''; */
+            /* $this->resultado_vph = ''; ignorar */
 
         } else {
             $this->v_test = 'disabled';
             $this->fec_tam = '';
             $this->switch = '';
             $this->check_tvph = 'disabled';
-           /*  $this->resultado_vph = 'disabled'; */
+            $this->resultado_vph= null;
+           /*  $this->resultado_vph = 'disabled';  ignorar*/
         }
     }
 
