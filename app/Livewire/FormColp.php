@@ -12,6 +12,10 @@ use App\Models\ZonaTransfor;
 
 class FormColp extends Component
 {
+    public function changeCursor()
+    {
+        // This method can be left empty as it's just triggered on mouseover
+    }
 
     public $switchColp = 'custom-switch-off-danger custom-switch-on-success';
 
@@ -20,7 +24,7 @@ class FormColp extends Component
     public $establecimiento;
     public $localidad;
 
-    public $vph;
+    public $vph='0';
 
     /* Citologia Variables  */
     public $ascus='';
@@ -31,8 +35,7 @@ class FormColp extends Component
     public $otros='';
 
     public $observaciones;
-    public $evaluacion_adec;
-    public $evaluacion_inadec;
+    public $e_general='0';
     public $zona_trans;
 
     /* Hallazgos variables */
@@ -117,6 +120,7 @@ class FormColp extends Component
             'test_vph' => $this->vph,
             'citologia_id' => $cito->id,
             'observaciones' => $this->observaciones,
+            'evaluacion' => $this->e_general,
             'zona_trans' => $this->zona_trans,
             'hallazgo_id' => $hallaz->id,
             'biopsia_id' => $bio->id,

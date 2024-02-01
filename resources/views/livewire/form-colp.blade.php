@@ -35,18 +35,13 @@
             <div class="row pt-3">
                 <div class="col-md-5">
                     <label>Resultado Test VPH</label>
-                    <!--  <label for="">POSITIVO</label> <input type="checkbox" class="form-check-input" wire:model='vph'> -->
-
                     <div class="row pl-2">
-                            <label for="customSwitch3" class="pr-2"> - </label>
-                            <div class="custom-control custom-switch {{$switchColp}}">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch3"
-                                wire:model.live='vph'>
-                                <label class="custom-control-label" for="customSwitch3">+</label>
-                            </div>
+                        <label for="customSwitch3" class="pr-2"> - </label>
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch3" wire:model.live='vph'>
+                            <label class="custom-control-label" for="customSwitch3">+</label>
                         </div>
-
-
+                    </div>
                 </div>
 
                 <div class="col-md-7">
@@ -107,21 +102,15 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Evaluacion General</label>
+
                 <div class="row pl-2">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="Checkbox_ade" wire:model='evaluacion_adec'>
-                        <label class="form-check-label" for="Checkbox_ade">
-                            Adecuada
-                        </label>
+                    <div class="row col-md-6">
+                        <label for="Switch_eva" class="pr-2">Inadecuada</label>
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" class="custom-control-input" id="Switch_eva" wire:model.live='e_general'>
+                            <label class="custom-control-label" for="Switch_eva"> Adecuada</label>
+                        </div>
                     </div>
-
-                    <div class="form-check pl-5">
-                        <input class="form-check-input" type="checkbox" id="Checkbox_ina" wire:model='evaluacion_inadec'>
-                        <label class="form-check-label" for="Checkbox_ina">
-                            Inadecuada
-                        </label>
-                    </div>
-
                 </div>
             </div>
 
@@ -129,10 +118,11 @@
                 <label>Zona de Transformacion</label>
                 <select class="custom-select rounded-0" aria-label="Default select example" wire:model='zona_trans'>
                     @foreach ($zonas as $z)
-                    <option value="{{ $z->id }}">{{ $z->descripcion }}</option>
+                    <option value="{{ $z->descripcion }}">{{ $z->descripcion }}</option>
                     @endforeach
                 </select>
             </div>
+
         </div>
         <hr>
         <label> Hallazgos Colposcópicos IFCPC 2011</label>
@@ -167,16 +157,17 @@
 
             <div class="form-check pl-5">
                 <input class="form-check-input" type="checkbox" id="Checkbox_sospe" wire:model='sospecha_inv'>
-                <label class="form-check-label" for="Checkbox_sospe">
+                <label class="form-check-label cursor-pointer" for="Checkbox_sospe" wire:mouseover="changeCursor">
                     Sospecha de Invasión
                 </label>
             </div>
+
         </div>
 
         <div class="row pl-2">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="Checkbox_sospe" wire:model='hall_varios'>
-                <label class="form-check-label" for="Checkbox_sospe">
+                <input class="form-check-input" type="checkbox" id="Checkbox_varios" wire:model='hall_varios'>
+                <label class="form-check-label" for="Checkbox_varios">
                     Hallazgos Varios
                 </label>
             </div>
@@ -187,13 +178,13 @@
             </div>
 
             <div class="form-check pl-5">
-                <input type="checkbox" wire:model='evaluacion'>
-                <label class="form-check-label">ECC (Evaluacion Conducto Cervical)</label>
+                <input class="form-check-input" type="checkbox" id="checkbox_ecc" wire:model='evaluacion'>
+                <label class="form-check-label" for="checkbox_ecc">ECC (Evaluacion Conducto Cervical)</label>
             </div>
 
-            <!-- VINCULAR VARIABLE PARA TEST DE SCHILLER -->
+            <!-- TEST DE SCHILLER  -->
             <div class="row pl-5">
-                <label for="customSwitch3" class="pr-2 font-weight-normal">Test de Schiller: - </label>
+                <label for="customSwitchSchiller" class="pr-2 font-weight-normal">Test de Schiller: - </label>
                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                     <input type="checkbox" class="custom-control-input" id="customSwitchSchiller" wire:model='schiller'>
                     <label class="custom-control-label font-weight-normal" for="customSwitchSchiller">+</label>

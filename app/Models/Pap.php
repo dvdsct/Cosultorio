@@ -19,8 +19,14 @@ class Pap extends Model
         'fecha_tami',
         'fum',
         'menopausia',
-        'metodo_anti_con', 'cirujias_pre',
-        'causa_lesion', 'thr', 'embarazo_actual', 'trata_rad', 'quimio'
+        'metodo_anti_con', 
+        'otros_anti_con',
+        'cirujias_pre',
+        'causa_lesion', 
+        'thr', 
+        'embarazo_actual', 
+        'trata_rad', 
+        'quimio'
     ];
 
 
