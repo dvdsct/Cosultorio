@@ -82,7 +82,7 @@
                                     @foreach ($recetados as $r)
                                         <div class="row">
                                             <div class="col-3">
-                                                <h3>{{ $r->first()->vademecums->droga}}</h3>
+                                                <h3>{{ $r->vademecums->droga}}</h3>
                                             </div>
 
                                             <div class="col-4">
