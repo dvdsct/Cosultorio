@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Consulta;
+use App\Models\Perfil;
 use Illuminate\Http\Request;
 
-class ConsultasController extends Controller
+use function PHPUnit\Framework\returnSelf;
+
+class PacienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       return view('Consultorio.Consulta.index');
-
+        $pacientes =  Perfil::where('descripcion','paciente')->get();
+        return view('Consultorio.Pacientes.index',[
+            'pacientes' => $pacientes
+        ]);
     }
 
     /**
@@ -37,22 +41,7 @@ class ConsultasController extends Controller
      */
     public function show(string $id)
     {
-        $consulta = Consulta::find($id);
-
-        if($consulta->estado == '1'){
-            $consulta->update([
-                'estado' => '2'
-            ]);
-        }
-
-        $turno = $consulta->turnos;
-        $turno->update([
-            'estado' => '2'
-        ]);
-        return view('Consultorio.Consulta.show',[
-            'consulta' => $consulta
-        ]);
-
+        //
     }
 
     /**

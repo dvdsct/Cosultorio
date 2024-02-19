@@ -6,6 +6,9 @@ use App\Models\Laboratorio;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\LaboratorioXConsulta;
+
+use App\Models\Consulta;
+
 use App\Models\Receta;
 use App\Models\RecetaXConsulta;
 
@@ -73,8 +76,7 @@ class EnfermedadActual extends Component
     {
 
         $this->consulta = $consulta;
-        $this->ea = $this->consulta->ea;
-        $this->obs = $this->consulta->observaciones;
+
     }
 
     /* Funcion para seleccionar TODAS las practicas */
@@ -908,16 +910,30 @@ class EnfermedadActual extends Component
 
         $this->dispatch('added')->to(EnfermedadActual::class);
     }
+
+
+
+
+
     public function finConsulta()
     {
         if ($this->consulta->estado == '1') {
 
             $this->add_lab();
+            // $this->setEa();
+
             $this->consulta->update([
-                'estado' => '3'
+                'estado' => '3',
+                'observaciones' =>  $this->obs,
+                'ea' =>  $this->ea
             ]);
         }
-    }
+
+        return redirect('turnos');
+     }
+
+
+
     public function delAll($categoria)
     {
 
@@ -927,16 +943,6 @@ class EnfermedadActual extends Component
             $this->setEa();
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -976,15 +982,35 @@ class EnfermedadActual extends Component
                 'estado' => '1'
             ]);
         }
-        // $this->closeModal();
+        $this->closeModal();
+    }
+
+
+
+    public function oldConsulta(){
+
+
+        $this->ea = $this->consulta->ea;
+        $this->obs = $this->consulta->observaciones;
+        $this->total_lab = count(LaboratorioXConsulta::where('consulta_id', $this->consulta->id)->get());
     }
 
 
 
 
-    #[On('added-rem')]
+    #[On('added')]
     public function render()
     {
+        if($this->consulta->estado == '3'){
+
+            $this->oldConsulta( $this->consulta->id);
+            // dd('aqui');
+
+        }else{
+
+            $this->total_lab=     $this->l_gral        + $this->l_renal        + $this->l_gine        + $this->l_salud        + $this->l_embarazo;
+        }
+
 
         $this->total_lab =     $this->l_gral        + $this->l_renal        + $this->l_gine        + $this->l_salud        + $this->l_embarazo;
 

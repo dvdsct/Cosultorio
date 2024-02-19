@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Livewire\EnfermedadActual;
+
 
 class Consulta extends Model
 {
     use HasFactory;
 
     protected $fillable = ['perfil_id',
-    'turno_id'
+    'turno_id','observaciones','ea','estado'
 ];
+
 
 
 
