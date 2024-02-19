@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RecetaXConsulta extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'estado', 'consulta_id','receta_id'
+    ];
 }

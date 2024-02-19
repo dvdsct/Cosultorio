@@ -27,4 +27,8 @@ class Consulta extends Model
         return $this->belongsTo(Turno::class,'id');
     }
 
+    public function recetas(){
+        return $this->belongsToMany(Receta::class,'receta_x_consultas');
+    }
+
 }

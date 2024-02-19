@@ -24,19 +24,15 @@ return new class extends Migration
                 ->references('id')
                 ->on('turnos')
                 ->onDelete('cascade');
-
-
-
-
-
             $table->string('estado')->default('1');
             $table->string('tipo_muestra')->nullable();
             $table->string('met_toma_mue')->nullable(); /* Metodo toma muestra */
-            $table->string('tamizaje')->nullable();
+            $table->string('res_vph')->nullable();
             $table->string('fecha_tami')->nullable(); /* Fecha Tamizaje */
             $table->string('fum')->nullable();
             $table->string('menopausia')->nullable();
             $table->string('metodo_anti_con')->nullable(); /* Metodo Anticonceptivo */
+            $table->string('otros_anti_con')->nullable(); // Otros metodos anticonceptivos 
             $table->string('cirujias_pre')->nullable(); /* Cirujias Previas */
             $table->string('causa_lesion')->nullable();
             $table->string('thr')->nullable(); /* Terapia Hormonal de Reemplazo */

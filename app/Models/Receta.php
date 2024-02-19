@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Receta extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'vademecum_id'  ,
+        'cie10_id' ,
+        'indicacion'  ,
+        'cantidad'  ,
+        'estado' ,
+    ];
+
+    public function consultas(){
+        return $this->belongsToMany(Consulta::class,'receta_x_consultas');
+    }
+    public function vademecums(){
+        return $this->belongsTo(Vademecum::class,'vademecum_id');
+    }
+
 }

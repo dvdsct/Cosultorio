@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Correo extends Model
 {
     use HasFactory;
+    public function personas(){
+        return $this->belongsToMany(Perfil::class,'correo_x_personas');
+    }
 }

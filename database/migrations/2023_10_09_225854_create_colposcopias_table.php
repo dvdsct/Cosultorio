@@ -26,9 +26,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('turnos')
                 ->onDelete('cascade');
-
-            $table->string('fum')->nullable();
-
+                
             $table->unsignedBigInteger('biopsia_id')->nullable();
             $table->foreign('biopsia_id')
                 ->references('id')

@@ -13,4 +13,10 @@ class Persona extends Model
 
         return $this->hasMany(Perfil::class,'id');
     }
+
+    public function correos()
+    {
+
+        return $this->belongsToMany(Correo::class, 'correo_x_persona', 'persona_id', 'correo_id');
+    }
 }

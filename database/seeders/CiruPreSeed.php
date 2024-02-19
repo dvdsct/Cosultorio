@@ -14,6 +14,7 @@ class CiruPreSeed extends Seeder
     public function run(): void
     {
         $cirujias = [
+            '-Seleccionar-',
             'Histerectomía',
             'LEEP',
             'Cono'
@@ -22,8 +23,8 @@ class CiruPreSeed extends Seeder
         foreach ($cirujias as $cirujia) {
             CirujiasPrevias::create([
                 'estado' => '1',
-                'descripcion' => $cirujia
+                'descripcion' => $cirujia,
             ]);
-        };
+        }
     }
 }

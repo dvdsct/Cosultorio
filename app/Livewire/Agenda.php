@@ -15,6 +15,7 @@ use App\Models\ObraSocialXPerfil;
 use App\Models\Pap;
 use App\Models\Colposcopia;
 use App\Models\Turno;
+use App\Events\NewMeet;
 use Livewire\Attributes\On;
 
 
@@ -300,6 +301,8 @@ class Agenda extends Component
 
         $this->reset('turno');
         $this->closeModal();
+        event(new NewMeet('dsadasd'));
+
     }
 
 
@@ -351,7 +354,7 @@ class Agenda extends Component
 
 
 
-    // #[On('refresh-turn')]
+    #[On('refresh-turn')]
     public function render()
     {
 

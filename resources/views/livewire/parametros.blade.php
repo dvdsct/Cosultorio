@@ -1,6 +1,6 @@
 <div>
     {{-- {{ $consulta }} --}}
-    <div class="row border m-0 p-1 equal-height-cols">
+    <div class="row">
         <!-- {{-- Tension arterial --}} -->
         <div class="col-lg-3 col-6 flex-fill">
             <div class="small-box bg-info d-flex flex-column h-100">

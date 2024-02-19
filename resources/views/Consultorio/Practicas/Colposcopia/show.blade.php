@@ -2,16 +2,13 @@
 
 @section('title', 'Dashboard')
 
-@section('content_header')
 
-@stop
 
 @section('content')
 
+@livewire('datos-per-paciente',['consulta' => $consulta])
 
-    @livewire('form-colp')
-
-
+    @livewire('form-colp',['consulta' => $consulta])
 
 @stop
 

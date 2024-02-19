@@ -14,6 +14,7 @@ class TomaMuestraSeed extends Seeder
     public function run(): void
     {
         $tomas = [
+            '-Seleccionar-',
             'Espátula',
             'Cepillo',
             'Espátula y Cepillo',

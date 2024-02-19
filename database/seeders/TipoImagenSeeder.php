@@ -21,7 +21,7 @@ class TipoImagenSeeder extends Seeder
             'RMN Pelviana',
             'Tac Abdominal',
             'Tac Pelviana',
-            'Tac abdominal Con contraste',
+            'Tac abdominal con contraste',
             'Tac Pelviana con contraste',
         ];
 

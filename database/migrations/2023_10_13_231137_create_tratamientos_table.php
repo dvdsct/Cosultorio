@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tratamientos', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->string('estado');
+            $table->string('estado')->default('1');
             $table->timestamps();
         });
     }
