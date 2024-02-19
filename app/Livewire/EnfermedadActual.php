@@ -6,12 +6,11 @@ use App\Models\Laboratorio;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\LaboratorioXConsulta;
-<<<<<<< HEAD
+
 use App\Models\Consulta;
-=======
+
 use App\Models\Receta;
 use App\Models\RecetaXConsulta;
->>>>>>> b6cd5b42fbd0dc450483162d20f2c767d3966a3c
 
 
 class EnfermedadActual extends Component
@@ -911,19 +910,14 @@ class EnfermedadActual extends Component
 
         $this->dispatch('added')->to(EnfermedadActual::class);
     }
-<<<<<<< HEAD
 
 
 
 
 
-     public function finConsulta(){
-        if($this->consulta->estado == '2'){
-=======
     public function finConsulta()
     {
         if ($this->consulta->estado == '1') {
->>>>>>> b6cd5b42fbd0dc450483162d20f2c767d3966a3c
 
             $this->add_lab();
             // $this->setEa();
@@ -934,18 +928,14 @@ class EnfermedadActual extends Component
                 'ea' =>  $this->ea
             ]);
         }
-<<<<<<< HEAD
 
         return redirect('turnos');
      }
 
 
-    public function delAll($categoria){
-=======
-    }
+
     public function delAll($categoria)
     {
->>>>>>> b6cd5b42fbd0dc450483162d20f2c767d3966a3c
 
         if ($categoria == 'lab') {
             $this->todas = false;
@@ -992,12 +982,11 @@ class EnfermedadActual extends Component
                 'estado' => '1'
             ]);
         }
-        // $this->closeModal();
+        $this->closeModal();
     }
 
 
 
-<<<<<<< HEAD
     public function oldConsulta(){
 
 
@@ -1022,12 +1011,6 @@ class EnfermedadActual extends Component
             $this->total_lab=     $this->l_gral        + $this->l_renal        + $this->l_gine        + $this->l_salud        + $this->l_embarazo;
         }
 
-=======
-
-    #[On('added-rem')]
-    public function render()
-    {
->>>>>>> b6cd5b42fbd0dc450483162d20f2c767d3966a3c
 
         $this->total_lab =     $this->l_gral        + $this->l_renal        + $this->l_gine        + $this->l_salud        + $this->l_embarazo;
 
