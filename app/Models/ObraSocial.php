@@ -9,7 +9,9 @@ class ObraSocial extends Model
 {
     use HasFactory;
 
-    public function perfiles(){
-        return $this->belongsToMany(Perfil::class,'obra_social_x_perfils');
+    // Relación muchos a muchos con el modelo 'Perfil' a través de 'obra_social_x_perfils'
+    public function perfiles()
+    {
+        return $this->belongsToMany(Perfil::class, 'obra_social_x_perfils', 'obra_social_id', 'perfil_id');
     }
 }

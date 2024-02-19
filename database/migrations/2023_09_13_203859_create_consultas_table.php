@@ -19,22 +19,18 @@ return new class extends Migration
                 ->on('perfils')
                 ->onDelete('cascade');
             $table->unsignedBigInteger('turno_id');
-
             $table->foreign('turno_id')
                 ->references('id')
                 ->on('turnos')
                 ->onDelete('cascade');
-
-
             $table->string('fum')->nullable();
-
             $table->string('temperatura')->nullable();
-            $table->string('ea')->nullable();
+            $table->text('ea')->nullable();
             $table->string('tension_arterial')->nullable();
             $table->string('indice_mc')->nullable();
             $table->string('embarazo')->default('no');
             $table->string('edad_geatacional')->default('no');
-            $table->string('observaciones')->nullable();
+            $table->text('observaciones')->nullable();
             $table->string('estado')->default('1');
             $table->softDeletes();
             $table->timestamps();

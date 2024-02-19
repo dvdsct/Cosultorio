@@ -46,11 +46,11 @@ return new class extends Migration
             $table->string('establecimiento')->nullable();
             $table->string('localidad')->nullable();
             $table->string('test_vph')->nullable();
-            $table->string('observaciones')->nullable();
+            $table->text('observaciones')->nullable();
             $table->string('evaluacion')->nullable();
             $table->string('zona_trans')->nullable();
             $table->string('tratamiento')->nullable();
-            $table->string('seguimiento')->nullable();
+            $table->text('seguimiento')->nullable();
             $table->string('estado')->default('1');
             $table->timestamps();
         });

@@ -1,5 +1,4 @@
 <div>
-    <button class="btn btn-primary" wire:click='openModal'></button>
     <div class="row d-flex justify-content-between" style="padding-top: 20px;">
         <div class="col-3 d-flex align-items-center">
 
@@ -12,7 +11,7 @@
 
         </div>
         <div class="col-3">
-            <h1>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }}</h1>
+            <h1> <strong>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </strong></h1>
         </div>
         <div class="col-2 pt-2 mr-2">
             @can('crearturno')
@@ -35,7 +34,6 @@
                             <th scope="col"> Obra social</th>
                             <th scope="col"> Abono </th>
                             <th scope="col"> Motivo </th>
-                            <th scope="col"> Estado </th>
                             <th scope="col"> </th>
                         </thead>
                         <tbody>
@@ -64,9 +62,7 @@
                                         <small class="badge badge-success"> Consulta </small>
                                     @endif
                                 </td>
-                                <td class="p-0 pl-2">
 
-                                </td>
                                 <td class="p-1 pl-2">
                                     @can('atender')
                                         <div class="btn-group">

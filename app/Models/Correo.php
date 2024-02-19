@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Correo extends Model
 {
     use HasFactory;
-    public function personas(){
-        return $this->belongsToMany(Perfil::class,'correo_x_personas');
+
+    // Relación muchos a muchos con el modelo 'Persona' a través de 'correo_x_personas'
+    public function personas()
+    {
+        return $this->belongsToMany(Persona::class, 'correo_x_personas', 'correo_id', 'persona_id');
     }
 }
