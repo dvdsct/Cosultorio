@@ -20,12 +20,11 @@
                 </div>
             </div>
         </div>
-
         {{-- FUM --}}
         <div class="col-lg-3 col-6 flex-fill">
-            <div class="small-box bg-success d-flex flex-column h-100 {{ $c_fum }}">
+            <div class="small-box bg-{{ $c_fum }} d-flex flex-column h-100 ">
                 <div class="inner">
-                    <h3>FUM</h3>
+                    <h3>{{ $fumEmb }}</h3>
                     <p class="{{ $l_fum }}">{{ $fum }}</p>
 
                     <div class="pl-4">

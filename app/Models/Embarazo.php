@@ -9,6 +9,8 @@ class Embarazo extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['perfil_id','estado','descripcion','FUM','FPP'];
+
     public function perfiles (){
 
         return $this->belongsTo(Perfil::class);
