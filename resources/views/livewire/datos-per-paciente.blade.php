@@ -47,14 +47,39 @@
                         @endif
                     </h6>
                 </div>
+                <div class="col-3 d-flex flex-column" style="display: flex; justify-content: flex-end; align-items: flex-end;">
+                    <a href="" class="nav-link" style="display: flex; justify-content: flex-end;" data-toggle="modal" data-target="#modal-datos-pac">
+                        <i class="fas fa-edit"></i> Completar datos de paciente
+                    </a>
+                </div>
 
-                <div class="col-3 d-flex flex-column">
-                    <a href="" class="nav-link mt-auto">Completar datos de paciente</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA COMPLETAR DATOS DE PACIENTE  -->
+
+    <div class="modal fade" id="modal-datos-pac" style="display: none;" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-l">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Completar datos de paciente</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body…</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>
-
-
-
     </div>
+
+
+
+
 </div>

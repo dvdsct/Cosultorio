@@ -43,9 +43,6 @@
                                                     <button type="button" class="btn btn-danger btn-block rounded-left  mr-1" style="width: 100%;" data-toggle="modal" data-target="#modal-imagen">
                                                         <strong> Imagen </strong>
                                                     </button>
-                                                    <button type="button" class="btn btn-danger btn-flat mr-1">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
                                                     <button type="button" class="btn btn-danger btn-flat rounded-right">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
@@ -58,9 +55,6 @@
                                                 <div class="btn-group" style="width: 80%;">
                                                     <button type="button" class="btn btn-warning btn-block rounded-left mr-1" style="width: 100%;" data-toggle="modal" data-target="#modal-laboratorio">
                                                         <strong> Laboratorio </strong>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning btn-flat mr-1">
-                                                        <i class="fas fa-edit"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-warning btn-flat rounded-right">
                                                         <i class="fas fa-trash"></i>
@@ -75,22 +69,19 @@
                                                     <button type="button" class="btn btn-primary btn-block rounded-left border-right mr-1" style="width: 100%;" wire:click='dispatch("modalOn")'>
                                                         <strong> Receta </strong>
                                                     </button>
-                                                    <button type="button" class="btn btn-primary btn-flat mr-1" wire:click='dispatch("modalOn")'>
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
                                                     <button type="button" class="btn btn-primary btn-flat rounded-right" >
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
-
                                             </td>
                                             <td><span class="badge bg-primary">{{count($consulta->recetas)  }}</span></td>
                                         </tr>
                                     </tbody>
 
                                 </table>
-                                <button type="button" class="btn btn-block btn-success mt-2" style="height: 80px;" wire:click='finConsulta()'>FINALIZAR CONSULTA E IMPRIMIR</button>
-
+                                @if($consulta->estado != '3')
+                                <button type="button" class="btn btn-block btn-success mt-2" style="height: 80px;" wire:click='finConsulta()'><strong> FINALIZAR CONSULTA </strong></button>
+                                @endif
                             </div>
 
                         </div>

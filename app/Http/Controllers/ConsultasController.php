@@ -43,12 +43,14 @@ class ConsultasController extends Controller
             $consulta->update([
                 'estado' => '2'
             ]);
+
+            $turno = $consulta->turnos;
+            $turno->update([
+                'estado' => '2'
+            ]);
         }
 
-        $turno = $consulta->turnos;
-        $turno->update([
-            'estado' => '2'
-        ]);
+
         return view('Consultorio.Consulta.show',[
             'consulta' => $consulta
         ]);

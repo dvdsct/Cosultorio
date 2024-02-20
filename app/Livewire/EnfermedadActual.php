@@ -917,7 +917,7 @@ class EnfermedadActual extends Component
 
     public function finConsulta()
     {
-        if ($this->consulta->estado == '1') {
+        if ($this->consulta->estado == '2') {
 
             $this->add_lab();
             // $this->setEa();
