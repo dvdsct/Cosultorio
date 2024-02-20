@@ -82,11 +82,9 @@
                     <h3>IMC</h3>
                     <h4 class="{{ $l_imc }}"> {{ $imc }}</h4>
 
-                    <form wire:submit='setImc'>
-                        @csrf
+
                         <input type="text" class="{{ $in_imc }} form-control bg-danger mb-2" wire:model='peso' placeholder="Peso">
-                        <input type="text" class="{{ $in_imc }} form-control bg-danger" wire:model='altura' placeholder="Altura">
-                    </form>
+                        <input type="text" class="{{ $in_imc }} form-control bg-danger" wire:model='altura' placeholder="Altura" wire:keydown.enter='setImc'>
                 </div>
 
                 <div class="small-box-footer d-flex justify-content-end mt-auto">

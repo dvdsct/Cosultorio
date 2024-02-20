@@ -87,6 +87,10 @@ class Parametros extends Component
         $this->l_imc = '';
         $this->in_imc = 'd-none';
         $this->imc = floatval($this->peso) / (floatval($this->altura) * floatval($this->altura));
+
+        $this->consulta->update([
+            'indice_mc' =>  $this->imc
+        ]);
     }
 
     // Temperatura
@@ -195,6 +199,8 @@ class Parametros extends Component
         }
 
         $this->in_emb = $this->consulta->embarazo;
+        $this->imc = $this->consulta->indice_mc;
+
 
 
 
