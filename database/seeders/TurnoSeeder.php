@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Colposcopia;
+use App\Models\Consulta;
+use App\Models\Pap;
 use App\Models\Turno;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -26,16 +29,44 @@ class TurnoSeeder extends Seeder
         $ls = ['1','2','3','1','2','1'];
 
         foreach($ls as $l){
-            Turno::create([
+            $ft = $date->addSeconds(random_int(0, 36000));
+            $x = random_int(1, 3);
+
+            $t = Turno::create([
 
 
                 'perfil_id' => $l,
-                'motivo' => random_int(1, 3),
+                'motivo' => $x,
                 'estado' => '2',
 
-                'fecha_turno' => $date->addSeconds(random_int(0, 36000)),
+                'fecha_turno' => $ft,
 
             ]);
+            if($x == '3'){
+
+                Consulta::create([
+                    'perfil_id'=> $l,
+                    'turno_id'=>$t->id,
+                    'estado'=>'2'
+                ]);
+            }
+            if($x == '2'){
+
+                Colposcopia::create([
+                    'perfil_id'=> $l,
+                    'turno_id'=>$t->id,
+                    'estado'=>'2'
+                ]);
+            }
+            if($x == '1'){
+
+                Pap::create([
+                    'perfil_id'=> $l,
+                    'turno_id'=>$t->id,
+                    'estado'=>'2'
+                ]);
+            }
+
 
         }
 
