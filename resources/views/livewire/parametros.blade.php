@@ -20,12 +20,11 @@
                 </div>
             </div>
         </div>
-
         {{-- FUM --}}
         <div class="col-lg-3 col-6 flex-fill">
-            <div class="small-box bg-success d-flex flex-column h-100 {{ $c_fum }}">
+            <div class="small-box bg-{{ $c_fum }} d-flex flex-column h-100 ">
                 <div class="inner">
-                    <h3>FUM</h3>
+                    <h3>{{ $fumEmb }}</h3>
                     <p class="{{ $l_fum }}">{{ $fum }}</p>
 
                     <div class="pl-4">
@@ -83,11 +82,9 @@
                     <h3>IMC</h3>
                     <h4 class="{{ $l_imc }}"> {{ $imc }}</h4>
 
-                    <form wire:submit='setImc'>
-                        @csrf
+
                         <input type="text" class="{{ $in_imc }} form-control bg-danger mb-2" wire:model='peso' placeholder="Peso">
-                        <input type="text" class="{{ $in_imc }} form-control bg-danger" wire:model='altura' placeholder="Altura">
-                    </form>
+                        <input type="text" class="{{ $in_imc }} form-control bg-danger" wire:model='altura' placeholder="Altura" wire:keydown.enter='setImc'>
                 </div>
 
                 <div class="small-box-footer d-flex justify-content-end mt-auto">
