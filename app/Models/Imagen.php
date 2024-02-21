@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Imagen extends Model
 {
     use HasFactory;
+    protected $fillable = ['tipo_imagen_id'	,'cie10_id',	'estado'];
+
+
+
+    public function consultas(){
+        return $this->belongsToMany(Consulta::class,'imagen_x_consultas');
+    }
+
+
+
 }

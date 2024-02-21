@@ -54,7 +54,7 @@
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td><span class="badge bg-danger">{{ $total_lab }}</span></td>
+                                            <td><span class="badge bg-danger">{{ count($consulta->imagenes) }}</span></td>
                                         </tr>
                                         <tr>
                                             <td>

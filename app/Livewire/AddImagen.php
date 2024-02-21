@@ -12,11 +12,16 @@ class AddImagen extends Component
 {
     public $consulta;
     public $modal  = false;
+    // Categorias
     public $todas;
     public $eco;
+    public $l_eco;
     public $rnm;
+    public $l_rnm;
     public $tac;
-    public $tipos;
+    public $l_tac;
+
+    // Tipos
     public $eco_gin;
     public $eco_obs;
     public $eco_abd;
@@ -28,6 +33,9 @@ class AddImagen extends Component
     public $tac_pel_cc;
 
     public $ecografias;
+
+    public $imgs_ped;
+
 
 
 
@@ -116,29 +124,83 @@ class AddImagen extends Component
 
     public function checkItem($cat, $item)
     {
+        if ($cat == 'tac') {
+            $tipos = [
+                $this->tac_abd,
+                $this->tac_abd_cc,
+                $this->tac_pel,
+                $this->tac_pel_cc
+            ];
+            $this->vItems($tipos, $cat);
+        }
+
+        if ($cat = 'eco') {
 
 
-        if ($this->$item = false) {
-            $this->$cat = false;
-        } else {
+            $ecos = [$this->eco_gin, $this->eco_obs, $this->eco_abd, $this->eco_tiro];
+            $this->vItems($ecos, $cat);
+        }
+        if ($cat = 'rnm') {
+            $rns = [$this->rmn_pelv];
+            $this->vItems($rns, $cat);
+        }
+    }
 
+    public function vItems($tipos, $cat)
+    {
 
-            $this->$cat = true;
+        foreach ($tipos as $e) {
+            if ($e == true) {
+                $this->$cat = true;
+                break;
+            } else {
+                $this->$cat = false;
+            }
         }
     }
 
 
+    public function save_img()
+    {
+        $ecos = [];
 
+        $tipos = [
 
+            [$this->eco_gin , '1'],
+            [$this->eco_obs , '2'],
+            [$this->eco_abd , '3'],
+            [$this->eco_tiro , '4'],
+            [$this->rmn_pelv , '5'],
+            [$this->tac_abd , '6'],
+            [$this->tac_abd_cc , '7'],
+            [$this->tac_pel , '8'],
+            [$this->tac_pel_cc , '9'],
+        ];
 
+        $rns = [];
 
+        foreach($tipos as $t){
+            if($t[0] == true){
+                $i =  Imagen::create([
+                    'tipo_imagen_id' => $t[1],
+                	'cie10_id' => '1',
+                	'estado' => '1',
 
+                ]);
 
-    
-    /* Funcion que selecciona Resonancia Magnética */
+                ImagenXConsulta::create([
+                    'consulta_id'=> $this->consulta->id,
+                	'imagen_id'=> $i->id,
+                	'estado'=>'1',
 
+                ]);
 
-    /* Funcion que selecciona las Tomografías  */
+            }
+            $this->modalImgOff();
+            $this->dispatch('added');
+
+        }
+    }
 
 
 

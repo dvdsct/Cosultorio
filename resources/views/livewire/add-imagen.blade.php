@@ -52,21 +52,21 @@
 
                                     <div class="form-check">
                                         <input type="checkbox" id="eco_obs" wire:model='eco_obs'
-                                            style="transform: scale(1.5);" wire:click='checkItem("eco","2")'>
+                                            style="transform: scale(1.5);" wire:click='checkItem("eco","eco_obs")'>
                                         <label class="form-check-label pl-2" for="eco_obs"
                                             style="cursor: pointer;">Ecografía Obstetrica</label>
                                     </div>
 
                                     <div class="form-check">
                                         <input type="checkbox" id="eco_abd" wire:model='eco_abd'
-                                            style="transform: scale(1.5);" wire:click='checkItem("eco","3")'>
+                                            style="transform: scale(1.5);" wire:click='checkItem("eco","eco_abd")'>
                                         <label class="form-check-label pl-2" for="eco_abd"
                                             style="cursor: pointer;">Ecografía Abdominal</label>
                                     </div>
 
                                     <div class="form-check">
                                         <input type="checkbox" id="eco_tiro" wire:model='eco_tiro'
-                                            style="transform: scale(1.5);" wire:click='checkItem("eco","4")'>
+                                            style="transform: scale(1.5);" wire:click='checkItem("eco","eco_tiro")'>
                                         <label class="form-check-label pl-2" for="eco_tiro"
                                             style="cursor: pointer;">Ecografía Tiroidea</label>
                                     </div>
@@ -123,7 +123,7 @@
 
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" wire:click='dispatch("modalImgOff")'>Cancelar</button>
-                        <button type="submit" class="btn btn-secondary">Aceptar</button>
+                        <button type="submit" class="btn btn-secondary" wire:click='save_img'>Aceptar</button>
                     </div>
                 </div>
                 </form>

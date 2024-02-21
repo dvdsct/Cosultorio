@@ -30,5 +30,11 @@ class Consulta extends Model
     public function recetas(){
         return $this->belongsToMany(Receta::class,'receta_x_consultas');
     }
+    
+
+    public function imagenes(){
+        return $this->belongsToMany(Imagen::class,'imagen_x_consultas');
+    }
+
 
 }
