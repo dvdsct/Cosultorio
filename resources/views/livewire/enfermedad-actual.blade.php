@@ -37,24 +37,26 @@
                             <div class="card-body p-0">
                                 <table class="table">
                                     <tbody>
+
                                         <tr>
                                             <td>
-                                                <div class="btn-group" style="width: 80%;">
+                                                <div class="btn-group" style="width: 100%;">
                                                     <button type="button"
-                                                        class="btn btn-danger btn-block rounded-left  mr-1"
-                                                        style="width: 100%;" wire:click='dispatch("modalImgOn")'>
-                                                        <strong> Imagen </strong>
+                                                        class="btn btn-danger btn-block rounded-left border-right mr-1"
+                                                        style="width: 100%;" wire:click='dispatch("modalOn")'>
+                                                        <strong> Receta </strong>
                                                     </button>
-                                                    <button type="button" class="btn btn-danger btn-flat rounded-right">
+                                                    <button type="button" class="btn btn-danger btn-flat rounded-right" >
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td><span class="badge bg-danger">{{ $total_lab }}</span></td>
+                                            <td> <h5> <strong> <span style="display: flex; justify-content: center; align-items: center;">{{count($consulta->recetas) }} Medicametos</span> </strong> </h5> </td>
                                         </tr>
+
                                         <tr>
                                             <td>
-                                                <div class="btn-group" style="width: 80%;">
+                                                <div class="btn-group" style="width: 100%;">
                                                     <button type="button"
                                                         class="btn btn-warning btn-block rounded-left mr-1"
                                                         style="width: 100%;" data-toggle="modal"
@@ -66,22 +68,22 @@
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td><span class="badge bg-warning">{{ $total_lab }}</span></td>
+                                            <td><h5> <strong> <span class="" style="display: flex; justify-content: center; align-items: center;">{{ $total_lab }} Estudios</span>  </strong> </h5></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="btn-group" style="width: 80%;">
+                                                <div class="btn-group" style="width: 100%;">
                                                     <button type="button"
-                                                        class="btn btn-primary btn-block rounded-left border-right mr-1"
-                                                        style="width: 100%;" wire:click='dispatch("modalOn")'>
-                                                        <strong> Receta </strong>
+                                                        class="btn btn-primary btn-block rounded-left  mr-1"
+                                                        style="width: 100%;" wire:click='dispatch("modalImgOn")'>
+                                                        <strong> Imagen </strong>
                                                     </button>
-                                                    <button type="button" class="btn btn-primary btn-flat rounded-right" >
+                                                    <button type="button" class="btn btn-primary btn-flat rounded-right">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td><span class="badge bg-primary">{{count($consulta->recetas)  }}</span></td>
+                                            <td><h5> <strong><span class="" style="display: flex; justify-content: center; align-items: center;"> 0 Estudios </span> </strong> </h5> </td>
                                         </tr>
                                     </tbody>
 
