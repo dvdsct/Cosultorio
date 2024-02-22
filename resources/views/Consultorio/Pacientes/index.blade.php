@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-    @section('title', 'Dashboard')
+@section('title', 'Dashboard')
 
 @section('content_header')
 
@@ -9,9 +9,7 @@
 @section('content')
 
 
-
-
-<table>
+    <table id="myTable">
     <thead>
         <th>Paciente</th>
         <th>OS</th>
@@ -36,14 +34,14 @@
 
 
 
-
-
-
-
 @stop
 
 @section('css')
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
 @stop
 
 @section('js')
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 @stop
