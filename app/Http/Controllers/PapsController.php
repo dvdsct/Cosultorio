@@ -12,7 +12,10 @@ class PapsController extends Controller
      */
     public function index()
     {
-        return view('Consultorio.Practicas.Paps.index');
+        $paps = Pap::all();
+        return view('Consultorio.Practicas.Paps.index',[
+            'paps' => $paps
+        ]);
     }
 
     /**

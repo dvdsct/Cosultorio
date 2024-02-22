@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
        $this->call(TipoLaboratorioSeeder::class);
        $this->call(TipoImagenSeeder::class);
        $this->call(TurnoSeeder::class);
+       $this->call(Cie10Seeder::class);
 
     }
 }

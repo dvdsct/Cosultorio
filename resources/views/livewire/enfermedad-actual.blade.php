@@ -83,7 +83,7 @@
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td><h5> <strong><span class="" style="display: flex; justify-content: center; align-items: center;"> 0 Estudios </span> </strong> </h5> </td>
+                                            <td><h5> <strong><span class="" style="display: flex; justify-content: center; align-items: center;"> {{count($consulta->imagenes) }} Estudios </span> </strong> </h5> </td>
                                         </tr>
                                     </tbody>
 

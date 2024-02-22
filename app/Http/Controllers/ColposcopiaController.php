@@ -12,7 +12,10 @@ class ColposcopiaController extends Controller
      */
     public function index()
     {
-        return view ('Consultorio.Practicas.Colposcopia.index');
+        $colpos = Colposcopia::all();
+        return view ('Consultorio.Practicas.Colposcopia.index',[
+        'colpos' => $colpos
+        ]);
 
     }
 
