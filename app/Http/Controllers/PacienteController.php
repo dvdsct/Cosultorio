@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Colposcopia;
+use App\Models\Consulta;
+use App\Models\Pap;
 use App\Models\Perfil;
 use Illuminate\Http\Request;
 
@@ -39,9 +42,24 @@ class PacienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(array $ids)
     {
-        //
+        // $tipo = $ids[1];
+        // $id= $ids[0];
+        // dd($tipo);
+        // if($tipo == 'consulta'){
+        //     $todas = Consulta::where('perfil_id',$id)->get();
+        // }
+        // if($tipo == 'colpo'){
+        //     $todas = Colposcopia::where('perfil_id',$id)->get();
+        // }
+        // if($tipo == 'pap'){
+        //     $todas = Pap::where('perfil_id',$id)->get();
+        // }
+
+        // return view('Consultorio.Pacientes.show',[
+        //     'todas' => $todas
+        // ]);
     }
 
     /**
@@ -55,11 +73,38 @@ class PacienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $id, string $tipo)
     {
-        //
-    }
+        if($tipo == 'consulta'){
+            $todas = Consulta::where('perfil_id',$id)->get();
+        }
+        if($tipo == 'colpo'){
+            $todas = Colposcopia::where('perfil_id',$id)->get();
+        }
+        if($tipo == 'pap'){
+            $todas = Pap::where('perfil_id',$id)->get();
+        }
 
+        return view('Consultorio.Pacientes.show',[
+            'todas' => $todas
+        ]);
+    }
+    public function otro(string $id, string $tipo)
+    {
+        if($tipo == 'consulta'){
+            $todas = Consulta::where('perfil_id',$id)->get();
+        }
+        if($tipo == 'colpo'){
+            $todas = Colposcopia::where('perfil_id',$id)->get();
+        }
+        if($tipo == 'pap'){
+            $todas = Pap::where('perfil_id',$id)->get();
+        }
+
+        return view('Consultorio.Pacientes.show',[
+            'todas' => $todas
+        ]);
+    }
     /**
      * Remove the specified resource from storage.
      */

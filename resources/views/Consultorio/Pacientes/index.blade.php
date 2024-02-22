@@ -11,7 +11,7 @@
 
 
 
-<table>
+<table id="myTable">
     <thead>
         <th>Paciente</th>
         <th>DNI</th>
@@ -34,10 +34,10 @@
 
             <td style="width: 400px;">
                 <div class="row" style="width: 380px; display:flex; justify-content:center">
-                    <button type="button" class="btn btn-block btn-success btn-sm" style="width:80px">Consultas</button>
-                    <button type="button" class="btn btn-block btn-danger btn-sm ml-2" style="width:80px">Paps</button>
-                    <button type="button" class="btn btn-block btn-warning btn-sm ml-2" style="width:80px">Colp.</button>
-                    <button type="button" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button>
+                    <a href='{{ url('paciente/'.$p->id.'/consulta') }}' class="btn btn-block btn-success btn-sm" style="width:80px">Consultas</a>
+                    <a href='{{ url('paciente/'.$p->id.'/consulta') }}' class="btn btn-block btn-danger btn-sm ml-2" style="width:80px">Paps</a>
+                    <a href='{{ url('paciente/'.$p->id.'/consulta') }}' class="btn btn-block btn-warning btn-sm ml-2" style="width:80px">Colp.</a>
+                    {{-- <a href='{{ route('pacientes.show',$p->id,'') }}' class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</a> --}}
                 </div>
             </td>
 
