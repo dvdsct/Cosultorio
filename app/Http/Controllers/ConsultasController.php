@@ -11,8 +11,10 @@ class ConsultasController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-       return view('Consultorio.Consulta.index');
+    {   $consultas = Consulta::all();
+       return view('Consultorio.Consulta.index',[
+        'consultas' => $consultas
+       ]);
 
     }
 

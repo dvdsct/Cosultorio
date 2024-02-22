@@ -23,7 +23,6 @@
                                 </select>
 
 
-{{ $cie10 .'sssssss'}}
 
 
 

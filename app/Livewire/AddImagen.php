@@ -190,7 +190,7 @@ class AddImagen extends Component
             if($t[0] == true){
                 $i =  Imagen::create([
                     'tipo_imagen_id' => $t[1],
-                	'cie10_id' => $this->cie10->id,
+                	'cie10_id' => $this->cie10,
                 	'estado' => '1',
 
                 ]);
