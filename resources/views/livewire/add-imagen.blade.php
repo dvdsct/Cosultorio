@@ -1,8 +1,8 @@
 <div>
     @if ($modal == true)
 
-    <div class="modal fade show" id="modal-imagen" aria-labelledby="modal-default" style="display:block"
-    aria-hidden="true">
+        <div class="modal fade show" id="modal-imagen" aria-labelledby="modal-default" style="display:block"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-danger">
@@ -13,6 +13,26 @@
                     </div>
                     <div class="modal-body">
                         <form wire:submit="add_imag">
+                            <div class="col-md-6">
+
+                                <select class="js-example-basic-single" wire:model='cie10'>
+                                    @foreach ($cie10s as $c)
+                                        <option value="{{ $c->id }}">{{ $c->descripcion . ' - ' . $c->codigo }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+
+{{ $cie10 .'sssssss'}}
+
+
+
+
+
+                            </div>
+
+
+
                             <div class="row">
                                 <div class="form-check">
                                     <input type="checkbox" id="todas" wire:model='todas'
@@ -80,14 +100,16 @@
                                     <div class="form-check">
                                         <input type="checkbox" id="tac_abdo" wire:model='tac_abd'
                                             style="transform: scale(1.5);" wire:click='checkItem("tac","tac_abd")'>
-                                        <label class="form-check-label pl-2" for="tac_abdo" style="cursor: pointer;">TAC
+                                        <label class="form-check-label pl-2" for="tac_abdo"
+                                            style="cursor: pointer;">TAC
                                             Abdominal</label>
                                     </div>
 
                                     <div class="form-check">
                                         <input type="checkbox" id="tac_pel" wire:model='tac_pel'
                                             style="transform: scale(1.5);" wire:click='checkItem("tac","tac_pel")'>
-                                        <label class="form-check-label pl-2" for="tac_pel" style="cursor: pointer;">TAC
+                                        <label class="form-check-label pl-2" for="tac_pel"
+                                            style="cursor: pointer;">TAC
                                             Pelviana</label>
                                     </div>
 
@@ -114,7 +136,8 @@
                                     <div class="form-check">
                                         <input type="checkbox" id="RMN" wire:model='rmn_pelv'
                                             style="transform: scale(1.5);" wire:click='checkItem("rnm","5")'>
-                                        <label class="form-check-label pl-2" for="RMN" style="cursor: pointer;">RMN
+                                        <label class="form-check-label pl-2" for="RMN"
+                                            style="cursor: pointer;">RMN
                                             Pelviana</label>
                                     </div>
                                 </div>
@@ -122,7 +145,8 @@
                     </div>
 
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" wire:click='dispatch("modalImgOff")'>Cancelar</button>
+                        <button type="button" class="btn btn-default"
+                            wire:click='dispatch("modalImgOff")'>Cancelar</button>
                         <button type="submit" class="btn btn-secondary" wire:click='save_img'>Aceptar</button>
                     </div>
                 </div>
@@ -132,4 +156,8 @@
 
         </div>
     @endif
+
+
+
+
 </div>

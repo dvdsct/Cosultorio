@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Imagen;
 use App\Models\ImagenXConsulta;
+use App\Models\Cie10;
 use Livewire\Attributes\On;
 use Livewire\Attributtes\Locked;
 
@@ -35,9 +36,15 @@ class AddImagen extends Component
     public $ecografias;
 
     public $imgs_ped;
+    public $cie10;
+    public $cie10s;
 
 
 
+    public function mount(){
+        $this->cie10s = Cie10::all();
+
+    }
 
 
     /* Funcion que selecciona las Ecografias */
@@ -183,7 +190,7 @@ class AddImagen extends Component
             if($t[0] == true){
                 $i =  Imagen::create([
                     'tipo_imagen_id' => $t[1],
-                	'cie10_id' => '1',
+                	'cie10_id' => $this->cie10->id,
                 	'estado' => '1',
 
                 ]);
