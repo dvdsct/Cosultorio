@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Colposcopia')
+@section('title', 'Lista de Colposcopias')
 
 @section('content_header')
 
@@ -9,26 +9,28 @@
 @section('content')
 
 
-    <table id="myTable">
-        <thead>
-            <th>Fecha</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </thead>
-        <tbody>
-            @foreach ($colpos as $c)
-                <tr>
-                    <td>{{ $c->perfiles->personas->nombre }}</td>
-                    <td>{{ $c->perfiles->personas->apellido }}</td>
-                    <td>{{ $c->perfiles->personas->dni }}</td>
-                    <td>{{ $c->updated_at }}</td>
+<table id="myTable">
+    <thead>
+        <th>Fecha de Estudio</th>
+        <th>Paciente</th>
+        <th>DNI</th>
+        <th>Observaciones</th>
+        <th></th>
+    </thead>
+    <tbody>
+        @foreach ($colpos as $c)
+        <tr>
+            <td>{{ $c->updated_at }}</td>
+            <td>{{ $c->perfiles->personas->apellido . ' ' . $c->perfiles->personas->nombre }}</td>
+            <td>{{ $c->perfiles->personas->dni }}</td>
+            <td>{{ $c->Observaciones}}</td>
+            <td>  <button type="button" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button></td>
 
-                    
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 
 
@@ -36,11 +38,11 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
 @stop
 
 @section('js')
-    <script>
-        let table = new DataTable('#myTable');
-    </script>
+<script>
+    let table = new DataTable('#myTable');
+</script>
 @stop

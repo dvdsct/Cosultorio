@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Listado de Consultas')
 
 @section('content_header')
 
@@ -11,22 +11,20 @@
 
     <table id="myTable">
         <thead>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>Fecha de Consulta</th>
+            <th>Paciente</th>
+            <th>DNI</th>
+            <th>FUM</th>
             <th></th>
         </thead>
         <tbody>
             @foreach ($consultas as $c)
                 <tr>
                     <td>{{ $c->updated_at }}</td>
-                    <td>{{ $c->perfiles->personas->nombre }}</td>
-                    <td>{{ $c->perfiles->personas->apellido }}</td>
+                    <td>{{ $c->perfiles->personas->apellido . ' ' . $c->perfiles->personas->nombre }}</td>
                     <td>{{ $c->perfiles->personas->dni }}</td>
                     <td>{{ $c->fum }}</td>
-
-
+                    <td>  <button type="button" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button></td>
                 </tr>
             @endforeach
         </tbody>
