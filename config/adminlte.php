@@ -304,20 +304,23 @@ return [
         ],
 
         [
-            'text'        => 'Paps',
-            'url'         => 'paps',
-            'icon'        => 'fas fa-file-alt',
-        ],
-        [
             'text'        => 'Pacientes',
             'url'         => 'pacientes',
             'icon'        => 'far fas fa-users',
         ],
+
         [
             'text'        => 'Consultas',
             'url'         => 'consulta',
             'icon'        => 'far fas fa-stethoscope',
         ],
+
+        [
+            'text'        => 'Paps',
+            'url'         => 'paps',
+            'icon'        => 'fas fa-file-alt',
+        ],
+
         [
             'text'        => 'Colposcopias',
             'url'         => 'colpos',

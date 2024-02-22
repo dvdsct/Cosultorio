@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="col-md-12">
-                                    {{ $l_gral }}
+                                 
                                     <div class="form-check">
                                         <input type="checkbox" id="general" wire:model='e_gral'
                                             wire:click="checkCat('general')" style="transform: scale(1.5);">
