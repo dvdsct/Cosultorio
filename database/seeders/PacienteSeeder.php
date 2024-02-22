@@ -16,11 +16,11 @@ class PacienteSeeder extends Seeder
     public function run(): void
     {
           $personas =[
-            'David',
-            'Nahuel',
-            'Saso',
+            'Eugenia',
+            'Romina',
+            'Marina',
             'Valentina',
-            'Dany',
+            'Daniela',
             'Nahir'
           ];
 

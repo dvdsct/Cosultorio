@@ -73,14 +73,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Apellido</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nombre</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -89,13 +89,13 @@
                         <div class="col-md-6">
                         <div class="form-group">
                                 <label for="exampleInputEmail1">Fecha de nacimiento</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="date" class="form-control" id="exampleInputEmail1" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
                                 <label for="exampleInputEmail1">DNI</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -104,13 +104,13 @@
                         <div class="col-md-6">
                         <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
                                 <label for="exampleInputEmail1">Telefono</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -119,13 +119,13 @@
                         <div class="col-md-6">
                         <div class="form-group">
                                 <label for="exampleInputEmail1">Obra Social</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
                                 <label for="exampleInputEmail1">N° de Afiliado</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                             </div>
                         </div>
                     </div>

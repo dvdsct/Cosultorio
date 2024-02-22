@@ -3,7 +3,7 @@
     <div class="modal fade show" id="modal-receta" aria-labelledby="modal-default" style="display:block" aria-hidden="true">
 
 
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-xl" style="max-height: 80vh;">
             <div class="modal-content">
                 <div class="modal-header bg-info">
                     <h4 class="modal-title"> <strong> Nueva Receta </strong></h4>
@@ -14,7 +14,7 @@
                 <div class="modal-body">
                     <!-- Buscador de Vademecum-->
                     <div class="card-header row">
-                        <div class="card-header col-md-6 border-bottom-0">
+                        <div class="card-header col-md-6 border-bottom-0" style="height: 40px;">
                             <div class="card-tools" style="width: 100%;">
                                 <div class="input-group input-group-sm">
                                     <input type="text" wire:model.live="query" class="form-control float-right" placeholder="Medicamento">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <!-- Buscador de CIE10-->
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="height: 40px;">
                             <select wire:model='cie10' class="form-control">
                                 @foreach ($cie10 as $c )
                                 <option value="{{ $c->id }}">{{ $c->descripcion .' - '. $c->codigo }}</option>
@@ -49,9 +49,9 @@
                             <tbody>
                                 @foreach ($vademecum as $v)
                                 <tr>
-                                    <td class="p-0"> <span>{{ $v->presentacion }} </span></td>
-                                    <td class="p-0">{{ $v->droga }}</td>
-                                    <td class="p-0 text-end"><button class="btn btn-info btn-sm" wire:click='indicacionar({{ $v->id }})'><i class="bi bi-journal-check"></i> Recetar</button></td>
+                                    <td class="p-0"> <span style="font-size: 12px;">{{ $v->presentacion }} </span></td>
+                                    <td class="p-0"> <span style="font-size: 12px;"> {{ $v->droga }} </span> </td>
+                                    <td class="p-0" style="display: flex; justify-content:flex-end;"><button class="btn btn-info btn-sm" wire:click='indicacionar({{ $v->id }})'><i class="bi bi-journal-check"></i> Recetar</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -59,8 +59,8 @@
                                 {{ $vademecum->links(data: ['scrollTo' => false]) }}
                             </tfoot>
                         </table>
-
                     </div>
+
                     <div class="col-md-6 px-4">
                         <div class="recetados">
                             <div class="row mb-4">
@@ -71,11 +71,11 @@
 
                                 <div class="col-3">
                                     <!--  <label for="">Cantidad</label> -->
-                                    <input type="text" class="form-control" wire:model='cantidad' placeholder="Cantidad">
+                                    <input type="text" class="form-control form-control-sm" wire:model='cantidad' placeholder="Cantidad">
                                 </div>
                                 <div class="col-3">
                                     <!--  <label for="">Horas</label> -->
-                                    <input type="text" class="form-control" wire:model='horas' placeholder="Horas">
+                                    <input type="text" class="form-control form-control-sm" wire:model='horas' placeholder="Horas">
                                 </div>
                                 <div class="col-1">
                                     <button class="btn btn-success btn-sm" type="button" wire:click='recetar'><i class="fas fa-plus"></i>
