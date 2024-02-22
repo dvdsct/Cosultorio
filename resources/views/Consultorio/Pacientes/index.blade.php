@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Pacientes')
+    @section('title', 'Dashboard')
 
 @section('content_header')
 
@@ -9,20 +9,9 @@
 @section('content')
 
 
-<div class="card-header col-md-6 border-bottom-0" style="height: 40px;">
-    <div class="card-tools" style="width: 100%;">
-        <div class="input-group input-group-sm">
-            <input type="text" wire:model.live="query" class="form-control float-right" placeholder="Buscar paciente">
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<table class="table table-hover ml-4">
+
+<table id="myTable">
     <thead>
         <th>Paciente</th>
         <th>DNI</th>
@@ -45,10 +34,10 @@
 
             <td style="width: 400px;">
                 <div class="row" style="width: 380px; display:flex; justify-content:center">
-                    <button type="button" class="btn btn-block btn-success btn-sm" style="width:80px">Consultas</button>
-                    <button type="button" class="btn btn-block btn-danger btn-sm ml-2" style="width:80px">Paps</button>
-                    <button type="button" class="btn btn-block btn-warning btn-sm ml-2" style="width:80px">Colp.</button>
-                    <button type="button" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button>
+                    <a href='{{ url('paciente/'.$p->id.'/consulta') }}' class="btn btn-block btn-success btn-sm" style="width:80px">Consultas</a>
+                    <a href='{{ url('paciente/'.$p->id.'/consulta') }}' class="btn btn-block btn-danger btn-sm ml-2" style="width:80px">Paps</a>
+                    <a href='{{ url('paciente/'.$p->id.'/consulta') }}' class="btn btn-block btn-warning btn-sm ml-2" style="width:80px">Colp.</a>
+                    {{-- <a href='{{ route('pacientes.show',$p->id,'') }}' class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</a> --}}
                 </div>
             </td>
 
@@ -61,14 +50,14 @@
 
 
 
-
-
-
-
 @stop
 
 @section('css')
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
 @stop
 
 @section('js')
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 @stop
