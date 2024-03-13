@@ -65,7 +65,9 @@ class FormPap extends Component
             $this->v_cp = '';
         } else {
             $this->v_cp = 'disabled';
-            $this->reset('causales', 'ciru_prev');
+            $this->reset('causales','ciru_prev');
+
+
         }
     }
 
@@ -145,13 +147,14 @@ class FormPap extends Component
             'quimio' => $this->quimio,
             'estado' => '3'
         ]);
-        // Emitir el evento 'papSaved' con el turno_id
-        $this->dispatch('papSaved', $this->pap->turno_id);
 
-        // Redireccionar hacia formColp
-       /*  $this->redirect(route('Form-colp', ['consulta' => $this->pap->turno_id])); */
-        return redirect()->route('show', ['consulta' => $this->pap->turno_id]);
+
+        return redirect('colpos/'.$this->pap->id);
+
     }
+
+
+
 
     public function render()
     {

@@ -10,6 +10,7 @@ use Livewire\Component;
 use App\Models\Vademecum;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 use Livewire\WithPagination;
 use Livewire\Consulta;
 
@@ -31,16 +32,17 @@ class Recetar extends Component
     public $remedio;
     public $indicacion;
     public $consulta;
-    public $cie10 = '1';
+    public $cie10s;
+    
 
-    public $cantidadMedicamentos;
-
-
+    #[Validate('required', message: 'elegí uno')]
+    public $cie10;
+    public $des = '';
     public function mount($consulta)
     {
 
         $this->consulta = $consulta;
-        $this->cie10 = Cie10::all();
+        $this->cie10s = Cie10::all();
     }
 
 
@@ -81,11 +83,17 @@ class Recetar extends Component
 
     public function recetar()
     {
+        $this->validate(); 
 
-        $c10 = $this->cie10->first()->id;
+
+
+
+
+
+        
         $rec =  Receta::create([
             'vademecum_id' => $this->remedio->id,
-            'cie10_id' => $c10,
+            'cie10_id' => $this->cie10,
             'indicacion' => $this->horas,
             'cantidad' => $this->cantidad,
             'estado' => '1',
@@ -98,7 +106,7 @@ class Recetar extends Component
             'estado' => '1'
         ]);
 
-
+        $this->des = 'disabled';
         $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
         $this->dispatch('added-rem');
     }
@@ -120,6 +128,12 @@ class Recetar extends Component
     public function render()
     {
         $this->recetados = $this->consulta->recetas;
+        if(count($this->recetados) != 0){
+            $this->des = 'disabled';
+        }else{
+            $this->des = '';
+
+        }
 
         return view('livewire.recetar', [
             'vademecum' => Vademecum::where('droga', 'like', '%' . $this->query . '%')

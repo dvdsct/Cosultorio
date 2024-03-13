@@ -137,12 +137,10 @@ class Parametros extends Component
 
 
 
-            $e = Embarazo::firstOrCreate([
+            $e = Embarazo::create([
                 'perfil_id' => $this->consulta->perfil_id,
                 'estado' => '1',
 
-            ]);
-            $e->update([
                 'FUM' => $this->fum,
                 'FPP' => Carbon::parse($this->consulta->fum)
                     ->subMonths(3)

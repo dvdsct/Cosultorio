@@ -27,9 +27,9 @@
                             </div>
                         </div>
                         <!-- Buscador de CIE10-->
-                        <div class="col-md-6">
-                            <select wire:model='cie10' class="form-control">
-                                @foreach ($cie10 as $c )
+                        <div class="col-md-6" style="height: 40px;" >
+                            <select wire:model='cie10' class="form-control"  {{$des}}>
+                                @foreach ($cie10s as $c )
                                 <option value="{{ $c->id }}">{{ $c->descripcion .' - '. $c->codigo }}</option>
                                 @endforeach
                             </select>

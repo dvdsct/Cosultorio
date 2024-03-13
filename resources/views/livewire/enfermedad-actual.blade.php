@@ -7,7 +7,8 @@
 
             <!-- Contenedor de Enfermedad Actual -->
             <div class="card-body">
-                <form>
+
+                
                     <div class="row">
                         <div class="col-7">
                             <div class="card">
@@ -46,7 +47,7 @@
                                                         style="width: 100%;" wire:click='dispatch("modalOn")'>
                                                         <strong> Receta </strong>
                                                     </button>
-                                                    <button type="button" class="btn btn-danger btn-flat rounded-right" >
+                                                    <button type="button" class="btn btn-danger btn-flat rounded-right" wire:click='delRecetas'>
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>

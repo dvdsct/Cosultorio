@@ -11,4 +11,10 @@ class Laboratorio extends Model
 
     protected $fillable = ['cie10_id',
     'tipo_laboratorio_id','estado'];
+
+
+    public function consultas(){
+        
+        return $this->belongsToMany(Consulta::class, 'laboratorio_x_consultas');
+    }
 }

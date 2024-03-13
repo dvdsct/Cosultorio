@@ -24,6 +24,7 @@ class AddImagen extends Component
 
     // Tipos
     public $eco_gin;
+    public $tipos;
     public $eco_obs;
     public $eco_abd;
     public $eco_tiro;
@@ -43,6 +44,20 @@ class AddImagen extends Component
 
     public function mount(){
         $this->cie10s = Cie10::all();
+        $this->tipos = [
+
+            [$this->eco_gin , '1'],
+            [$this->eco_obs , '2'],
+            [$this->eco_abd , '3'],
+            [$this->eco_tiro , '4'],
+            [$this->rmn_pelv , '5'],
+            [$this->tac_abd , '6'],
+            [$this->tac_abd_cc , '7'],
+            [$this->tac_pel , '8'],
+            [$this->tac_pel_cc , '9'],
+        ];
+
+
     }
 
 
@@ -167,39 +182,43 @@ class AddImagen extends Component
 
 
     public function save_img()
-    {
-        $tipos = [
-            ['eco_gin', '1'],
-            ['eco_obs', '2'],
-            ['eco_abd', '3'],
-            ['eco_tiro', '4'],
-            ['rmn_pelv', '5'],
-            ['tac_abd', '6'],
-            ['tac_abd_cc', '7'],
-            ['tac_pel', '8'],
-            ['tac_pel_cc', '9'],
+    {   
+    
+        $this->tipos = [
+
+            [$this->eco_gin , '1'],
+            [$this->eco_obs , '2'],
+            [$this->eco_abd , '3'],
+            [$this->eco_tiro , '4'],
+            [$this->rmn_pelv , '5'],
+            [$this->tac_abd , '6'],
+            [$this->tac_abd_cc , '7'],
+            [$this->tac_pel , '8'],
+            [$this->tac_pel_cc , '9'],
         ];
-    
-        foreach ($tipos as $tipo) {
-            if ($this->{$tipo[0]}) {
-                $imagen = Imagen::create([
-                    'tipo_imagen_id' => $tipo[1],
-                    'cie10_id' => $this->cie10,
-                    'estado' => '1',
+
+        foreach($this->tipos as $t){
+            if($t[0] == true){
+                $i =  Imagen::firstOrCreate([
+                    'tipo_imagen_id' => $t[1],
+                	'cie10_id' => $this->cie10,
+                	'estado' => '1',
+
                 ]);
-    
-                ImagenXConsulta::create([
-                    'consulta_id' => $this->consulta->id,
-                    'imagen_id' => $imagen->id,
-                    'estado' => '1',
+                
+                ImagenXConsulta::firstOrCreate([
+                    'consulta_id'=> $this->consulta->id,
+                	'imagen_id'=> $i->id,
+                	'estado'=>'1',
+                    
                 ]);
+                
             }
+            
         }
-    
         $this->modalImgOff();
         $this->dispatch('added');
     }
-    
 
 
 
