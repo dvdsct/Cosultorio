@@ -67,7 +67,7 @@ class FormPap extends Component
             $this->v_cp = 'disabled';
             $this->reset('causales','ciru_prev');
 
-            
+
         }
     }
 
@@ -130,7 +130,7 @@ class FormPap extends Component
         $tipoMuestra = in_array($this->tipo_muestra, ['-Seleccionar-', '1']) ? null : $this->tipo_muestra;
         $metodoMuestra = in_array($this->toma_muestra, ['-Seleccionar-', '1']) ? null : $this->toma_muestra;
         $metodoAnti = in_array($this->metodo_anti, ['-Seleccionar-', '1']) ? null : $this->metodo_anti;
-    
+
         $this->pap->update([
             'tipo_muestra' => $tipoMuestra,
             'met_toma_mue' => $metodoMuestra,
@@ -148,8 +148,12 @@ class FormPap extends Component
             'quimio' => $this->quimio,
             'estado' => '3'
         ]);
+
+
+        return redirect('colpos/'.$this->pap->id);
+
     }
-    
+
 
 
 
