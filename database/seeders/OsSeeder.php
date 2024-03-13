@@ -14,6 +14,7 @@ class OsSeeder extends Seeder
     public function run(): void
     {
         $obrasociales = [
+            'Ninguna',
             'IOSEP',
             'OSDE',
             'OSDOP',

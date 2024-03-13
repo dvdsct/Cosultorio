@@ -5,7 +5,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header bg-danger">
+                    <div class="modal-header bg-primary">
                         <h4 class="modal-title"> <strong> Nuevo pedido de Imagen </strong></h4>
                         <button type="button" class="close" wire:click='dispatch("modalImgOff")'>
                             <span aria-hidden="true">×</span>
@@ -13,45 +13,38 @@
                     </div>
                     <div class="modal-body">
                         <form wire:submit="add_imag">
-                            <div class="col-md-6">
-
-                                <select class="js-example-basic-single" wire:model='cie10'>
+                            <div class="col-md-12">
+                                <select class="form-control" wire:model='cie10'>
                                     @foreach ($cie10s as $c)
                                         <option value="{{ $c->id }}">{{ $c->descripcion . ' - ' . $c->codigo }}
                                         </option>
                                     @endforeach
                                 </select>
-
-
-
-
-
-
-
                             </div>
 
-
-
-                            <div class="row">
-                                <div class="form-check">
+                            <div class="row pt-4 pl-2 border-bottom pb-1">
+                            <div class="form-check">
                                     <input type="checkbox" id="todas" wire:model='todas'
-                                        style="transform: scale(2.0);" wire:click='selectAll'>
+                                        wire:click='selectAll'>
                                     <label class="form-check-label pl-2" for="todas" style="cursor: pointer;">
                                         <strong>Todas</strong></label>
                                 </div>
-                                <div class="form-check">
+                            </div>
+
+                            <div class="row p-2 pl-2">
+                                <div class="form-check col-md-4">
                                     <input type="checkbox" id="eco" wire:model.live='eco'
                                         style="transform: scale(2.0);" wire:click='selectCat("eco")'>
                                     <label class="form-check-label pl-2" for="eco" style="cursor: pointer;">
                                         <strong>Ecografías</strong></label>
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="eco" wire:model='tac'
+                                <div class="form-check col-md-5">
+                                    <input type="checkbox" id="tac" wire:model='tac'
                                         style="transform: scale(2.0);" wire:click='selectCat("tac")'>>
-                                    <label class="form-check-label pl-2" for="eco" style="cursor: pointer;">
+                                    <label class="form-check-label pl-2" for="tac" style="cursor: pointer;">
                                         <strong>tac</strong></label>
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check col-md-3">
                                     <input type="checkbox" id="rnm" wire:model='rnm'
                                         style="transform: scale(2.0);" wire:click='selectCat("rnm")'>>
                                     <label class="form-check-label pl-2" for="rnm" style="cursor: pointer;">

@@ -13,6 +13,7 @@ use App\Models\Receta;
 use App\Models\RecetaXConsulta;
 
 
+
 class EnfermedadActual extends Component
 {
     public $ea;

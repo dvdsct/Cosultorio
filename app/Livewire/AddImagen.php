@@ -36,14 +36,13 @@ class AddImagen extends Component
     public $ecografias;
 
     public $imgs_ped;
-    public $cie10;
+    public $cie10 ='1';
     public $cie10s;
 
 
 
     public function mount(){
         $this->cie10s = Cie10::all();
-
     }
 
 
@@ -169,45 +168,38 @@ class AddImagen extends Component
 
     public function save_img()
     {
-        $ecos = [];
-
         $tipos = [
-
-            [$this->eco_gin , '1'],
-            [$this->eco_obs , '2'],
-            [$this->eco_abd , '3'],
-            [$this->eco_tiro , '4'],
-            [$this->rmn_pelv , '5'],
-            [$this->tac_abd , '6'],
-            [$this->tac_abd_cc , '7'],
-            [$this->tac_pel , '8'],
-            [$this->tac_pel_cc , '9'],
+            ['eco_gin', '1'],
+            ['eco_obs', '2'],
+            ['eco_abd', '3'],
+            ['eco_tiro', '4'],
+            ['rmn_pelv', '5'],
+            ['tac_abd', '6'],
+            ['tac_abd_cc', '7'],
+            ['tac_pel', '8'],
+            ['tac_pel_cc', '9'],
         ];
-
-        $rns = [];
-
-        foreach($tipos as $t){
-            if($t[0] == true){
-                $i =  Imagen::create([
-                    'tipo_imagen_id' => $t[1],
-                	'cie10_id' => $this->cie10,
-                	'estado' => '1',
-
+    
+        foreach ($tipos as $tipo) {
+            if ($this->{$tipo[0]}) {
+                $imagen = Imagen::create([
+                    'tipo_imagen_id' => $tipo[1],
+                    'cie10_id' => $this->cie10,
+                    'estado' => '1',
                 ]);
-
+    
                 ImagenXConsulta::create([
-                    'consulta_id'=> $this->consulta->id,
-                	'imagen_id'=> $i->id,
-                	'estado'=>'1',
-
+                    'consulta_id' => $this->consulta->id,
+                    'imagen_id' => $imagen->id,
+                    'estado' => '1',
                 ]);
-
             }
-            $this->modalImgOff();
-            $this->dispatch('added');
-
         }
+    
+        $this->modalImgOff();
+        $this->dispatch('added');
     }
+    
 
 
 

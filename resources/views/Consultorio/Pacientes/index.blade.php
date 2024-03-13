@@ -1,22 +1,22 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Lista de pacientes')
 
 @section('content_header')
 
 @stop
 
 @section('content')
-
+@livewire('Paciente')
 <div class="row px-3">
     <div class="card-header col-md-6 pt-4 border-0 px-1" style="display:flex;">
         <div class="card-tools" style="width: 80%;">
             <div class="input-group input-group-sm">
-                <input type="text" wire:model.live="query" class="form-control float-right" placeholder="Buscar paciente">
+            <input type="text" wire:model.lazy="query" class="form-control float-right" placeholder="Buscar paciente">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                    </button>
+                <button type="submit" class="btn btn-default">
+            <i class="fas fa-search"></i>
+        </button>
                 </div>
             </div>
         </div>
@@ -25,6 +25,9 @@
         <h2 style="margin: 0;"> <strong> PACIENTES </strong></h2>
     </div>
 </div>
+
+
+
 
 <div class="table-responsive">
     <div class="col-12">
@@ -41,7 +44,6 @@
                 </thead>
                 <tbody>
                     @foreach ($pacientes as $p )
-
                     <tr>
                         <td>{{ $p->personas->apellido . ' ' . $p->personas->nombre }}</td>
                         <td>{{ $p->personas->dni  }}</td>
@@ -66,7 +68,5 @@
         </div>
     </div>
 </div>
-
-
 
 @stop

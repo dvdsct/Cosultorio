@@ -51,7 +51,7 @@
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td> <h5> <strong> <span style="display: flex; justify-content: center; align-items: center;">{{count($consulta->recetas) }} Medicametos</span> </strong> </h5> </td>
+                                            <td> <h5> <strong> <span style="display: flex; justify-content: center; align-items: center;">{{count($consulta->recetas?? 0) }} Medicametos</span> </strong> </h5> </td>
                                         </tr>
 
                                         <tr>

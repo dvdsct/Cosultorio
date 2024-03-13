@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Cie10;
+use App\Models\Consulta as ModelsConsulta;
 use App\Models\Receta;
 use App\Models\RecetaXConsulta;
 use Livewire\Component;
@@ -10,6 +11,7 @@ use App\Models\Vademecum;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\Consulta;
 
 
 class Recetar extends Component
@@ -29,7 +31,10 @@ class Recetar extends Component
     public $remedio;
     public $indicacion;
     public $consulta;
-    public $cie10;
+    public $cie10 = '1';
+
+    public $cantidadMedicamentos;
+
 
     public function mount($consulta)
     {
@@ -76,7 +81,6 @@ class Recetar extends Component
 
     public function recetar()
     {
-        // dd($this->remedio);
 
         $c10 = $this->cie10->first()->id;
         $rec =  Receta::create([
@@ -103,12 +107,12 @@ class Recetar extends Component
 
 
 
-    public function guardarReceta()
+    public function guardarReceta($id)
     {
-
         $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
         $this->closeModal();
     }
+    
 
 
 
@@ -116,7 +120,6 @@ class Recetar extends Component
     public function render()
     {
         $this->recetados = $this->consulta->recetas;
-        // dd($this->recetados);
 
         return view('livewire.recetar', [
             'vademecum' => Vademecum::where('droga', 'like', '%' . $this->query . '%')

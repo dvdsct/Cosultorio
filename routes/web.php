@@ -6,7 +6,6 @@ use App\Http\Controllers\ConsultasController;
 use App\Http\Controllers\TurnosController;
 use App\Http\Controllers\PapsController;
 use App\Http\Controllers\ColposcopiaController;
-use App\Http\Controllers\PacienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,8 +36,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
         Route::resource('consulta', ConsultasController::class);
         Route::resource('paps', PapsController::class);
         Route::resource('colpos', ColposcopiaController::class);
-        Route::resource('pacientes', PacienteController::class);
-        Route::get('paciente/{id}/{tipo}', 'App\Http\Controllers\PacienteController@otro')->name('paciente.show');
 
 
 

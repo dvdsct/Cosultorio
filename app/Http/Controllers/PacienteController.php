@@ -5,10 +5,40 @@ namespace App\Http\Controllers;
 use App\Models\Colposcopia;
 use App\Models\Consulta;
 use App\Models\Pap;
+use App\Models\Persona;
 use App\Models\Perfil;
 use Illuminate\Http\Request;
+use Livewire\WithPagination;
+use Livewire\Component;
+
+
 
 use function PHPUnit\Framework\returnSelf;
+
+class Paciente extends Component
+{
+    use WithPagination;
+
+    public $query = '';
+
+    public function search()
+    {
+        $this->resetPage();
+    }
+
+    public function render()
+    {
+        $pacientes = Persona::where('nombre', 'like', '%' . $this->query . '%')
+            ->orWhere('apellido', 'like', '%' . $this->query . '%')
+            ->with(['perfil', 'personas.telefonos', 'personas.correos'])
+            ->paginate(10);
+
+        return view('Consultorio.Pacientes.index.blade', [
+            'pacientes' => $pacientes
+        ]);
+    }
+}
+
 
 class PacienteController extends Controller
 {

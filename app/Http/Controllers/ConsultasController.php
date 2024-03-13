@@ -11,11 +11,11 @@ class ConsultasController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   $consultas = Consulta::all();
-       return view('Consultorio.Consulta.index',[
-        'consultas' => $consultas
-       ]);
-
+    {
+        $consultas = Consulta::all();
+        return view('Consultorio.Consulta.index', [
+            'consultas' => $consultas
+        ]);
     }
 
     /**
@@ -41,27 +41,33 @@ class ConsultasController extends Controller
     {
         $consulta = Consulta::find($id);
 
-        if($consulta->estado == '1'){
+        if ($consulta->estado == '1') {
             $consulta->update([
                 'estado' => '2'
             ]);
-
-            $turno = $consulta->turnos;
+        }
+/*             $turno = $consulta->turnos;
             $turno->update([
                 'estado' => '2'
             ]);
+        } */
+
+
+
+        $turno = $consulta->turnos;
+
+        if ($turno) {
+            $turno->update(['estado' => '2']);
         }
 
 
-        return view('Consultorio.Consulta.show',[
+
+        return view('Consultorio.Consulta.show', [
             'consulta' => $consulta
         ]);
-
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         //

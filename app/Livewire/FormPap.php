@@ -23,7 +23,7 @@ class FormPap extends Component
     public $v_fum = '';
 
     public $check_vph;
-    public $resultado_vph ='0';
+    public $resultado_vph = '0';
     public $v_test = 'disabled';
 
     public $v_pp = 'disabled';
@@ -53,10 +53,10 @@ class FormPap extends Component
     public $trat_rad;
     public $quimio;
 
-  public function mount($consulta)
-  {
-    $this->pap = $consulta;
-  }
+    public function mount($consulta)
+    {
+        $this->pap = $consulta;
+    }
 
     /* Metodo para habilitar y desabilitar Cirugias precias */
     public function cir_previas()
@@ -65,9 +65,7 @@ class FormPap extends Component
             $this->v_cp = '';
         } else {
             $this->v_cp = 'disabled';
-            $this->reset('causales','ciru_prev');
-
-            
+            $this->reset('causales', 'ciru_prev');
         }
     }
 
@@ -101,14 +99,13 @@ class FormPap extends Component
             $this->switch = 'custom-switch-off-danger custom-switch-on-success';
             $this->check_tvph = '';
             /* $this->resultado_vph = ''; ignorar */
-
         } else {
             $this->v_test = 'disabled';
             $this->fec_tam = '';
             $this->switch = '';
             $this->check_tvph = 'disabled';
-            $this->resultado_vph= null;
-           /*  $this->resultado_vph = 'disabled';  ignorar*/
+            $this->resultado_vph = null;
+            /*  $this->resultado_vph = 'disabled';  ignorar*/
         }
     }
 
@@ -130,7 +127,7 @@ class FormPap extends Component
         $tipoMuestra = in_array($this->tipo_muestra, ['-Seleccionar-', '1']) ? null : $this->tipo_muestra;
         $metodoMuestra = in_array($this->toma_muestra, ['-Seleccionar-', '1']) ? null : $this->toma_muestra;
         $metodoAnti = in_array($this->metodo_anti, ['-Seleccionar-', '1']) ? null : $this->metodo_anti;
-    
+
         $this->pap->update([
             'tipo_muestra' => $tipoMuestra,
             'met_toma_mue' => $metodoMuestra,
@@ -148,10 +145,13 @@ class FormPap extends Component
             'quimio' => $this->quimio,
             'estado' => '3'
         ]);
+        // Emitir el evento 'papSaved' con el turno_id
+        $this->dispatch('papSaved', $this->pap->turno_id);
+
+        // Redireccionar hacia formColp
+       /*  $this->redirect(route('Form-colp', ['consulta' => $this->pap->turno_id])); */
+        return redirect()->route('show', ['consulta' => $this->pap->turno_id]);
     }
-    
-
-
 
     public function render()
     {
@@ -161,7 +161,6 @@ class FormPap extends Component
         $this->metodos_antis = MetodoAnticonceptivo::all();
         $this->cirus_prevs = CirujiasPrevias::all();
         $this->pap_prevs = PapPrevio::all();
-
 
         return view('livewire.form-pap');
     }
