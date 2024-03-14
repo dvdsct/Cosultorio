@@ -274,8 +274,15 @@
             <label>Seguimiento</label>
             <textarea class="form-control" wire:model='seguimiento' rows="4"></textarea>
         </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Guardar</button>
+
+
+        <div class="card-footer d-flex justify-content-between">
+            <button type="button" class="btn btn-default">
+                <i class="fas fa-arrow-left"></i> Volver
+            </button>
+            <button type="submit" class="btn btn-primary ml-auto">Guardar</button>
         </div>
+
+
     </form>
 </div>

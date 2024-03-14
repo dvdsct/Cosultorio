@@ -41,7 +41,7 @@ class OsSeeder extends Seeder
             'obra_social_id'=>'1',
             'plan'=>'3',
             'nro_afil'=>'509683217456',
-            'descripcion'=>'1',
+           
             'estado'=>'1'
 
         ]);
@@ -52,7 +52,7 @@ class OsSeeder extends Seeder
             'obra_social_id'=>'2',
             'plan'=>'3',
             'nro_afil'=>'874230561982',
-            'descripcion'=>'1',
+           
             'estado'=>'1'
 
         ]);
@@ -63,7 +63,7 @@ class OsSeeder extends Seeder
             'obra_social_id'=>'3',
             'plan'=>'3',
             'nro_afil'=>'362198745030',
-            'descripcion'=>'1',
+           
             'estado'=>'1'
 
         ]);
@@ -74,7 +74,7 @@ class OsSeeder extends Seeder
             'obra_social_id'=>'4',
             'plan'=>'3',
             'nro_afil'=>'695174802831',
-            'descripcion'=>'1',
+           
             'estado'=>'1'
 
         ]);

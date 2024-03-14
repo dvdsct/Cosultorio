@@ -9,7 +9,7 @@ class ObraSocialXPerfil extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['perfil_id', 'obra_social_id', 'plan', 'nro_afil', 'descripcion', 'estado'];
+    protected $fillable = ['perfil_id', 'obra_social_id', 'plan', 'nro_afil', 'estado'];
 
     protected $table = 'obra_social_x_perfils'; // Nombre de la tabla en la base de datos
 

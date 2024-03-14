@@ -13,7 +13,6 @@
         </div>
 
         <div class="card-body p-0" style="display: block;">
-
             <div class="row">
                 <div class="col-2 d-flex flex-column pl-4 py-2">
                     <h6><strong>DNI: </strong>{{ $consulta->perfiles->personas->dni }}</h6>
@@ -58,9 +57,8 @@
     </div>
 
     <!-- MODAL PARA COMPLETAR DATOS DE PACIENTE  -->
-
     <div class="modal fade" id="modal-datos-pac" style="display: none;" aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog modal-l">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-info">
                     <h4 class="modal-title">Completar datos de paciente</h4>
@@ -72,73 +70,84 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Apellido</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" placeholder="Apellido" wire:model="apellido">
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nombre</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre" wire:model='nombre'>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="exampleInputEmail1" placeholder="">
+                            <div class="form-group">
+                                <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                                <input type="date" class="form-control" id="fecha_nacimiento" placeholder="Fecha de nacimiento" wire:model='nacimiento'>
                             </div>
                         </div>
                         <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">DNI</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Telefono</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                            <div class="form-group">
+                                <label for="dni">DNI</label>
+                                <input type="text" class="form-control" id="dni" placeholder="DNI" wire:model='dni'>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Obra Social</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email" value="{{ $consulta->perfiles->personas->correos->first()->direccion ?? '' }}">
                             </div>
                         </div>
                         <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">N° de Afiliado</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="text" class="form-control" id="telefono" placeholder="Teléfono" value="{{ optional($consulta->perfiles->personas->telefonos)->first()->numero ?? '' }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="obra_social">Obra Social</label>
+                                <select class="form-control" id="obra_soc" wire:model='os'>
+                                    <option value="{{ $os->id }}">{{ $os->descripcion }}</option>
+
+                                    @foreach ($oss as $o)
+                                    <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="plan">Plan</label>
+                                <input type="text" class="form-control" id="plan" placeholder="Plan" wire:model='plan'>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="num_afiliado">N° de Afiliado</label>
+                                <input type="text" class="form-control" id="num_afiliado" placeholder="N° de Afiliado" wire:model='nroAfil'>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary" wire:click="guardarDatos">Guardar</button>
+
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 </div>

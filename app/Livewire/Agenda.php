@@ -199,8 +199,6 @@ class Agenda extends Component
             if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->first()) {
             } else {
 
-
-
                 //  Verificacion de la existencia del paciente
                 if (count($this->personas) >= 1) {
 

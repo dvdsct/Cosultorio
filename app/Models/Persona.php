@@ -10,6 +10,14 @@ class Persona extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'dni',
+        'fecha_de_nacimiento', // Asegúrate de incluir este campo
+        // Agrega otros campos que quieras permitir en asignación masiva
+    ];
+
     protected $dates = ['fecha_de_nacimiento'];
 
     public function perfils()
