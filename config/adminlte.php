@@ -326,6 +326,11 @@ return [
             'url'         => 'colpos',
             'icon'        => 'far fas fa-eye',
         ],
+        [
+            'text'        => 'Recetas',
+            'url'         => 'receta',
+            'icon'        => 'far fas fa-eye',
+        ],
 
     ],
 

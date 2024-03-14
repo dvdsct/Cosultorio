@@ -67,7 +67,7 @@
                                     @if ($turno->motivo == '1')
                                     <a type="button" href="{{ url('paps') }}/{{ $turno->paps->id }}" class="btn btn-info btn-sm">Atender</a>
                                     @elseif ($turno->motivo == '2')
-                                    <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}" class="btn btn-info btn-sm">Atender</a>
+                                    <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id}}" class="btn btn-info btn-sm">Atender</a>
                                     @endif
                                 </div>
 

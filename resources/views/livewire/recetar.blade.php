@@ -1,17 +1,5 @@
 <div>
-    @if ($modal)
-    <div class="modal fade show" id="modal-receta" aria-labelledby="modal-default" style="display:block" aria-hidden="true">
 
-
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h4 class="modal-title"> <strong> Nueva Receta </strong></h4>
-                    <button type="button" class="close" wire:click='closeModal'>
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
                     <!-- Buscador de Vademecum-->
                     <div class="card-header row">
                         <div class="card-header col-md-6 border-bottom-0" style="height: 40px;">
@@ -109,19 +97,6 @@
                     </div>
                 </div>
 
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" wire:click='closeModal'>Cancelar</button>
-                    <button type="button" class="btn btn-secondary" wire:click="guardarReceta">Aceptar</button>
-                </div>
-            </div>
 
-
-
-
-        </div>
-
-    </div>
-
-    @endif
 
 </div>

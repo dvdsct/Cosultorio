@@ -11,14 +11,16 @@ use App\Models\Consulta;
 
 use App\Models\Receta;
 use App\Models\RecetaXConsulta;
-
-
+use Livewire\Attributes\Locked;
 
 class EnfermedadActual extends Component
 {
     public $ea;
     public $obs;
     public $laboratorios;
+
+    #[Locked]
+    public $modal = false;
 
     public $consulta;
     public $todas;
@@ -78,6 +80,21 @@ class EnfermedadActual extends Component
 
         $this->consulta = $consulta;
 
+    }
+
+    #[On('modalOn')]
+    public function openModal()
+    {
+        // dd('aqui');
+
+        $this->modal = true;
+    }
+
+    #[On('modalOff')]
+    public function closeModal()
+    {
+
+        $this->modal = false;
     }
 
     /* Funcion para seleccionar TODAS las practicas */
@@ -1012,7 +1029,7 @@ class EnfermedadActual extends Component
     {
         if($this->consulta->estado == '3'){
 
-            
+
             $this->total_lab=  count($this->consulta->laboratorios);
 
         }else{

@@ -8,95 +8,110 @@
             <!-- Contenedor de Enfermedad Actual -->
             <div class="card-body">
 
-                
-                    <div class="row">
-                        <div class="col-7">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title"><strong>Diagnóstico</strong></h3>
-                                </div>
-                                <div class="card-body p-2">
-                                    <textarea class="form-control" style="height: 100px;" placeholder="" wire:model='ea'></textarea>
-                                </div>
-                            </div>
 
-                            <div class="card mt-3">
-                                <div class="card-header">
-                                    <h3 class="card-title"><strong>Observaciones</strong></h3>
-                                </div>
-                                <div class="card-body p-2">
-                                    <textarea class="form-control" style="height: 100px;" placeholder="" wire:model='obs' wire:keydown.enter='setEa'></textarea>
-                                </div>
+                <div class="row">
+                    <div class="col-7">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"><strong>Diagnóstico</strong></h3>
+                            </div>
+                            <div class="card-body p-2">
+                                <textarea class="form-control" style="height: 100px;" placeholder="" wire:model='ea'></textarea>
                             </div>
                         </div>
 
-                        <div class="card col-5 ">
+                        <div class="card mt-3">
                             <div class="card-header">
-                                <h3 class="card-title"> <strong> Pedidos </strong> </h3>
+                                <h3 class="card-title"><strong>Observaciones</strong></h3>
                             </div>
-
-                            <div class="card-body p-0">
-                                <table class="table">
-                                    <tbody>
-
-                                        <tr>
-                                            <td>
-                                                <div class="btn-group" style="width: 100%;">
-                                                    <button type="button"
-                                                        class="btn btn-danger btn-block rounded-left border-right mr-1"
-                                                        style="width: 100%;" wire:click='dispatch("modalOn")'>
-                                                        <strong> Receta </strong>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-flat rounded-right" wire:click='delRecetas'>
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            <td> <h5> <strong> <span style="display: flex; justify-content: center; align-items: center;">{{count($consulta->recetas?? 0) }} Medicametos</span> </strong> </h5> </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="btn-group" style="width: 100%;">
-                                                    <button type="button"
-                                                        class="btn btn-warning btn-block rounded-left mr-1"
-                                                        style="width: 100%;" data-toggle="modal"
-                                                        data-target="#modal-laboratorio">
-                                                        <strong> Laboratorio </strong>
-                                                    </button>
-                                                    <button type="button" class="btn btn-warning btn-flat rounded-right">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            <td><h5> <strong> <span class="" style="display: flex; justify-content: center; align-items: center;">{{ $total_lab }} Estudios</span>  </strong> </h5></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="btn-group" style="width: 100%;">
-                                                    <button type="button"
-                                                        class="btn btn-primary btn-block rounded-left  mr-1"
-                                                        style="width: 100%;" wire:click='dispatch("modalImgOn")'>
-                                                        <strong> Imagen </strong>
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary btn-flat rounded-right">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            <td><h5> <strong><span class="" style="display: flex; justify-content: center; align-items: center;"> {{count($consulta->imagenes) }} Estudios </span> </strong> </h5> </td>
-                                        </tr>
-                                    </tbody>
-
-                                </table>
-                                @if($consulta->estado != '3')
-                                <button type="button" class="btn btn-block btn-success mt-2" style="height: 80px;" wire:click='finConsulta()'><strong> FINALIZAR CONSULTA </strong></button>
-                                @endif
+                            <div class="card-body p-2">
+                                <textarea class="form-control" style="height: 100px;" placeholder="" wire:model='obs' wire:keydown.enter='setEa'></textarea>
                             </div>
+                        </div>
+                    </div>
 
+                    <div class="card col-5 ">
+                        <div class="card-header">
+                            <h3 class="card-title"> <strong> Pedidos </strong> </h3>
+                        </div>
+
+                        <div class="card-body p-0">
+                            <table class="table">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <div class="btn-group" style="width: 100%;">
+                                                <button type="button"
+                                                    class="btn btn-danger btn-block rounded-left border-right mr-1"
+                                                    style="width: 100%;" wire:click='dispatch("modalOn")'>
+                                                    <strong> Receta </strong>
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-flat rounded-right"
+                                                    wire:click='delRecetas'>
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5> <strong> <span
+                                                        style="display: flex; justify-content: center; align-items: center;">{{ count($consulta->recetas ?? 0) }}
+                                                        Medicametos</span> </strong> </h5>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="btn-group" style="width: 100%;">
+                                                <button type="button"
+                                                    class="btn btn-warning btn-block rounded-left mr-1"
+                                                    style="width: 100%;" data-toggle="modal"
+                                                    data-target="#modal-laboratorio">
+                                                    <strong> Laboratorio </strong>
+                                                </button>
+                                                <button type="button" class="btn btn-warning btn-flat rounded-right">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5> <strong> <span class=""
+                                                        style="display: flex; justify-content: center; align-items: center;">{{ $total_lab }}
+                                                        Estudios</span> </strong> </h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="btn-group" style="width: 100%;">
+                                                <button type="button"
+                                                    class="btn btn-primary btn-block rounded-left  mr-1"
+                                                    style="width: 100%;" wire:click='dispatch("modalImgOn")'>
+                                                    <strong> Imagen </strong>
+                                                </button>
+                                                <button type="button" class="btn btn-primary btn-flat rounded-right">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5> <strong><span class=""
+                                                        style="display: flex; justify-content: center; align-items: center;">
+                                                        {{ count($consulta->imagenes) }} Estudios </span> </strong>
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            @if ($consulta->estado != '3')
+                                <button type="button" class="btn btn-block btn-success mt-2" style="height: 80px;"
+                                    wire:click='finConsulta()'><strong> FINALIZAR CONSULTA </strong></button>
+                            @endif
                         </div>
 
                     </div>
+
+                </div>
                 </form>
             </div>
 
@@ -105,7 +120,36 @@
         </div>
     </div>
 
-    @livewire('recetar', ['consulta' => $consulta])
+
+    @if ($modal)
+        <div class="modal fade show" id="modal-receta" aria-labelledby="modal-default" style="display:block"
+            aria-hidden="true">
+
+
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h4 class="modal-title"> <strong> Nueva Receta </strong></h4>
+                        <button type="button" class="close" wire:click='closeModal'>
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        @livewire('recetar', ['consulta' => $consulta])
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" wire:click='closeModal'>Cancelar</button>
+                            <button type="button" class="btn btn-secondary" wire:click="guardarReceta">Aceptar</button>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+    @endif
     @livewire('add-imagen', ['consulta' => $consulta])
 
 
@@ -130,12 +174,13 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="col-md-12">
-                                    
+
                                     <div class="form-check">
                                         <input type="checkbox" id="general" wire:model='e_gral'
                                             wire:click="checkCat('general')" style="transform: scale(1.5);">
                                         <label class="pl-2" for="general" style="cursor: pointer;">
-                                            <strong>Evaluacion General y Hematológica </strong></label>
+                                            <strong>Evaluacion General y Hematológica
+                                            </strong></label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" id="hemo" wire:model='hemo'
@@ -177,7 +222,8 @@
                                         <input type="checkbox" id="hb_glico" wire:model='hb_glico'
                                             wire:click='checkItem("general","hb_glico")'>
                                         <label class="form-check-label" for="hb_glico"
-                                            style="cursor: pointer;">Hemoglobina glicosilada</label>
+                                            style="cursor: pointer;">Hemoglobina
+                                            glicosilada</label>
                                     </div>
 
                                     <div class="form-check">
@@ -195,7 +241,8 @@
                                         <input type="checkbox" id="renal" wire:model='e_renal'
                                             wire:click='checkCat("renal")' style="transform: scale(1.5);">
                                         <label class="pl-2" for="renal" style="cursor: pointer;"><strong>
-                                                Evaluacion de la funcion renal y Urinaria </strong></label>
+                                                Evaluacion de la funcion renal y Urinaria
+                                            </strong></label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" id="orina" wire:model='orina'
@@ -318,7 +365,8 @@
                                     <div class="form-check">
                                         <input type="checkbox" id="sal" wire:model='e_salud'
                                             wire:click='checkCat("salud")' style="transform: scale(1.5);">
-                                        <label class="pl-2"><strong> Evaluacion de la salud general y serología
+                                        <label class="pl-2"><strong> Evaluacion de la salud
+                                                general y serología
                                             </strong></label>
                                     </div>
 
@@ -355,7 +403,8 @@
                                         <input type="checkbox" id="lysteria" wire:model='lysteria'
                                             wire:click='checkItem("salud","lysteria")'>
                                         <label class="form-check-label" for="lysteria"
-                                            style="cursor: pointer;">Lysteria monocitogenes Ag</label>
+                                            style="cursor: pointer;">Lysteria monocitogenes
+                                            Ag</label>
                                     </div>
 
                                     <div class="form-check">
@@ -371,7 +420,8 @@
                                     <div class="form-check">
                                         <input type="checkbox" id="general" wire:model='e_embarazo'
                                             wire:click='checkCat("embarazo")' style="transform: scale(1.5);">
-                                        <label class="pl-2"><strong> Evaluacion de embarazo </strong></label>
+                                        <label class="pl-2"><strong> Evaluacion de embarazo
+                                            </strong></label>
                                     </div>
                                     {{-- Items Embarazo --}}
 

@@ -146,6 +146,7 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ route('paps.show',$pap->id) }}"></a>
         </div>
     </form>
 </div>
