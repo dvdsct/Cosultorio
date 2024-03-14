@@ -182,8 +182,8 @@ class AddImagen extends Component
 
 
     public function save_img()
-    {   
-    
+    {
+
         $this->tipos = [
 
             [$this->eco_gin , '1'],
@@ -205,16 +205,16 @@ class AddImagen extends Component
                 	'estado' => '1',
 
                 ]);
-                
+
                 ImagenXConsulta::firstOrCreate([
                     'consulta_id'=> $this->consulta->id,
                 	'imagen_id'=> $i->id,
                 	'estado'=>'1',
-                    
+
                 ]);
-                
+
             }
-            
+
         }
         $this->modalImgOff();
         $this->dispatch('added');
@@ -228,4 +228,13 @@ class AddImagen extends Component
 
         return view('livewire.add-imagen');
     }
+
+
+
+
+
+
+
+
+
 }

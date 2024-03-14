@@ -30,7 +30,7 @@ class TurnoSeeder extends Seeder
 
         foreach($ls as $l){
             $ft = $date->addSeconds(random_int(0, 36000));
-            $x = random_int(1, 3);
+            $x = random_int(1, 2);
 
             $t = Turno::create([
 

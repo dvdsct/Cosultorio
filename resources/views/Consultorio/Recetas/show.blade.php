@@ -8,13 +8,13 @@
 
 @livewire('datos-per-paciente',['consulta' => $consulta])
 
-    @livewire('form-colp',['consulta' => $consulta])
+    @livewire('recetar',['consulta' => $consulta])
 
 @stop
 
 @section('css')
 
-    
+
 @stop
 
 @section('js')
