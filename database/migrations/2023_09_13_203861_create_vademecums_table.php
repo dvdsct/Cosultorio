@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('vademecums', function (Blueprint $table) {
             $table->id();
-            $table->string('presentacion');
+            $table->string('nombre');
             $table->string('droga');
-            $table->string('porcentaje_dto');
+            $table->string('cantidad');
+            $table->string('presentacion');
+            $table->string('unico');
+            $table->string('con_descuento');
             $table->timestamps();
         });
     }
