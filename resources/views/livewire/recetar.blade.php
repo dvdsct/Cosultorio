@@ -33,12 +33,14 @@
                                     <th>Presentacion</th>
                                     <th>Droga</th>
                                     <th></th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
                                     @foreach ($vademecum as $v)
                                     <tr>
-                                        <td class="p-0"> <span style="font-size: 12px;">{{ $v->presentacion }} </span></td>
+                                        <td class="p-0"> <span style="font-size: 12px;">{{ $v->nombre }} </span></td>
                                         <td class="p-0"> <span style="font-size: 12px;"> {{ $v->droga }} </span> </td>
+                                        <td class="p-0"> <span style="font-size: 12px;"> {{ $v->cantidad }} </span> </td>
                                         <td class="p-0" style="display: flex; justify-content:flex-end;"><button class="btn btn-info btn-sm" wire:click='indicacionar({{ $v->id }})'><i class="bi bi-journal-check"></i> Recetar</button></td>
                                     </tr>
                                     @endforeach

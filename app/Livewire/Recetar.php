@@ -8,6 +8,7 @@ use App\Models\Receta;
 use App\Models\RecetaXConsulta;
 use Livewire\Component;
 use App\Models\Vademecum;
+use App\Models\VademecumDetalle;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
@@ -33,7 +34,7 @@ class Recetar extends Component
     public $indicacion;
     public $consulta;
     public $cie10s;
-    
+
 
     #[Validate('required', message: 'elegí uno')]
     public $cie10;
@@ -83,14 +84,14 @@ class Recetar extends Component
 
     public function recetar()
     {
-        $this->validate(); 
+        $this->validate();
 
 
 
 
 
 
-        
+
         $rec =  Receta::create([
             'vademecum_id' => $this->remedio->id,
             'cie10_id' => $this->cie10,
@@ -120,7 +121,7 @@ class Recetar extends Component
         $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
         $this->closeModal();
     }
-    
+
 
 
 
@@ -136,8 +137,11 @@ class Recetar extends Component
         }
 
         return view('livewire.recetar', [
-            'vademecum' => Vademecum::where('droga', 'like', '%' . $this->query . '%')
-                ->orWhere('presentacion', 'like', '%' . $this->query . '%')
+            'vademecum' => VademecumDetalle::select('vademecum_detalles.*', 'vademecums.*', 'vademecums.droga', 'vademecums.presentacion')
+            ->leftJoin('vademecums', 'vademecum_detalles.vademecum_id', '=', 'vademecums.id')
+            ->where('vademecums.droga', 'LIKE',  '%'. $this->query .'%')
+            ->orWhere('vademecums.presentacion', 'LIKE', '%'. $this->query .'%' )
+            ->orWhere('vademecums.nombre', 'LIKE', '%'. $this->query .'%' )
                 ->paginate(10),
             'recetados' => $this->consulta->recetas,
             'cie10' => $this->cie10
