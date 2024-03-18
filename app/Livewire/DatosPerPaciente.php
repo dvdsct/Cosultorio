@@ -27,29 +27,28 @@ class DatosPerPaciente extends Component
         $this->apellido =  $this->consulta->perfiles->personas->apellido;
         $this->nacimiento = $this->consulta->perfiles->personas->fecha_de_nacimiento;
         $this->dni = $this->consulta->perfiles->personas->dni;
-        $this->email = $this->consulta->perfiles->personas->correos->first()->direccion ?? '' ;
-        $this->os = $this->consulta->perfiles->obrasociales->first();
+        $this->email = $this->consulta->perfiles->personas->correos->first()->direccion ?? '';
+        $this->os = $this->consulta->perfiles->obrasociales->first(); /*
         $this->oss = ObraSocial::all();
-        $this->plan = $this->consulta->perfiles->obrasociales->first()->plan;
+        $this->plan = $this->consulta->perfiles->obrasociales->first()->plan; */
     }
 
     public function guardarDatos()
     {
+        $this->consulta->perfiles->personas->update([
+            'nombre' => $this->nombre,
+            'apellido' => $this->apellido,
+            'fecha_de_nacimiento' => $this->nacimiento,
+            'dni' => $this->dni,
+        ]);
 
-        // $this->consulta->perfiles->personas->update([
-        //     'nombre' => $this->nombre,
-        //     'apellido' => $this->apellido,
-        //     'fecha_de_nacimiento' => $this->nacimiento,
-        //     'dni' => $this->dni,
-        // ]);
-
-        dd('hhgit add');
+        
     }
+
 
     public function render()
     {
         $this->oss = ObraSocial::all();
-
         return view('livewire.datos-per-paciente');
     }
 }

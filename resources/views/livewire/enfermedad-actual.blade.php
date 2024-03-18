@@ -47,6 +47,10 @@
                                                     style="width: 100%;" wire:click='dispatch("modalOn")'>
                                                     <strong> Receta </strong>
                                                 </button>
+                                                <button type="button" class="btn btn-danger btn-flat rounded-right mr-1"
+                                                    wire:click=''>
+                                                    <i class="fas fa-file-upload"></i>
+                                                </button>
                                                 <button type="button" class="btn btn-danger btn-flat rounded-right"
                                                     wire:click='delRecetas'>
                                                     <i class="fas fa-trash"></i>
@@ -69,6 +73,10 @@
                                                     data-target="#modal-laboratorio">
                                                     <strong> Laboratorio </strong>
                                                 </button>
+                                                <button type="button" class="btn btn-warning btn-flat rounded-right mr-1"
+                                                    wire:click=''>
+                                                    <i class="fas fa-file-upload"></i>
+                                                </button>
                                                 <button type="button" class="btn btn-warning btn-flat rounded-right">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
@@ -87,6 +95,10 @@
                                                     class="btn btn-primary btn-block rounded-left  mr-1"
                                                     style="width: 100%;" wire:click='dispatch("modalImgOn")'>
                                                     <strong> Imagen </strong>
+                                                </button>
+                                                <button type="button" class="btn btn-primary btn-flat rounded-right mr-1"
+                                                    wire:click=''>
+                                                    <i class="fas fa-file-upload"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-primary btn-flat rounded-right">
                                                     <i class="fas fa-trash"></i>
