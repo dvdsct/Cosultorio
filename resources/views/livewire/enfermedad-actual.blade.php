@@ -74,7 +74,7 @@
                                                     <strong> Laboratorio </strong>
                                                 </button>
                                                 <button type="button" class="btn btn-warning btn-flat rounded-right mr-1"
-                                                    wire:click=''>
+                                                    wire:click="modalEditLab">
                                                     <i class="fas fa-file-upload"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-warning btn-flat rounded-right">
@@ -163,6 +163,7 @@
             </div>
     @endif
     @livewire('add-imagen', ['consulta' => $consulta])
+    @livewire('carga-estudios', ['consulta' => $consulta])
 
 
     {{-- Modal Laboratorio --}}

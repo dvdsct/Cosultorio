@@ -55,7 +55,7 @@ class TipoLaboratorioSeeder extends Seeder
             TipoLaboratorio::create([
 
                 'estado' => '1',
-                'tipo_laboratorio' => $tipo
+                'descripcion' => $tipo
             ]);
         };
     }

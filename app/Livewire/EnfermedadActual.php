@@ -73,23 +73,34 @@ class EnfermedadActual extends Component
     public $ureaplasma;
     public $lysteria;
     public $total_lab;
+    public $estPedidos;
+    public $oldConsulta;
     public $recetados = [];
 
     public function mount($consulta)
     {
 
         $this->consulta = $consulta;
+  
+
+
 
     }
 
-    #[On('modalOn')]
-    public function openModal()
-    {
-        // dd('aqui');
 
-        $this->modal = true;
-    }
+        #[On('modalOn')]
+        public function openModal()
+        {
+            // dd('aqui');
 
+            $this->modal = true;
+        }
+
+        public function modalEditLab()
+        {
+            $this->dispatch('editLab')->to(CargaEstudios::class);
+
+        }
     #[On('modalOff')]
     public function closeModal()
     {
@@ -386,6 +397,8 @@ class EnfermedadActual extends Component
 
     public function add_lab()
     {
+
+
         // Categoria General
         if ($this->e_gral) {
 
@@ -940,15 +953,26 @@ class EnfermedadActual extends Component
             $this->add_lab();
             // $this->setEa();
 
-            $this->consulta->update([
-                'estado' => '3',
-                'observaciones' =>  $this->obs,
-                'ea' =>  $this->ea
-            ]);
+            if (count($this->consulta->laboratorios) != '0') {
+
+                $this->consulta->update([
+                    'estado' => '4',
+                    'observaciones' =>  $this->obs,
+                    'ea' =>  $this->ea
+                ]);
+            } else {
+
+
+                $this->consulta->update([
+                    'estado' => '3',
+                    'observaciones' =>  $this->obs,
+                    'ea' =>  $this->ea
+                ]);
+            }
         }
 
         return redirect('turnos');
-     }
+    }
 
 
 
@@ -1005,7 +1029,8 @@ class EnfermedadActual extends Component
 
 
 
-    public function oldConsulta(){
+    public function oldConsulta()
+    {
 
 
         $this->ea = $this->consulta->ea;
@@ -1013,10 +1038,11 @@ class EnfermedadActual extends Component
         $this->total_lab = count(LaboratorioXConsulta::where('consulta_id', $this->consulta->id)->get());
     }
 
-    public function delRecetas(){
+    public function delRecetas()
+    {
 
 
-        foreach($this->consulta->recetas as $r){
+        foreach ($this->consulta->recetas as $r) {
 
             $r->delete();
             $this->dispatch('added');
@@ -1027,15 +1053,15 @@ class EnfermedadActual extends Component
     #[On('added')]
     public function render()
     {
-        if($this->consulta->estado == '3'){
+        if ($this->consulta->estado == '3') {
 
 
-            $this->total_lab=  count($this->consulta->laboratorios);
+            $this->total_lab =  count($this->consulta->laboratorios);
+        } else {
 
-        }else{
-
-            $this->total_lab =     $this->l_gral        + $this->l_renal        + $this->l_gine        + $this->l_salud        + $this->l_embarazo ;
+            $this->total_lab =     $this->l_gral        + $this->l_renal        + $this->l_gine        + $this->l_salud        + $this->l_embarazo;
         }
+
 
 
 
