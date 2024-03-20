@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class TipoLaboratorio extends Model
 {
     use HasFactory;
+
+
+
+    public function laboratorios(){
+
+        return $this->hasMany(TipoLaboratorio::class);
+    }
 }
