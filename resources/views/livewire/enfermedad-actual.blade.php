@@ -126,9 +126,6 @@
                 </div>
                 </form>
             </div>
-
-
-
         </div>
     </div>
 
@@ -136,7 +133,6 @@
     @if ($modal)
         <div class="modal fade show" id="modal-receta" aria-labelledby="modal-default" style="display:block"
             aria-hidden="true">
-
 
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
@@ -147,17 +143,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
                         @livewire('recetar', ['consulta' => $consulta])
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" wire:click='closeModal'>Cancelar</button>
                             <button type="button" class="btn btn-secondary" wire:click="guardarReceta">Aceptar</button>
                         </div>
                     </div>
-
-
-
-
                 </div>
 
             </div>

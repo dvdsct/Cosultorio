@@ -1,17 +1,21 @@
 @extends('adminlte::page')
+ 
 
-@section('title', 'Listado de Consultas')
-
-@section('content_header')
-
-@stop
-
+<!--
 @section('content')
 
 
 @livewire('recetar',['consulta' => $consulta])
 
+@stop -->
 
 
+@section('title', 'Generar nueva receta')
+
+@section('content_header')
 
 @stop
+
+@livewire('get_client')
+
+@endsection

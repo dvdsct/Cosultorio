@@ -219,11 +219,6 @@ class AddLaboratorio extends Component
         }
     }
 
-
-
-
-
-
     /* Funcion para seleccionar Evaluacion General y Hematologica */
     public function selectGeneral()
     {
@@ -889,15 +884,8 @@ class AddLaboratorio extends Component
             }
         }
 
-
         $this->dispatch('added')->to(EnfermedadActual::class);
     }
-
-
-
-
-
-
 
     public function render()
     {

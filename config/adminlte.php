@@ -111,7 +111,7 @@ return [
         'img' => [
             'path' => null,
             'alt' => null,
-            'effect' => 'animation__shake',
+            'effect' => 'AdminLTELogo',
             'width' => 60,
             'height' => 60,
         ],
@@ -329,7 +329,7 @@ return [
         [
             'text'        => 'Recetas',
             'url'         => 'receta',
-            'icon'        => 'far fas fa-eye',
+            'icon'        => 'fas fa-pills',
         ],
 
     ],

@@ -41,10 +41,8 @@ class DatosPerPaciente extends Component
             'fecha_de_nacimiento' => $this->nacimiento,
             'dni' => $this->dni,
         ]);
-
-        
     }
-
+    
 
     public function render()
     {

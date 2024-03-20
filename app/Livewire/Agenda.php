@@ -46,7 +46,6 @@ class Agenda extends Component
     public $t;
 
 
-
     protected $listeners = ['papSaved' => 'redirectFormColp'];
 
     public function redirectFormColp($turnoId)
@@ -73,7 +72,6 @@ class Agenda extends Component
 
     public function closeModal()
     {
-
         $this->resetValidation(); // Limpiar errores de validación
         $this->modal = false;
         $this->onOff = '';
