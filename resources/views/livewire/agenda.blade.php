@@ -37,6 +37,8 @@
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
+                        
+
                         <tr>
                             <td class="p-0 pl-2">
                                 @if ($turno->fecha_turno !== null)

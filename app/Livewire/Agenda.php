@@ -59,9 +59,6 @@ class Agenda extends Component
         $this->personas;
 
         $this->fecha = Carbon::now()->format('Y-m-d');
-
-        $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
-            ->get();
     }
 
 
@@ -136,17 +133,17 @@ class Agenda extends Component
             'nombre' => 'required_if:persona,null|min:3',
             'apellido' => 'required_if:persona,null|min:3',
         ];
-    
+
         $messages = [
             'nombre.required_if' => 'El nombre es obligatorio.',
             'apellido.required_if' => 'El apellido es obligatorio.',
             'horario.required' => 'El horario es obligatorio.',
             'dni.required_if' => 'El DNI es obligatorio.',
         ];
-    
+
         $this->validate($rules, $messages);
-    
-/*         // Tu lógica para obtener el turno existente
+
+        /*         // Tu lógica para obtener el turno existente
         $existingTurno = Turno::where('fecha_turno', '=', $this->fecha . ' ' . $this->horario)->first();
     
         if ($existingTurno) {
@@ -334,6 +331,12 @@ class Agenda extends Component
     public function render()
     {
         $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
+
+
+            ->where('motivo', '!=', '40')
+
+
+
 
             ->get()
             ->sortBy(function ($turno) {

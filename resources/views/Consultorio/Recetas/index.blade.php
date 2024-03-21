@@ -5,7 +5,7 @@
 @section('content')
 
 
-@livewire('recetar',['consulta' => $consulta])
+@livewire('paciente-receta')
 
 @stop -->
 

@@ -6,7 +6,7 @@
 
 @section('content')
 
-@livewire('datos-per-paciente',['consulta' => $consulta])
+    @livewire('datos-per-paciente',['consulta' => $consulta])
 
     @livewire('recetar',['consulta' => $consulta])
 

@@ -18,11 +18,14 @@ class Consultas extends Component
         if($this->consulta){
             $this->consultas = Consulta::where('perfil_id',$this->consulta->perfil_id)
             ->where('estado', '3')
+
+            
             ->get();
 
         }else{
 
-            $this->consultas = Consulta::all();
+            $this->consultas = Consulta::where('motivo', '!=', '40')
+            ->get();
         }
 
         return view('livewire.consultas');
