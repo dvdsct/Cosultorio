@@ -14,8 +14,11 @@ class RecetaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('Consultorio.Recetas.index');
+    {   
+        $pacientes = Perfil::where('descripcion','paciente  ')->get();
+        return view('Consultorio.Recetas.index',[
+            'pacientes' => $pacientes
+        ]);
     }
 
     /**
@@ -43,7 +46,7 @@ class RecetaController extends Controller
         $turno = Turno::create([
 
             'perfil_id' => $paciente->id,
-            'motivo' => '3',
+            'motivo' => '40',
             'estado' => '3',
             'fecha_turno' => Carbon::now(),
 

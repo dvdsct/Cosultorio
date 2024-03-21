@@ -38,7 +38,7 @@
                                 <tbody>
                                     @foreach ($vademecum as $v)
                                     <tr>
-                                        <td class="p-0"> <span style="font-size: 12px;">{{ $v->nombre }} </span></td>
+                                        <td class="p-0"> <span style="font-size: 12px;">{{ $v->nombre .' '. $v->cantidad}} </span></td>
                                         <td class="p-0"> <span style="font-size: 12px;"> {{ $v->droga }} </span> </td>
                                         <td class="p-0"> <span style="font-size: 12px;"> {{ $v->cantidad }} </span> </td>
                                         <td class="p-0" style="display: flex; justify-content:flex-end;"><button class="btn btn-info btn-sm" wire:click='indicacionar({{ $v->id }})'><i class="bi bi-journal-check"></i> Recetar</button></td>
@@ -56,7 +56,7 @@
                                 <div class="row mb-4">
                                     @if ($remedio != null)
                                     <div class="col-5">
-                                        <label for="">{{ ucfirst($remedio['droga']) }}</label>
+                                        <label for="">{{ ucfirst($remedio['droga']).' '. ucfirst($remedio['cantidad']) }}</label>
                                     </div>
 
                                     <div class="col-3">
@@ -81,7 +81,7 @@
                                 @foreach ($recetados as $r)
                                 <div class="row">
                                     <div class="col-7">
-                                        <h5>{{ ucfirst($r->vademecums->droga)}}</h5>
+                                        <h5>{{ ucfirst($r->vademecums->droga .' '. $r->vademecums->cantidad)}}</h5>
                                     </div>
                                     <div class="col-2">
                                         <h5>{{ $r->cantidad }}</h5>
