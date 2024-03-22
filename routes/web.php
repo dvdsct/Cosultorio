@@ -7,6 +7,7 @@ use App\Http\Controllers\TurnosController;
 use App\Http\Controllers\PapsController;
 use App\Http\Controllers\ColposcopiaController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RecetaController;
 
 /*
@@ -41,6 +42,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
         Route::resource('colpos', ColposcopiaController::class);
         Route::resource('receta', RecetaController::class);
         Route::resource('pacientes', PacienteController::class);
+        Route::resource('pdf', PdfController::class);
 
 
 
