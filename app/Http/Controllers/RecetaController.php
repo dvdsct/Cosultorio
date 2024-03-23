@@ -11,29 +11,9 @@ class RecetaController extends Controller
 {
 
     public function index()
-<<<<<<< HEAD
     {
-        $consulta = Consulta::create([
-            'perfil_id' => $perfil_id,
-            'turno_id' => $turno_id,
-            'fum' => $fum,
-            'temperatura' => $temperatura,
-            'ea' => $ea,
-            'tension_arterial' => $tension_arterial,
-            'indice_mc' => $indice_mc,
-            'embarazo' => $embarazo,
-            'edad_geatacional' => $edad_geatacional,
-            'observaciones' => $observaciones
-        ]);
-        
+
         return view('Consultorio.Recetas.index');
-=======
-    {   
-        $pacientes = Perfil::where('descripcion','paciente  ')->get();
-        return view('Consultorio.Recetas.index',[
-            'pacientes' => $pacientes
-        ]);
->>>>>>> cd725623ab40107e107d46b4c7fa318bc253367a
     }
 
 
@@ -86,6 +66,6 @@ class RecetaController extends Controller
 
     public function destroy(string $id)
     {
-        // 
+        //
     }
 }
