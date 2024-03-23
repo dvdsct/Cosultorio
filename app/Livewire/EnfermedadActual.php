@@ -79,12 +79,7 @@ class EnfermedadActual extends Component
 
     public function mount($consulta)
     {
-
         $this->consulta = $consulta;
-  
-
-
-
     }
 
 

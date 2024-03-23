@@ -9,7 +9,7 @@ class ObraSocial extends Model
 {
     use HasFactory;
 
-
+protected $fillable=['estado'];
     
     // Relación muchos a muchos con el modelo 'Perfil' a través de 'obra_social_x_perfils'
     public function perfiles()

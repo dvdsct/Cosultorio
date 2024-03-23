@@ -36,14 +36,17 @@
                 </div>
 
                 <div class="col-4 d-flex flex-column px-1 py-2">
-                    <h6> <strong>Obra Social: </strong> {{ $consulta->perfiles->obrasociales->first()->descripcion }}</h6>
+                    <h6> <!-- <strong>Obra Social: </strong> {{ $consulta->perfiles->obrasociales->first()->descripcion }} --></h6>
                     <h6>
+                    <strong>Obra Social: </strong> {{ $oso->descripcion }}
+
                         <strong>Número de Afiliación: </strong>
-                        @if($consulta->perfiles && $consulta->perfiles->obrasociales && $consulta->perfiles->obrasociales->first())
+<!--                         @if($consulta->perfiles && $consulta->perfiles->obrasociales && $consulta->perfiles->obrasociales->first())
                         {{ optional($consulta->perfiles->obrasociales->first()->pivot->nro_afil)->orElse('-') }}
                         @else
                         -
-                        @endif
+                        @endif -->
+                        {{ $oso->nro_afil }}
                     </h6>
                 </div>
                 <div class="col-3 d-flex flex-column" style="display: flex; justify-content: flex-end; align-items: flex-end;">
@@ -111,13 +114,13 @@
                             </div>
                         </div>
                     </div>
-
+{{$oso}}
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="obra_social">Obra Social</label>
                                 <select class="form-control" id="obra_soc" wire:model='os'>
-                                    <option value="{{ $os->id }}">{{ $os->descripcion }}</option>
+                                    <option value="{{ $oso->id }}">{{ $oso->descripcion }}</option>
 
                                     @foreach ($oss as $o)
                                     <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
@@ -144,7 +147,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" wire:click="guardarDatos">Guardar</button>
+                    <button type="button" class="btn btn-primary" wire:click="guardarDatos({{$oso->os_id}})">Guardar</button>
 
                 </div>
             </div>

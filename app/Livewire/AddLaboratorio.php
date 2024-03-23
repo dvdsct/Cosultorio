@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\LaboratorioXConsulta;
 use App\Models\Laboratorio;
+use App\Models\Cie10;
 
 class AddLaboratorio extends Component
 {

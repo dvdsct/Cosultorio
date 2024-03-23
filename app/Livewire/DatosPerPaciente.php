@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\ObraSocial;
+use App\Models\ObraSocialXPerfil;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class DatosPerPaciente extends Component
@@ -14,39 +16,69 @@ class DatosPerPaciente extends Component
     public $nacimiento;
     public $dni;
     public $email;
+    public $telefono;
     public $os;
+    public $oso;
     public $nroAfil;
     public $plan;
 
 
-    public $oss = [];
+    public $oss;
 
     public function mount()
     {
-        $this->nombre = $this->consulta->perfiles->personas->nombre;
-        $this->apellido =  $this->consulta->perfiles->personas->apellido;
-        $this->nacimiento = $this->consulta->perfiles->personas->fecha_de_nacimiento;
-        $this->dni = $this->consulta->perfiles->personas->dni;
+        $this->nombre = $this->consulta->perfiles->personas->nombre ?? '';
+        $this->apellido = $this->consulta->perfiles->personas->apellido ?? '';
+        $this->nacimiento = $this->consulta->perfiles->personas->fecha_de_nacimiento ?? '';
+        $this->dni = $this->consulta->perfiles->personas->dni ?? '';
         $this->email = $this->consulta->perfiles->personas->correos->first()->direccion ?? '';
-        $this->os = $this->consulta->perfiles->obrasociales->first(); /*
+        $this->telefono = $this->consulta->perfiles->personas->telefonos->first()->numero ?? '';
+        
+
         $this->oss = ObraSocial::all();
-        $this->plan = $this->consulta->perfiles->obrasociales->first()->plan; */
+        $this->plan = $this->consulta->perfiles->obrasociales->first()->pivot->plan ?? '';
+        $this->nroAfil = $this->consulta->perfiles->obrasociales->first()->pivot->nro_afil ?? '';
     }
 
-    public function guardarDatos()
+    public function guardarDatos($id)
     {
+     /*    dd($id);  */
+
         $this->consulta->perfiles->personas->update([
             'nombre' => $this->nombre,
             'apellido' => $this->apellido,
             'fecha_de_nacimiento' => $this->nacimiento,
             'dni' => $this->dni,
+            'direccion' => $this->email,
+            'numero' => $this->telefono,
         ]);
+
+
+        $xx  = ObraSocialXPerfil::find($id);
+        $xx->update([
+            'estado' => '2'
+        ]);
+
+        $this->oso = ObraSocialXPerfil::create([
+            'perfil_id' => $this->consulta->perfiles->id,
+            'obra_social_id' => $this->os,
+            'plan' => $this->plan,
+            'nro_afil' => $this->nroAfil,
+            'estado' => '1'
+        ]); 
     }
-    
+
+
+
 
     public function render()
     {
-        $this->oss = ObraSocial::all();
+        $this->oso = ObraSocial::select('obra_socials.descripcion','obra_social_x_perfils.nro_afil', 'obra_social_x_perfils.id as os_id' , 'obra_social_x_perfils.perfil_id')
+        ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
+        ->where('obra_social_x_perfils.estado', '1')
+        ->where('obra_social_x_perfils.perfil_id', $this->consulta->perfiles->id)
+        ->first();
+        /*         $this->oss = ObraSocial::all(); */
         return view('livewire.datos-per-paciente');
     }
 }
