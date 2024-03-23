@@ -39,6 +39,8 @@ class PdfController extends Controller
     public function show(string $id)
     {
         $consulta = Consulta::find($id);
+        $consulta->update(
+            ['estado' => '5']);
 
         if (!$consulta) {
             abort(404); // consulta no encontrada

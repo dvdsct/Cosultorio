@@ -18,10 +18,10 @@ return new class extends Migration
             ->references('id')
             ->on('perfils')
             ->onDelete('cascade');
-            $table->string('motivo');
+            $table->string('motivo')->nullable();
             $table->string('estado');
 
-            $table->dateTime('fecha_turno');
+            $table->dateTime('fecha_turno')->nullable();
 
             $table->timestamps();
         });

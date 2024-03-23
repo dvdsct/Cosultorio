@@ -21,7 +21,7 @@ class Recetar extends Component
     use WithPagination;
 
 
-    #[Locked]
+    // #[Locked]
     public $recetados;
 
 
@@ -44,6 +44,15 @@ class Recetar extends Component
 
         $this->consulta = $consulta;
         $this->cie10s = Cie10::all();
+        $this->recetados = $this->consulta->recetas;
+        if(count($this->recetados) > 0){
+            $this->cie10 = $this->recetados->first()->cie10_id;
+            // dd($this->cie10);
+        }
+        // $this->cie10 = $this->recetados->first()->cie10_id;
+
+
+
     }
 
 
@@ -84,7 +93,6 @@ class Recetar extends Component
 
     public function recetar()
     {
-        $this->validate();
 
 
 
@@ -122,13 +130,21 @@ class Recetar extends Component
         $this->closeModal();
     }
 
+    public function ver(){
+
+        // dd($this->recetados);
+        dd($this->cie10 = $this->recetados->first());
+    }
 
 
 
     #[On('added-rem')]
     public function render()
     {
+
         $this->recetados = $this->consulta->recetas;
+        $this->cie10s = Cie10::all();
+
         if(count($this->recetados) != 0){
             $this->des = 'disabled';
         }else{
@@ -143,8 +159,6 @@ class Recetar extends Component
             ->orWhere('vademecums.presentacion', 'LIKE', '%'. $this->query .'%' )
             ->orWhere('vademecums.nombre', 'LIKE', '%'. $this->query .'%' )
                 ->paginate(10),
-            'recetados' => $this->consulta->recetas,
-            'cie10' => $this->cie10
         ]);
     }
 }
