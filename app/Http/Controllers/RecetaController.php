@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Consulta;
 use App\Models\Perfil;
 use App\Models\Turno;
@@ -32,21 +33,25 @@ class RecetaController extends Controller
     public function show(string $id)
     {
         $paciente = Perfil::find($id);
-        $turno = Turno::create([
 
+        $turno = Turno::firstOrCreate([
             'perfil_id' => $paciente->id,
-            'motivo' => '40',
-            'estado' => '3',
-            'fecha_turno' => Carbon::now(),
-
+            'estado' => '1',
         ]);
 
-        $consulta = Consulta::create([
+        $turno->update([
+            'motivo' => '40',
+            'fecha_turno' => Carbon::now(),
+        ]);
+
+        $consulta = Consulta::firstOrCreate([
             'perfil_id' => $paciente->id,
             'turno_id' => $turno->id,
+            'estado' => '1'
 
         ]);
-        return view('Consultorio.Recetas.show',[
+
+        return view('Consultorio.Recetas.show', [
             'consulta' => $consulta
         ]);
     }
