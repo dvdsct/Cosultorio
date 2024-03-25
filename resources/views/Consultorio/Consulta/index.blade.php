@@ -47,7 +47,7 @@
                         <td>{{ $c->perfiles->personas->apellido . ' ' . $c->perfiles->personas->nombre }}</td>
                         <td>{{ $c->ea }}</td>
                         <td>{{ $c->observaciones }}</td>
-                        <td> <button type="button" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button></td>
+                        <td> <a href="{{route('consulta.show',$c->id)}}" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button></td>
                     </tr>
                     @endforeach
                 </tbody>

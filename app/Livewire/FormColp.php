@@ -129,6 +129,8 @@ class FormColp extends Component
             'estado' => '3'
 
         ]);
+
+        return redirect('turnos');
     }
     public function render()
     {

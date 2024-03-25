@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Cie10;
 use App\Models\Laboratorio;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -77,9 +78,12 @@ class EnfermedadActual extends Component
     public $oldConsulta;
     public $recetados = [];
 
+    public $cie10s;
+
     public function mount($consulta)
     {
         $this->consulta = $consulta;
+        $this->cie10s= Cie10::all();
     }
 
 

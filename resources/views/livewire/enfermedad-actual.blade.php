@@ -170,6 +170,17 @@
                     </div>
                     <div class="modal-body">
                         {{-- <form wire:submit="add_lab"> --}}
+                        <div class="col-md-12">
+                    <!-- CIE 10 PARA REPARAR  -->
+                        <select class="form-control" wire:model='cie10'>
+                            @foreach ($cie10s as $c)
+                            <option value="{{ $c->id }}">{{ $c->descripcion . ' - ' . $c->codigo }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
                         <div class="form-check ">
                             <input type="checkbox" wire:model='todas' wire:click='selectAll'>
                             <label class="form-check-label">Todas</label>
