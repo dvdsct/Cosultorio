@@ -143,14 +143,6 @@ class Agenda extends Component
 
         $this->validate($rules, $messages);
 
-        /*         // Tu lógica para obtener el turno existente
-        $existingTurno = Turno::where('fecha_turno', '=', $this->fecha . ' ' . $this->horario)->first();
-    
-        if ($existingTurno) {
-            $this->addError('horario', 'Ya existe un turno en este horario.');
-            return;
-        } */
-
 
 
         // EDIT
@@ -234,23 +226,21 @@ class Agenda extends Component
                     $osxp->obra_social_id = $this->os;
                     $osxp->plan = 'defecto';
                     $osxp->save();
-
-
-                    if ($this->turno !== null) {
-                        $this->turno->update([
-                            'perfil_id' => $this->perfil,
-                            'motivo' => $this->motivo,
-                            'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
-                            'estado' => '1'
-                        ]);
-                    } else {
-                        $this->turno =  Turno::create([
-                            'perfil_id' => $this->perfil,
-                            'motivo' => $this->motivo,
-                            'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
-                            'estado' => '1'
-                        ]);
-                    }
+                }
+                if ($this->turno !== null) {
+                    $this->turno->update([
+                        'perfil_id' => $this->perfil,
+                        'motivo' => $this->motivo,
+                        'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
+                        'estado' => '1'
+                    ]);
+                } else {
+                    $this->turno =  Turno::create([
+                        'perfil_id' => $this->perfil,
+                        'motivo' => $this->motivo,
+                        'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
+                        'estado' => '1'
+                    ]);
                 }
 
 

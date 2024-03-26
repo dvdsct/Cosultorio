@@ -20,42 +20,48 @@ class CargaEstudios extends Component
     public $valor;
 
 
-    public function mount($consulta){
+    public function mount($consulta)
+    {
         $this->consulta = $consulta;
 
         $this->oldConsulta = Consulta::where('estado', '4')
-        ->where('perfil_id',$this->consulta->perfil_id)
-        ->first();
-/*         if(count($this->oldConsulta->first()->laboratorios)> 0){
+            ->where('perfil_id', $this->consulta->perfil_id)
+            ->first();
+        /*         if(count($this->oldConsulta->first()->laboratorios)> 0){
 
             $this->estudios = $this->oldConsulta->first()->laboratorios;
         } */
-                        /* PRIMERO VERIFICA SI ES NULL */
+        /* PRIMERO VERIFICA SI ES NULL */
         if ($this->oldConsulta !== null && count($this->oldConsulta->laboratorios) > 0) {
             $this->estudios = $this->oldConsulta->laboratorios;
+        } else {
+            $this->estudios = [];
         }
-        
     }
 
-public function setLab($id){
+    public function setLab($id)
+    {
 
-    $estudio = Laboratorio::find($id);
-    $estudio->update(
-        [
-            'valor' => $this->valor,
-            'estado' => '100'
-        ]
-    );
-
-}
+        $estudio = Laboratorio::find($id);
+        $estudio->update(
+            [
+                'valor' => $this->valor,
+                'estado' => '100'
+            ]
+        );
+    }
 
 
     #[On('editLab')]
-    public function cargarEstudios(){
+    public function cargarEstudios()
+    {
 
-         $this->estModal = true;
+        if ($this->estModal == true) {
 
-
+            $this->estModal = false;
+        } else {
+            $this->estModal = true;
+        }
     }
     public function render()
     {

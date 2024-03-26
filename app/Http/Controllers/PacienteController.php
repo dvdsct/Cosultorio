@@ -5,14 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Colposcopia;
 use App\Models\Consulta;
 use App\Models\Pap;
-use App\Models\Persona;
 use App\Models\Perfil;
 use Illuminate\Http\Request;
-use Livewire\WithPagination;
-use Livewire\Component;
-
-
-
 
 
 
