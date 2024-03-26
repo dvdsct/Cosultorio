@@ -77,7 +77,7 @@
                                                     wire:click="modalEditLab">
                                                     <i class="fas fa-file-upload"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-warning btn-flat rounded-right">
+                                                <button type="button" class="btn btn-warning btn-flat rounded-right" wire:click='resetLab'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
@@ -100,7 +100,8 @@
                                                     wire:click=''>
                                                     <i class="fas fa-file-upload"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-primary btn-flat rounded-right">
+                                                <button type="button" class="btn btn-primary btn-flat rounded-right"
+                                                wire:click='resetImgs'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>

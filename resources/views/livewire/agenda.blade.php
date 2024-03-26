@@ -28,6 +28,7 @@
                 @else
                 <table class="table table-hover">
                     <thead>
+                        <th scope="col"> Id</th>
                         <th scope="col"> Horario</th>
                         <th scope="col"> Paciente </th>
                         <th scope="col"> Obra social</th>
@@ -37,9 +38,10 @@
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
-                        
+
 
                         <tr>
+                            <td class="p-0 pl-2"> {{ $turno->id }} </td>
                             <td class="p-0 pl-2">
                                 @if ($turno->fecha_turno !== null)
                                 {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} hs.
@@ -63,7 +65,9 @@
                                 @endif
                             </td>
 
+
                             <td class="p-1 pl-2">
+                                @if ($turno->estado != '2' )
                                 @can('atender')
                                 <div class="btn-group">
                                     @if ($turno->motivo == '1')
@@ -82,6 +86,7 @@
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                                 @endcan
+                                @endif
                             </td>
 
                             @endforeach

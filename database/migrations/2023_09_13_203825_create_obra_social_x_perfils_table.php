@@ -25,7 +25,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->string('plan')->nullable();
             $table->string('nro_afil')->nullable();
-            $table->string('estado')->nullable();
+            $table->string('estado')->nullable()->default('1');
             $table->softDeletes();
             $table->timestamps();
         });

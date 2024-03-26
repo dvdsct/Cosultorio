@@ -1,7 +1,7 @@
 <div>
 
     <button class="btn btn-success" wire:click='ver'>ver</button>
-    
+
     <!-- Buscador de Vademecum-->
     <div class="card-header row">
         <div class="card-header col-md-6 border-bottom-0" style="height: 40px;">
@@ -18,12 +18,18 @@
             </div>
         </div>
         <!-- Buscador de CIE10-->
-        <div class="col-md-6" style="height: 40px;">
+        <div class="col-6 " style="height: 40px;" >
             <select wire:model='cie10' class="form-control" {{ $des }}>
+                <option selected> Selecciona un diagnostico</option>
                 @foreach ($cie10s as $c)
                     <option value="{{ $c->id }}">{{ $c->descripcion . ' - ' . $c->codigo }}</option>
                 @endforeach
             </select>
+            <div class="text-red">
+                @error('cie10')
+                    {{ $message }}
+                @enderror
+            </div>
         </div>
     </div>
 

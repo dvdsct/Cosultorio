@@ -13,31 +13,7 @@ use Livewire\Component;
 
 
 
-use function PHPUnit\Framework\returnSelf;
 
-class Paciente extends Component
-{
-    use WithPagination;
-
-    public $query = '';
-
-    public function search()
-    {
-        $this->resetPage();
-    }
-
-    public function render()
-    {
-        $pacientes = Persona::where('nombre', 'like', '%' . $this->query . '%')
-            ->orWhere('apellido', 'like', '%' . $this->query . '%')
-            ->with(['perfil', 'personas.telefonos', 'personas.correos'])
-            ->paginate(10);
-
-        return view('Consultorio.Pacientes.index.blade', [
-            'pacientes' => $pacientes
-        ]);
-    }
-}
 
 
 class PacienteController extends Controller
@@ -119,22 +95,7 @@ class PacienteController extends Controller
             'todas' => $todas
         ]);
     }
-    public function otro(string $id, string $tipo)
-    {
-        if($tipo == 'consulta'){
-            $todas = Consulta::where('perfil_id',$id)->get();
-        }
-        if($tipo == 'colpo'){
-            $todas = Colposcopia::where('perfil_id',$id)->get();
-        }
-        if($tipo == 'pap'){
-            $todas = Pap::where('perfil_id',$id)->get();
-        }
 
-        return view('Consultorio.Pacientes.show',[
-            'todas' => $todas
-        ]);
-    }
     /**
      * Remove the specified resource from storage.
      */

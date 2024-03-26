@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\ObraSocial;
 use App\Models\ObraSocialXPerfil;
+use Carbon\Carbon;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -33,7 +34,7 @@ class DatosPerPaciente extends Component
         $this->dni = $this->consulta->perfiles->personas->dni ?? '';
         $this->email = $this->consulta->perfiles->personas->correos->first()->direccion ?? '';
         $this->telefono = $this->consulta->perfiles->personas->telefonos->first()->numero ?? '';
-        
+
 
         $this->oss = ObraSocial::all();
         $this->plan = $this->consulta->perfiles->obrasociales->first()->pivot->plan ?? '';
@@ -47,7 +48,7 @@ class DatosPerPaciente extends Component
         $this->consulta->perfiles->personas->update([
             'nombre' => $this->nombre,
             'apellido' => $this->apellido,
-            'fecha_de_nacimiento' => $this->nacimiento,
+            'fecha_de_nacimiento' => $this->nacimiento ?? Carbon::now(),
             'dni' => $this->dni,
             'direccion' => $this->email,
             'numero' => $this->telefono,
@@ -65,7 +66,7 @@ class DatosPerPaciente extends Component
             'plan' => $this->plan,
             'nro_afil' => $this->nroAfil,
             'estado' => '1'
-        ]); 
+        ]);
     }
 
 

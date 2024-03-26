@@ -36,8 +36,9 @@ class Recetar extends Component
     public $cie10s;
 
 
-    #[Validate('required', message: 'elegí uno')]
+    #[Validate('required', message: 'Necesitas un diagnostico para continuar')]
     public $cie10;
+
     public $des = '';
     public function mount($consulta)
     {
@@ -94,12 +95,7 @@ class Recetar extends Component
     public function recetar()
     {
 
-
-
-
-
-
-
+        $this->validate();
         $rec =  Receta::create([
             'vademecum_id' => $this->remedio->id,
             'cie10_id' => $this->cie10,

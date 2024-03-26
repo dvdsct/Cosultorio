@@ -9,7 +9,7 @@ use Livewire\Attributes\On;
 use App\Models\LaboratorioXConsulta;
 
 use App\Models\Consulta;
-
+use App\Models\Imagen;
 use App\Models\Receta;
 use App\Models\RecetaXConsulta;
 use Livewire\Attributes\Locked;
@@ -83,23 +83,22 @@ class EnfermedadActual extends Component
     public function mount($consulta)
     {
         $this->consulta = $consulta;
-        $this->cie10s= Cie10::all();
+        $this->cie10s = Cie10::all();
     }
 
 
-        #[On('modalOn')]
-        public function openModal()
-        {
-            // dd('aqui');
+    #[On('modalOn')]
+    public function openModal()
+    {
+        // dd('aqui');
 
-            $this->modal = true;
-        }
+        $this->modal = true;
+    }
 
-        public function modalEditLab()
-        {
-            $this->dispatch('editLab')->to(CargaEstudios::class);
-
-        }
+    public function modalEditLab()
+    {
+        $this->dispatch('editLab')->to(CargaEstudios::class);
+    }
     #[On('modalOff')]
     public function closeModal()
     {
@@ -969,6 +968,10 @@ class EnfermedadActual extends Component
                 ]);
             }
         }
+        $turno = $this->consulta->turnos;
+        $turno->update([
+            'estado' => '2'
+        ]);
 
         return redirect('turnos');
     }
@@ -1047,6 +1050,27 @@ class EnfermedadActual extends Component
             $this->dispatch('added');
         }
     }
+
+    public function resetImgs()
+    {
+
+        foreach ($this->consulta->imagenes as $i) {
+            $i->delete();
+            $this->dispatch('added');
+        }
+    }
+    public function resetLab()
+    {
+
+        $this->reset(
+            'l_gral',
+            'l_renal',
+            'l_gine',
+            'l_salud',
+            'l_embarazo',
+        );
+    }
+
 
 
     #[On('added')]
