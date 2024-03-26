@@ -19,111 +19,134 @@
     <div class="row bg-success">
         <div class="col-5">
             <div class="membrete">
-                <div class="medico">
-                    <h1 class='meow-script-regular'> Dr. Caceres Walter Ariel </h1>
-                </div>
 
-                <div class="mp">
-                    <p> M.P. N° 2047 </p>
-                </div>
-
-                <div class="especialidad">
-                    <p> GINECOLOGÍA Y OBSTETRICIA </p>
-                </div>
-
-                <div class="servicios">
-                    <p> Papanicolau - Colposcopia - Partos - Cesarea </p>
-                </div>
 
                 <hr>
 
-                <div class="cuerpo" style="height: 75vh;">
-                    <table>
-                        <thead>
-                            <th>Medicamento</th>
-                            <th>Cantidad</th>
-                            <th> Cada</th>
+                <table style="border:1px solid black;">
+                    <thead>
+                        <th>
 
-                        </thead>
-                        <tbody>
-                            @foreach ($items as $rem)
-                                <tr>
-                                    <td> {{ $rem->vademecums->droga . ' ' . $rem->vademecums->cantidad }}</td>
-                                    <td> {{ $rem->indicacion }} </td>
-                                    <td> {{ $rem->cantidad }} </td>
+                            <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
+                                <h1 style="padding-top:0px;"> Dr. Caceres Walter Ariel </h1>
 
-                                </tr>
+                                <p style="padding-top:0px;"> M.P. N° 2047 </p>
+
+                                <p style="padding-top:0px;"> GINECOLOGÍA Y OBSTETRICIA </p>
+
+                                <p style="padding-top:0px;"> Papanicolau - Colposcopia - Partos - Cesarea </p>
+                            </div>
+                        </th>
+                        <th>
+
+                            <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
+                                <h1> Dr. Caceres Walter Ariel </h1>
+
+                                <p> M.P. N° 2047 </p>
+
+                                <p> GINECOLOGÍA Y OBSTETRICIA </p>
+
+                                <p> Papanicolau - Colposcopia - Partos - Cesarea </p>
+                            </div>
+                        </th>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <h3>Datos Personales</h3>
+
+                                    <li>Nombre</li>
+                                    <li>Apellido</li>
+                                    <li>Obra Social</li>
+                                    <li>Plan</li>
+                                    <li>Nro Afiliado</li>
+                                    <li>Diagnostico: {{ $items->first()->ciediez->descripcion }}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <h3>Indicaciones</h3>
+                                @foreach ($items as $rem)
+                                <ul>
+                                    <li>{{ $rem->vademecums->droga . ' ' . $rem->vademecums->cantidad  }}
+                                        <br>{{   $rem->cantidad .' cada '. $rem->indicacion }}</li>
+
+                                </ul>
                             @endforeach
+                            </td>
+                        </tr>
+                        <tr>
+                            <br>
+                        </tr>
 
-                        </tbody>
-                    </table>
-                </div>
+                        <tr>
+                            <td>
+                                <h3>Medicamentos</h3>
 
-                <div class="firma_sello">
+                                @foreach ($items as $rem)
+                                    <ul>
+                                        <li>{{ $rem->vademecums->droga . ' ' . $rem->vademecums->cantidad . ' ' . $rem->vademecums->presentacion }}
+                                          </li>
 
-                </div>
+                                    </ul>
+                                @endforeach
+                            </td>
+                            <td>
 
-                <div class="pie_info">
-                    <hr>
-                    <div>
-                        <p class="sanatorio">NUEVO SANATORIO ALVEAR:</p>
-                    </div>
+                            </td>
+                        </tr>
+                        <hr>
+                        <tr>
 
-                    <P class="direccion">Moreno (S) 266 - (0385) 4214727 / 1552 - Santiago del Estero</P>
+                        <td>
+                            <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
+                                <p class="sanatorio">NUEVO SANATORIO ALVEAR:</p>
 
-                </div>
+                                <P class="direccion">Moreno (S) 266 - (0385) 4214727 / 1552 - Santiago del Estero</P>
+                                <h5 class='meow-script-regular'> Dr. Caceres Walter Ariel </h5>
+
+
+                            </div>
+                        <td>
+                            <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
+                                <p class="sanatorio">NUEVO SANATORIO ALVEAR:</p>
+
+                                <P class="direccion">Moreno (S) 266 - (0385) 4214727 / 1552 - Santiago del Estero</P>
+                                <h5 class='meow-script-regular'> Dr. Caceres Walter Ariel </h5>
+
+
+                            </div>
+
+                        </td>
+
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="firma_sello">
+
+            </div>
+
+            <div class="pie_info">
+                <hr>
+
             </div>
         </div>
 
-        <div class="col-3">
 
-                <div class="membrete">
-                    <div class="medico">
-                        <h1 class='meow-script-regular'> Dr. Caceres Walter Ariel </h1>
-                    </div>
-
-                    <div class="mp">
-                        <p> M.P. N° 2047 </p>
-                    </div>
-
-                    <div class="especialidad">
-                        <p> GINECOLOGÍA Y OBSTETRICIA </p>
-                    </div>
-
-                    <div class="servicios">
-                        <p> Papanicolau - Colposcopia - Partos - Cesarea </p>
-                    </div>
-
-                    <hr>
-
-                <div class="cuerpo" style="height: 75vh;">
-                    <table>
-                        <thead>
-
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="firma_sello">
-
-                </div>
-
-                <div class="pie_info">
-                    <img src="pie_pagina.jpg" alt="">
-                </div>
-            </div>
-        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

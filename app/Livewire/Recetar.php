@@ -34,12 +34,15 @@ class Recetar extends Component
     public $indicacion;
     public $consulta;
     public $cie10s;
+    protected $paginationTheme = 'bootstrap';
+
 
 
     #[Validate('required', message: 'Necesitas un diagnostico para continuar')]
     public $cie10;
 
     public $des = '';
+
     public function mount($consulta)
     {
 
@@ -49,6 +52,8 @@ class Recetar extends Component
         if(count($this->recetados) > 0){
             $this->cie10 = $this->recetados->first()->cie10_id;
             // dd($this->cie10);
+        }else{
+            $this->des = '';
         }
         // $this->cie10 = $this->recetados->first()->cie10_id;
 
@@ -75,11 +80,7 @@ class Recetar extends Component
     }
 
 
-    public function closeModal()
-    {
 
-        $this->modal = false;
-    }
 
     public function indicacionar($id)
     {

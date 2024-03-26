@@ -43,13 +43,16 @@ class RecetaController extends Controller
             'motivo' => '40',
             'fecha_turno' => Carbon::now(),
         ]);
+        
 
         $consulta = Consulta::firstOrCreate([
             'perfil_id' => $paciente->id,
             'turno_id' => $turno->id,
-            'estado' => '1'
+            'estado' => '2'
 
         ]);
+
+
 
         return view('Consultorio.Recetas.show', [
             'consulta' => $consulta

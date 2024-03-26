@@ -212,8 +212,8 @@ class Cie10Seeder extends Seeder
     foreach($all as $a){
 
         Cie10::create([
-            'codigo' => $a[1],
-            'descripcion' => $a[0]
+            'codigo' => $a[0],
+            'descripcion' => $a[1]
         ]);
     }
 

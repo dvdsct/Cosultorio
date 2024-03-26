@@ -79,6 +79,8 @@ class EnfermedadActual extends Component
     public $recetados = [];
 
     public $cie10s;
+    public $cie10;
+
 
     public function mount($consulta)
     {
@@ -90,16 +92,16 @@ class EnfermedadActual extends Component
     #[On('modalOn')]
     public function openModal()
     {
-        // dd('aqui');
-
         $this->modal = true;
     }
+
+
 
     public function modalEditLab()
     {
         $this->dispatch('editLab')->to(CargaEstudios::class);
     }
-    #[On('modalOff')]
+    // #[On('modalOff')]
     public function closeModal()
     {
 
@@ -405,7 +407,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '1',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -419,7 +421,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '2',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -433,7 +435,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '3',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -447,7 +449,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '4',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -461,7 +463,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '5',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -475,7 +477,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '6',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -489,7 +491,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '7',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -508,7 +510,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '8',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -522,7 +524,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '9',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -541,7 +543,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '10',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -556,7 +558,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '11',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -571,7 +573,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '12',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -586,7 +588,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '13',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -600,7 +602,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '14',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -614,7 +616,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '15',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -628,7 +630,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '16',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -642,7 +644,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '17',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -656,7 +658,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '18',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -670,7 +672,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '19',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -684,7 +686,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '32',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -698,7 +700,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '33',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -712,7 +714,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '34',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -730,7 +732,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '20',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -746,7 +748,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '21',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -762,7 +764,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '22',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -778,7 +780,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '23',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -794,7 +796,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '35',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -809,7 +811,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '29',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -828,7 +830,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '24',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -843,7 +845,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '25',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -859,7 +861,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '26',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -875,7 +877,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '27',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -891,7 +893,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '28',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -908,7 +910,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '30',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -924,7 +926,7 @@ class EnfermedadActual extends Component
                 $lab = Laboratorio::create([
                     'tipo_laboratorio_id' => '31',
                     'estado' => '1',
-                    'cie10_id' => '1'
+                    'cie10_id' => $this->cie10
                 ]);
 
                 LaboratorioXConsulta::create([
@@ -949,28 +951,18 @@ class EnfermedadActual extends Component
         if ($this->consulta->estado == '2') {
 
             $this->add_lab();
-            // $this->setEa();
-
-            if (count($this->consulta->laboratorios) != '0') {
-
-                $this->consulta->update([
-                    'estado' => '4',
-                    'observaciones' =>  $this->obs,
-                    'ea' =>  $this->ea
-                ]);
-            } else {
+            $this->setEa();
 
 
-                $this->consulta->update([
-                    'estado' => '3',
-                    'observaciones' =>  $this->obs,
-                    'ea' =>  $this->ea
-                ]);
-            }
+            $this->consulta->update([
+                'estado' => '3',
+                'observaciones' =>  $this->obs,
+                'ea' =>  $this->ea
+            ]);
         }
         $turno = $this->consulta->turnos;
         $turno->update([
-            'estado' => '2'
+            'estado' => '3'
         ]);
 
         return redirect('turnos');
