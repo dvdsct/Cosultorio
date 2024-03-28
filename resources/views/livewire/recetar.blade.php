@@ -86,7 +86,7 @@
                                     placeholder="Horas">
                             </div>
                             <div class="col-1">
-                                <button class="btn btn-success btn-sm" type="button" wire:click='recetar'><i
+                                <button class="btn btn-success btn-sm" type="button" wire:click='recetar' ><i
                                         class="fas fa-plus"></i>
                                 </button>
                             </div>

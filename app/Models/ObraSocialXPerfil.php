@@ -18,4 +18,6 @@ class ObraSocialXPerfil extends Model
     {
         return $this->belongsToMany(Perfil::class, 'obra_social_x_perfils', 'obra_social_id', 'perfil_id');
     }
+
+    
 }
