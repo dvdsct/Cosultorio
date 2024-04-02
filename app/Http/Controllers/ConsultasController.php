@@ -39,7 +39,11 @@ class ConsultasController extends Controller
      */
     public function show(string $id)
     {
+        if(Consulta::find($id)){
+
+
         $consulta = Consulta::find($id);
+
 
         if ($consulta->estado == '1') {
             $consulta->update([
@@ -64,7 +68,9 @@ class ConsultasController extends Controller
 
         return view('Consultorio.Consulta.show', [
             'consulta' => $consulta
-        ]);
+        ]);   }else{
+            return redirect('turnos');
+        }
     }
 
 

@@ -65,7 +65,7 @@
 
 
                             <td class="p-1 pl-2">
-                                @if ($turno->estado != '2' )
+                                @if ($turno->estado != '3' )
                                 @can('atender')
                                 <div class="btn-group">
                                     @if ($turno->motivo == '1')
@@ -76,6 +76,9 @@
                                 </div>
 
                                 @endcan
+                                @endif
+                                @if ($turno->estado != '2' )
+
                                 @can('crearturno')
                                 <button type="button" class="btn btn-warning btn-sm" wire:click="editTurn({{ $turno->id }})">
                                     <i class="fas fa-pen"></i>
@@ -101,9 +104,9 @@
     @if ($modal)
 
 
-    <div class="modal fade show" id="modal-default" aria-labelledby="modal-default" style="display:block" aria-hidden="true">
+    <div class="modal fade show" id="modal-default" aria-labelledby="modal-default" style="display:block" aria-hidden="true" >
 
-        <div class="modal-dialog">
+        <div class="modal-dialog" wire:keydown.escape="closeModal">
             <div class="modal-content">
                 <div class="modal-header bg-info">
                     <h4 class="modal-title"><strong> Nuevo Turno para el

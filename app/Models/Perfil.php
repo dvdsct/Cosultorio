@@ -19,7 +19,7 @@ class Perfil extends Model
     public function obrasociales()
     {
 
-        return $this->belongsToMany(ObraSocial::class, 'obra_social_x_perfils', 'perfil_id', 'obra_social_id');
+        return $this->belongsToMany(ObraSocial::class, 'obra_social_x_perfils');
     }
 
     public function consultas()

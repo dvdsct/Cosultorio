@@ -24,4 +24,9 @@ class Receta extends Model
         return $this->belongsTo(Vademecum::class,'vademecum_id');
     }
 
+    public function ciediez(){
+
+        return $this->belongsTo(Cie10::class, 'cie10_id');
+    }
+
 }

@@ -221,11 +221,17 @@ class Agenda extends Component
                     $p->save();
                     $this->perfil = $p->id;
 
-                    $osxp = new ObraSocialXPerfil;
-                    $osxp->perfil_id = $p->id;
-                    $osxp->obra_social_id = $this->os;
-                    $osxp->plan = 'defecto';
-                    $osxp->save();
+                    $osxp = ObraSocialXPerfil::where('estado','1')
+                    ->where('obra_social_id', $this->os)
+                    ->get();
+                    
+
+                    $osxp = ObraSocialXPerfil::firstOrCreate([
+                        'perfil' => $p->id,
+                        'obra_social_id' => $this->os,
+                        'plan' => ''
+                    ]);
+
                 }
                 if ($this->turno !== null) {
                     $this->turno->update([
