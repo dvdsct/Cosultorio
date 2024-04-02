@@ -22,13 +22,12 @@
     <div class="table-responsive">
         <div class="col-12">
             <div class="card">
-
                 @if ($turnos->isEmpty())
                 <h6 class="font-italic pt-2 pl-3"> Aun no hay turnos asignados para este día!</h6>
                 @else
                 <table class="table table-hover">
                     <thead>
-                        <th scope="col"> Id</th>
+<!--                         <th scope="col"> Id</th> -->
                         <th scope="col"> Horario</th>
                         <th scope="col"> Paciente </th>
                         <th scope="col"> Obra social</th>
@@ -39,9 +38,8 @@
                     <tbody>
                         @foreach ($turnos as $turno)
 
-
                         <tr>
-                            <td class="p-0 pl-2"> {{ $turno->id }} </td>
+                           <!--  <td class="p-0 pl-2"> {{ $turno->id }} </td> -->
                             <td class="p-0 pl-2">
                                 @if ($turno->fecha_turno !== null)
                                 {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} hs.
@@ -206,18 +204,6 @@
 
 
     @endif
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script>
         document.addEventListener('livewire:init', () => {

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Correo;
 use App\Models\ObraSocial;
 use App\Models\ObraSocialXPerfil;
 use Carbon\Carbon;
@@ -32,7 +33,11 @@ class DatosPerPaciente extends Component
         $this->apellido = $this->consulta->perfiles->personas->apellido ?? '';
         $this->nacimiento = $this->consulta->perfiles->personas->fecha_de_nacimiento ?? '';
         $this->dni = $this->consulta->perfiles->personas->dni ?? '';
-        $this->email = $this->consulta->perfiles->personas->correos->first()->direccion ?? '';
+        $this->email =  $this->consulta->perfiles->personas->correos->where('estado', '2')->first()->direccion ?? '';
+        /* filter(function ($correo) {
+            return $correo->estado = '100'; */
+
+
         $this->telefono = $this->consulta->perfiles->personas->telefonos->first()->numero ?? '';
 
 
@@ -43,15 +48,20 @@ class DatosPerPaciente extends Component
 
     public function guardarDatos($id)
     {
-     /*    dd($id);  */
 
         $this->consulta->perfiles->personas->update([
             'nombre' => $this->nombre,
             'apellido' => $this->apellido,
             'fecha_de_nacimiento' => $this->nacimiento ?? Carbon::now(),
             'dni' => $this->dni,
-            'direccion' => $this->email,
-            'numero' => $this->telefono,
+        ]);
+
+        $this->email->update([
+            'estado' => '1'
+        ]);
+
+        $this->email = Correo::create([
+            'direccion' => $this->email
         ]);
 
 
@@ -70,15 +80,13 @@ class DatosPerPaciente extends Component
     }
 
 
-
-
     public function render()
     {
-        $this->oso = ObraSocial::select('obra_socials.descripcion','obra_social_x_perfils.nro_afil', 'obra_social_x_perfils.id as os_id' , 'obra_social_x_perfils.perfil_id')
-        ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
-        ->where('obra_social_x_perfils.estado', '1')
-        ->where('obra_social_x_perfils.perfil_id', $this->consulta->perfiles->id)
-        ->first();
+        $this->oso = ObraSocial::select('obra_socials.descripcion', 'obra_social_x_perfils.nro_afil', 'obra_social_x_perfils.id as os_id', 'obra_social_x_perfils.perfil_id')
+            ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
+            ->where('obra_social_x_perfils.estado', '1')
+            ->where('obra_social_x_perfils.perfil_id', $this->consulta->perfiles->id)
+            ->first();
         /*         $this->oss = ObraSocial::all(); */
         return view('livewire.datos-per-paciente');
     }
