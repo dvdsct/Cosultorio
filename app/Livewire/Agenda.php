@@ -143,6 +143,19 @@ class Agenda extends Component
 
         $this->validate($rules, $messages);
 
+            // Verificar si ya existe un turno en el mismo horario
+/*     if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->exists()) {
+        $this->addError('horario', 'Ya existe un turno registrado en este horario.');
+        return;
+    }
+ */
+        // Verificar si ya existe un turno en el mismo horario, excepto si se está editando el mismo turno
+        if (!$this->turno || ($this->turno && $this->turno->fecha_turno != $this->fecha . ' ' . $this->horario)) {
+            if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->exists()) {
+                $this->addError('horario', 'Ya existe un turno registrado en este horario.');
+                return;
+            }
+        }
 
 
         // EDIT

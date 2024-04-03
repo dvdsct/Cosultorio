@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                     <label for="input_horario">Horario</label>
                                     <input type="time" class="form-control" id="horario" wire:model='horario'>
-                                    <!-- @error('horario') <span class="text-danger">{{ $message }}</span> @enderror -->
+                                   
                                 </div>
                             </div>
 
@@ -140,7 +140,6 @@
                                 <div class="form-group">
                                     <label for="input_nombre">Nombre</label>
                                     <input type="text" class="form-control" id="nombre" {{ $onOff }} wire:model='nombre' placeholder="Nombre">
-                                    <!-- @error('nombre') <span class="text-danger">{{ $message }}</span> @enderror -->
                                 </div>
                             </div>
 
@@ -148,30 +147,23 @@
                                 <div class="form-group">
                                     <label for="input_nombre">Apellido</label>
                                     <input type="text" class="form-control" id="nombre" {{ $onOff }} wire:model='apellido' placeholder="Apellido">
-                                    <!-- @error('apellido') <span class="text-danger">{{ $message }}</span> @enderror -->
                                 </div>
                             </div>
 
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="input_obra_soc">Obra Social</label>
+                            <div class="col-md-5">
+                                <label for="input_obra_soc">Obra Social</label>
+                                <div class="input-group mb-3">
                                     <select class="form-control" id="obra_soc" wire:model='os'>
                                         @foreach ($oss as $o)
                                         <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    <label></label>
-                                    <button class="btn btn-success btn-sm pt-1" wire:click='formPerson'>
-                                        <div class="icon">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success" wire:click='formPerson'>
                                             <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </button>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -206,7 +198,6 @@
                                 </ul>
                             </div>
                             @endif
-
                         </div>
 
 
