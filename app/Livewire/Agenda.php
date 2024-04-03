@@ -227,7 +227,7 @@ class Agenda extends Component
                     
 
                     $osxp = ObraSocialXPerfil::firstOrCreate([
-                        'perfil' => $p->id,
+                        'perfil_id' => $p->id,
                         'obra_social_id' => $this->os,
                         'plan' => ''
                     ]);

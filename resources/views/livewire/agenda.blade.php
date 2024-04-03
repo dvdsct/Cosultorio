@@ -27,7 +27,7 @@
                 @else
                 <table class="table table-hover">
                     <thead>
-<!--                         <th scope="col"> Id</th> -->
+                        <!--                         <th scope="col"> Id</th> -->
                         <th scope="col"> Horario</th>
                         <th scope="col"> Paciente </th>
                         <th scope="col"> Obra social</th>
@@ -37,9 +37,7 @@
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
-
                         <tr>
-                           <!--  <td class="p-0 pl-2"> {{ $turno->id }} </td> -->
                             <td class="p-0 pl-2">
                                 @if ($turno->fecha_turno !== null)
                                 {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} hs.
@@ -65,6 +63,7 @@
 
 
                             <td class="p-1 pl-2">
+                                <!-- SI LA CONSULTA NO ESTA FINALIZADA (ESTADO = 3) ENTONCES SE MUESTRA EL BOTON "ATENDER" PARA EL MEDICO-->
                                 @if ($turno->estado != '3' )
                                 @can('atender')
                                 <div class="btn-group">
@@ -74,11 +73,16 @@
                                     <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id}}" class="btn btn-info btn-sm">Atender</a>
                                     @endif
                                 </div>
-
                                 @endcan
+                                <!-- SI EL ESTADO ES 3, SE MUESTRA LA FRASE "ATENDIDO" -->
+                                @else
+                                <div class="btn-group">
+                                    <small class="badge badge-secondary">Atendido</small>
+                                </div>
                                 @endif
-                                @if ($turno->estado != '2' )
 
+                                <!-- SI LA CONSULTA NO ESTA FINALIZADA (ESTADO = 3) ENTONCES SE MUESTRAN LOS BOTONES DE EDITAR Y ELIMINAR PARA LA SECRETARIA -->
+                                @if ($turno->estado != '3' )
                                 @can('crearturno')
                                 <button type="button" class="btn btn-warning btn-sm" wire:click="editTurn({{ $turno->id }})">
                                     <i class="fas fa-pen"></i>
@@ -89,7 +93,6 @@
                                 @endcan
                                 @endif
                             </td>
-
                             @endforeach
                         </tr>
                     </tbody>
@@ -102,9 +105,7 @@
 
     <!-- MODAL  -->
     @if ($modal)
-
-
-    <div class="modal fade show" id="modal-default" aria-labelledby="modal-default" style="display:block" aria-hidden="true" >
+    <div class="modal fade show" id="modal-default" aria-labelledby="modal-default" style="display:block" aria-hidden="true">
 
         <div class="modal-dialog" wire:keydown.escape="closeModal">
             <div class="modal-content">
@@ -151,6 +152,7 @@
                                 </div>
                             </div>
 
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="input_obra_soc">Obra Social</label>
@@ -162,7 +164,19 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label></label>
+                                    <button class="btn btn-success btn-sm pt-1" wire:click='formPerson'>
+                                        <div class="icon">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="input_abono">Abono</label>
                                     <div class="input-group">
