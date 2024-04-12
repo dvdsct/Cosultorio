@@ -6,7 +6,7 @@
 @section('content')
 
 @if($consulta->estado == '3')
-<h3><span class="badge bg-secondary"> Realizada el dia  {{ \Carbon\Carbon::parse($consulta->updated_at)->locale('es_AR')->timezone('America/Argentina/Buenos_Aires')->isoFormat('D [de] MMMM [de] YYYY') }} </td> </h3>
+<h3><span class="badge bg-success"> Realizada el dia  {{ \Carbon\Carbon::parse($consulta->updated_at)->locale('es_AR')->timezone('America/Argentina/Buenos_Aires')->isoFormat('D [de] MMMM [de] YYYY') }} </td> </h3>
 @endif
 @livewire('datos-per-paciente',['consulta' => $consulta])
 @livewire('parametros',['consulta' => $consulta])

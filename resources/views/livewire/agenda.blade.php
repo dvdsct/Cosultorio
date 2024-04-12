@@ -159,11 +159,11 @@
                                         <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="input-group-append">
+<!--                                     <div class="input-group-append">
                                         <button class="btn btn-success" wire:click='formPerson'>
                                             <i class="fas fa-plus-circle"></i>
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
