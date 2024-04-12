@@ -111,6 +111,7 @@ class Agenda extends Component
         $this->perfil =  $this->turno->perfil_id;
         $this->motivo = $this->turno->motivo;
         $this->horario =  \Carbon\Carbon::parse($this->turno->fecha_turno)->format('H:i');
+        
         $this->nombre = $this->turno->perfils->personas->nombre;
         $this->dni = $this->turno->perfils->personas->dni;
         $this->abono = $this->turno->abonos->first()->monto;
@@ -149,13 +150,7 @@ class Agenda extends Component
         return;
     }
  */
-        // Verificar si ya existe un turno en el mismo horario, excepto si se está editando el mismo turno
-        if (!$this->turno || ($this->turno && $this->turno->fecha_turno != $this->fecha . ' ' . $this->horario)) {
-            if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->exists()) {
-                $this->addError('horario', 'Ya existe un turno registrado en este horario.');
-                return;
-            }
-        }
+
 
 
         // EDIT
@@ -192,11 +187,21 @@ class Agenda extends Component
             ]);
         }
 
+
         // Create
 
         else {
-
+                    // Verificar si ya existe un turno en el mismo horario, excepto si se está editando el mismo turno
+        // if (!$this->turno || ($this->turno && $this->turno->fecha_turno != $this->fecha . ' ' . $this->horario)) {
+        //     if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->exists()) {
+            //     }
+            // }
+            
+            
+            
             if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->first()) {
+                        $this->addError('horario', 'Ya existe un turno registrado en este horario.');
+                        return;
             } else {
 
                 //  Verificacion de la existencia del paciente
