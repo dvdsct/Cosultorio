@@ -12,15 +12,15 @@
             </div>
         </div>
 
-        <div class="card-body p-0" style="display: block;">
+        <div class="card-body py-2 px-4" style="display: block;">
             <div class="row">
-                <div class="col-2 d-flex flex-column pl-4 py-2">
+                <div class="col-md-2 d-flex flex-column">
                     <h6><strong>DNI: </strong>{{ $consulta->perfiles->personas->dni }}</h6>
                     <h6><strong>Edad: </strong> {{ $consulta->perfiles->personas->edad }}</h6>
                 </div>
 
 
-                <div class="col-3 d-flex flex-column px-1 py-2">
+                <div class="col-md-3 d-flex flex-column">
                     <h6>
                         <strong>Email: </strong>
                         {{ $email ?? '-' }}
@@ -30,11 +30,9 @@
                         <strong>Telefono: </strong>
                         {{ optional($consulta->perfiles->personas->telefonos)->first()->numero ?? '-' }}
                     </h6>
-
-
                 </div>
 
-                <div class="col-4 d-flex flex-column px-1 py-2">
+                <div class="col-md-4 d-flex flex-column">
                     <h6>
                         <strong>Obra Social: </strong> {{ $oso->descripcion }}
                     </h6>
@@ -45,7 +43,7 @@
                     </h6>
                 </div>
 
-                <div class="col-3 d-flex flex-column" style="display: flex; justify-content: flex-end; align-items: flex-end;">
+                <div class="col-md-3 d-flex flex-column" style="display: flex; justify-content: flex-end; align-items: flex-end;">
                     <a href="" class="nav-link" style="display: flex; justify-content: flex-end;" data-toggle="modal" data-target="#modal-datos-pac">
                         <i class="fas fa-edit"></i> Completar datos de paciente
                     </a>
@@ -110,7 +108,7 @@
                             </div>
                         </div>
                     </div>
-                    {{$oso}}
+                 <!--    {{$oso}} -->
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
