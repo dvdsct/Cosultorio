@@ -8,7 +8,7 @@
             <!-- Contenedor de Enfermedad Actual -->
             <div class="card-body">
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-md-7 col-xs-12" id="diagnostico">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"><strong>Diagnóstico</strong></h3>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <div class="card col-5 ">
+                    <div class="card col-md-5 col-xs-12" id="pedidos">
                         <div class="card-header">
                             <h3 class="card-title"> <strong> Pedidos </strong> </h3>
                         </div>
@@ -38,7 +38,6 @@
                                 <tbody>
                                     {{-- Recetas --}}
                                     <tr>
-
                                         @if ($consulta->estado == '3')
                                         {{-- Receta Consulta Pasada --}}
                                         <td>
@@ -69,7 +68,6 @@
                                                         Medicametos</span> </strong> </h5>
                                         </td>
                                         @endif
-
                                     </tr>
 
 
@@ -139,10 +137,8 @@
                                             </h5>
                                         </td>
                                         @endif
-
                                     </tr>
                                 </tbody>
-
                             </table>
                             @if ($consulta->estado != '3')
                             <button type="button" class="btn btn-block btn-success mt-2" style="height: 80px;" wire:click='finConsulta()'><strong> FINALIZAR CONSULTA </strong></button>

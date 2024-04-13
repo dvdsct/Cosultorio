@@ -1,21 +1,24 @@
 <div>
     <div class="row d-flex justify-content-between" style="padding-top: 20px;">
-        <div class="col-3 d-flex align-items-center">
 
+    <!-- FECHA  -->
+        <div class="col-md-3 d-flex align-items-center">
             <button wire:click='change_day("yes")' class="btn btn-info btn-sm">
                 <i class="fas fa-arrow-left"></i></button>
             <input type="date" wire:model.lazy="fecha" class="form-control">
             <button wire:click='change_day("tmw")' class="btn btn-info btn-sm"><i class="fas fa-arrow-right"></i></button>
-
-
         </div>
-        <div class="col-3">
-            <h1> <strong>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </strong></h1>
+
+        <!-- TEXTO QUE MUESTRA LA FECHA ACTUAL -->
+        <div class="col-md-5">
+            <h1 style="text-align: center;"> <strong>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </strong></h1>
         </div>
-        <div class="col-2 pt-2 mr-2">
+
+        <!-- BOTON PARA GENERAR NUEVO TURNO -->
+        <div class="col-md-3 col-xs-3 pt-2">
             @can('crearturno')
-            <button type="button" class="btn btn-block btn-info" data-target="modal-default" wire:click='openModal'>
-                Nuevo Turno</button>
+            <button type="button" class="btn btn-block btn-info" id="btn_turno" data-target="modal-default" wire:click='openModal'>
+            <i class="fas fa-plus-circle"></i> Nuevo Turno </button>
             @endcan
         </div>
     </div>
@@ -25,13 +28,12 @@
                 @if ($turnos->isEmpty())
                 <h6 class="font-italic pt-2 pl-3"> Aun no hay turnos asignados para este día!</h6>
                 @else
-                <table class="table table-hover">
+                <table class="table table-hover" id="tabla_turnos">
                     <thead>
-                        <!--                         <th scope="col"> Id</th> -->
                         <th scope="col"> Horario</th>
                         <th scope="col"> Paciente </th>
-                        <th scope="col"> Obra social</th>
-                        <th scope="col"> Abono </th>
+                        <th scope="col"> <span> Obra social </span> </th>
+                        <th scope="col"> <span> Abono </span> </th>
                         <th scope="col"> Motivo </th>
                         <th scope="col"> </th>
                     </thead>
@@ -48,10 +50,10 @@
                                 {{ $turno->perfils->personas->apellido }}
                             </td>
 
-                            <td class="p-0 pl-2"> {{ $turno->perfils->obrasociales->first()->descripcion }} </td>
+                            <td class="p-0 pl-2"><span>  {{ $turno->perfils->obrasociales->first()->descripcion }} </span></td>
 
                             <td class="p-0 pl-2">
-                                ${{ $turno->abonos->first()->monto ?? 'Sin abono' }}
+                              <span>  ${{ $turno->abonos->first()->monto ?? 'Sin abono' }} </span>
                             </td>
                             <td class="p-0 pl-2">
                                 @if ($turno->motivo == '1')
@@ -264,5 +266,12 @@
     </script>
     @endscript
 
+    <style>
+        @media only screen and (max-width: 475px){
+           #tabla_turnos span {
+        display: none; 
+      }
+        }
+    </style>
 
 </div>
