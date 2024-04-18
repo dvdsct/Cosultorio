@@ -108,7 +108,6 @@
     <!-- MODAL  -->
     @if ($modal)
     <div class="modal fade show" id="modal-default" aria-labelledby="modal-default" style="display:block" aria-hidden="true">
-
         <div class="modal-dialog" wire:keydown.escape="closeModal">
             <div class="modal-content">
                 <div class="modal-header bg-info">
@@ -161,11 +160,7 @@
                                         <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
                                         @endforeach
                                     </select>
-<!--                                     <div class="input-group-append">
-                                        <button class="btn btn-success" wire:click='formPerson'>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </button>
-                                    </div> -->
+
                                 </div>
                             </div>
 

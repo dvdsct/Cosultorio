@@ -28,11 +28,11 @@
                     <p class="{{ $l_fum }}">{{ $fum }}</p>
 
                     <div class="pl-4">
-                        <input type="checkbox" class=" form-check-input {{ $in_fum }}" id="embarazo" wire:model='in_emb'>
+                        <input type="checkbox" class=" form-check-input {{ $in_fum }}" id="embarazo" wire:model='in_emb' style="transform: scale(1.5);">
                         <label class="form-check-label {{ $in_fum }}" for="embarazo">Embarazo</label>
                     </div>
 
-                    <input type="date" class="form-control bg-success {{ $in_fum }}" wire:model='fum' wire:keydown.enter=setFum>
+                    <input type="date" class="form-control bg-info {{ $in_fum }}" wire:model='fum' wire:keydown.enter=setFum>
 
                     <div class="{{ $emb }} ">
                         <div class="row pl-2">
@@ -55,36 +55,33 @@
 
         <!------------------------------  Temperatura  ----------------------------------->
         <div class="col-lg-3 col-6 flex-fill">
-    <div class="small-box bg-warning d-flex flex-column h-100 {{ $v_temp }}">
-        <div class="inner">
-            <h3>Temperatura</h3>
-            @if($temperatura)
-                <h4 class="{{ $l_temp }}">{{ $temperatura }}°</h4>
-            @else
-                <h4 class="{{ $l_temp }}"></h4>
-            @endif
+            <div class="small-box bg-warning d-flex flex-column h-100 {{ $v_temp }}">
+                <div class="inner">
+                    <h3>Temperatura</h3>
+                    @if($temperatura)
+                    <h4 class="{{ $l_temp }}">{{ $temperatura }}°</h4>
+                    @else
+                    <h4 class="{{ $l_temp }}"></h4>
+                    @endif
 
-            <input type="text" class="{{ $in_temp }} form-control bg-warning" wire:model='temperatura' wire:keydown.enter='setTemp'>
+                    <input type="text" class="{{ $in_temp }} form-control bg-warning" wire:model='temperatura' wire:keydown.enter='setTemp'>
+                </div>
+                <div class="small-box-footer d-flex justify-content-end mt-auto">
+                    <a wire:click="setTempClass" class="pr-3" onmouseover="changeCursor(this, 'pointer')" onmouseout="changeCursor(this, 'auto')"><i class="fas fa-edit text-white"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="small-box-footer d-flex justify-content-end mt-auto">
-            <a wire:click="setTempClass" class="pr-3" onmouseover="changeCursor(this, 'pointer')" onmouseout="changeCursor(this, 'auto')"><i class="fas fa-edit text-white"></i></a>
-        </div>
-    </div>
-</div>
 
 
 
-       <!-- Indice de Masa Corporal  -->
+        <!-- Indice de Masa Corporal  -->
         <div class="col-lg-3 col-6 flex-fill">
-
             <div class="small-box bg-danger d-flex flex-column h-100 {{ $v_imc }}">
                 <div class="inner">
                     <h3>IMC</h3>
                     <h4 class="{{ $l_imc }}"> {{ $imc }}</h4>
-
-
-                        <input type="text" class="{{ $in_imc }} form-control bg-danger mb-2" wire:model='peso' placeholder="Peso">
-                        <input type="text" class="{{ $in_imc }} form-control bg-danger" wire:model='altura' placeholder="Altura" wire:keydown.enter='setImc'>
+                    <input type="text" class="{{ $in_imc }} form-control bg-danger mb-2" wire:model='peso' placeholder="Peso">
+                    <input type="text" class="{{ $in_imc }} form-control bg-danger" wire:model='altura' placeholder="Altura" wire:keydown.enter='setImc'>
                 </div>
 
                 <div class="small-box-footer d-flex justify-content-end mt-auto">

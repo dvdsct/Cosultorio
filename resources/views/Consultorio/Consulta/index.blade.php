@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Listado de Consultas')
+@section('title', 'Historial de Consultas')
 
 @section('content_header')
 
