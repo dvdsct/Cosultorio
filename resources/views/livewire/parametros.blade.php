@@ -20,6 +20,8 @@
                 </div>
             </div>
         </div>
+
+
         {{-- FUM --}}
         <div class="col-md-3 col-xs-12 flex-fill">
             <div class="small-box bg-{{ $c_fum }} d-flex flex-column h-100 ">
@@ -47,10 +49,13 @@
                 </div>
 
                 <div class="small-box-footer d-flex justify-content-end mt-auto">
-                    <a wire:click="setFumClass" class="pr-3" onmouseover="changeCursor(this, 'pointer')" onmouseout="changeCursor(this, 'auto')"><i class="fas fa-edit text-white"></i></a>
+                    <a wire:click="setFumClass" class="pr-3"><i class="fas fa-edit text-white"></i></a>
                 </div>
             </div>
         </div>
+
+
+
 
 
         <!------------------------------  Temperatura  ----------------------------------->

@@ -126,7 +126,7 @@ class Parametros extends Component
         $this->l_fum = '';
         $this->in_fum = 'd-none';
 
-        if ($this->in_emb == true) {
+        if ($this->in_emb === true) {
             $this->consulta->update(
                 [
                     'fum' =>  $this->fum,

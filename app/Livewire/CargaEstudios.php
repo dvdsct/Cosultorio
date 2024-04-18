@@ -25,7 +25,7 @@ class CargaEstudios extends Component
         $this->consulta = $consulta;
 
         $this->oldConsulta = Consulta::where('estado', '3')
-            ->where('perfil_id', $this->consulta->perfil_id)
+            ->where('perfil_id', $this->consulta->perfil_id)->latest('created_at')
             ->first();
         /*         if(count($this->oldConsulta->first()->laboratorios)> 0){
 
@@ -35,7 +35,7 @@ class CargaEstudios extends Component
         if ($this->oldConsulta !== null && count($this->oldConsulta->laboratorios) > 0) {
             $this->estudios = $this->oldConsulta->laboratorios;
         } else {
-            $this->estudios = [];
+            $this->estudios = 'vacio';
         }
     }
 

@@ -29,7 +29,7 @@
 
                     <h6>
                         <strong>Telefono: </strong>
-                        {{ optional($consulta->perfiles->personas->telefonos)->first()->numero ?? '-' }}
+                        {{ $telefono->numero ?? '' }}
                     </h6>
                 </div>
 
@@ -118,7 +118,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <select class="form-control" id="obra_soc" wire:model='emailEdit'>
+                                        <select class="form-control" id="email" wire:model='emailEdit'>
 
                                             @foreach ($emails as $e)
                                                 <option value="{{ $e->id }}">{{ $e->direccion }}</option>
@@ -139,13 +139,38 @@
                             {{-- End Emails --}}
 
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="telefono">Teléfono</label>
-                                    <input type="text" class="form-control" id="telefono" placeholder="Teléfono"
-                                        value="{{ optional($consulta->perfiles->personas->telefonos)->first()->numero ?? '' }}">
+                            {{-- Telefonos --}}
+                            @if ($telForm)
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono</label>
+                                        <input type="text" class="form-control" id="telefono" placeholder="Teléfono"
+                                            wire:model='nTelefono'>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono</label>
+                                        <select class="form-control" id="telefono" wire:model='nTelefono'>
+
+                                            @foreach ($telefonos as $tel)
+                                                <option value="{{ $tel->id }}">{{ $tel->numero }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button class="btn btn-outline-secondary" wire:click='addTel'
+                                            id="button-addon2">Button</button>
+
+                                    </div>
+
+                                </div>
+
+
+                            @endif
+
+
+                            {{-- End Telefonos --}}
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -177,6 +202,7 @@
                                         placeholder="N° de Afiliado" wire:model='nroAfil'>
                                 </div>
                             </div>
+                            {{ $oso }}
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
