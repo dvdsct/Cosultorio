@@ -9,6 +9,8 @@ class CorreoXPersona extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['estado','persona_id','correo_id'];
+
     protected $table = 'correo_x_personas'; // Nombre de la tabla en la base de datos
 
     // Definir la relación muchos a muchos con la tabla 'correos'
