@@ -199,7 +199,7 @@
                         @if ($this->consulta->estado == '3')
                         @else
                         <div class="col-md-12">
-                            <!-- CIE 10 PARA REPARAR  -->
+                            <!-- CIE 10  -->
                             <select class="form-control" wire:model='cie10'>
                                 @foreach ($cie10s as $c)
                                 <option value="{{ $c->id }}">{{ $c->descripcion . ' - ' . $c->codigo }}

@@ -30,11 +30,11 @@
                     <p class="{{ $l_fum }}">{{ $fum }}</p>
 
                     <div class="pl-4">
-                        <input type="checkbox" class=" form-check-input {{ $in_fum }}" id="embarazo" wire:model='in_emb'>
+                        <input type="checkbox" class=" form-check-input {{ $in_fum }}" id="embarazo" wire:model='in_emb' style="transform: scale(1.5);">
                         <label class="form-check-label {{ $in_fum }}" for="embarazo">Embarazo</label>
                     </div>
 
-                    <input type="date" class="form-control bg-success {{ $in_fum }}" wire:model='fum' wire:keydown.enter=setFum>
+                    <input type="date" class="form-control bg-info {{ $in_fum }}" wire:model='fum' wire:keydown.enter=setFum>
 
                     <div class="{{ $emb }} ">
                         <div class="row pl-2">
