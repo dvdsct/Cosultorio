@@ -92,7 +92,14 @@ class EnfermedadActual extends Component
     #[On('modalOn')]
     public function openModal()
     {
-        $this->modal = true;
+
+        if ($this->modal == true) {
+
+            $this->modal = false;
+        } else {
+
+            $this->modal = true;
+        }
     }
 
 
