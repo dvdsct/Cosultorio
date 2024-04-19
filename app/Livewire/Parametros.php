@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Embarazo;
 use Carbon\Carbon;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 
@@ -21,7 +22,9 @@ class Parametros extends Component
     public $imc;
     public $l_imc;
     public $in_imc = 'd-none';
+    #[Validate('required', message: 'Se reuiere el peso')]
     public $peso;
+    #[Validate('required', message: 'Se reuiere la altura')]
     public $altura;
     public $v_imc;
 
@@ -82,13 +85,17 @@ class Parametros extends Component
 
     public function setImc()
     {
+        $this->validate();
         $this->l_imc = '';
         $this->in_imc = 'd-none';
-        $this->imc = floatval($this->peso) / (floatval($this->altura) * floatval($this->altura));
+
+        $this->imc = floatval($this->peso) / (floatval($this->altura / 100) * floatval($this->altura / 100));
 
         $this->consulta->update([
             'indice_mc' =>  $this->imc
         ]);
+        $this->imc = $this->consulta->indice_mc;
+
     }
 
     // Temperatura
@@ -217,7 +224,6 @@ class Parametros extends Component
         }
 
 
-        $this->imc = $this->consulta->indice_mc;
 
 
 

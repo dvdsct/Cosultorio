@@ -18,9 +18,9 @@ return new class extends Migration
             ->references('id')
             ->on('perfils')
             ->onDelete('cascade');
-            $table->date('FUM');
-            $table->date('FPP');
-            $table->string('descripcion');
+            $table->date('FUM')->nullable();
+            $table->date('FPP')->nullable();
+            $table->string('descripcion')->nullable();
             $table->string('estado');
             $table->softDeletes();
             $table->timestamps();
