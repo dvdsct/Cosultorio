@@ -41,31 +41,33 @@
                                         @if ($consulta->estado == '3')
                                         {{-- Receta Consulta Pasada --}}
                                         <td>
-                                            <div class="btn-group" style="width: 100%;">
+                                            <!--                                             <div class="btn-group" style="width: 100%;">
                                                 <button type="button" class="btn btn-danger btn-block rounded-left border-right mr-1" style="width: 100%;" wire:click='dispatch("modalOn")'>
                                                     <strong> Receta </strong>
                                                 </button>
-                                            </div>
+                                            </div> -->
                                         </td>
                                         @else
                                         {{-- Receta Consulta Actual --}}
                                         <td>
-                                            <div class="btn-group" style="width: 100%;">
-                                                <button type="button" class="btn btn-danger btn-block rounded-left border-right mr-1" style="width: 100%;" wire:click='dispatch("modalOn")'>
-                                                    <strong> Receta </strong>
+                                            <h5> <strong> <span style="display: flex; align-items: center;">{{ count($consulta->recetas ?? 0) }}
+                                                        Medicametos</span>
+                                                </strong> </h5>
+
+                                        </td>
+                                        <td style="display:flex; justify-content: flex-end;">
+                                            <div class="btn-group" style="width: 60%;">
+                                                <button type="button" class="btn bg-purple btn-flat rounded-left mr-1" wire:click='dispatch("modalOn")'>
+                                                    <i class="fas fa-plus-circle"></i>
                                                 </button>
 
-                                                <button type="button" class="btn btn-danger btn-flat rounded-right mr-1" wire:click=''>
+                                                <button type="button" class="btn bg-purple btn-flat mr-1" wire:click=''>
                                                     <i class="fas fa-file-upload"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-flat rounded-right" wire:click='delRecetas'>
+                                                <button type="button" class="btn bg-purple btn-flat rounded-right mr-5" wire:click='delRecetas'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <h5> <strong> <span style="display: flex; justify-content: center; align-items: center;">{{ count($consulta->recetas ?? 0) }}
-                                                        Medicametos</span> </strong> </h5>
                                         </td>
                                         @endif
                                     </tr>
@@ -77,27 +79,27 @@
                                     <tr>
                                         @if ($this->consulta->estado == '3')
                                         <td>
-                                            <button type="button" class="btn btn-warning btn-block rounded-left mr-1" style="width: 100%;" data-toggle="modal" wire:click="modalEditLab">
-                                                <strong> Laboratorio </strong>
+                                            <button type="button" class="btn btn-warning btn-block rounded-left mr-1" style="width: 70%;" data-toggle="modal" wire:click="modalEditLab">
+                                                <strong> Ver estudios laboratorio </strong>
                                             </button>
                                         </td>
                                         @else
                                         <td>
-                                            <div class="btn-group" style="width: 100%;">
-                                                <button type="button" class="btn btn-warning btn-block rounded-left mr-1" style="width: 100%;" data-toggle="modal" data-target="#modal-laboratorio">
-                                                    <strong> Laboratorio </strong>
+                                            <h5> <strong> <span>{{ $total_lab }}
+                                                        Laboratorio</span> </strong> </h5>
+                                        </td>
+                                        <td style="display:flex; justify-content: flex-end;">
+                                            <div class="btn-group" style="width: 60%;">
+                                                <button type="button" class="btn btn-warning btn-flat rounded-left mr-1" data-toggle="modal" data-target="#modal-laboratorio">
+                                                <i class="fas fa-plus-circle"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-warning btn-flat rounded-right mr-1" wire:click="modalEditLab">
+                                                <button type="button" class="btn btn-warning btn-flat mr-1" wire:click="modalEditLab">
                                                     <i class="fas fa-file-upload"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-warning btn-flat rounded-right" wire:click='resetLab'>
+                                                <button type="button" class="btn btn-warning btn-flat rounded-right mr-5" wire:click='resetLab'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <h5> <strong> <span class="" style="display: flex; justify-content: center; align-items: center;">{{ $total_lab }}
-                                                        Estudios</span> </strong> </h5>
                                         </td>
                                         @endif
                                     </tr>
@@ -109,9 +111,9 @@
                                     <tr>
                                         @if ($consulta->estado == '3')
                                         <td>
-                                            <div class="btn-group" style="width: 100%;">
-                                                <button type="button" class="btn btn-primary btn-block rounded-left  mr-1" style="width: 100%;" wire:click='dispatch("modalImgOn")'>
-                                                    <strong> Imagen </strong>
+                                            <div class="btn-group" style="width: 60%;">
+                                                <button type="button" class="btn btn-primary btn-block rounded-left  mr-1" wire:click='dispatch("modalImgOn")'>
+                                                    <strong> Ver estudios imagen </strong>
                                                 </button>
 
                                             </div>
@@ -119,22 +121,22 @@
 
                                         @else
                                         <td>
-                                            <div class="btn-group" style="width: 100%;">
-                                                <button type="button" class="btn btn-primary btn-block rounded-left  mr-1" style="width: 100%;" wire:click='dispatch("modalImgOn")'>
-                                                    <strong> Imagen </strong>
+                                            <h5> <strong><span>
+                                                        {{ count($consulta->imagenes) }} Imagen </span> </strong>
+                                            </h5>
+                                        </td>
+                                        <td style="display:flex; justify-content: flex-end;">
+                                            <div class="btn-group" style="width: 60%;">
+                                                <button type="button" class="btn btn-primary btn-flat rounded-left  mr-1" wire:click='dispatch("modalImgOn")'>
+                                                <i class="fas fa-plus-circle"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-primary btn-flat rounded-right mr-1" wire:click=''>
+                                                <button type="button" class="btn btn-primary btn-flat mr-1" wire:click=''>
                                                     <i class="fas fa-file-upload"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-primary btn-flat rounded-right" wire:click='resetImgs'>
+                                                <button type="button" class="btn btn-primary btn-flat rounded-right mr-5" wire:click='resetImgs'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <h5> <strong><span class="" style="display: flex; justify-content: center; align-items: center;">
-                                                        {{ count($consulta->imagenes) }} Estudios </span> </strong>
-                                            </h5>
                                         </td>
                                         @endif
                                     </tr>

@@ -57,12 +57,12 @@ class ConsultasController extends Controller
         } */
 
 
-
+/* 
         $turno = $consulta->turnos;
 
         if ($turno) {
             $turno->update(['estado' => '2']);
-        }
+        } */
 
 
 
