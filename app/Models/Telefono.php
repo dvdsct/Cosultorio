@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Telefono extends Model
 {
     use HasFactory;
+    protected $fillable = ['numero','estado'];
 
     // Relación muchos a muchos con el modelo 'Persona' a través de 'telefono_x_personas'
     public function personas()

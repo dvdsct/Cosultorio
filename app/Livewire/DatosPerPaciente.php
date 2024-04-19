@@ -6,6 +6,8 @@ use App\Models\Correo;
 use App\Models\CorreoXPersona;
 use App\Models\ObraSocial;
 use App\Models\ObraSocialXPerfil;
+use App\Models\Telefono;
+use App\Models\TelefonoXPersona;
 use Carbon\Carbon;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -23,6 +25,7 @@ class DatosPerPaciente extends Component
     public $nroAfil;
     public $plan;
     public $oso;
+    public $nTelefono;
 
     // del Modal Completar datos paciente
     public $emails;
@@ -31,6 +34,9 @@ class DatosPerPaciente extends Component
     public $fHoy;
     public $emailForm = false;
     public $modalDP = false;
+    public $telefonos;
+    public $telForm;
+
 
     public $oss;
 
@@ -60,6 +66,12 @@ class DatosPerPaciente extends Component
     {
         $this->emailForm = true;
         $this->reset('emailEdit');
+    }
+
+    public function addTel()
+    {
+        $this->telForm = true;
+        $this->reset('nTelefono');
     }
 
     public function guardarDatos($id)
@@ -99,7 +111,7 @@ class DatosPerPaciente extends Component
                 'correo_id' => $m->id,
                 'estado' => '2'
             ]);
-        } elseif($this->emailEdit != null && $this->email != null && $this->emailForm == false) {
+        } elseif ($this->emailEdit != null && $this->email != null && $this->emailForm == false) {
             $this->email->update([
                 'estado' => '1'
             ]);
@@ -118,13 +130,13 @@ class DatosPerPaciente extends Component
         // __________________________________________________________________
         // __________________________________________________________________
 
-        if ($this->os) {
+        if ($this->os != null ) {
             $this->oso  = ObraSocialXPerfil::find($id);
             $this->oso->update([
                 'estado' => '2'
             ]);
 
-            ObraSocialXPerfil::create([
+            ObraSocialXPerfil::firstOrCreate([
                 'perfil_id' => $this->consulta->perfiles->id,
                 'obra_social_id' => $this->os,
                 'plan' => $this->plan,
@@ -137,11 +149,43 @@ class DatosPerPaciente extends Component
 
 
 
+
         // __________________________________________________________________
         // __________________________________________________________________
         //                     Editar Telefono
         // __________________________________________________________________
         // __________________________________________________________________
+
+        if ($this->nTelefono && $this->telForm == true) {
+
+            if ($this->telefono != null) {
+                $this->telefono->update([
+                    'estado' => '1'
+                ]);
+            }
+            $x = Telefono::create([
+                'numero' => $this->nTelefono,
+                'estado' => '2'
+            ]);
+
+            TelefonoXPersona::create([
+                'persona_id' => $this->consulta->perfiles->personas->id,
+                'telefono_id' => $x->id
+            ]);
+        } elseif ($this->nTelefono != null && $this->telefono != null && $this->telForm == false) {
+
+            $this->telefono->update([
+                'estado' => '1'
+            ]);
+
+            $x = TelefonoXPersona::find($this->nTelefono);
+            $xt = Telefono::find($x->telefono_id);
+            $xt->update([
+                'estado' => '2'
+            ]);
+
+
+        }
 
 
 
@@ -166,13 +210,23 @@ class DatosPerPaciente extends Component
             $this->emailForm = false;
             $this->email = $this->emails->first();
         }
-        $this->telefono = $this->consulta->perfiles->personas->telefonos->first()->numero ?? '';
+
+        $this->telefonos = $this->consulta->perfiles->personas->telefonos()->orderBy('estado', 'desc')->get();
+        if ($this->telefonos->isEmpty()) {
+            $this->telForm = true;
+        } else {
+
+            $this->telForm = false;
+            $this->telefono = $this->telefonos->first();
+        }
+
+
 
 
         $this->oss = ObraSocial::all();
 
-        $this->plan = $this->consulta->perfiles->obrasociales->first()->pivot->plan ?? '';
-        $this->nroAfil = $this->consulta->perfiles->obrasociales->first()->pivot->nro_afil ?? '';
+        // $this->plan = $this->oso->first()->plan;
+        $this->nroAfil = $this->consulta->perfiles->obrasociales->first()->nro_afil ?? '';
     }
 
 

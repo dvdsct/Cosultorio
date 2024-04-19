@@ -35,18 +35,16 @@ class Parametros extends Component
 
     // Fum
     public $fum;
-    public $l_fum;
+    public $setFumForm = false;
     public $eg;
-    public $c_fum = 'info';
     public $fpp;
-    public $fumEmb = 'FUM';
-    public $emb = 'd-none';
-    public $in_fum = 'd-none';
+
     public $in_emb = false;
 
 
     public function mount()
     {
+        // $this->consulta = $consulta;
 
         $this->tension = $this->consulta->tension_arterial;
         $this->imc = $this->consulta->indice_mc;
@@ -114,32 +112,38 @@ class Parametros extends Component
 
 
     // FUM
-    public function setFumClass()
+    public function setForm()
     {
-        $this->in_emb = $this->consulta->embarazo;
-        $this->l_fum = 'd-none';
-        $this->in_fum = '';
+        if ($this->setFumForm) {
+
+            $this->setFumForm = false;
+        } else {
+            $this->setFumForm = true;
+        }
     }
 
     public function setFum()
     {
-        $this->l_fum = '';
-        $this->in_fum = 'd-none';
 
         if ($this->in_emb == true) {
+            // dd($this->in_emb);
             $this->consulta->update(
                 [
                     'fum' =>  $this->fum,
-                    'embarazo' => true
+                    'embarazo' => 'si'
                 ]
             );
 
 
 
 
-            $e = Embarazo::create([
+            $e = Embarazo::firstOrCreate([
                 'perfil_id' => $this->consulta->perfil_id,
                 'estado' => '1',
+            ]);
+
+
+            $e->update([
 
                 'FUM' => $this->fum,
                 'FPP' => Carbon::parse($this->consulta->fum)
@@ -148,23 +152,55 @@ class Parametros extends Component
                     ->addYear(),
                 'descripcion' => 'descripcion',
             ]);
+            $this->setEmbarazo();
+            $this->setForm();
+            $this->reset('in_emb');
         } else {
+            // dd($this->in_emb);
+
             $this->consulta->update(
                 [
                     'fum' =>  $this->fum,
-                    'embarazo' => false
+                    'embarazo' => 'no'
 
                 ]
             );
+            $this->setForm();
         }
-        $this->dispatch('embarazo');
     }
+    public function finEmbarazo()
+    {
+
+        $this->consulta->update(
+            [
+                'embarazo' => 'no'
+            ]
+        );
+    }
+
+    public function setEmbarazo()
+    {
+        $this->fum = Carbon::parse($this->consulta->fum)->format('d-m-Y');
+
+
+        $this->eg = ceil(Carbon::now()->diffInDays($this->fum) / 7);
+
+        $this->fpp = Carbon::parse($this->consulta->fum)
+            ->subMonths(3)
+            ->addDays(7)
+            ->addYear()
+            ->locale('es') // Establecer la localización a español
+            ->isoFormat('D [de] MMMM [del] YYYY');
+    }
+
+
 
 
 
     #[On('embarazo')]
     public function render()
     {
+        $this->setEmbarazo();
         if (floatval($this->imc) < 24.9 and floatval($this->imc) > 18.5) {
             $this->v_imc = 'success';
         } else {
@@ -179,24 +215,8 @@ class Parametros extends Component
         if ($this->temperatura >= 38) {
             $this->v_temp = 'danger';
         }
-        $this->fum = Carbon::parse($this->consulta->fum)->format('d-m-Y');
 
-        if (isset($this->consulta->perfiles->embarazos->first()->estado)) {
-            $this->fumEmb = 'EMBARAZO';
-            $this->l_fum = 'd-none';
-            $this->emb = '';
-            $this->c_fum = 'pink';
-            $this->eg = ceil(Carbon::now()->diffInDays($this->fum) / 7);
 
-            $this->fpp = Carbon::parse($this->consulta->fum)
-                ->subMonths(3)
-                ->addDays(7)
-                ->addYear()
-                ->locale('es') // Establecer la localización a español
-                ->isoFormat('D [de] MMMM [del] YYYY');
-        }
-
-        $this->in_emb = $this->consulta->embarazo;
         $this->imc = $this->consulta->indice_mc;
 
 
