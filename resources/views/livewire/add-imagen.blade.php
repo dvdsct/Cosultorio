@@ -3,10 +3,10 @@
 
         <div class="modal fade show" id="modal-imagen" aria-labelledby="modal-default" style="display:block"
             aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header bg-primary">
-                        <h4 class="modal-title"> <strong> Nuevo pedido de Imagen </strong></h4>
+                        <h4 class="modal-title"> <strong> NUEVO PEDIDO DE IMAGEN </strong></h4>
                         <button type="button" class="close" wire:click='dispatch("modalImgOff")'>
                             <span aria-hidden="true">×</span>
                         </button>
@@ -14,6 +14,7 @@
                     <div class="modal-body">
                         <form wire:submit="add_imag">
                             <div class="col-md-12">
+                                <label for=""> <strong> Seleccione un diagnostico CIE 10: </strong> </label>
                                 <select class="form-control" wire:model='cie10'>
                                     @foreach ($cie10s as $c)
                                         <option value="{{ $c->id }}">{{ $c->descripcion . ' - ' . $c->codigo }}
@@ -22,33 +23,33 @@
                                 </select>
                             </div>
 
-                            <div class="row pt-4 pl-2 border-bottom pb-1">
+                            <div class="row pt-4 pl-2 pb-1">
                             <div class="form-check">
-                                    <input type="checkbox" id="todas" wire:model='todas'
+                                    <input type="checkbox" id="todas" wire:model='todas' style="transform: scale(1.5);"
                                         wire:click='selectAll'>
                                     <label class="form-check-label pl-2" for="todas" style="cursor: pointer;">
-                                        <strong>Todas</strong></label>
+                                        <strong>TODAS</strong></label>
                                 </div>
                             </div>
 
                             <div class="row p-2 pl-2">
                                 <div class="form-check col-md-4">
                                     <input type="checkbox" id="eco" wire:model.live='eco'
-                                        style="transform: scale(2.0);" wire:click='selectCat("eco")'>
+                                        style="transform: scale(1.5);" wire:click='selectCat("eco")'>
                                     <label class="form-check-label pl-2" for="eco" style="cursor: pointer;">
-                                        <strong>Ecografías</strong></label>
+                                        <strong>Ecografías </strong></label>
                                 </div>
                                 <div class="form-check col-md-5">
                                     <input type="checkbox" id="tac" wire:model='tac'
-                                        style="transform: scale(2.0);" wire:click='selectCat("tac")'>>
+                                        style="transform: scale(1.5);" wire:click='selectCat("tac")'>
                                     <label class="form-check-label pl-2" for="tac" style="cursor: pointer;">
-                                        <strong>tac</strong></label>
+                                        <strong>Tomografías Abdominales y Pélvicas</strong></label>
                                 </div>
                                 <div class="form-check col-md-3">
                                     <input type="checkbox" id="rnm" wire:model='rnm'
-                                        style="transform: scale(2.0);" wire:click='selectCat("rnm")'>>
+                                        style="transform: scale(1.5);" wire:click='selectCat("rnm")'>
                                     <label class="form-check-label pl-2" for="rnm" style="cursor: pointer;">
-                                        <strong>rnm</strong></label>
+                                        <strong>Resonancia Magnética Pélvica</strong></label>
                                 </div>
                             </div>
                             <div class="row">
@@ -59,7 +60,7 @@
                                         <input type="checkbox" id="eco_gin" wire:model='eco_gin'
                                             style="transform: scale(1.5);" wire:click='checkItem("eco","eco_gin")'>
                                         <label class="form-check-label pl-2" for="eco_gin"
-                                            style="cursor: pointer;">Ecografía Ginecologica {{ $eco_gin }} </label>
+                                            style="cursor: pointer;">Ecografía Ginecologica <!-- {{ $eco_gin }} --> </label>
                                     </div>
 
                                     <div class="form-check">
@@ -89,7 +90,7 @@
                                 {{-- TAC --}}
 
                                 <div class="col-md-5">
-                                    <div class="form-check">
+                                    <div class="form-check pl-3">
                                         <input type="checkbox" id="tac_abdo" wire:model='tac_abd'
                                             style="transform: scale(1.5);" wire:click='checkItem("tac","tac_abd")'>
                                         <label class="form-check-label pl-2" for="tac_abdo"
@@ -97,7 +98,7 @@
                                             Abdominal</label>
                                     </div>
 
-                                    <div class="form-check">
+                                    <div class="form-check pl-3">
                                         <input type="checkbox" id="tac_pel" wire:model='tac_pel'
                                             style="transform: scale(1.5);" wire:click='checkItem("tac","tac_pel")'>
                                         <label class="form-check-label pl-2" for="tac_pel"
@@ -105,7 +106,7 @@
                                             Pelviana</label>
                                     </div>
 
-                                    <div class="form-check">
+                                    <div class="form-check pl-3">
                                         <input type="checkbox" id="tac_abd_cc" wire:model='tac_abd_cc'
                                             style="transform: scale(1.5);" wire:click='checkItem("tac","tac_abd_cc")'>
                                         <label class="form-check-label pl-2" for="tac_abd_cc"
@@ -113,7 +114,7 @@
                                             Abdominal (Con contraste)</label>
                                     </div>
 
-                                    <div class="form-check">
+                                    <div class="form-check pl-3">
                                         <input type="checkbox" id="tac_pel_cc" wire:model='tac_pel_cc'
                                             style="transform: scale(1.5);" wire:click='checkItem("tac","tac_pel_cc")'>
                                         <label class="form-check-label pl-2" for="tac_pel_cc"
@@ -125,7 +126,7 @@
 
                                 {{-- RMN --}}
                                 <div class="col-md-3">
-                                    <div class="form-check">
+                                    <div class="form-check pl-2">
                                         <input type="checkbox" id="RMN" wire:model='rmn_pelv'
                                             style="transform: scale(1.5);" wire:click='checkItem("rnm","5")'>
                                         <label class="form-check-label pl-2" for="RMN"
