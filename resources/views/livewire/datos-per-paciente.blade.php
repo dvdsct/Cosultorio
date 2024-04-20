@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="col-md-3 d-flex flex-column"
-                    style="display: flex; justify-content: flex-end; align-items: flex-end;">
+                    style="display: flex; justify-content: flex-end; align-items: flex-end; cursor: pointer;">
                     <a class="nav-link" style="display: flex; justify-content: flex-end;" wire:click='modalDatoPac'>
                         <i class="fas fa-edit"></i> Completar datos de paciente
                     </a>
@@ -202,7 +202,7 @@
                                         placeholder="N° de Afiliado" wire:model='nroAfil'>
                                 </div>
                             </div>
-                            {{ $oso }}
+                 <!--            {{ $oso }} -->
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">

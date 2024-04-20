@@ -64,7 +64,7 @@
                                 <label class="form-check-label" for="embarazo">Embarazo</label>
                             </div>
 
-                            <input type="date" class="form-control bg-info" wire:model='fum' wire:change=setFum>
+                            <input type="date" class="form-control bg-info" wire:model='fum' wire:keydown.enter='setFum'>
                         @endif
                     </div>
                     <div class="small-box-footer d-flex justify-content-end mt-auto">

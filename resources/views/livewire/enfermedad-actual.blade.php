@@ -91,7 +91,7 @@
                                         <td style="display:flex; justify-content: flex-end;">
                                             <div class="btn-group" style="width: 60%;">
                                                 <button type="button" class="btn btn-warning btn-flat rounded-left mr-1" data-toggle="modal" data-target="#modal-laboratorio">
-                                                <i class="fas fa-plus-circle"></i>
+                                                    <i class="fas fa-plus-circle"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-warning btn-flat mr-1" wire:click="modalEditLab">
                                                     <i class="fas fa-file-upload"></i>
@@ -128,7 +128,7 @@
                                         <td style="display:flex; justify-content: flex-end;">
                                             <div class="btn-group" style="width: 60%;">
                                                 <button type="button" class="btn btn-primary btn-flat rounded-left  mr-1" wire:click='dispatch("modalImgOn")'>
-                                                <i class="fas fa-plus-circle"></i>
+                                                    <i class="fas fa-plus-circle"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-primary btn-flat mr-1" wire:click=''>
                                                     <i class="fas fa-file-upload"></i>
@@ -161,8 +161,8 @@
 
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h4 class="modal-title"> <strong> Nueva Receta </strong></h4>
+                <div class="modal-header bg-purple">
+                    <h4 class="modal-title"> <strong> NUEVA RECETA </strong></h4>
                     <button type="button" class="close" wire:click='closeModal'>
                         <span aria-hidden="true">×</span>
                     </button>
@@ -191,17 +191,17 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header bg-warning">
-                        <h4 class="modal-title"> <strong>Nuevo pedido de laboratorio </strong></h4>
+                        <h4 class="modal-title"> <strong> NUEVO PEDIDO DE LABORATORIO </strong></h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-
                         @if ($this->consulta->estado == '3')
                         @else
                         <div class="col-md-12">
                             <!-- CIE 10  -->
+                            <label for=""> <strong> Seleccione un diagnostico CIE 10: </strong> </label>
                             <select class="form-control" wire:model='cie10'>
                                 @foreach ($cie10s as $c)
                                 <option value="{{ $c->id }}">{{ $c->descripcion . ' - ' . $c->codigo }}
@@ -210,16 +210,16 @@
                             </select>
                         </div>
 
-
-                        <div class="form-check ">
-                            <input type="checkbox" wire:model='todas' wire:click='selectAll'>
-                            <label class="form-check-label">Todas</label>
+                        <div class="row ml-2">
+                            <div class="form-check my-3">
+                                <input type="checkbox" id="for" wire:model='todas' wire:click='selectAll' style="transform: scale(1.5);">
+                                <label class="form-check-label pl-2" for="todas" style="cursor: pointer;"> <strong> TODAS </strong> </label>
+                            </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="col-md-12">
-
                                     <div class="form-check">
                                         <input type="checkbox" id="general" wire:model='e_gral' wire:click="checkCat('general')" style="transform: scale(1.5);">
                                         <label class="pl-2" for="general" style="cursor: pointer;">
