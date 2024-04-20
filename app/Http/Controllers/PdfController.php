@@ -48,12 +48,12 @@ class PdfController extends Controller
         }
 
         $items = $consulta->recetas->chunk(2);
-     
+
         $fecha = $consulta->turnos;
         // $encargado = $consulta->clientes->perfiles->personas;
         $medico = Auth::user()->name;
         $perfil = $consulta->perfiles;
-     
+
         $paciente = $consulta->perfiles->personas->nombre.'  '. $consulta->perfiles->personas->apellido .'  ' . $consulta->perfiles->personas->dni ;
         $os = ObraSocialXPerfil::select('obra_social_x_perfils.*','obra_socials.descripcion')
         ->leftjoin('obra_socials','obra_social_x_perfils.obra_social_id','=','obra_socials.id')

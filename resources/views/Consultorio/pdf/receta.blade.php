@@ -20,7 +20,7 @@
                 <th>
 
                     <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
-                        <h1 style="padding-top:0px;"> Dr. Caceres Walter Ariel </h1>
+                        <h1 style="padding-top:0px;"> {{ $medico }} </h1>
 
                         <p style="padding-top:0px;"> M.P. N° 2047 </p>
 
@@ -52,7 +52,7 @@
                             <li>{{ $paciente }} </li>
                             <li>{{'OS: '.  $osd->first()->descripcion .' N° Afil:'.  $osd->first()->nro_afil
                             }}
-                            
+
                             </li>
 
                             <li>Plan:{{$osd->first()->plan}}</li>

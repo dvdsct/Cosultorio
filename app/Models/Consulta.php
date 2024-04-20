@@ -16,9 +16,9 @@ class Consulta extends Model
         'turno_id',
         'observaciones',
          'ea',
-        'estado', 
+        'estado',
         'embarazo',
-         'fum', 
+         'fum',
          'indice_mc',
          'tension_arterial',
          'temperatura'
@@ -41,6 +41,10 @@ class Consulta extends Model
     public function recetas()
     {
         return $this->belongsToMany(Receta::class, 'receta_x_consultas');
+    }
+    public function medicos()
+    {
+        return $this->belongsToMany(Medico::class, 'consultas_x_medicos');
     }
 
     public function laboratorios()

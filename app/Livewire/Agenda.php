@@ -16,6 +16,8 @@ use App\Models\Pap;
 use App\Models\Colposcopia;
 use App\Models\Turno;
 use App\Events\NewMeet;
+use App\Models\ConsultasXMedico;
+use App\Models\Medico;
 use Livewire\Attributes\On;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -44,9 +46,10 @@ class Agenda extends Component
     public $onOff;
     public $onOffedit;
     public $t;
+    public $medicos;
+    public $medico;
 
 
-    protected $listeners = ['papSaved' => 'redirectFormColp'];
 
     public function redirectFormColp($turnoId)
     {
@@ -56,7 +59,7 @@ class Agenda extends Component
     public function mount()
     {
         $this->oss = ObraSocial::all();
-        $this->personas;
+        $this->medicos = Medico::all();
 
         $this->fecha = Carbon::now()->format('Y-m-d');
     }
@@ -111,7 +114,7 @@ class Agenda extends Component
         $this->perfil =  $this->turno->perfil_id;
         $this->motivo = $this->turno->motivo;
         $this->horario =  \Carbon\Carbon::parse($this->turno->fecha_turno)->format('H:i');
-        
+
         $this->nombre = $this->turno->perfils->personas->nombre;
         $this->dni = $this->turno->perfils->personas->dni;
         $this->abono = $this->turno->abonos->first()->monto;
@@ -196,9 +199,9 @@ class Agenda extends Component
         //     if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->exists()) {
             //     }
             // }
-            
-            
-            
+
+
+
             if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->first()) {
                         $this->addError('horario', 'Ya existe un turno registrado en este horario.');
                         return;
@@ -242,7 +245,7 @@ class Agenda extends Component
                     $osxp = ObraSocialXPerfil::where('estado','1')
                     ->where('obra_social_id', $this->os)
                     ->get();
-                    
+
 
                     $osxp = ObraSocialXPerfil::firstOrCreate([
                         'perfil_id' => $p->id,
@@ -281,15 +284,23 @@ class Agenda extends Component
                             'turno_id' => $this->turno->id
                         ]
                     );
+
+
                 }
 
                 if ($this->motivo == '2') {
-                    Consulta::create(
+                    $c = Consulta::create(
                         [
                             'perfil_id' => $this->perfil,
                             'turno_id' => $this->turno->id
-                        ]
-                    );
+                            ]
+                        );
+
+                        ConsultasXMedico::create([
+                            'medico_id' => $this->medico,
+                            'consulta_id' => $c->id,
+                            'estado' => '1'
+                    ]);
                 }
 
 

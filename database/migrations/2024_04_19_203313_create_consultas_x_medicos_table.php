@@ -11,20 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perfils', function (Blueprint $table) {
+        Schema::create('consultas_x_medicos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('persona_id');
-            $table->foreign('persona_id')
+            $table->unsignedBigInteger('consulta_id');
+            $table->foreign('consulta_id')
             ->references('id')
-            ->on('personas')
+            ->on('consultas')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')
+
+            $table->unsignedBigInteger('medico_id');
+            $table->foreign('medico_id')
             ->references('id')
-            ->on('users')
+            ->on('medicos')
             ->onDelete('cascade');
-            $table->string('descripcion')->nullable();
-            $table->string('estado')->nullable();
+            $table->string('estado');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perfils');
+        Schema::dropIfExists('consultas_x_medicos');
     }
 };

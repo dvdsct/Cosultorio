@@ -22,6 +22,12 @@ class Perfil extends Model
         return $this->belongsToMany(ObraSocial::class, 'obra_social_x_perfils');
     }
 
+    public function medicos()
+    {
+
+        return $this->hasMany(Medico::class);
+    }
+
     public function consultas()
     {
 
