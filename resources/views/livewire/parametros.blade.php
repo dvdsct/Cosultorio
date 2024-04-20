@@ -85,7 +85,7 @@
 
         <!------------------------------  Temperatura  ----------------------------------->
         <div class="col-md-3 col-xs-12 flex-fill">
-            <div class="small-box bg-warning d-flex flex-column h-100 {{ $v_temp }}">
+            <div class="small-box bg-warning d-flex flex-column h-100 ">
                 <div class="inner">
                     <h3>Temperatura</h3>
                     @if ($temperatura)
@@ -108,29 +108,24 @@
 
         <!-- Indice de Masa Corporal  -->
         <div class="col-md-3 col-xs-12 flex-fill">
-            <div class="small-box bg-danger d-flex flex-column h-100 {{ $v_imc }}">
+
+            <div class="small-box bg-danger d-flex flex-column h-100 ">
                 <div class="inner">
                     <h3>IMC</h3>
                     <h4 class="{{ $l_imc }}"> {{ $imc }}</h4>
 
 
                     <input type="text" class="{{ $in_imc }} form-control bg-danger mb-2" wire:model='peso'
-                        placeholder="Peso">
+                        placeholder="Peso" wire:keydown.enter='setImc'>
                     <input type="text" class="{{ $in_imc }} form-control bg-danger" wire:model='altura'
                         placeholder="Altura" wire:keydown.enter='setImc'>
                 </div>
 
                 <div class="small-box-footer d-flex justify-content-end mt-auto">
-                    <a wire:click="setImcClass" class="pr-3" onmouseover="changeCursor(this, 'pointer')"
-                        onmouseout="changeCursor(this, 'auto')"><i class="fas fa-edit text-white"></i></a>
+                    <a wire:click="setImcClass" class="pr-3"><i class="fas fa-edit text-white"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    function changeCursor(element, cursorType) {
-        element.style.cursor = cursorType;
-    }
-</script>
