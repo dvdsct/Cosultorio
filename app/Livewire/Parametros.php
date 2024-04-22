@@ -145,7 +145,7 @@ class Parametros extends Component
 
 
             $e = Embarazo::firstOrCreate([
-                'perfil_id' => $this->consulta->perfil_id,
+                'paciente_id' => $this->consulta->paciente_id,
                 'estado' => '1',
             ]);
 

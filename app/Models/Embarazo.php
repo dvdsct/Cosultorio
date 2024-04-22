@@ -9,7 +9,7 @@ class Embarazo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['perfil_id','estado','descripcion','FUM','FPP'];
+    protected $fillable = ['paciente_id','estado','descripcion','FUM','FPP'];
 
     public function perfiles (){
 

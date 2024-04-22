@@ -23,8 +23,7 @@ use App\Models\ObraSocialXPaciente;
 use App\Models\PacienteXMedico;
 use Livewire\Attributes\On;
 use Illuminate\Database\Eloquent\Collection;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class Agenda extends Component
 {
@@ -166,6 +165,7 @@ class Agenda extends Component
         if ($this->turno !== null) {
             $this->turno->update([
                 'motivo' => $this->motivo,
+                'medico_id' => $this->medico,
                 'fecha_turno' => $this->fecha . ' ' . $this->horario,
             ]);
 
@@ -227,6 +227,7 @@ class Agenda extends Component
                         $this->turno =  Turno::create([
                             'paciente_id' => $this->paciente->id,
                             'motivo' => $this->motivo,
+                            'medico_id' => $this->medico,
                             'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                             'estado' => '1'
                         ]);
@@ -282,12 +283,14 @@ class Agenda extends Component
                     $this->turno->update([
                         'paciente_id' => $this->paciente->id,
                         'motivo' => $this->motivo,
+                        'medico_id' => $this->medico,
                         'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                         'estado' => '1'
                     ]);
                 } else {
                     $this->turno =  Turno::create([
                         'paciente_id' => $this->paciente->id,
+                        'medico_id' => $this->medico,
                         'motivo' => $this->motivo,
                         'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                         'estado' => '1'
@@ -379,18 +382,29 @@ class Agenda extends Component
     #[On('refresh-turn')]
     public function render()
     {
+        if(Auth::user()->hasRole('secretaria')){
+
         $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
+        ->where('motivo', '!=', '40')
+        ->get()
+        ->sortBy(function ($turno) {
+            return Carbon::parse($turno->fecha_turno)->format('H:i');
+        });
 
+        }
+        if(Auth::user()->hasRole('medico')){
 
+            $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
             ->where('motivo', '!=', '40')
-
-
-
-
+            ->where('medico_id', Perfil::where('user_id',Auth::user()->id)->first()->medicos->first()->id)
             ->get()
             ->sortBy(function ($turno) {
                 return Carbon::parse($turno->fecha_turno)->format('H:i');
             });
+
+            }
+
+
 
         return view(
             'livewire.agenda',

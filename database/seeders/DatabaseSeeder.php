@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
        $this->call(RoleSeeder::class);
        $this->call(UserSeeder::class);
        $this->call(TipoLaboratorioSeeder::class);
-       $this->call(TipoImagenSeeder::class);
        $this->call(MedicoSeeder::class);
+       $this->call(TipoImagenSeeder::class);
     //    $this->call(TurnoSeeder::class);
        $this->call(Cie10Seeder::class);
 

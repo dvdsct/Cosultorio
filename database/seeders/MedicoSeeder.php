@@ -16,11 +16,11 @@ class MedicoSeeder extends Seeder
     public function run(): void
     {
         $medicos = [
-            ['Caceres','Walter','4646135','','555','Ginecologo','Dr.'],
-            ['Ingrata','Maria Marta','54846','','2097','Ginecologo','Dr.'],
+            ['Caceres', 'Walter', '4646135', '', '555', 'Ginecologo', 'Dr.', '3'],
+            ['Ingrata', 'Maria Marta', '54846', '', '2097', 'Ginecologo', 'Dr.', '4'],
         ];
 
-        foreach($medicos as $m){
+        foreach ($medicos as $m) {
 
             $persona = Persona::create([
                 'nombre' => $m[1],
@@ -29,6 +29,7 @@ class MedicoSeeder extends Seeder
             ]);
             $perfil = Perfil::create([
                 'persona_id' => $persona->id,
+                'user_id' => $m[7],
 
             ]);
             $med = Medico::create([
