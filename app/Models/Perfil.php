@@ -27,6 +27,11 @@ class Perfil extends Model
 
         return $this->hasMany(Medico::class);
     }
+    public function pacientes()
+    {
+
+        return $this->hasMany(Paciente::class);
+    }
 
     public function consultas()
     {

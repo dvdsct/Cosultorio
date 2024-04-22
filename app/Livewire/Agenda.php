@@ -18,6 +18,7 @@ use App\Models\Turno;
 use App\Events\NewMeet;
 use App\Models\ConsultasXMedico;
 use App\Models\Medico;
+use App\Models\ObraSocialXPaciente;
 use Livewire\Attributes\On;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -48,7 +49,7 @@ class Agenda extends Component
     public $t;
     public $medicos;
     public $medico;
-
+    public $paciente;
 
 
     public function redirectFormColp($turnoId)
@@ -147,8 +148,8 @@ class Agenda extends Component
 
         $this->validate($rules, $messages);
 
-            // Verificar si ya existe un turno en el mismo horario
-/*     if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->exists()) {
+        // Verificar si ya existe un turno en el mismo horario
+        /*     if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->exists()) {
         $this->addError('horario', 'Ya existe un turno registrado en este horario.');
         return;
     }
@@ -188,23 +189,17 @@ class Agenda extends Component
             $abono->update([
                 'monto' => $this->abono ?? 0,
             ]);
-        }
+
+            // event(new NewMeet(''));
+
+        } else {
 
 
-        // Create
-
-        else {
-                    // Verificar si ya existe un turno en el mismo horario, excepto si se está editando el mismo turno
-        // if (!$this->turno || ($this->turno && $this->turno->fecha_turno != $this->fecha . ' ' . $this->horario)) {
-        //     if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->exists()) {
-            //     }
-            // }
-
-
+            // Crea Turno
 
             if (Turno::where('fecha_turno', $this->fecha . ' ' . $this->horario)->first()) {
-                        $this->addError('horario', 'Ya existe un turno registrado en este horario.');
-                        return;
+                $this->addError('horario', 'Ya existe un turno registrado en este horario.');
+                return;
             } else {
 
                 //  Verificacion de la existencia del paciente
@@ -223,6 +218,8 @@ class Agenda extends Component
                         ]);
                     }
                 } else {
+
+                    // Crea Paciente (Persona-perfil-paciente)
                     $persona = new Persona;
 
                     $persona->nombre = $this->nombre;
@@ -242,28 +239,35 @@ class Agenda extends Component
                     $p->save();
                     $this->perfil = $p->id;
 
-                    $osxp = ObraSocialXPerfil::where('estado','1')
-                    ->where('obra_social_id', $this->os)
-                    ->get();
 
 
-                    $osxp = ObraSocialXPerfil::firstOrCreate([
-                        'perfil_id' => $p->id,
+
+                    $this->paciente = Paciente::create([
+                        'perfil_id' => $this->perfil,
+                        'estado' => '1'
+                    ]);
+
+                    $osxp = ObraSocialXPaciente::where('estado', '1')
+                        ->where('obra_social_id', $this->os)
+                        ->get();
+
+
+                    $osxp = ObraSocialXPaciente::firstOrCreate([
+                        'paciente_id' => $this->paciente->id,
                         'obra_social_id' => $this->os,
                         'plan' => ''
                     ]);
-
                 }
                 if ($this->turno !== null) {
                     $this->turno->update([
-                        'perfil_id' => $this->perfil,
+                        'paciente_id' => $this->paciente,
                         'motivo' => $this->motivo,
                         'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                         'estado' => '1'
                     ]);
                 } else {
                     $this->turno =  Turno::create([
-                        'perfil_id' => $this->perfil,
+                        'paciente_id' => $this->paciente,
                         'motivo' => $this->motivo,
                         'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                         'estado' => '1'
@@ -274,32 +278,30 @@ class Agenda extends Component
                 if ($this->motivo == '1') {
                     Pap::create(
                         [
-                            'perfil_id' => $this->perfil,
+                            'paciente_id' => $this->paciente,
                             'turno_id' => $this->turno->id
                         ]
                     );
                     Colposcopia::create(
                         [
-                            'perfil_id' => $this->perfil,
+                            'paciente_id' => $this->paciente,
                             'turno_id' => $this->turno->id
                         ]
                     );
-
-
                 }
 
                 if ($this->motivo == '2') {
                     $c = Consulta::create(
                         [
-                            'perfil_id' => $this->perfil,
+                            'paciente_id' => $this->paciente,
                             'turno_id' => $this->turno->id
-                            ]
-                        );
+                        ]
+                    );
 
-                        ConsultasXMedico::create([
-                            'medico_id' => $this->medico,
-                            'consulta_id' => $c->id,
-                            'estado' => '1'
+                    ConsultasXMedico::create([
+                        'medico_id' => $this->medico,
+                        'consulta_id' => $c->id,
+                        'estado' => '1'
                     ]);
                 }
 
@@ -319,7 +321,7 @@ class Agenda extends Component
 
         $this->reset('turno');
         $this->closeModal();
-        event(new NewMeet('dsadasd'));
+        event(new NewMeet(''));
     }
 
     public function upPaciente()
@@ -332,9 +334,11 @@ class Agenda extends Component
             $this->persona = $this->personas->first();
 
             if (count($this->personas) >= 1) {
+
                 $this->nombre = $this->persona->nombre;
                 $this->apellido = $this->persona->apellido;
-                $this->oss = $this->persona->perfils->first()->obrasociales;
+                $this->oss = $this->persona->perfiles->pacientes->first()->obrasociales;
+
                 $this->onOff = 'disabled';
             } else {
                 $this->nombre = '';

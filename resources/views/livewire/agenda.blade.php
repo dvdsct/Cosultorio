@@ -132,6 +132,7 @@
 
                     <form wire:submit='addTurno'>
                         <div class="card-body">
+                            {{ $paciente }}
 
                             <div class="row">
                                 <div class="col-md-6">
