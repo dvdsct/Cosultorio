@@ -7,6 +7,7 @@ use App\Models\Perfil;
 use App\Models\Turno;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\Paciente;
 
 class RecetaController extends Controller
 {
@@ -32,10 +33,10 @@ class RecetaController extends Controller
 
     public function show(string $id)
     {
-        $paciente = Perfil::find($id);
+        $paciente = Paciente::find($id);
 
         $turno = Turno::firstOrCreate([
-            'perfil_id' => $paciente->id,
+            'paciente_id' => $paciente->id,
             'estado' => '1',
         ]);
 
@@ -43,10 +44,10 @@ class RecetaController extends Controller
             'motivo' => '40',
             'fecha_turno' => Carbon::now(),
         ]);
-        
+
 
         $consulta = Consulta::firstOrCreate([
-            'perfil_id' => $paciente->id,
+            'paciente_id' => $paciente->id,
             'turno_id' => $turno->id,
             'estado' => '2'
 
@@ -55,7 +56,8 @@ class RecetaController extends Controller
 
 
         return view('Consultorio.Recetas.show', [
-            'consulta' => $consulta
+            'consulta' => $consulta,
+            'paciente' => $paciente
         ]);
     }
 

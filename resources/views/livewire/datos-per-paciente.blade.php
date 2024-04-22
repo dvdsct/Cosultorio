@@ -2,8 +2,8 @@
     <div class="card card-info">
         <div class="card-header">
             <h3 class="card-title"><strong>
-                    {{ mb_strtoupper($consulta->perfiles->personas->nombre) }}
-                    {{ mb_strtoupper($consulta->perfiles->personas->apellido) }}
+                    {{ mb_strtoupper($consulta->pacientes) }}
+                    {{ mb_strtoupper($consulta->pacientes->personas->apellido) }}
                 </strong></h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -16,8 +16,8 @@
         <div class="card-body py-2 px-4" style="display: block;">
             <div class="row">
                 <div class="col-md-2 d-flex flex-column">
-                    <h6><strong>DNI: </strong>{{ $consulta->perfiles->personas->dni }}</h6>
-                    <h6><strong>Edad: </strong> {{ $consulta->perfiles->personas->edad }}</h6>
+                    <h6><strong>DNI: </strong>{{ $consulta->pacientes->personas->dni }}</h6>
+                    <h6><strong>Edad: </strong> {{ $consulta->pacientes->personas->edad }}</h6>
                 </div>
 
 

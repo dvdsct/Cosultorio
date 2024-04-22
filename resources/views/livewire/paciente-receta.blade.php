@@ -38,7 +38,7 @@
                             <td>{{ $p->dni }}</td>
                             <td>{{ $p->nombre . ' ' . $p->apellido }}</td>
                             <td>
-                                {{ $p->descripcion }}
+                                {{ $p->descripcion }} 
                             </td>
                             <td>
                                 <a type="button" href="{{ route('receta.show',$p->id) }}" class="btn btn-info btn-sm">Recetar</a>

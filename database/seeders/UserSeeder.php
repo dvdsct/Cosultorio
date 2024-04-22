@@ -33,8 +33,15 @@ class UserSeeder extends Seeder
         ])->assignRole('secretaria');
 
         User::create([
-            'name' => 'Medico',
-            'email' => 'ariel@gmail.com',
+            'name' => 'Walter',
+            'email' => 'ariel@consultorio.com',
+            'profile_photo_path' =>'img/usuario.jpg',
+            'password' => bcrypt('medico@159'),
+        ])->assignRole('medico');
+
+        User::create([
+            'name' => 'Maria',
+            'email' => 'maria@consultorio.com',
             'profile_photo_path' =>'img/usuario.jpg',
             'password' => bcrypt('medico@159'),
         ])->assignRole('medico');

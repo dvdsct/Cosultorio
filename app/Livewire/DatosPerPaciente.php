@@ -78,7 +78,7 @@ class DatosPerPaciente extends Component
     {
         $fechaNacimiento = Carbon::parse($this->nacimiento)->format('Y-m-d');
 
-        $this->consulta->perfiles->personas->update([
+        $this->consulta->pacientes->personas->update([
             'nombre' => $this->nombre,
             'apellido' => $this->apellido,
             'fecha_de_nacimiento' => $fechaNacimiento,
@@ -107,7 +107,7 @@ class DatosPerPaciente extends Component
             ]);
 
             CorreoXPersona::create([
-                'persona_id' => $this->consulta->perfiles->personas->id,
+                'persona_id' => $this->consulta->pacientes->personas->id,
                 'correo_id' => $m->id,
                 'estado' => '2'
             ]);
@@ -137,7 +137,7 @@ class DatosPerPaciente extends Component
             ]);
 
             ObraSocialXPerfil::firstOrCreate([
-                'perfil_id' => $this->consulta->perfiles->id,
+                'perfil_id' => $this->consulta->pacientes->id,
                 'obra_social_id' => $this->os,
                 'plan' => $this->plan,
                 'nro_afil' => $this->nroAfil,
@@ -169,7 +169,7 @@ class DatosPerPaciente extends Component
             ]);
 
             TelefonoXPersona::create([
-                'persona_id' => $this->consulta->perfiles->personas->id,
+                'persona_id' => $this->consulta->pacientes->personas->id,
                 'telefono_id' => $x->id
             ]);
         } elseif ($this->nTelefono != null && $this->telefono != null && $this->telForm == false) {
@@ -197,12 +197,12 @@ class DatosPerPaciente extends Component
     public function setForm()
     {
 
-        $this->nombre = $this->consulta->perfiles->personas->nombre ?? '';
-        $this->apellido = $this->consulta->perfiles->personas->apellido ?? '';
-        $this->nacimiento = $this->consulta->perfiles->personas->fecha_de_nacimiento ?? $this->fHoy;
-        $this->dni = $this->consulta->perfiles->personas->dni ?? '';
+        $this->nombre = $this->consulta->pacientes->personas->nombre ?? '';
+        $this->apellido = $this->consulta->pacientes->personas->apellido ?? '';
+        $this->nacimiento = $this->consulta->pacientes->personas->fecha_de_nacimiento ?? $this->fHoy;
+        $this->dni = $this->consulta->pacientes->personas->dni ?? '';
 
-        $this->emails = $this->consulta->perfiles->personas->correos()->orderBy('estado', 'desc')->get();
+        $this->emails = $this->consulta->pacientes->personas->correos()->orderBy('estado', 'desc')->get();
         if ($this->emails->isEmpty()) {
             $this->emailForm = true;
         } else {
@@ -211,7 +211,7 @@ class DatosPerPaciente extends Component
             $this->email = $this->emails->first();
         }
 
-        $this->telefonos = $this->consulta->perfiles->personas->telefonos()->orderBy('estado', 'desc')->get();
+        $this->telefonos = $this->consulta->pacientes->personas->telefonos()->orderBy('estado', 'desc')->get();
         if ($this->telefonos->isEmpty()) {
             $this->telForm = true;
         } else {
@@ -226,7 +226,7 @@ class DatosPerPaciente extends Component
         $this->oss = ObraSocial::all();
 
         // $this->plan = $this->oso->first()->plan;
-        $this->nroAfil = $this->consulta->perfiles->obrasociales->first()->nro_afil ?? '';
+        $this->nroAfil = $this->consulta->pacientes->obrasociales->first()->nro_afil ?? '';
     }
 
 
@@ -236,7 +236,7 @@ class DatosPerPaciente extends Component
         $this->oso = ObraSocial::select('obra_socials.descripcion', 'obra_social_x_perfils.nro_afil', 'obra_social_x_perfils.id as os_id', 'obra_social_x_perfils.perfil_id')
             ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
             ->where('obra_social_x_perfils.estado', '1')
-            ->where('obra_social_x_perfils.perfil_id', $this->consulta->perfiles->id)
+            ->where('obra_social_x_perfils.perfil_id', $this->consulta->pacientes->id)
             ->first();
         // $this->os = $this->oso->id;
 

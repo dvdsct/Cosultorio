@@ -18,6 +18,11 @@ return new class extends Migration
             ->references('id')
             ->on('pacientes')
             ->onDelete('cascade');
+            $table->unsignedBigInteger('medico_id');
+            $table->foreign('medico_id')
+            ->references('id')
+            ->on('medicos')
+            ->onDelete('cascade');
             $table->string('motivo')->nullable();
             $table->string('estado');
 

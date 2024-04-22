@@ -45,11 +45,11 @@
                     <tbody>
                         @foreach ($pac as $p)
                             <tr>
-                                <td>{{ $p->personas->apellido . ' ' . $p->personas->nombre }}</td>
-                                <td>{{ $p->personas->dni }}</td>
-                                <td>{{ $p->personas->edad }}</td>
-                                <td>{{ optional($p->personas->telefonos)->first()->numero ?? '-' }}</td>
-                                <td>{{ $p->personas->correos->first()->direccion ?? '-' }}</td>
+                                <td>{{ $p->perfiles->personas->apellido . ' ' . $p->perfiles->personas->nombre }}</td>
+                                <td>{{ $p->perfiles->personas->dni }}</td>
+                                <td>{{ $p->perfiles->personas->edad }}</td>
+                                <td>{{ optional($p->perfiles->personas->telefonos)->first()->numero ?? '-' }}</td>
+                                <td>{{ $p->perfiles->personas->correos->first()->direccion ?? '-' }}</td>
                                 <td></td>
 
                                 <td style="width: 230px; padding-left:1px">

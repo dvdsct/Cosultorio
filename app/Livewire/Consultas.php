@@ -16,10 +16,10 @@ class Consultas extends Component
     public function render()
     {
         if($this->consulta){
-            $this->consultas = Consulta::where('perfil_id',$this->consulta->perfil_id)
+            $this->consultas = Consulta::where('paciente_id',$this->consulta->paciente_id)
             ->where('estado', '3')
 
-            
+
             ->get();
 
         }else{
