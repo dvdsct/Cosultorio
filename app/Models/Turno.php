@@ -12,7 +12,7 @@ class Turno extends Model
     protected $fillable = [
     'fecha_turno',
     'motivo',
-    'perfil_id',
+    'paciente_id',
     'estado'
     ];
 
@@ -22,8 +22,8 @@ class Turno extends Model
     }
 
 
-    public function perfils(){
-        return $this->belongsTo(Perfil::class,'perfil_id');
+    public function pacientes(){
+        return $this->belongsTo(Paciente::class,'paciente_id');
     }
 
 

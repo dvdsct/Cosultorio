@@ -43,7 +43,7 @@
                         <th></th>
                     </thead>
                     <tbody>
-                        @foreach ($pacientes as $p)
+                        @foreach ($pac as $p)
                             <tr>
                                 <td>{{ $p->personas->apellido . ' ' . $p->personas->nombre }}</td>
                                 <td>{{ $p->personas->dni }}</td>

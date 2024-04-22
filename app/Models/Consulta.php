@@ -12,7 +12,7 @@ class Consulta extends Model
     use HasFactory;
 
     protected $fillable = [
-        'perfil_id',
+        'paciente_id',
         'turno_id',
         'observaciones',
          'ea',

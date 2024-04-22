@@ -18,7 +18,9 @@ use App\Models\Turno;
 use App\Events\NewMeet;
 use App\Models\ConsultasXMedico;
 use App\Models\Medico;
+use App\Models\Paciente;
 use App\Models\ObraSocialXPaciente;
+use App\Models\PacienteXMedico;
 use Livewire\Attributes\On;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -257,17 +259,23 @@ class Agenda extends Component
                         'obra_social_id' => $this->os,
                         'plan' => ''
                     ]);
+
+                    PacienteXMedico::firstOrCreate([
+                        'medico_id' => $this->medico,
+                        'paciente_id' => $this->paciente->id,
+                        'estado' => '1'
+                    ]);
                 }
                 if ($this->turno !== null) {
                     $this->turno->update([
-                        'paciente_id' => $this->paciente,
+                        'paciente_id' => $this->paciente->id,
                         'motivo' => $this->motivo,
                         'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                         'estado' => '1'
                     ]);
                 } else {
                     $this->turno =  Turno::create([
-                        'paciente_id' => $this->paciente,
+                        'paciente_id' => $this->paciente->id,
                         'motivo' => $this->motivo,
                         'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                         'estado' => '1'
@@ -278,13 +286,13 @@ class Agenda extends Component
                 if ($this->motivo == '1') {
                     Pap::create(
                         [
-                            'paciente_id' => $this->paciente,
+                            'paciente_id' => $this->paciente->id,
                             'turno_id' => $this->turno->id
                         ]
                     );
                     Colposcopia::create(
                         [
-                            'paciente_id' => $this->paciente,
+                            'paciente_id' => $this->paciente->id,
                             'turno_id' => $this->turno->id
                         ]
                     );
@@ -293,7 +301,7 @@ class Agenda extends Component
                 if ($this->motivo == '2') {
                     $c = Consulta::create(
                         [
-                            'paciente_id' => $this->paciente,
+                            'paciente_id' => $this->paciente->id,
                             'turno_id' => $this->turno->id
                         ]
                     );
@@ -372,8 +380,7 @@ class Agenda extends Component
                 return Carbon::parse($turno->fecha_turno)->format('H:i');
             });
 
-        return view(
-            'livewire.agenda',
+        return view('livewire.agenda',
             ['fecha' => $this->fecha]
         );
     }

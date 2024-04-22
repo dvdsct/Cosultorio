@@ -27,6 +27,7 @@ class Perfil extends Model
 
         return $this->hasMany(Medico::class);
     }
+
     public function pacientes()
     {
 
@@ -50,6 +51,6 @@ class Perfil extends Model
     }
     public function turnos()
     {
-        return $this->hasMany(Turno::class);
+        return $this->hasOne(Turno::class);
     }
 }

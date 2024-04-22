@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Colposcopia;
 use App\Models\Consulta;
+use App\Models\Medico;
+use App\Models\PacienteXMedico;
 use App\Models\Pap;
 use App\Models\Perfil;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
@@ -17,9 +18,13 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes =  Perfil::where('descripcion','paciente')->get();
+        $user = Auth()->user();
+        $perfil = Perfil::where('user_id',$user->id)->get();
+        $medico = Medico::where('perfil_id',$perfil->first()->id)->get();
+        // dd($medico);
+        $pac =  $medico->first()->pacientes;
         return view('Consultorio.Pacientes.index',[
-            'pacientes' => $pacientes
+            'pac' => $pac
         ]);
     }
 

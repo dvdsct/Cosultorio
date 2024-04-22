@@ -50,12 +50,14 @@
                                         @endif
                                     </td>
 
-                                    <td class="p-0 pl-2"> {{ $turno->perfils->personas->nombre }}
-                                        {{ $turno->perfils->personas->apellido }}
+                                    <td class="p-0 pl-2"> {{ $turno->pacientes->perfiles->personas->nombre }}
+                                        {{ $turno->pacientes->perfiles->personas->apellido }}
                                     </td>
 
                                     <td class="p-0 pl-2"><span>
-                                            {{ $turno->consultas->medicos->first() }} </span></td>
+                                            {{ $turno->consultas->medicos->first()->perfiles->personas->nombre }} 
+                                            {{ $turno->consultas->medicos->first()->perfiles->personas->apellido }} 
+                                        </span></td>
 
                                     <td class="p-0 pl-2">
                                         <span> ${{ $turno->abonos->first()->monto ?? 'Sin abono' }} </span>
