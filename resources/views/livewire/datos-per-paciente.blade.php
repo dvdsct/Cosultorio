@@ -2,7 +2,7 @@
     <div class="card card-info">
         <div class="card-header">
             <h3 class="card-title"><strong>
-                    {{ mb_strtoupper($consulta->pacientes->personas->nombre) }}
+                    {{ mb_strtoupper($consulta->pacientes) }}
                     {{ mb_strtoupper($consulta->pacientes->personas->apellido) }}
                 </strong></h3>
             <div class="card-tools">

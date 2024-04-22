@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consulta;
+use App\Models\ObraSocialXPaciente;
 use App\Models\ObraSocialXPerfil;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -50,14 +51,13 @@ class PdfController extends Controller
         $items = $consulta->recetas->chunk(2);
 
         $fecha = $consulta->turnos;
-        // $encargado = $consulta->clientes->perfiles->personas;
-        $medico = Auth::user()->name;
-        $perfil = $consulta->perfiles;
+        $medico = $consulta->medicos;
+        $paciente1 = $consulta->pacientes;
 
-        $paciente = $consulta->perfiles->personas->nombre.'  '. $consulta->perfiles->personas->apellido .'  ' . $consulta->perfiles->personas->dni ;
-        $os = ObraSocialXPerfil::select('obra_social_x_perfils.*','obra_socials.descripcion')
-        ->leftjoin('obra_socials','obra_social_x_perfils.obra_social_id','=','obra_socials.id')
-        ->where('perfil_id',$perfil->id)
+        $paciente = $consulta->pacientes->personas->nombre.'  '. $consulta->pacientes->personas->apellido .'  ' . $consulta->pacientes->personas->dni ;
+        $os = ObraSocialXPaciente::select('obra_social_x_pacientes.*','obra_socials.descripcion')
+        ->leftjoin('obra_socials','obra_social_x_pacientes.obra_social_id','=','obra_socials.id')
+        ->where('paciente_id', $paciente1->first()->id)
         ->get();
 
         $osd =  $os->filter(function ($oxs) {
@@ -66,7 +66,7 @@ class PdfController extends Controller
 
         $pdf = Pdf::loadView('Consultorio.pdf.receta', [
             'items' => $items,
-            'perfil' => $perfil,
+            // 'perfil' => $perfil,
             'os' => $os,
             'osd' => $osd,
             'paciente' => $paciente,
