@@ -55,8 +55,8 @@
                                     </td>
 
                                     <td class="p-0 pl-2"><span>
-                                            {{ $turno->consultas->medicos->first()->perfiles->personas->nombre }} 
-                                            {{ $turno->consultas->medicos->first()->perfiles->personas->apellido }} 
+                                            {{ $turno->consultas->medicos->first()->perfiles->personas->nombre }}
+                                            {{ $turno->consultas->medicos->first()->perfiles->personas->apellido }}
                                         </span></td>
 
                                     <td class="p-0 pl-2">
@@ -141,7 +141,9 @@
                                     <div class="form-group">
                                         <label for="medico">Medico</label>
                                         <select class="form-control" wire:model='medico'>
+                                            <option selected> Elija un medico</option>
                                             @foreach ($medicos as $m)
+
                                                 <option value="{{ $m->id }}">
                                                     {{ $m->perfiles->personas->nombre }}</option>
                                             @endforeach

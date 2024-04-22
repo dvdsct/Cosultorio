@@ -51,6 +51,7 @@ class Agenda extends Component
     public $t;
     public $medicos;
     public $medico;
+    public $medicoC;
     public $paciente;
 
 
@@ -114,15 +115,17 @@ class Agenda extends Component
     {
         $this->personas = ['1'];
         $this->turno = Turno::find($turno);
-        $this->perfil =  $this->turno->perfil_id;
+        $this->paciente =  $this->turno->paciente_id;
         $this->motivo = $this->turno->motivo;
         $this->horario =  \Carbon\Carbon::parse($this->turno->fecha_turno)->format('H:i');
-
-        $this->nombre = $this->turno->perfils->personas->nombre;
-        $this->dni = $this->turno->perfils->personas->dni;
+        $this->nombre = $this->turno->pacientes->perfiles->personas->nombre;
+        $this->dni = $this->turno->pacientes->perfiles->personas->dni;
         $this->abono = $this->turno->abonos->first()->monto;
-        $this->apellido = $this->turno->perfils->personas->apellido;
+        $this->apellido = $this->turno->pacientes->perfiles->personas->apellido;
         $this->oss =  ObraSocial::all();
+        $this->medicoC = ConsultasXMedico::where('consulta_id',$this->turno->consultas->id)->get();
+        $this->medico = $this->medicoC->first()->id;
+
         $this->onOff = 'disabled';
         $this->onOffedit = 'disabled';
 
@@ -166,11 +169,20 @@ class Agenda extends Component
                 'fecha_turno' => $this->fecha . ' ' . $this->horario,
             ]);
 
+            $this->medicoC->first()->update([
+                'medico_id' => $this->medico
+            ]);
+
             // Actualizar obra social en el perfil
-            $perfil = Perfil::find($this->perfil);
-            $osxp = ObraSocialXPerfil::where('perfil_id', $this->perfil)->first();
-            $osxp->obra_social_id = $this->os;
-            $osxp->save();
+            // $this->paciente = Paciente::find($this->paciente);
+
+            $osxp = ObraSocialXPaciente::firstOrCreate([
+                    'obra_social_id' => $this->os,
+                    'paciente_id' => $this->paciente,
+                    'estado' => '1'
+
+            ]);
+
 
             if ($this->motivo == '1') {
                 Pap::create([
@@ -207,13 +219,13 @@ class Agenda extends Component
                 //  Verificacion de la existencia del paciente
                 if (count($this->personas) >= 1) {
 
-                    if ($this->perfil == null) {
-                        $this->perfil =  $this->persona->perfils->first()->id;
-
+                    if ($this->paciente == null) {
+                        // $this->perfil =  $this->persona->perfils->first()->id;
+                        $this->paciente = $this->persona->perfiles->first()->pacientes->first();
 
                         //Crea Turno con paciente existente
                         $this->turno =  Turno::create([
-                            'perfil_id' => $this->perfil,
+                            'paciente_id' => $this->paciente->id,
                             'motivo' => $this->motivo,
                             'fecha_turno' =>  $this->fecha . ' ' . $this->horario,
                             'estado' => '1'
@@ -345,7 +357,7 @@ class Agenda extends Component
 
                 $this->nombre = $this->persona->nombre;
                 $this->apellido = $this->persona->apellido;
-                $this->oss = $this->persona->perfiles->pacientes->first()->obrasociales;
+                $this->oss = $this->persona->perfiles->first()->pacientes->first()->obrasociales;
 
                 $this->onOff = 'disabled';
             } else {
@@ -380,7 +392,8 @@ class Agenda extends Component
                 return Carbon::parse($turno->fecha_turno)->format('H:i');
             });
 
-        return view('livewire.agenda',
+        return view(
+            'livewire.agenda',
             ['fecha' => $this->fecha]
         );
     }

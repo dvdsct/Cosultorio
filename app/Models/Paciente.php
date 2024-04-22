@@ -9,22 +9,34 @@ class Paciente extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['perfil_id','estado'];
+    protected $fillable = ['perfil_id', 'estado'];
 
 
 
 
-    public function perfiles(){
-        return $this->belongsTo(Perfil::class,'perfil_id',);
+    public function perfiles()
+    {
+        return $this->belongsTo(Perfil::class, 'perfil_id',);
     }
 
     public function turnos()
     {
         return $this->hasOne(Turno::class);
     }
-    
-    public function medicos(){
-        return $this->belongsToMany(Medico::class);
 
+    public function medicos()
+    {
+        return $this->belongsToMany(Medico::class);
+    }
+
+    public function obrasociales()
+    {
+
+        return $this->belongsToMany(ObraSocial::class, 'obra_social_x_pacientes');
+    }
+    public function consultas()
+    {
+
+        return $this->hasMany(Consulta::class);
     }
 }

@@ -25,7 +25,7 @@ class CargaEstudios extends Component
         $this->consulta = $consulta;
 
         $this->oldConsulta = Consulta::where('estado', '3')
-            ->where('perfil_id', $this->consulta->perfil_id)->latest('created_at')
+            ->where('paciente_id', $this->consulta->paciente_id)->latest('created_at')
             ->first();
         /*         if(count($this->oldConsulta->first()->laboratorios)> 0){
 

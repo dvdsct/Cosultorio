@@ -27,10 +27,10 @@ class Consulta extends Model
 
 
 
-    public function perfiles()
+    public function pacientes()
     {
 
-        return $this->belongsTo(Perfil::class, 'perfil_id');
+        return $this->belongsTo(Perfil::class, 'paciente_id');
     }
 
     public function turnos()

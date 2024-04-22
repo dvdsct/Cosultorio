@@ -20,7 +20,7 @@ class Persona extends Model
 
     protected $dates = ['fecha_de_nacimiento'];
 
-    public function perfils()
+    public function perfiles()
     {
         return $this->hasMany(Perfil::class, 'id');
     }
@@ -44,6 +44,6 @@ class Persona extends Model
             return '-';
         }
     }
-    
-    
+
+
 }
