@@ -56,14 +56,14 @@
 
                                         </td>
                                         <td style="display:flex; justify-content: flex-end;">
-                                            <div class="btn-group" style="width: 60%;">
+                                            <div class="btn-group" style="width: 80%;">
                                                 <button type="button" class="btn bg-purple btn-flat rounded-left mr-1" wire:click='dispatch("modalOn")'>
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
 
-                                                <button type="button" class="btn bg-purple btn-flat mr-1" wire:click=''>
+<!--                                                 <button type="button" class="btn bg-purple btn-flat mr-1" wire:click=''>
                                                     <i class="fas fa-file-upload"></i>
-                                                </button>
+                                                </button> -->
                                                 <button type="button" class="btn bg-purple btn-flat rounded-right mr-5" wire:click='delRecetas'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
