@@ -20,8 +20,8 @@ class PacienteController extends Controller
     {
         $user = Auth()->user();
         $perfil = Perfil::where('user_id',$user->id)->get();
-        $medico = Medico::where('perfil_id',$perfil->first()->id)->get();
-        $pac =  $medico->first()->pacientes;
+        $medico = Medico::where('perfil_id',$perfil->id)->get();
+        $pac =  $medico->pacientes;
 
         return view('Consultorio.Pacientes.index',[
             'pac' => $pac

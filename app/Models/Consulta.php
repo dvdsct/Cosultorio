@@ -44,7 +44,7 @@ class Consulta extends Model
     }
     public function medicos()
     {
-        return $this->belongsToMany(Medico::class, 'consultas_x_medicos');
+        return $this->belongsToMany(Medico::class, 'consultas_x_medicos','consulta_id');
     }
 
     public function laboratorios()

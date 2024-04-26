@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body style="padding: 0">
 
 
 
@@ -20,11 +20,11 @@
                 <th>
 
                     <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
-                        <h1 style="padding-top:0px;"> {{ $medico }} </h1>
+                        <h1 style="padding-top:0px;"> {{ $titulo . ' ' .$medico }} </h1>
 
-                        <p style="padding-top:0px;"> M.P. N° 2047 </p>
+                        <p style="padding-top:0px;"> M.P. N° {{ $matricula }} </p>
 
-                        <p style="padding-top:0px;"> GINECOLOGÍA Y OBSTETRICIA </p>
+                        <p style="padding-top:0px;"> {{ $especialidad }} </p>
 
                         <p style="padding-top:0px;"> Papanicolau - Colposcopia - Partos - Cesarea </p>
                     </div>
@@ -32,13 +32,13 @@
                 <th>
 
                     <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
-                        <h1> Dr. Caceres Walter Ariel </h1>
+                        <h1 style="padding-top:0px;"> {{ $titulo . ' ' .$medico }} </h1>
 
-                        <p> M.P. N° 2047 </p>
+                        <p style="padding-top:0px;"> M.P. N° {{ $matricula }} </p>
 
-                        <p> GINECOLOGÍA Y OBSTETRICIA </p>
+                        <p style="padding-top:0px;"> {{ $especialidad }} </p>
 
-                        <p> Papanicolau - Colposcopia - Partos - Cesarea </p>
+                        <p style="padding-top:0px;"> Papanicolau - Colposcopia - Partos - Cesarea </p>
                     </div>
                 </th>
 

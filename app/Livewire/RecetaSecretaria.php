@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\ConsultasXMedico;
 use App\Models\Medico;
 use Livewire\Component;
 
@@ -34,6 +35,11 @@ class RecetaSecretaria extends Component
             'medico_id' => $this->medico
         ]);
 
+        ConsultasXMedico::create([
+            'medico_id' => $this->medico,
+            'consulta_id' => $this->consulta->id,
+            'estado' => '1'
+        ]);
         $this->medico = Medico::find($this->medico);
         $this->modalMedicoOnOff();
     }

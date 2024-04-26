@@ -115,6 +115,8 @@ class Recetar extends Component
         $this->des = 'disabled';
         $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
         $this->dispatch('added-rem');
+
+
     }
 
 
@@ -125,6 +127,7 @@ class Recetar extends Component
     {
         $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
         $this->closeModal();
+        
     }
 
     public function ver(){
