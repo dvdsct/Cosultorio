@@ -61,9 +61,6 @@
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
 
-<!--                                                 <button type="button" class="btn bg-purple btn-flat mr-1" wire:click=''>
-                                                    <i class="fas fa-file-upload"></i>
-                                                </button> -->
                                                 <button type="button" class="btn bg-purple btn-flat rounded-right mr-5" wire:click='delRecetas'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
@@ -75,12 +72,11 @@
 
                                     {{-- Laboratorios --}}
 
-
                                     <tr>
                                         @if ($this->consulta->estado == '3')
                                         <td>
                                             <button type="button" class="btn btn-warning btn-block rounded-left mr-1" style="width: 70%;" data-toggle="modal" wire:click="modalEditLab">
-                                                <strong> Ver estudios laboratorio </strong>
+                                                <strong> Laboratorio </strong>
                                             </button>
                                         </td>
                                         @else
@@ -93,9 +89,11 @@
                                                 <button type="button" class="btn btn-warning btn-flat rounded-left mr-1" data-toggle="modal" data-target="#modal-laboratorio">
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
+
                                                 <button type="button" class="btn btn-warning btn-flat mr-1" wire:click="modalEditLab">
                                                     <i class="fas fa-file-upload"></i>
                                                 </button>
+
                                                 <button type="button" class="btn btn-warning btn-flat rounded-right mr-5" wire:click='resetLab'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
@@ -107,15 +105,13 @@
 
                                     {{-- Imagenes --}}
 
-
                                     <tr>
                                         @if ($consulta->estado == '3')
                                         <td>
                                             <div class="btn-group" style="width: 60%;">
                                                 <button type="button" class="btn btn-primary btn-block rounded-left  mr-1" wire:click='dispatch("modalImgOn")'>
-                                                    <strong> Ver estudios imagen </strong>
+                                                    <strong> Imagen </strong>
                                                 </button>
-
                                             </div>
                                         </td>
 
@@ -130,9 +126,14 @@
                                                 <button type="button" class="btn btn-primary btn-flat rounded-left  mr-1" wire:click='dispatch("modalImgOn")'>
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-primary btn-flat mr-1" wire:click=''>
-                                                    <i class="fas fa-file-upload"></i>
+
+                                                <button type="button" class="btn btn-primary position-relative mr-1" wire:click=''>
+                                                <i class="fas fa-file-upload"></i>
+                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                        <span class="visually-hidden">7</span>
+                                                    </span>
                                                 </button>
+                                            
                                                 <button type="button" class="btn btn-primary btn-flat rounded-right mr-5" wire:click='resetImgs'>
                                                     <i class="fas fa-trash"></i>
                                                 </button>

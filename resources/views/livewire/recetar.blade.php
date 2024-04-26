@@ -37,8 +37,8 @@
 
     <!-- Lista Vademecum -->
     <div class="row px-2">
-        <div class="col-md-6 px-4">
-            <table id="myTable" class="table table-hover ml-4">
+        <div class="col-md-6">
+            <table id="myTable" class="table table-hover">
                 <thead>
                     <th>Presentacion</th>
                     <th>Droga</th>
