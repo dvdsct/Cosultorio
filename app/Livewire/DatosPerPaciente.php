@@ -53,7 +53,7 @@ class DatosPerPaciente extends Component
     public function modalDatoPac()
     {
 
-        if ($this->modalDP == true) {
+        if ($this->modalDP) {
 
             $this->modalDP = false;
         } else {

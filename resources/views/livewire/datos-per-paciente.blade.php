@@ -48,12 +48,13 @@
                         <a class="nav-link" style="display: flex; justify-content: flex-end;" wire:click='modalDatoPac'>
                             <i class="fas fa-edit"></i> Completar datos de paciente
                         </a>
+                        {{ $modalDP }}
                     </div>
 
             </div>
         </div>
     </div>
-    @can('admin')
+
 
         @if ($modalDP)
 
@@ -210,6 +211,6 @@
                 </div>
             </div>
         @endif
-    @endcan
+
 
 </div>

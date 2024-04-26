@@ -26,6 +26,9 @@ class Turno extends Model
     public function pacientes(){
         return $this->belongsTo(Paciente::class,'paciente_id');
     }
+    public function medicos(){
+        return $this->belongsTo(Medico::class,'paciente_id');
+    }
 
 
     public function colposcopias(){

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consulta;
+use App\Models\ConsultasXMedico;
 use App\Models\ObraSocialXPaciente;
 use App\Models\ObraSocialXPerfil;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class PdfController extends Controller
 {
@@ -42,23 +45,27 @@ class PdfController extends Controller
     {
         $consulta = Consulta::find($id);
         $consulta->update(
-            ['estado' => '5']);
+            ['estado' => '5']
+        );
 
         if (!$consulta) {
             abort(404); // consulta no encontrada
         }
 
+        $matricula = $consulta->medicos->first()->matricula;
+        $titulo = $consulta->medicos->first()->titulo;
+        $especialidad = Str::upper($consulta->medicos->first()->especialidad);
+        $medico = $consulta->medicos->first()->perfiles->personas->nombre . ' '. $consulta->medicos->first()->perfiles->personas->apellido;
         $items = $consulta->recetas->chunk(2);
 
-        $fecha = $consulta->turnos;
-        $medico = $consulta->medicos;
         $paciente1 = $consulta->pacientes;
 
-        $paciente = $consulta->pacientes->personas->nombre.'  '. $consulta->pacientes->personas->apellido .'  ' . $consulta->pacientes->personas->dni ;
-        $os = ObraSocialXPaciente::select('obra_social_x_pacientes.*','obra_socials.descripcion')
-        ->leftjoin('obra_socials','obra_social_x_pacientes.obra_social_id','=','obra_socials.id')
-        ->where('paciente_id', $paciente1->first()->id)
-        ->get();
+        $fecha = $consulta->turnos;
+        $paciente = $consulta->pacientes->personas->nombre . '  ' . $consulta->pacientes->personas->apellido . '  ' . $consulta->pacientes->personas->dni;
+        $os = ObraSocialXPaciente::select('obra_social_x_pacientes.*', 'obra_socials.descripcion')
+            ->leftjoin('obra_socials', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
+            ->where('paciente_id', $paciente1->first()->id)
+            ->get();
 
         $osd =  $os->filter(function ($oxs) {
             return $oxs->estado == '1';
@@ -71,7 +78,10 @@ class PdfController extends Controller
             'osd' => $osd,
             'paciente' => $paciente,
             'fecha' => $fecha,
-            'medico' => $medico
+            'medico' => $medico,
+            'matricula' => $matricula,
+            'especialidad' => $especialidad,
+            'titulo' => $titulo
         ]);
 
         return $pdf->stream('consulta_' . $consulta->id . '.pdf');

@@ -53,8 +53,8 @@
                             </td>
 
                             <td class="p-0 pl-2"><span>
-                                    {{ $turno->consultas->medicos->first()->perfiles->personas->nombre }}
-                                    {{ $turno->consultas->medicos->first()->perfiles->personas->apellido }}
+                                    {{ $turno->medicos->first()->perfiles->personas->nombre ?? '' }}
+                                    {{ $turno->medicos->first()->perfiles->personas->apellido ?? ''}}
                                 </span></td>
 
                             <td class="p-0 pl-2">

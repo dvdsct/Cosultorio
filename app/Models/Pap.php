@@ -10,7 +10,7 @@ class Pap extends Model
     use HasFactory;
 
     protected $fillable = [
-        'perfil_id',
+        'paciente_id',
         'turno_id',
         'estado',
         'tipo_muestra',
@@ -19,13 +19,13 @@ class Pap extends Model
         'fecha_tami',
         'fum',
         'menopausia',
-        'metodo_anti_con', 
+        'metodo_anti_con',
         'otros_anti_con',
         'cirujias_pre',
-        'causa_lesion', 
-        'thr', 
-        'embarazo_actual', 
-        'trata_rad', 
+        'causa_lesion',
+        'thr',
+        'embarazo_actual',
+        'trata_rad',
         'quimio'
     ];
 
@@ -36,8 +36,8 @@ class Pap extends Model
     }
 
 
-    public function perfiles()
+    public function pacientes()
     {
-        return $this->belongsTo(Perfil::class, 'perfil_id');
+        return $this->belongsTo(Paciente::class, 'paciente_id');
     }
 }
