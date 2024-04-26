@@ -12,7 +12,7 @@
         <!-- TEXTO QUE MUESTRA LA FECHA ACTUAL -->
         <div class="col-md-5">
             <h1 style="text-align: center;">
-                <strong>{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </strong>
+                <strong> <small class="badge ">{{ ucfirst(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </small> </strong>
             </h1>
         </div>
 
@@ -116,8 +116,8 @@
         <div class="modal-dialog" wire:keydown.escape="closeModal">
             <div class="modal-content">
                 <div class="modal-header bg-info">
-                    <h4 class="modal-title"><strong> Nuevo Turno para el
-                            {{ Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ') }} </strong></h4>
+                    <h4 class="modal-title"><strong> NUEVO TURNO PARA EL 
+                    {{ strtoupper(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </strong></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click='closeModal'>
                         <span aria-hidden="true">×</span>
                     </button>

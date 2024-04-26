@@ -136,6 +136,7 @@ class Agenda extends Component
     public function addTurno()
     {
         $rules = [
+            'medico' =>'required',
             'fecha' => 'required|min:3',
             'horario' => 'required|min:3',
             'dni' => 'required_if:persona,null|min:3',
@@ -144,6 +145,7 @@ class Agenda extends Component
         ];
 
         $messages = [
+            'medico.required' => 'Debe seleccionar un medico',
             'nombre.required_if' => 'El nombre es obligatorio.',
             'apellido.required_if' => 'El apellido es obligatorio.',
             'horario.required' => 'El horario es obligatorio.',
@@ -417,8 +419,9 @@ class Agenda extends Component
     public function messages()
     {
         return [
+            'medico.required_if' => 'Debe seleccionar un medico',
             'nombre.required_if' => 'Debe ingresar el nombre.',
-            'apellido.required_if' => 'Debe ingresar el apellido.',
+            'apellido.required_if' => 'Debe ingresar el apellido2.',
             'horario.required' => 'Debe ingresar el horario.',
             'dni.required_if' => "Debe ingresar el DNI."
         ];
