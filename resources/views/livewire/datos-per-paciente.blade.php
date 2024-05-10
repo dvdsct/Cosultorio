@@ -43,21 +43,11 @@
                         {{ $oso->nro_afil }}
                     </h6>
                 </div>
-<<<<<<< HEAD
-                    <div class="col-md-3 d-flex flex-column"
-                        style="display: flex; justify-content: flex-end; align-items: flex-end; cursor:pointer;">
-                        <a class="nav-link" style="display: flex; justify-content: flex-end;" wire:click='modalDatoPac'>
-                            <i class="fas fa-edit"></i> Completar datos de paciente
-                        </a>
-                        {{ $modalDP }}
-                    </div>
-=======
                 <div class="col-md-3 d-flex flex-column" style="display: flex; justify-content: flex-end; align-items: flex-end; cursor:pointer;">
                     <a class="nav-link" style="display: flex; justify-content: flex-end;" wire:click='modalDatoPac'>
                         <i class="fas fa-edit"></i> Completar datos de paciente
                     </a>
                 </div>
->>>>>>> f235ad49d75ac42bcc775b02083728315d914e97
 
             </div>
         </div>
@@ -208,14 +198,9 @@
 
                 </div>
             </div>
-<<<<<<< HEAD
-        @endif
-
-=======
         </div>
     </div>
     @endif
     @endcan
->>>>>>> f235ad49d75ac42bcc775b02083728315d914e97
 
 </div>
