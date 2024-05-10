@@ -8,10 +8,8 @@ use App\Models\Consulta;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\ObraSocial;
-use Illuminate\Support\Facades\DB;
 use App\Models\Persona;
 use App\Models\Perfil;
-use App\Models\ObraSocialXPerfil;
 use App\Models\Pap;
 use App\Models\Colposcopia;
 use App\Models\Turno;
@@ -22,7 +20,6 @@ use App\Models\Paciente;
 use App\Models\ObraSocialXPaciente;
 use App\Models\PacienteXMedico;
 use Livewire\Attributes\On;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class Agenda extends Component
