@@ -28,18 +28,28 @@ class RoleSeeder extends Seeder
         $read = Permission::create(['name'=>'read']);
         $create = Permission::create(['name'=>'create']);
         $crearturno = Permission::create(['name'=>'crearturno']);
-        $atender = Permission::create(['name'=>'atender']);
         $update = Permission::create(['name'=>'update']);
         $delete = Permission::create(['name'=>'delete']);
         $supervisar = Permission::create(['name'=>'supervisar']);
 
+        $turnos = Permission::create(['name'=>'turnos']);
+        $atender = Permission::create(['name'=>'atender']);
+        $colpos = Permission::create(['name'=>'colpos']);
+        $consultas = Permission::create(['name'=>'consultas']);
+        $recetar = Permission::create(['name'=>'recetar']);
 
-        $read->assignRole([$admin,$medico]);
-        $supervisar->assignRole([$su]);
+
+        $recetar->assignRole([$admin,$medico, $secretaria]);
+        $turnos->assignRole([$admin,$medico]);
         $atender->assignRole($medico);
+        $colpos->assignRole($medico);
+        $consultas->assignRole($medico);
+        $turnos->assignRole($secretaria);
+
+
         $delete->assignRole($admin,$su);
+        $supervisar->assignRole([$su]);
         $update->assignRole($admin,$su);
-        $crearturno->assignRole($secretaria);
 
 
     }

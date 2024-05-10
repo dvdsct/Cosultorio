@@ -65,10 +65,10 @@ return [
 
     'logo' => null,
     'logo_img' => null,
-    'logo_img_class' =>null,
+    'logo_img_class' => null,
     'logo_img_xl' => null,
     'logo_img_xl_class' => null,
-    'logo_img_alt' =>null,
+    'logo_img_alt' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -307,29 +307,34 @@ return [
             'text'        => 'Pacientes',
             'url'         => 'pacientes',
             'icon'        => 'far fas fa-users',
+            'can' => 'atender'
         ],
 
         [
             'text'        => 'Consultas',
             'url'         => 'consulta',
             'icon'        => 'far fas fa-stethoscope',
+            'can' => 'consultas'
         ],
 
         [
             'text'        => 'Paps',
             'url'         => 'paps',
             'icon'        => 'fas fa-file-alt',
+            'can' => 'colpos'
         ],
 
         [
             'text'        => 'Colposcopias',
             'url'         => 'colpos',
             'icon'        => 'far fas fa-eye',
+            'can' => 'colpos'
         ],
         [
             'text'        => 'Recetas',
             'url'         => 'receta',
             'icon'        => 'fas fa-pills',
+            'can' => 'recetar'
         ],
 
     ],
