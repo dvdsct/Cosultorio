@@ -38,14 +38,13 @@ class Recetar extends Component
 
 
 
-    #[Validate('required', message: 'Necesitas un diagnostico para continuar')]
+    #[Validate('required', message: 'Seleccionar un diagnostico para continuar')]
     public $cie10;
 
     public $des = '';
 
     public function mount($consulta)
     {
-
         $this->consulta = $consulta;
         $this->cie10s = Cie10::all();
         $this->recetados = $this->consulta->recetas;
@@ -56,9 +55,6 @@ class Recetar extends Component
             $this->des = '';
         }
         // $this->cie10 = $this->recetados->first()->cie10_id;
-
-
-
     }
 
 
@@ -74,12 +70,8 @@ class Recetar extends Component
     #[On('modalOn')]
     public function openModal()
     {
-        // dd('aqui');
-
         $this->modal = true;
     }
-
-
 
 
     public function indicacionar($id)
@@ -115,24 +107,16 @@ class Recetar extends Component
         $this->des = 'disabled';
         $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
         $this->dispatch('added-rem');
-
-
     }
-
-
-
 
 
     public function guardarReceta($id)
     {
         $this->reset('remedio', 'indicacion', 'cantidad', 'horas');
         $this->closeModal();
-        
     }
 
     public function ver(){
-
-        // dd($this->recetados);
         dd($this->cie10 = $this->recetados->first());
     }
 
@@ -141,7 +125,6 @@ class Recetar extends Component
     #[On('added-rem')]
     public function render()
     {
-
         $this->recetados = $this->consulta->recetas;
         $this->cie10s = Cie10::all();
 

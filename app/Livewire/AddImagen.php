@@ -8,6 +8,7 @@ use App\Models\ImagenXConsulta;
 use App\Models\Cie10;
 use Livewire\Attributes\On;
 use Livewire\Attributtes\Locked;
+use Livewire\Attributes\Validate;
 
 class AddImagen extends Component
 {
@@ -37,7 +38,9 @@ class AddImagen extends Component
     public $ecografias;
 
     public $imgs_ped;
-    public $cie10 ='1';
+
+    #[Validate('required', message: 'Seleccionar un diagnostico para continuar')]
+    public $cie10;
     public $cie10s;
 
 
@@ -183,7 +186,7 @@ class AddImagen extends Component
 
     public function save_img()
     {
-
+        $this->validate();
         $this->tipos = [
 
             [$this->eco_gin , '1'],
@@ -216,6 +219,8 @@ class AddImagen extends Component
             }
 
         }
+
+
         $this->modalImgOff();
         $this->dispatch('added');
     }
@@ -228,13 +233,4 @@ class AddImagen extends Component
 
         return view('livewire.add-imagen');
     }
-
-
-
-
-
-
-
-
-
 }

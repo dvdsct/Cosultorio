@@ -52,11 +52,7 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-
-=======
     @can('read')
->>>>>>> f235ad49d75ac42bcc775b02083728315d914e97
 
     @if ($modalDP)
 

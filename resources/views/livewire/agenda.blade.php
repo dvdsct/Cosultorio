@@ -18,10 +18,10 @@
 
         <!-- BOTON PARA GENERAR NUEVO TURNO -->
         <div class="col-md-3 col-xs-3 pt-2">
-            @can('crearturno')
+         
             <button type="button" class="btn btn-block btn-info" id="btn_turno" data-target="modal-default" wire:click='openModal'>
                 <i class="fas fa-plus-circle"></i> Nuevo Turno </button>
-            @endcan
+  
         </div>
     </div>
     <div class="table-responsive">
@@ -53,8 +53,8 @@
                             </td>
 
                             <td class="p-0 pl-2"><span>
-                                    {{ $turno->medicos->first()->perfiles->personas->nombre ?? '' }}
-                                    {{ $turno->medicos->first()->perfiles->personas->apellido ?? ''}}
+                                    {{ $turno->medicos->perfiles->personas->apellido }}
+                                    {{ $turno->medicos->perfiles->personas->nombre}}
                                 </span></td>
 
                             <td class="p-0 pl-2">

@@ -9,7 +9,7 @@
 
 </head>
 
-<body style="padding: 0">
+<body style="padding: 0; margin: 0;">
 
 
 
@@ -19,12 +19,11 @@
             <thead>
                 <th>
 
-                    <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
-                        <h1 style="padding-top:0px;"> {{ $titulo . ' ' .$medico }} </h1>
+                    <div style="text-align: center; padding:10px;">
+                        <h2 style="padding-top:0px; margin-bottom: 0px; font-style: italic; font-family: 'Arial', sans-serif;"> {{ $titulo . ' ' .$medico }} </h2>
 
-                        <p style="padding-top:0px;"> M.P. N° {{ $matricula }} </p>
-
-                        <p style="padding-top:0px;"> {{ $especialidad }} </p>
+                        <span style="padding-top:0px; font-style: italic;"> {{ $especialidad }} </span>
+                        <span style="padding-top:0px; font-style: italic;"> M.P. N° {{ $matricula }} </span>
 
                         <p style="padding-top:0px;"> Papanicolau - Colposcopia - Partos - Cesarea </p>
                     </div>

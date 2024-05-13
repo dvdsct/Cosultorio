@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\ConsultasXMedico;
 use App\Models\Medico;
 use Livewire\Component;
+use Livewire\Attributes\Validate;
 
 class RecetaSecretaria extends Component
 {
@@ -12,6 +13,8 @@ class RecetaSecretaria extends Component
     public $paciente;
     public $modalMedico = true;
     public $medicos;
+
+    #[Validate('required', message: 'Seleccionar un medico para continuar')]
     public $medico;
 
     public function mount($consulta, $paciente){
@@ -30,10 +33,13 @@ class RecetaSecretaria extends Component
         }
     }
     public function selMed(){
+        $this->validate();
         $this->consulta->update([
             'estado' => '2',
             'medico_id' => $this->medico
         ]);
+
+        
 
         ConsultasXMedico::create([
             'medico_id' => $this->medico,

@@ -26,7 +26,7 @@
                 </option>
                 @endforeach
             </select>
-            <div class="text-red">
+            <div class="text-red" style="font-weight: bold;">
                 @error('cie10')
                 {{ $message }}
                 @enderror

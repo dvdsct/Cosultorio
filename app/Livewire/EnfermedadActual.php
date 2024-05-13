@@ -13,6 +13,7 @@ use App\Models\Imagen;
 use App\Models\Receta;
 use App\Models\RecetaXConsulta;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Validate;
 
 class EnfermedadActual extends Component
 {
@@ -79,6 +80,7 @@ class EnfermedadActual extends Component
     public $recetados = [];
 
     public $cie10s;
+    #[Validate('required', message: 'Seleccionar un diagnostico para continuar')]
     public $cie10;
 
 
@@ -399,13 +401,10 @@ class EnfermedadActual extends Component
     }
 
 
-
-
+    
 
     public function add_lab()
     {
-
-
         // Categoria General
         if ($this->e_gral) {
 
@@ -944,8 +943,6 @@ class EnfermedadActual extends Component
                 ]);
             }
         }
-
-
         $this->dispatch('added')->to(EnfermedadActual::class);
     }
 

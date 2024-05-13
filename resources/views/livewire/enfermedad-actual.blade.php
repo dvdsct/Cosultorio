@@ -56,7 +56,7 @@
 
                                         </td>
                                         <td style="display:flex; justify-content: flex-end;">
-                                            <div class="btn-group" style="width: 80%;">
+                                            <div class="btn-group" style="width: 60%;">
                                                 <button type="button" class="btn bg-purple btn-flat rounded-left mr-1" wire:click='dispatch("modalOn")'>
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
@@ -90,9 +90,9 @@
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
 
-                                                <button type="button" class="btn btn-warning btn-flat mr-1" wire:click="modalEditLab">
+<!--                                                 <button type="button" class="btn btn-warning btn-flat mr-1" wire:click="modalEditLab">
                                                     <i class="fas fa-file-upload"></i>
-                                                </button>
+                                                </button> -->
 
                                                 <button type="button" class="btn btn-warning btn-flat rounded-right mr-5" wire:click='resetLab'>
                                                     <i class="fas fa-trash"></i>
@@ -127,12 +127,12 @@
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
 
-                                                <button type="button" class="btn btn-primary position-relative mr-1" wire:click=''>
+<!--                                                 <button type="button" class="btn btn-primary position-relative mr-1" wire:click=''>
                                                 <i class="fas fa-file-upload"></i>
                                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                         <span class="visually-hidden">7</span>
                                                     </span>
-                                                </button>
+                                                </button> -->
                                             
                                                 <button type="button" class="btn btn-primary btn-flat rounded-right mr-5" wire:click='resetImgs'>
                                                     <i class="fas fa-trash"></i>
@@ -144,7 +144,7 @@
                                 </tbody>
                             </table>
                             @if ($consulta->estado != '3')
-                            <button type="button" class="btn btn-block btn-success mt-2" style="height: 80px;" wire:click='finConsulta()'><strong> FINALIZAR CONSULTA </strong></button>
+                            <button type="button" class="btn btn-block btn-success mt-2" style="height: 80px;" wire:click='finConsulta()' ><strong> FINALIZAR CONSULTA </strong></button>
                             @endif
                         </div>
 
@@ -209,6 +209,11 @@
                                 </option>
                                 @endforeach
                             </select>
+                            <div class="text-red" style="font-weight: bold;">
+                                @error('cie10')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="row ml-2">
