@@ -19,10 +19,10 @@
         <tbody>
             @foreach ($todas as $c)
                 <tr>
-                    <td>{{ $c->perfiles->personas->nombre }}</td>
-                    <td>{{ $c->perfiles->personas->apellido }}</td>
-                    <td>{{ $c->perfiles->personas->dni }}</td>
-                    <td>{{ $c->updated_at }}</td>
+                    <td>{{ $c->pacientes->perfiles->personas->nombre }}</td>
+                    <td>{{ $c->pacientes->perfiles->personas->apellido }}</td>
+                    <td>{{ $c->pacientes->perfiles->personas->dni }}</td>
+                    <td>{{ $c->motivo }}</td>
 
 
                 </tr>

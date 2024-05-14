@@ -61,7 +61,7 @@ class PdfController extends Controller
         $paciente1 = $consulta->pacientes;
 
         $fecha = $consulta->turnos;
-        $paciente = $consulta->pacientes->personas->nombre . '  ' . $consulta->pacientes->personas->apellido . '  ' . $consulta->pacientes->personas->dni;
+        $paciente = $consulta->pacientes->perfiles->personas->nombre . '  ' . $consulta->pacientes->perfiles->personas->apellido . '  ' . $consulta->pacientes->perfiles->personas->dni;
         $os = ObraSocialXPaciente::select('obra_social_x_pacientes.*', 'obra_socials.descripcion')
             ->leftjoin('obra_socials', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
             ->where('paciente_id', $paciente1->first()->id)

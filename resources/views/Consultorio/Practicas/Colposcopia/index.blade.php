@@ -41,7 +41,7 @@
                     @foreach ($colpos as $c)
                     <tr>
                         <td>{{ \Carbon\Carbon::parse($c->updated_at)->locale('es_AR')->timezone('America/Argentina/Buenos_Aires')->isoFormat('D [de] MMMM [de] YYYY') }}</td>
-                        <td>{{ $c->perfiles->personas->apellido . ' ' . $c->perfiles->personas->nombre }}</td>
+                        <td>{{ $c->pacientes->perfiles->personas->apellido . ' ' . $c->pacientes->perfiles->personas->nombre }}</td>
                         <td>{{ $c->observaciones}}</td>
                         <td>{{ $c->seguimiento }}</td>
                         <td> <button type="button" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button></td>

@@ -18,10 +18,10 @@
 
         <!-- BOTON PARA GENERAR NUEVO TURNO -->
         <div class="col-md-3 col-xs-3 pt-2">
-         
+
             <button type="button" class="btn btn-block btn-info" id="btn_turno" data-target="modal-default" wire:click='openModal'>
                 <i class="fas fa-plus-circle"></i> Nuevo Turno </button>
-  
+
         </div>
     </div>
     <div class="table-responsive">
@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
-                        <tr>
+                        <tr wire:key='{{ $turno->id }}'>
                             <td class="p-0 pl-2">
                                 @if ($turno->fecha_turno !== null)
                                 {{ Carbon\Carbon::parse($turno->fecha_turno)->format('H:i') }} hs.
@@ -116,7 +116,7 @@
         <div class="modal-dialog" wire:keydown.escape="closeModal">
             <div class="modal-content">
                 <div class="modal-header bg-info">
-                    <h4 class="modal-title"><strong> NUEVO TURNO PARA EL 
+                    <h4 class="modal-title"><strong> NUEVO TURNO PARA EL
                     {{ strtoupper(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </strong></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click='closeModal'>
                         <span aria-hidden="true">×</span>

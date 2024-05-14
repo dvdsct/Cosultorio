@@ -21,6 +21,12 @@ class Colposcopia extends Model
         return $this->belongsTo(Perfil::class,'perfil_id');
     }
 
+    public function pacientes()
+    {
+
+        return $this->belongsTo(Paciente::class, 'paciente_id');
+    }
+
     public function citologias (){
         return $this->belongsTo(Citologia::class,'citologia_id');
     }

@@ -16,7 +16,7 @@ class Paciente extends Model
 
     public function perfiles()
     {
-        return $this->belongsTo(Perfil::class, 'perfil_id',);
+        return $this->belongsTo(Perfil::class,'perfil_id');
     }
 
     public function turnos()
@@ -38,5 +38,15 @@ class Paciente extends Model
     {
 
         return $this->hasMany(Consulta::class);
+    }
+    public function colposcopias()
+    {
+
+        return $this->hasMany(Colposcopia::class);
+    }
+    public function paps()
+    {
+
+        return $this->hasMany(Pap::class);
     }
 }

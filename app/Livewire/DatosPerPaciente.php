@@ -45,6 +45,8 @@ class DatosPerPaciente extends Component
         $f = Carbon::now();
         $this->fHoy = $f->format('Y-m-d');
         $this->setForm();
+
+
         // $this->nacimiento = $this->fHoy;
 
     }
@@ -202,7 +204,7 @@ class DatosPerPaciente extends Component
         $this->nacimiento = $this->consulta->pacientes->personas->fecha_de_nacimiento ?? $this->fHoy;
         $this->dni = $this->consulta->pacientes->personas->dni ?? '';
 
-        $this->emails = $this->consulta->pacientes->personas->correos()->orderBy('estado', 'desc')->get();
+        $this->emails = $this->consulta->pacientes->perfiles->personas->correos()->orderBy('estado', 'desc')->get();
         if ($this->emails->isEmpty()) {
             $this->emailForm = true;
         } else {
@@ -211,7 +213,7 @@ class DatosPerPaciente extends Component
             $this->email = $this->emails->first();
         }
 
-        $this->telefonos = $this->consulta->pacientes->personas->telefonos()->orderBy('estado', 'desc')->get();
+        $this->telefonos = $this->consulta->pacientes->perfiles->personas->telefonos()->orderBy('estado', 'desc')->get();
         if ($this->telefonos->isEmpty()) {
             $this->telForm = true;
         } else {

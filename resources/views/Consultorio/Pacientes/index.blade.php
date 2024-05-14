@@ -54,12 +54,9 @@
 
                                 <td style="width: 230px; padding-left:1px">
                                     <div class="row pr-2" style="display:flex; justify-content:center">
-                                        <a href='{{ url('paciente/' . $p->id . '/consulta') }}'
+                                        <a href='{{ route('pacientes.show' , $p->id ) }}'
                                             class="btn btn-block btn-success btn-sm" style="width:80px">Consultas</a>
-                                        <a href='{{ url('paciente/' . $p->id . '/consulta') }}'
-                                            class="btn btn-block btn-danger btn-sm ml-2" style="width:60px">Paps</a>
-                                        <a href='{{ url('paciente/' . $p->id . '/consulta') }}'
-                                            class="btn btn-block btn-warning btn-sm ml-2" style="width:60px">Colp.</a>
+
                                     </div>
                                 </td>
 
