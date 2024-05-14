@@ -11,126 +11,95 @@
 
 <body style="padding: 0; margin: 0;">
 
-
-
-
     @foreach ($items as $par)
-        <table style="margin:0;border:1px solid black;width:19cm;max-height:10cm;">
-            <thead>
-                <th>
-
-                    <div style="text-align: center; padding:10px;">
-                        <h2 style="padding-top:0px; margin-bottom: 0px; font-style: italic; font-family: 'Arial', sans-serif;"> {{ $titulo . ' ' .$medico }} </h2>
-
-                        <span style="padding-top:0px; font-style: italic;"> {{ $especialidad }} </span>
-                        <span style="padding-top:0px; font-style: italic;"> M.P. N° {{ $matricula }} </span>
-
-                        <p style="padding-top:0px;"> Papanicolau - Colposcopia - Partos - Cesarea </p>
-                    </div>
-                </th>
-                <th>
-
-                    <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
-                        <h1 style="padding-top:0px;"> {{ $titulo . ' ' .$medico }} </h1>
-
-                        <p style="padding-top:0px;"> M.P. N° {{ $matricula }} </p>
-
-                        <p style="padding-top:0px;"> {{ $especialidad }} </p>
-
-                        <p style="padding-top:0px;"> Papanicolau - Colposcopia - Partos - Cesarea </p>
-                    </div>
-                </th>
-
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <ul>
-                            <h3>Paciente</h3>
-
-                            <li>{{ $paciente }} </li>
-                            <li>{{'OS: '.  $osd->first()->descripcion .' N° Afil:'.  $osd->first()->nro_afil
-                            }}
-
-                            </li>
-
-                            <li>Plan:{{$osd->first()->plan}}</li>
-                            <li>Diagnostico: {{ $par->first()->ciediez->descripcion }}</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <h3>Indicaciones</h3>
-                        @foreach ($par as $rem)
-                            <ul>
-                                <li>{{ $rem->vademecums->droga . ' ' . $rem->vademecums->cantidad }}
-                                    <br>{{ $rem->cantidad . ' cada ' . $rem->indicacion }}
-                                </li>
-
-                            </ul>
-                        @endforeach
-                    </td>
-                </tr>
-                <tr>
-                    <br>
-                </tr>
-
-                <tr>
-                    <td>
-                        <h3>Medicamentos</h3>
-
-                        @foreach ($par as $rem)
-                            <ul>
-                                <li>{{ $rem->vademecums->droga . ' ' . $rem->vademecums->cantidad . ' ' . $rem->vademecums->presentacion }}
-                                </li>
-
-                            </ul>
-                        @endforeach
-                    </td>
-                    <td>
-
-                    </td>
-                </tr>
+    <table style="margin:0;border:1px solid black;width:19cm;max-height:10cm;">
+        <thead>
+            <!-- CABECERA TABLA IZQUIERDA  -->
+            <th style="width: 50%; position: relative; height: auto;">
+                <div style="text-align: center; padding: 1px; top: 10px; left: 0; right: 0;">
+                    <h2 style="padding-top: 5px; margin-top: 0; margin-bottom: 0; font-style: italic; font-family: 'Arial', sans-serif;">{{ $titulo . ' ' .$medico }}</h2>
+                    <span style="padding-top: 0; font-style: italic;">{{ $especialidad }}</span>
+                    <span style="padding-top: 0; font-style: italic;">M.P. N° {{ $matricula }}</span>
+                    <p style="padding-top: 0;">Papanicolau - Colposcopia - Partos - Cesarea</p>
+                </div>
                 <hr>
-                <tr>
+            </th>
+            <!-- CABECERA TABLA DERECHA  -->
+            <th style="width: 50%; position: relative; height: auto;">
+                <div style="text-align: center; padding: 1px; top: 10px; left: 0; right: 0;">
+                    <h2 style="padding-top: 5px; margin-top: 0; margin-bottom: 0; font-style: italic; font-family: 'Arial', sans-serif;">{{ $titulo . ' ' .$medico }}</h2>
+                    <span style="padding-top: 0; font-style: italic;">{{ $especialidad }}</span>
+                    <span style="padding-top: 0; font-style: italic;">M.P. N° {{ $matricula }}</span>
+                    <p style="padding-top: 0;">Papanicolau - Colposcopia - Partos - Cesarea</p>
+                </div>
+                <hr>
+            </th>
+        </thead>
 
-                    <td>
-                        <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
-                            <p class="sanatorio">NUEVO SANATORIO ALVEAR:</p>
+        <tbody>
+            <tr>
+                <!-- PACIENTE TABLA DE LA IZQUIERDA -->
+                <td style="margin-top: 40px;">
+                    <ul>
+                        <h3 style="margin: 0;">Paciente</h3>
+                        <li>{{ $paciente }} </li>
+                        <li>{{'OS: '.  $osd->first()->descripcion .' N° Afil:'.  $osd->first()->nro_afil}} </li>
+                        <li>Plan:{{$osd->first()->plan}}</li>
+                        <li>Diagnostico: {{ $par->first()->ciediez->descripcion }}</li>
+                    </ul>
+                </td>
 
-                            <P class="direccion">Moreno (S) 266 - (0385) 4214727 / 1552 - Santiago del
-                                Estero</P>
-                            <h5 class='meow-script-regular'> Dr. Caceres Walter Ariel </h5>
+                <!-- INDICACIONES TABLA DE LA IZQUIERDA -->
+                <td>
+                    <ul>
+                        <h3 style="margin: 0;">Indicaciones</h3>
+                        @foreach ($par as $rem)
+                        <li>{{ $rem->vademecums->droga . ' ' . $rem->vademecums->cantidad }}
+                            <br>{{ $rem->cantidad . ' cada ' . $rem->indicacion }} horas.</li>
+                            @endforeach
+                        </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <ul>
+                        <h3 style="margin: 0;">Medicamentos</h3>
+                        @foreach ($par as $rem)
+                        <li>{{ $rem->vademecums->droga . ' ' . $rem->vademecums->cantidad . ' ' . $rem->vademecums->presentacion }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td style="position: relative; height: auto;">
+                <hr>
+                    <div style="text-align: center; margin-top:0; padding-top: 0;">
+                        <h3 class="sanatorio" style="margin: 0;">NUEVO SANATORIO ALVEAR</h3>
+                        <p class="direccion" style="margin: 0;">Moreno (S) 266 - (0385) 4214727 / 1552</p>
+                        <p style="margin: 0;">Santiago del Estero</p>
+                    </div>
+                </td>
 
 
-                        </div>
-                    <td>
-                        <div style="color:white;text-align: center; padding:10px; background:rgb(128, 218, 236)">
-                            <p class="sanatorio">NUEVO SANATORIO ALVEAR:</p>
-
-                            <P class="direccion">Moreno (S) 266 - (0385) 4214727 / 1552 - Santiago del
-                                Estero</P>
-                            <h5 class='meow-script-regular'> Dr. Caceres Walter Ariel </h5>
-
-
-                        </div>
-
-                    </td>
-
-
-                </tr>
-
-
-            </tbody>
-        </table>
+                <td style="position: relative; height: auto;">
+                <hr>
+                <div style="text-align: center; margin-top:0; padding-top: 0;">
+                        <h3 class="sanatorio" style="margin: 0;">NUEVO SANATORIO ALVEAR</h3>
+                        <p class="direccion" style="margin: 0;">Moreno (S) 266 - (0385) 4214727 / 1552</p>
+                        <p style="margin: 0;">Santiago del Estero</p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     @endforeach
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 </body>
 
