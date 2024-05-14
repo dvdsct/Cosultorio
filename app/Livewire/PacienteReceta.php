@@ -18,7 +18,7 @@ class PacienteReceta extends Component
     {
         return view('livewire.paciente-receta',[
 
-            'pacientes' =>  Paciente::select('pacientes.*', 'perfils.id as perfil_paciente_id', 'personas.nombre', 'personas.apellido', 'personas.dni', 'obra_social_x_pacientes.paciente_id', 'obra_social_x_pacientes.obra_social_id', 'obra_social_x_pacientes.plan', 'obra_social_x_pacientes.nro_afil', 'obra_socials.descripcion')
+            'pacientes' =>  Paciente::select('pacientes.*', 'perfils.id as perfil_paciente_id', 'personas.nombre', 'personas.apellido', 'personas.fecha_de_nacimiento', 'personas.dni', 'obra_social_x_pacientes.paciente_id', 'obra_social_x_pacientes.obra_social_id', 'obra_social_x_pacientes.plan', 'obra_social_x_pacientes.nro_afil', 'obra_socials.descripcion')
             ->leftJoin('perfils', 'pacientes.perfil_id', '=', 'perfils.id')
             ->leftJoin('personas', 'perfils.persona_id', '=', 'personas.id')
             ->leftJoin('obra_social_x_pacientes', 'obra_social_x_pacientes.paciente_id', '=', 'pacientes.id')

@@ -23,8 +23,8 @@
                         <th style="width: 10px">DNI</th>
                         <th>Paciente</th>
                         <th>Edad</th>
-                        <th>Telefono</th>
                         <th>Obra social</th>
+                        <th>Plan</th>
                         <th>N° de OS</th>
                         <th style="width: 40px"> </th>
                     </tr>
@@ -34,9 +34,10 @@
                     <tr>
                         <td>{{ $p->dni }}</td>
                         <td>{{ $p->apellido . ' ' . $p->nombre }}</td>
-                        <td>-</td>
-                        <td>{{ $telefono->numero ?? '' }}</td>
+                        <td>{{  Carbon\Carbon::parse( $p->fecha_de_nacimiento)->diffInYears(Carbon\Carbon::now()) }} años</td>
                         <td>{{ $p->descripcion }} </td>
+                        <td>{{ $p->plan }}</td>
+                        <td>{{ $p->nro_afil }}</td>
                         <td></td>
                         <td>
                             <a type="button" href="{{ route('receta.show',$p->id) }}" class="btn btn-primary btn-sm">Recetar</a>

@@ -23,6 +23,7 @@ class EnfermedadActual extends Component
 
     #[Locked]
     public $modal = false;
+    public $modalLabs = false;
 
     public $consulta;
     public $todas;
@@ -104,8 +105,28 @@ class EnfermedadActual extends Component
         }
     }
 
+    #[On('modalOnLab')]
+    public function openModalLab()
+    {
+
+        if ($this->modalLabs == true) {
+
+            $this->modalLabs = false;
+        } else {
+
+            $this->modalLabs = true;
+        }
+    }
 
 
+
+
+    public function addLabs()
+    {
+        $this->validate();
+        $this->openModalLab();
+
+    }
     public function modalEditLab()
     {
         $this->dispatch('editLab')->to(CargaEstudios::class);
@@ -401,7 +422,7 @@ class EnfermedadActual extends Component
     }
 
 
-    
+
 
     public function add_lab()
     {
@@ -1057,13 +1078,11 @@ class EnfermedadActual extends Component
     }
     public function resetLab()
     {
+        $this->selectAll();
 
         $this->reset(
-            'l_gral',
-            'l_renal',
-            'l_gine',
-            'l_salud',
-            'l_embarazo',
+    
+            'cie10',
         );
     }
 
