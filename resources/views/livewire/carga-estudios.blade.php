@@ -9,7 +9,7 @@
             <div class="modal-content">
                 <div class="modal-header bg-warning">
                     <h4 class="modal-title"> <strong> Estudios de laboratorio </strong></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" wire:click='dispatch("editLab")'>
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary"  wire:click='dispatch("editLab")'>Guardar</button>
                 </div>
             </div>
         </div>
