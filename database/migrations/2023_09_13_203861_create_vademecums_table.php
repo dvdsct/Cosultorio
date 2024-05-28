@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('droga');
             $table->string('cantidad');
             $table->string('presentacion');
-            $table->string('unico');
-            $table->string('con_descuento');
+            $table->string('labs');
+            $table->string('estado');
+            $table->string('codigo_de_barra');
             $table->timestamps();
         });
     }

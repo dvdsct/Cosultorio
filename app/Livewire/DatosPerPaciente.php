@@ -227,7 +227,7 @@ class DatosPerPaciente extends Component
 
         $this->oss = ObraSocial::all();
 
-        // $this->plan = $this->oso->first()->plan;
+        $this->plan = $this->oso ?? '';
         $this->nroAfil = $this->consulta->pacientes->obrasociales->first()->nro_afil ?? '';
     }
 
@@ -235,10 +235,10 @@ class DatosPerPaciente extends Component
 
     public function render()
     {
-        $this->oso = ObraSocial::select('obra_socials.descripcion', 'obra_social_x_perfils.nro_afil', 'obra_social_x_perfils.id as os_id', 'obra_social_x_perfils.perfil_id')
-            ->leftJoin('obra_social_x_perfils', 'obra_social_x_perfils.obra_social_id', '=', 'obra_socials.id')
-            ->where('obra_social_x_perfils.estado', '1')
-            ->where('obra_social_x_perfils.perfil_id', $this->consulta->pacientes->id)
+        $this->oso = ObraSocial::select('obra_socials.descripcion', 'obra_social_x_pacientes.nro_afil', 'obra_social_x_pacientes.id as os_id', 'obra_social_x_pacientes.paciente_id')
+            ->leftJoin('obra_social_x_pacientes', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
+            ->where('obra_social_x_pacientes.estado', '1')
+            ->where('obra_social_x_pacientes.paciente_id', $this->consulta->pacientes->id)
             ->first();
         // $this->os = $this->oso->id;
 

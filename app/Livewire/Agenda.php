@@ -221,6 +221,7 @@ class Agenda extends Component
                     if ($this->paciente == null) {
                         // $this->perfil =  $this->persona->perfils->first()->id;
                         $this->paciente = $this->persona->perfiles->first()->pacientes->first();
+                        
 
                         //Crea Turno con paciente existente
                         $this->turno =  Turno::create([
@@ -232,7 +233,6 @@ class Agenda extends Component
                         ]);
                     }
                 } else {
-
                     // Crea Paciente (Persona-perfil-paciente)
                     $persona = new Persona;
 
@@ -277,7 +277,7 @@ class Agenda extends Component
                         'paciente_id' => $this->paciente->id,
                         'estado' => '1'
                     ]);
-                }
+                }   
                 if ($this->turno !== null) {
                     $this->turno->update([
                         'paciente_id' => $this->paciente->id,
