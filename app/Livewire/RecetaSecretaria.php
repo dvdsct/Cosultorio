@@ -31,6 +31,7 @@ class RecetaSecretaria extends Component
             $this->modalMedico = true;
 
         }
+        redirect('/');
     }
     public function selMed(){
         $this->validate();
@@ -39,7 +40,7 @@ class RecetaSecretaria extends Component
             'medico_id' => $this->medico
         ]);
 
-        
+
 
         ConsultasXMedico::create([
             'medico_id' => $this->medico,

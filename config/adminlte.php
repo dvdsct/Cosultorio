@@ -303,12 +303,12 @@ return [
             'icon'        => 'fas fa-calendar-check',
         ],
 
-        [
-            'text'        => 'Pacientes',
-            'url'         => 'pacientes',
-            'icon'        => 'far fas fa-users',
-            'can' => 'atender'
-        ],
+        // [
+        //     'text'        => 'Pacientes',
+        //     'url'         => 'pacientes',
+        //     'icon'        => 'far fas fa-users',
+        //     'can' => 'atender'
+        // ],
 
         [
             'text'        => 'Consultas',
