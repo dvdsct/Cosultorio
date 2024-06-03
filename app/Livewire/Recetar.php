@@ -136,8 +136,7 @@ class Recetar extends Component
         }
 
         return view('livewire.recetar', [
-            'vademecum' => VademecumDetalle::select('vademecum_detalles.*', 'vademecums.*', 'vademecums.droga', 'vademecums.presentacion')
-            ->leftJoin('vademecums', 'vademecum_detalles.vademecum_id', '=', 'vademecums.id')
+            'vademecum' => Vademecum::select('vademecums.*')
             ->where('vademecums.droga', 'LIKE',  '%'. $this->query .'%')
             ->orWhere('vademecums.presentacion', 'LIKE', '%'. $this->query .'%' )
             ->orWhere('vademecums.nombre', 'LIKE', '%'. $this->query .'%' )

@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('vademecums', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('droga');
-            $table->string('cantidad');
-            $table->string('presentacion');
-            $table->string('labs');
-            $table->string('estado');
-            $table->string('codigo_de_barra');
+            $table->string('nombre')->nullable();
+            $table->string('droga')->nullable();
+            $table->string('cantidad')->nullable();
+            $table->string('presentacion')->nullable();
+            $table->string('labs')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('codigo_de_barra')->nullable();
             $table->timestamps();
         });
     }
