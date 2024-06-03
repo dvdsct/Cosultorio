@@ -67,6 +67,7 @@ class FormColp extends Component
     public $colpos;
 
 
+
     public function mount($consulta)
     {
         $this->colpos = $consulta;
@@ -127,8 +128,13 @@ class FormColp extends Component
             'tratamiento' => $this->tratam,
             'seguimiento' => $this->seguimiento,
             'estado' => '3'
-
         ]);
+
+        if ($this->colpos->turnos) {
+            $this->colpos->turnos->update([
+                'estado' => '3'
+            ]);
+        }
 
         return redirect('turnos');
     }

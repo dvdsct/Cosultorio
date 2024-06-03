@@ -35,7 +35,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
         return view('dashboard');})->name('dashboard');
 
 
-
         Route::resource('turnos', TurnosController::class);
         Route::resource('consulta', ConsultasController::class);
         Route::resource('paps', PapsController::class);
@@ -43,7 +42,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
         Route::resource('receta', RecetaController::class);
         Route::resource('pacientes', PacienteController::class);
         Route::resource('pdf', PdfController::class);
-
-
-
+        Route::get('/pdfTurno/{turno}', 'App\Http\Controllers\PdfController@showTurno')->name('pdfTurno');
 });

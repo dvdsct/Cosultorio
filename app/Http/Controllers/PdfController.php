@@ -1,84 +1,68 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Consulta;
-use App\Models\ConsultasXMedico;
 use App\Models\ObraSocialXPaciente;
-use App\Models\ObraSocialXPerfil;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
+Carbon::setLocale('es');
 
 class PdfController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $consulta = Consulta::find($id);
-        $consulta->update(
-            ['estado' => '5']
-        );
 
         if (!$consulta) {
             abort(404); // consulta no encontrada
         }
 
-        $matricula = $consulta->medicos->first()->matricula;
-        $titulo = $consulta->medicos->first()->titulo;
-        $especialidad = Str::upper($consulta->medicos->first()->especialidad);
-        $medico = $consulta->medicos->first()->perfiles->personas->nombre . ' '. $consulta->medicos->first()->perfiles->personas->apellido;
+        $consulta->update(['estado' => '5']);
+
+        $medico = $consulta->medicos->first();
+        $matricula = $medico->matricula;
+        $titulo = $medico->titulo;
+        $especialidad = Str::upper($medico->especialidad);
+        $nombreMedico = $medico->perfiles->personas->nombre . ' ' . $medico->perfiles->personas->apellido;
         $items = $consulta->recetas->chunk(2);
 
-        $paciente1 = $consulta->pacientes;
+        $paciente = $consulta->pacientes;
+        $nombrePaciente = $paciente->perfiles->personas->nombre . ' ' . $paciente->perfiles->personas->apellido . ' ' . $paciente->perfiles->personas->dni;
 
-        $fecha = $consulta->turnos;
-        $paciente = $consulta->pacientes->perfiles->personas->nombre . '  ' . $consulta->pacientes->perfiles->personas->apellido . '  ' . $consulta->pacientes->perfiles->personas->dni;
         $os = ObraSocialXPaciente::select('obra_social_x_pacientes.*', 'obra_socials.descripcion')
-            ->leftjoin('obra_socials', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
-            ->where('paciente_id', $paciente1->first()->id)
+            ->leftJoin('obra_socials', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
+            ->where('paciente_id', $paciente->id)
             ->get();
 
-        $osd =  $os->filter(function ($oxs) {
+        $osd = $os->filter(function ($oxs) {
             return $oxs->estado == '1';
         });
 
         $pdf = Pdf::loadView('Consultorio.pdf.receta', [
             'items' => $items,
-            // 'perfil' => $perfil,
             'os' => $os,
             'osd' => $osd,
-            'paciente' => $paciente,
-            'fecha' => $fecha,
-            'medico' => $medico,
+            'paciente' => $nombrePaciente,
+            'fecha' => $consulta->turnos->fecha_turno,
+            'medico' => $nombreMedico,
             'matricula' => $matricula,
             'especialidad' => $especialidad,
             'titulo' => $titulo
@@ -87,25 +71,60 @@ class PdfController extends Controller
         return $pdf->stream('consulta_' . $consulta->id . '.pdf');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    public function showTurno(string $id)
+    {
+        $consulta = Consulta::find($id);
+
+        if (!$consulta) {
+            abort(404); // consulta no encontrada
+        }
+
+        $consulta->update(['estado' => '5']);
+
+        $motivo = "";
+        if ($consulta->turnos->motivo == 2) {
+            $motivo = "Consulta";
+        } elseif ($consulta->turnos->motivo == 1) {
+            $motivo = "Pap-Colposcopia";
+        } else {
+            $motivo = "Otro"; // Asegúrate de manejar otros casos
+        }
+
+        $medico = $consulta->medicos->first();
+        $matricula = $medico->matricula;
+        $titulo = $medico->titulo;
+        $especialidad = Str::upper($medico->especialidad);
+        $nombreMedico = $medico->perfiles->personas->nombre . ' ' . $medico->perfiles->personas->apellido;
+
+        $paciente = $consulta->pacientes;
+        $fecha = Carbon::parse($consulta->turnos->fecha_turno)->translatedFormat('d \d\e F, Y');
+        $hora = Carbon::parse($consulta->turnos->fecha_turno)->format('H:i');
+        $nombrePaciente = $paciente->perfiles->personas->nombre . ' ' . $paciente->perfiles->personas->apellido . ' ' . $paciente->perfiles->personas->dni;
+
+        $pdf = Pdf::loadView('Consultorio.pdf.turno', [
+            'nombrePaciente' => $nombrePaciente,
+            'fecha' => $fecha,
+            'hora' => $hora,
+            'medico' => $nombreMedico,
+            'matricula' => $matricula,
+            'motivo' => $motivo,
+            'especialidad' => $especialidad,
+            'titulo' => $titulo
+        ]);
+
+        return $pdf->stream('turno_' . $consulta->id . '.pdf');
+    }
+
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

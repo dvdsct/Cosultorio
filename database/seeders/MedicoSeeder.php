@@ -16,8 +16,8 @@ class MedicoSeeder extends Seeder
     public function run(): void
     {
         $medicos = [
-            ['Caceres', 'Walter Ariel', '4646135', '', '555', 'Ginecologo', 'Dr.', '3'],
-            ['Ingrata', 'Maria Marta', '54846', '', '2097', 'Ginecologa', 'Dra.', '4'],
+            ['Caceres', 'Walter Ariel', '4646135', '', '2047', 'Ginecologo', 'Dr.', '3'],
+            ['Ingratta', 'Maria Marta', '54846', '', '2097', 'Ginecologa', 'Dra.', '4'],
         ];
 
         foreach ($medicos as $m) {

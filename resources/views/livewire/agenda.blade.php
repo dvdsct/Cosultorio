@@ -37,7 +37,7 @@
                         <th scope="col"> <span> Medico </span> </th>
                         <th scope="col"> <span> Abono </span> </th>
                         <th scope="col"> Motivo </th>
-                        <th scope="col"> </th>
+                        <th> </th>
                     </thead>
                     <tbody>
                         @foreach ($turnos as $turno)
@@ -69,7 +69,7 @@
                             </td>
 
 
-                            <td class="p-1 pl-2">
+                            <td class="p-1 px-2" style="width: 200px;">
                                 <!-- SI LA CONSULTA NO ESTA FINALIZADA (ESTADO = 3) ENTONCES SE MUESTRA EL BOTON "ATENDER" PARA EL MEDICO-->
                                 @if ($turno->estado != '3')
                                 @can('atender')
@@ -87,17 +87,15 @@
                                     <small class="badge badge-secondary">Atendido</small>
                                 </div>
                                 @endif
-
                                 <!-- SI LA CONSULTA NO ESTA FINALIZADA (ESTADO = 3) ENTONCES SE MUESTRAN LOS BOTONES DE EDITAR Y ELIMINAR PARA LA SECRETARIA -->
                                 @if ($turno->estado != '3')
-                                @can('crearturno')
                                 <button type="button" class="btn btn-warning btn-sm" wire:click="editTurn({{ $turno->id }})">
                                     <i class="fas fa-pen"></i>
                                 </button>
                                 <button class="btn btn-danger btn-sm" type="button" wire:click="eliminar({{ $turno->id }})">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
-                                @endcan
+                                <a type="button" href="{{ route('pdfTurno', $turno->consultas->id) }}" class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
                                 @endif
                             </td>
                             @endforeach
@@ -145,7 +143,6 @@
                                 <div class="form-group">
                                     <label for="input_horario">Horario</label>
                                     <input type="time" class="form-control" id="horario" wire:model='horario'>
-
                                 </div>
                             </div>
 

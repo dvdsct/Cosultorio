@@ -38,6 +38,7 @@
                         <strong>Obra Social: </strong> {{ $oso->descripcion }}
                     </h6>
 
+                    
                     <h6>
                         <strong>Número de Afiliación: </strong>
                         {{ $oso->nro_afil }}
