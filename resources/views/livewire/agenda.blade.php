@@ -1,5 +1,5 @@
 <div>
-    <div class="row d-flex justify-content-between" style="padding-top: 20px;">
+    <div class="row d-flex justify-content-between px-2" style="padding-top: 20px;">
 
         <!-- FECHA  -->
         <div class="col-md-3 d-flex align-items-center">
@@ -77,7 +77,7 @@
                                     @if ($turno->motivo == '1')
                                     <a type="button" href="{{ url('paps') }}/{{ $turno->paps->id }}" class="btn btn-info btn-sm">Atender</a>
                                     @elseif ($turno->motivo == '2')
-                                    <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}" class="btn btn-info btn-sm">Atender</a>
+                                    <a type="button" href="{{ url('consulta') }}/{{ $turno->consultas->id }}" class="btn btn-info btn-sm"><strong> Atender </strong></a>
                                     @endif
                                 </div>
                                 @endcan
@@ -95,7 +95,11 @@
                                 <button class="btn btn-danger btn-sm" type="button" wire:click="eliminar({{ $turno->id }})">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
+                                @if($turno->motivo == '1')
+                                <a type="button" href="{{ route('pdfTurno', $turno->paps->id) }}" class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                @elseif($turno->motivo == '2')
                                 <a type="button" href="{{ route('pdfTurno', $turno->consultas->id) }}" class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                @endif
                                 @endif
                             </td>
                             @endforeach
@@ -110,12 +114,13 @@
 
     <!-- MODAL  -->
     @if ($modal)
-    <div class="modal fade show" id="modal-default" aria-labelledby="modal-default" style="display:block" aria-hidden="true">
+    <div class="modal fade show" id="modal-default" aria-labelledby="modal-default" style="background-color: rgba(0, 0, 0, 0.5); display: block;
+    " aria-hidden="true">
         <div class="modal-dialog" wire:keydown.escape="closeModal">
             <div class="modal-content">
                 <div class="modal-header bg-info">
                     <h4 class="modal-title"><strong> NUEVO TURNO PARA EL
-                    {{ strtoupper(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </strong></h4>
+                            {{ strtoupper(Carbon\Carbon::parse($fecha)->locale('es')->isoFormat('dddd DD ')) }} </strong></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click='closeModal'>
                         <span aria-hidden="true">×</span>
                     </button>

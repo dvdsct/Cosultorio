@@ -1,7 +1,7 @@
 <div>
     <!-- MODAL GENERAR NUEVA RECETA  -->
     @if ($modalMedico)
-    <div class="modal fade show" id="modal-default" wire:ignore.self style="padding-right: 17px; display: block;">
+    <div class="modal fade show" id="modal-default" wire:ignore.self style="background-color: rgba(0, 0, 0, 0.5); display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-info">
@@ -50,8 +50,7 @@
                     <h3> {{ $paciente->perfiles->personas->dni }} - {{ $paciente->perfiles->personas->apellido }}
                         {{ $paciente->perfiles->personas->nombre }}
                     </h3>
-                    <h4><span style="font-style: italic;"> IOSEP </span> </h4>
-
+                    <h4><span style="font-style: italic;"> IOSEP </span> </h4> <!-- TRAER VARIABLE DE OBRA SOCIAL -->
                 </div>
             </div>
         </div>
@@ -112,7 +111,7 @@
                         <div class="col-12">
                             <table id="myTable" class="table table-hover" >
                                 <thead>
-                                    <th>Medicamento</th>
+                                    <th>Nombre comercial</th>
                                     <th>Droga</th>
                                     <th>Presentacion</th>
                                 </thead>

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Consulta;
 use App\Models\ObraSocialXPaciente;
+use App\Models\Pap;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -73,10 +74,11 @@ class PdfController extends Controller
 
     public function showTurno(string $id)
     {
+
         $consulta = Consulta::find($id);
 
         if (!$consulta) {
-            abort(404); // consulta no encontrada
+           $consulta=Pap::find($id);
         }
 
         $consulta->update(['estado' => '5']);

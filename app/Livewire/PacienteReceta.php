@@ -24,7 +24,7 @@ class PacienteReceta extends Component
             ->leftJoin('obra_social_x_pacientes', 'obra_social_x_pacientes.paciente_id', '=', 'pacientes.id')
             ->leftJoin('obra_socials', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
             ->where('obra_social_x_pacientes.estado', '1')
-            ->where('personas.dni', $this->query)
+            ->where('personas.dni','like','%'. $this->query.'%')
             ->get()
         ]);
     }

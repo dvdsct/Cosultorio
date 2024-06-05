@@ -17,6 +17,9 @@
         <!-- TABLA DE RESULTADOS -->
 
         <div class="card-body p-0">
+        @if($pacientes->isEmpty())
+                          <h5 class="font-italic pt-2 pl-3" style="text-align: center;"><strong> No se encontraron pacientes con ese DNI!</strong> </h5>
+                        @else
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -30,7 +33,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pacientes as $p)
+
+                        @foreach ($pacientes as $p)
                     <tr>
                         <td>{{ $p->dni }}</td>
                         <td>{{ $p->apellido . ' ' . $p->nombre }}</td>
@@ -44,8 +48,10 @@
                         </td>
                     </tr>
                     @endforeach
+                    
                 </tbody>
             </table>
+            @endif
         </div>
 
     </div>
