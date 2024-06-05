@@ -9,5 +9,7 @@ class Cie10 extends Model
 {
     use HasFactory;
 
+
+
     
 }
