@@ -58,6 +58,8 @@ class RecetaSecretaria extends Component
             $this->modalRemedios = true;
         }
     }
+
+
     public function selMed()
     {
         $this->validate();
@@ -103,9 +105,12 @@ class RecetaSecretaria extends Component
     }
 
 
+
     public function render()
     {
         $this->rps = $this->consulta->recetas;
+
+        
         return view('livewire.receta-secretaria', [
             'vademecum' => Vademecum::select('vademecums.*')
                 ->where('vademecums.droga', 'LIKE',  '%' . $this->query . '%')

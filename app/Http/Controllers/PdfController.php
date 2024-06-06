@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Consulta;
 use App\Models\ObraSocialXPaciente;
 use App\Models\Pap;
+use App\Models\Turno;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -72,25 +74,32 @@ class PdfController extends Controller
         return $pdf->stream('consulta_' . $consulta->id . '.pdf');
     }
 
+
+    // ____________________________________________________________________________________________________
+    // ____________________________________________________________________________________________________
+    // ____________________________________________________________________________________________________
+    // PDF para compartir turnos por wp
+
     public function showTurno(string $id)
     {
+        $turno  = Turno::find($id);
 
-        $consulta = Consulta::find($id);
-
-        if (!$consulta) {
-           $consulta=Pap::find($id);
+        $consulta = Consulta::where('turno_id', $turno->id)->get();
+        if ($consulta->isEmpty()) {
+            $consulta = Pap::where('turno_id', $turno->id)->get();
         }
 
-        $consulta->update(['estado' => '5']);
+        // $consulta->update(['estado' => '5']);
 
         $motivo = "";
-        if ($consulta->turnos->motivo == 2) {
+        if ($turno->motivo == 2) {
             $motivo = "Consulta";
-        } elseif ($consulta->turnos->motivo == 1) {
+        } elseif ($turno->motivo == 1) {
             $motivo = "Pap-Colposcopia";
         } else {
             $motivo = "Otro"; // Asegúrate de manejar otros casos
         }
+        $consulta = $consulta->first();
 
         $medico = $consulta->medicos->first();
         $matricula = $medico->matricula;
