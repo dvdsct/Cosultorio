@@ -1,25 +1,25 @@
 <div>
-<!-- TABLA PARA GENERAR NUEVA RECETA -->
+    <!-- TABLA PARA GENERAR NUEVA RECETA -->
     <div class="card">
         <div class="card-header mt-4 bg-info">
             <h3 class="card-title"><strong></strong></h3>
             <div class="card-tools">
                 <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i>
-                </span>
-            </div>
-            <input type="number" class="form-control"  wire:model='query' wire:keyup='search' placeholder="Ingresar DNI">
-        </div>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                    <input type="number" class="form-control" wire:model='query' wire:keyup='search' placeholder="Ingresar DNI">
+                </div>
             </div>
         </div>
 
         <!-- TABLA DE RESULTADOS -->
 
         <div class="card-body p-0">
-        @if($pacientes->isEmpty())
-                          <h5 class="font-italic pt-2 pl-3" style="text-align: center;"><strong> No se encontraron pacientes con ese DNI!</strong> </h5>
-                        @else
+            @if($pacientes->isEmpty())
+            <h5 class="font-italic pt-2 pl-3" style="text-align: center;"><strong> No se encontraron pacientes con ese DNI!</strong> </h5>
+            @else
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -34,11 +34,11 @@
                 </thead>
                 <tbody>
 
-                        @foreach ($pacientes as $p)
+                    @foreach ($pacientes as $p)
                     <tr>
                         <td>{{ $p->dni }}</td>
                         <td>{{ $p->apellido . ' ' . $p->nombre }}</td>
-                        <td>{{  Carbon\Carbon::parse( $p->fecha_de_nacimiento)->diffInYears(Carbon\Carbon::now()) }} años</td>
+                        <td>{{ Carbon\Carbon::parse( $p->fecha_de_nacimiento)->diffInYears(Carbon\Carbon::now()) }} años</td>
                         <td>{{ $p->descripcion }} </td>
                         <td>{{ $p->plan }}</td>
                         <td>{{ $p->nro_afil }}</td>
@@ -48,7 +48,7 @@
                         </td>
                     </tr>
                     @endforeach
-                    
+
                 </tbody>
             </table>
             @endif
