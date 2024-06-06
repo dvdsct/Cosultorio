@@ -95,11 +95,8 @@
                                 <button class="btn btn-danger btn-sm" type="button" wire:click="eliminar({{ $turno->id }})">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
-                                @if($turno->motivo == '1')
-                                <a type="button" href="{{ route('pdfTurno', $turno->paps->id) }}" class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                @elseif($turno->motivo == '2')
-                                <a type="button" href="{{ route('pdfTurno', $turno->consultas->id) }}" class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                @endif
+                                <a type="button" href="{{ route('pdfTurno', $turno->id) }}" class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+
                                 @endif
                             </td>
                             @endforeach

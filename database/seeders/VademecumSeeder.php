@@ -8156,7 +8156,7 @@ class VademecumSeeder extends Seeder
         ["VITAMINAS ACD","20371","3542172","7795340001758","ADC","gts.x 20 ml","Mertens","49.43","50"],
         ["VITAMINAS ACD","27442","4824561","7795360002261","VITADECE","sol.x 20 ml","Klonal","44.89","50"],
         ["XILOMETAZOLINA","34825","3707922","7798112470325","XYLOMETAZOLINA NEXO","gts.nasales x 20 ml","Nexo Pharmaceutical","15.49","50"]];
-        
+
         foreach($remedios as $r){
             Vademecum::create(
                 [
@@ -8164,12 +8164,12 @@ class VademecumSeeder extends Seeder
 
                     'nombre' => $r[4],
                     'droga' => $r[0],
-                    'cantidad' => $r[3],
+                    'cantidad' => $r[5],
                     'presentacion' => $r[5],
                     'codigo_de_barra' => $r[3],
-                    'labs' => $r[7],
+                    'labs' => $r[6],
                     'estado' => '1',
-                    
+
                     ]
             );
         }
