@@ -19,6 +19,14 @@ class Medico extends Model
     {
         return $this->belongsToMany(Consulta::class, 'consultas_x_medicos');
     }
+    public function paps()
+    {
+        return $this->belongsToMany(Pap::class, 'pap_x_medicos');
+    }
+    public function colpos()
+    {
+        return $this->belongsToMany(Colposcopia::class, 'colpo_x_medicos');
+    }
     public function pacientes()
     {
         return $this->belongsToMany(Paciente::class, 'paciente_x_medicos');

@@ -40,4 +40,9 @@ class Pap extends Model
     {
         return $this->belongsTo(Paciente::class, 'paciente_id');
     }
+
+    public function medicos()
+    {
+        return $this->belongsToMany(Medico::class, 'pap_x_medicos','pap_id');
+    }
 }

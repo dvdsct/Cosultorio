@@ -35,4 +35,9 @@ class Colposcopia extends Model
         return $this->belongsTo(Hallazgo::class,'hallazgo_id');
     }
 
+    public function medicos()
+    {
+        return $this->belongsToMany(Medico::class, 'colpo_x_medicos','colposcopia_id');
+    }
+
 }

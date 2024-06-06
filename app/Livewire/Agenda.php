@@ -14,11 +14,13 @@ use App\Models\Pap;
 use App\Models\Colposcopia;
 use App\Models\Turno;
 use App\Events\NewMeet;
+use App\Models\ColpoXMedico;
 use App\Models\ConsultasXMedico;
 use App\Models\Medico;
 use App\Models\Paciente;
 use App\Models\ObraSocialXPaciente;
 use App\Models\PacienteXMedico;
+use App\Models\PapXMedico;
 use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
 
@@ -119,7 +121,7 @@ class Agenda extends Component
         $this->abono = $this->turno->abonos->first()->monto;
         $this->apellido = $this->turno->pacientes->perfiles->personas->apellido;
         $this->oss =  ObraSocial::all();
-        $this->medicoC = ConsultasXMedico::where('consulta_id',$this->turno->consultas->id)->get();
+        $this->medicoC = ConsultasXMedico::where('consulta_id', $this->turno->consultas->id)->get();
         $this->medico = $this->medicoC->first()->id;
 
         $this->onOff = 'disabled';
@@ -133,7 +135,7 @@ class Agenda extends Component
     public function addTurno()
     {
         $rules = [
-            'medico' =>'required',
+            'medico' => 'required',
             'fecha' => 'required|min:3',
             'horario' => 'required|min:3',
             'dni' => 'required_if:persona,null|min:3',
@@ -176,9 +178,9 @@ class Agenda extends Component
             // $this->paciente = Paciente::find($this->paciente);
 
             $osxp = ObraSocialXPaciente::firstOrCreate([
-                    'obra_social_id' => $this->os,
-                    'paciente_id' => $this->paciente,
-                    'estado' => '1'
+                'obra_social_id' => $this->os,
+                'paciente_id' => $this->paciente,
+                'estado' => '1'
 
             ]);
 
@@ -221,7 +223,7 @@ class Agenda extends Component
                     if ($this->paciente == null) {
                         // $this->perfil =  $this->persona->perfils->first()->id;
                         $this->paciente = $this->persona->perfiles->first()->pacientes->first();
-                        
+
 
                         //Crea Turno con paciente existente
                         $this->turno =  Turno::create([
@@ -277,7 +279,7 @@ class Agenda extends Component
                         'paciente_id' => $this->paciente->id,
                         'estado' => '1'
                     ]);
-                }   
+                }
                 if ($this->turno !== null) {
                     $this->turno->update([
                         'paciente_id' => $this->paciente->id,
@@ -298,18 +300,30 @@ class Agenda extends Component
 
 
                 if ($this->motivo == '1') {
-                    Pap::create(
+                    $pap = Pap::create(
                         [
                             'paciente_id' => $this->paciente->id,
                             'turno_id' => $this->turno->id
                         ]
                     );
-                    Colposcopia::create(
+                    PapXMedico::create([
+                        'medico_id' => $this->medico,
+                        'pap_id' => $pap->id,
+                        'estado' => '1'
+                    ]);
+
+                    $col = Colposcopia::create(
                         [
                             'paciente_id' => $this->paciente->id,
                             'turno_id' => $this->turno->id
                         ]
                     );
+
+                    ColpoXMedico::create([
+                        'medico_id' => $this->medico,
+                        'colposcopia_id' => $col->id,
+                        'estado' => '1'
+                    ]);
                 }
 
                 if ($this->motivo == '2') {
@@ -381,27 +395,25 @@ class Agenda extends Component
     #[On('refresh-turn')]
     public function render()
     {
-        if(Auth::user()->hasRole('secretaria')){
-
-        $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
-        ->where('motivo', '!=', '40')
-        ->get()
-        ->sortBy(function ($turno) {
-            return Carbon::parse($turno->fecha_turno)->format('H:i');
-        });
-
-        }
-        if(Auth::user()->hasRole('medico')){
+        if (Auth::user()->hasRole('secretaria')) {
 
             $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
-            ->where('motivo', '!=', '40')
-            ->where('medico_id', Perfil::where('user_id',Auth::user()->id)->first()->medicos->first()->id)
-            ->get()
-            ->sortBy(function ($turno) {
-                return Carbon::parse($turno->fecha_turno)->format('H:i');
-            });
+                ->where('motivo', '!=', '40')
+                ->get()
+                ->sortBy(function ($turno) {
+                    return Carbon::parse($turno->fecha_turno)->format('H:i');
+                });
+        }
+        if (Auth::user()->hasRole('medico')) {
 
-            }
+            $this->turnos = Turno::whereDate('turnos.fecha_turno', '=', $this->fecha)
+                ->where('motivo', '!=', '40')
+                ->where('medico_id', Perfil::where('user_id', Auth::user()->id)->first()->medicos->first()->id)
+                ->get()
+                ->sortBy(function ($turno) {
+                    return Carbon::parse($turno->fecha_turno)->format('H:i');
+                });
+        }
 
 
 
