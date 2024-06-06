@@ -18,13 +18,13 @@ return new class extends Migration
             ->references('id')
             ->on('vademecums')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('cie10_id');
+            $table->unsignedBigInteger('cie10_id')->nullable();
             $table->foreign('cie10_id')
             ->references('id')
             ->on('cie10s')
             ->onDelete('cascade');
-            $table->string('indicacion');
-            $table->string('cantidad');
+            $table->string('indicacion')->nullable();
+            $table->string('cantidad')->nullable();
             $table->string('estado');
             $table->timestamps();
         });

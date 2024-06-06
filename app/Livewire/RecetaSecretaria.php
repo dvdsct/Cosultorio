@@ -2,8 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\Cie10;
 use App\Models\ConsultasXMedico;
 use App\Models\Medico;
+use App\Models\Receta;
+use App\Models\RecetaXConsulta;
 use App\Models\Vademecum;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
@@ -14,6 +17,10 @@ class RecetaSecretaria extends Component
     public $paciente;
     public $modalMedico = true;
     public $medicos;
+    public $remedio;
+    public $rps;
+    public $cie10s;
+    public $cie10;
     public $modalRemedios = false;
 
 
@@ -28,6 +35,7 @@ class RecetaSecretaria extends Component
         $this->consulta = $consulta;
         $this->paciente = $paciente;
         $this->medicos = Medico::all();
+        $this->cie10s = Cie10::all();
     }
     public function search()
     {
@@ -70,14 +78,34 @@ class RecetaSecretaria extends Component
     }
 
 
-    public function searchV(){
+    public function searchV()
+    {
         $this->modalRemedioOnOff();
     }
 
 
+    public function addRp($id)
+    {
+        $this->remedio = Vademecum::find($id);
+
+        $r = Receta::create([
+            'vademecum_id' => $this->remedio->id,
+            'estado' => '1'
+        ]);
+
+        RecetaXConsulta::create([
+            'receta_id' => $r->id,
+            'consulta_id' => $this->consulta->id,
+            'estado' => '1'
+        ]);
+
+        $this->modalRemedioOnOff();
+    }
+
 
     public function render()
     {
+        $this->rps = $this->consulta->recetas;
         return view('livewire.receta-secretaria', [
             'vademecum' => Vademecum::select('vademecums.*')
                 ->where('vademecums.droga', 'LIKE',  '%' . $this->query . '%')
