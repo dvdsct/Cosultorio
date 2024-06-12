@@ -43,4 +43,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
         Route::resource('pacientes', PacienteController::class);
         Route::resource('pdf', PdfController::class);
         Route::get('/pdfTurno/{turno}', 'App\Http\Controllers\PdfController@showTurno')->name('pdfTurno');
+        Route::get('/pdf-pap/{turno}', 'App\Http\Controllers\PdfController@showPap')->name('pdfPap');
 });

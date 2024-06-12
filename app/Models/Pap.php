@@ -45,4 +45,7 @@ class Pap extends Model
     {
         return $this->belongsToMany(Medico::class, 'pap_x_medicos','pap_id');
     }
+
+
+
 }
