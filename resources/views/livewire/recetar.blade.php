@@ -40,19 +40,17 @@
         <div class="col-md-6">
             <table id="myTable" class="table table-hover">
                 <thead>
-                    <th>Presentacion</th>
-                    <th>Droga</th>
-                    <th></th>
-                    <th></th>
+                    <th>NOMBRE COMERCIAL</th>
+                    <th>DROGA</th>
+                    <th>PRESENTACION</th>
                 </thead>
                 <tbody>
                     @foreach ($vademecum as $v)
                     <tr>
-                        <td class="p-0"> <span style="font-size: 12px;">{{ $v->nombre . ' ' . $v->cantidad }}
-                            </span></td>
-                        <td class="p-0"> <span style="font-size: 12px;"> {{ $v->droga }} </span> </td>
-                        <td class="p-0"> <span style="font-size: 12px;"> {{ $v->cantidad }} </span> </td>
-                        <td class="p-0" style="display: flex; justify-content:flex-end;"><button class="btn btn-info btn-sm" wire:click='indicacionar({{ $v->id }})'><i class="bi bi-journal-check"></i> Recetar</button></td>
+                        <td class="p-0" wire:click='indicacionar({{ $v->id }})' style="cursor: pointer;"> <span style="font-size: 14px;"> {{ $v->nombre}} </span></td>
+                        <td class="p-0" wire:click='indicacionar({{ $v->id }})' style="cursor: pointer;"> <span style="font-size: 14px;"> {{ $v->droga }} </span> </td>
+                        <td class="p-0" wire:click='indicacionar({{ $v->id }})' style="cursor: pointer;"> <span style="font-size: 14px;">{{ $v->presentacion }}</td>
+                        <!-- <td class="p-0" style="display: flex; justify-content:flex-end;"><button class="btn btn-info btn-sm" wire:click='indicacionar({{ $v->id }})'><i class="bi bi-journal-check"></i> Recetar</button></td> -->
                     </tr>
                     @endforeach
                 </tbody>
@@ -70,7 +68,7 @@
                 <div class="row mb-4">
                     @if ($remedio != null)
                     <div class="col-5">
-                        <label for="">{{ ucfirst($remedio['droga']) . ' ' . ucfirst($remedio['cantidad']) }}</label>
+                        <label for="">{{ ucfirst($remedio['droga'])}}</label>
                     </div>
 
                     <div class="col-3">
@@ -95,17 +93,18 @@
 
             <table class="table">
                 <thead>
-<!--                     <th></th>
-                    <th></th>
-                    <th></th> -->
+
                 </thead>
                 <tbody>
                     @foreach ($recetados as $r)
                     <tr>
                         <td>
                             <div class="">
-                                <h5>{{ ucfirst($r->vademecums->droga . ' ' . $r->vademecums->cantidad) }}</h5>
+                                <h5>{{$r->vademecums->droga}}</h5>
                             </div>
+                        </td>
+                        <td>
+                            <h6>{{ $r->vademecums->presentacion }}</h6>
                         </td>
                         <td>
                             <div class="">

@@ -36,6 +36,7 @@ class Recetar extends Component
     public $cie10s;
     protected $paginationTheme = 'bootstrap';
 
+    public $query = '';
 
 
     #[Validate('required', message: 'Seleccionar un diagnostico para continuar')]
@@ -58,7 +59,6 @@ class Recetar extends Component
     }
 
 
-    public $query = '';
 
     public function search()
     {
@@ -137,7 +137,7 @@ class Recetar extends Component
 
         return view('livewire.recetar', [
             'vademecum' => Vademecum::select('vademecums.*')
-            ->where('vademecums.droga', 'LIKE',  '%'. $this->query .'%')
+            ->orWhere('vademecums.droga', 'LIKE',  '%'. $this->query .'%')
             ->orWhere('vademecums.presentacion', 'LIKE', '%'. $this->query .'%' )
             ->orWhere('vademecums.nombre', 'LIKE', '%'. $this->query .'%' )
                 ->paginate(10),
