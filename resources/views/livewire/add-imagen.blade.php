@@ -1,7 +1,7 @@
 <div>
     @if ($modal == true)
 
-    <div class="modal fade show" id="modal-imagen" aria-labelledby="modal-default" style="display:block" aria-hidden="true">
+    <div class="modal fade show" id="modal-imagen" aria-labelledby="modal-default" style="background-color: rgba(0, 0, 0, 0.5); display:block" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-primary">

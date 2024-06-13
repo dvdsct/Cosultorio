@@ -39,11 +39,11 @@
         <tbody>
             <tr>
                 <!-- PACIENTE TABLA DE LA IZQUIERDA -->
-                <td style="background: green;">
+                <td>
                     <ul>
-                        <h4 style="margin: 0; font-family: 'Arial', sans-serif;">Paciente</h4>
-                        <li>{{ $paciente }} - 19 años </li>
-                        <li>{{'OS: '.  $osd->first()->descripcion .' N° Afil:'.  $osd->first()->nro_afil}} Plan:{{$osd->first()->plan}}</li>
+                        <h4 style="margin: 0; font-family: 'Arial', sans-serif; ">Paciente</h4>
+                        <li style="list-style-type: none;">- {{ $paciente }} - 19 años </li>
+                        <li style="list-style-type: none;">- {{'OS: '.  $osd->first()->descripcion .' N° Afil:'.  $osd->first()->nro_afil}} Plan:{{$osd->first()->plan}}</li>
                     </ul>
                 </td>
 
@@ -52,8 +52,8 @@
                     <ul>
                         <h4 style="margin: 0; font-family: 'Arial', sans-serif;">Indicaciones</h4>
                         @foreach ($par as $rem)
-                        <li>{{ $rem->vademecums->droga}}
-                            <br>{{ $rem->cantidad . ' cada ' . $rem->indicacion }} horas.</li>
+                        <li style="list-style-type: none;">{{ $rem->vademecums->droga}}
+                            <br>{{ $rem->cantidad . ' cada ' . $rem->indicacion }} horas.</li> <br>
                             @endforeach
                         </ul>
                 </td>
@@ -64,9 +64,9 @@
                     <ul>
                         <h4 style="margin: 0; font-family: 'Arial', sans-serif;">Medicamentos</h4>
                         @foreach ($par as $rem)
-                        <li>{{ $rem->vademecums->droga . ' ' . $rem->vademecums->presentacion }}</li>
+                        <li style="list-style-type: none;">- {{ $rem->vademecums->droga . ' ' . $rem->vademecums->presentacion }}</li>
                         @endforeach
-                        <li>Dx: {{ $par->first()->ciediez->descripcion }}</li>
+                        <li style="list-style-type: none;">- Dx: {{ $par->first()->ciediez->descripcion }}</li>
                     </ul>
                 </td>
                 <td></td>

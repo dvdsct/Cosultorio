@@ -278,9 +278,10 @@
 
         <div class="card-footer d-flex justify-content-between">
             <button type="button" class="btn btn-default">
-                <i class="fas fa-arrow-left"></i> Volver
+                <i class="fas fa-arrow-left"></i> <strong> Volver </strong>
             </button>
-            <button type="submit" class="btn btn-primary ml-auto">Guardar</button>
+            <button type="submit" class="btn btn-primary ml-auto"><strong> Finalizar </strong></button>
+            <a type="button"  class="btn btn-success btn-sm" target="_blank">Descargar</a>
         </div>
 
 

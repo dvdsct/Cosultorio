@@ -59,7 +59,7 @@
 
 
         <!-- MODAL PARA COMPLETAR DATOS DE PACIENTE  -->
-        <div class="modal fade show" id="modal-datos-pac" aria-labelledby="modal-default" style="display:block"
+        <div class="modal fade show" id="modal-datos-pac" aria-labelledby="modal-default" style="background-color: rgba(0, 0, 0, 0.5); display:block"
             aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
