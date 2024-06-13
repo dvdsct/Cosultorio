@@ -21,7 +21,8 @@ class Consulta extends Model
          'fum',
          'indice_mc',
          'tension_arterial',
-         'temperatura'
+         'temperatura',
+         'obs_img'
     ];
 
 

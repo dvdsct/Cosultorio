@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('embarazo')->default('no');
             $table->string('edad_geatacional')->default('no');
             $table->text('observaciones')->nullable();
+            $table->text('obs_img')->nullable();
             $table->string('estado')->default('1');
             $table->softDeletes();
             $table->timestamps();
