@@ -36,8 +36,11 @@ class AddImagen extends Component
     public $tac_pel_cc;
 
     public $ecografias;
+    public $pedidoForm;
+    public $cargaForm;
 
     public $imgs_ped;
+    public $observaciones;
 
     #[Validate('required', message: 'Seleccionar un diagnostico para continuar')]
     public $cie10;
@@ -45,30 +48,36 @@ class AddImagen extends Component
 
 
 
-    public function mount(){
+    public function mount()
+    {
         $this->cie10s = Cie10::all();
         $this->tipos = [
 
-            [$this->eco_gin , '1'],
-            [$this->eco_obs , '2'],
-            [$this->eco_abd , '3'],
-            [$this->eco_tiro , '4'],
-            [$this->rmn_pelv , '5'],
-            [$this->tac_abd , '6'],
-            [$this->tac_abd_cc , '7'],
-            [$this->tac_pel , '8'],
-            [$this->tac_pel_cc , '9'],
+            [$this->eco_gin, '1'],
+            [$this->eco_obs, '2'],
+            [$this->eco_abd, '3'],
+            [$this->eco_tiro, '4'],
+            [$this->rmn_pelv, '5'],
+            [$this->tac_abd, '6'],
+            [$this->tac_abd_cc, '7'],
+            [$this->tac_pel, '8'],
+            [$this->tac_pel_cc, '9'],
         ];
-
-
     }
 
 
     /* Funcion que selecciona las Ecografias */
 
     #[On('modalImgOn')]
-    public function modalImgOn()
+    public function modalImgOn($tipo)
     {
+        if ($tipo == 'pedido') {
+            $this->pedidoForm = true;
+            $this->cargaForm = false;
+        } else {
+            $this->pedidoForm = false;
+            $this->cargaForm = true;
+        }
         $this->modal = true;
     }
 
@@ -184,45 +193,60 @@ class AddImagen extends Component
     }
 
 
-    public function save_img()
+    public function save_img($tipo)
     {
-        $this->validate();
-        $this->tipos = [
+        // dd($tipo);
+        if ($tipo == 'carga') {
+            $this->consulta->update([
+                'obs_img' => $this->observaciones
+            ]);
 
-            [$this->eco_gin , '1'],
-            [$this->eco_obs , '2'],
-            [$this->eco_abd , '3'],
-            [$this->eco_tiro , '4'],
-            [$this->rmn_pelv , '5'],
-            [$this->tac_abd , '6'],
-            [$this->tac_abd_cc , '7'],
-            [$this->tac_pel , '8'],
-            [$this->tac_pel_cc , '9'],
-        ];
 
-        foreach($this->tipos as $t){
-            if($t[0] == true){
-                $i =  Imagen::firstOrCreate([
-                    'tipo_imagen_id' => $t[1],
-                	'cie10_id' => $this->cie10,
-                	'estado' => '1',
-
-                ]);
-
-                ImagenXConsulta::firstOrCreate([
-                    'consulta_id'=> $this->consulta->id,
-                	'imagen_id'=> $i->id,
-                	'estado'=>'1',
-
-                ]);
-
-            }
-
+            $this->modalImgOff();
+            $this->dispatch('added');
         }
 
+        if ($tipo == 'pedido') {
 
-        $this->modalImgOff();
-        $this->dispatch('added');
+
+
+            $this->validate();
+            $this->tipos = [
+
+                [$this->eco_gin, '1'],
+                [$this->eco_obs, '2'],
+                [$this->eco_abd, '3'],
+                [$this->eco_tiro, '4'],
+                [$this->rmn_pelv, '5'],
+                [$this->tac_abd, '6'],
+                [$this->tac_abd_cc, '7'],
+                [$this->tac_pel, '8'],
+                [$this->tac_pel_cc, '9'],
+            ];
+
+            foreach ($this->tipos as $t) {
+                if ($t[0] == true) {
+                    $i =  Imagen::firstOrCreate([
+                        'tipo_imagen_id' => $t[1],
+                        'cie10_id' => $this->cie10,
+                        'estado' => '1',
+
+                    ]);
+
+                    ImagenXConsulta::firstOrCreate([
+                        'consulta_id' => $this->consulta->id,
+                        'imagen_id' => $i->id,
+                        'estado' => '1',
+
+                    ]);
+                }
+            }
+
+
+
+            $this->modalImgOff();
+            $this->dispatch('added');
+        }
     }
 
 
