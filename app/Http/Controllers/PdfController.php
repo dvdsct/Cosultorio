@@ -179,7 +179,8 @@ class PdfController extends Controller
             'medico' => $nombreMedico,
             'matricula' => $matricula,
             'especialidad' => $especialidad,
-            'titulo' => $titulo
+            'titulo' => $titulo,
+            'pap' => $pap
         ]);
 
         return $pdf->stream('pap_' . $pap->id . '.pdf');

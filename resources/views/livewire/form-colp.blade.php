@@ -281,9 +281,7 @@
                 <i class="fas fa-arrow-left"></i> <strong> Volver </strong>
             </button>
             <button type="submit" class="btn btn-primary ml-auto"><strong> Finalizar </strong></button>
-            <a type="button"  class="btn btn-success btn-sm" target="_blank">Descargar</a>
+            <a type="button" href="{{route('pdfPap',$colpos->turno_id)}}" class="btn btn-success btn-sm" target="_blank">Descargar</a>
         </div>
-
-
     </form>
 </div>
