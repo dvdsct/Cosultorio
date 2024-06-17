@@ -1,6 +1,6 @@
-<div class="card card-info">
+<div class="card card-danger">
     <div class="card-header">
-        <h3 class="card-title">FICHA PARA EL REGISTRO DE COLPOSCOPIA </h3>
+        <h3 class="card-title"><strong> FICHA PARA EL REGISTRO DE COLPOSCOPIA </strong></h3>
     </div>
 
 
@@ -280,8 +280,9 @@
             <button type="button" class="btn btn-default">
                 <i class="fas fa-arrow-left"></i> <strong> Volver </strong>
             </button>
-            <button type="submit" class="btn btn-primary ml-auto"><strong> Finalizar </strong></button>
-            <a type="button" href="{{route('pdfPap',$colpos->turno_id)}}" class="btn btn-success btn-sm" target="_blank">Descargar</a>
+            <button type="submit" class="btn btn-primary ml-auto mr-2"><strong> Finalizar </strong></button>
+            <a type="button" href="{{route('pdfPap',$colpos->turno_id)}}" 
+            class="btn btn-success btn-sm  pt-2" target="_blank" ><strong><i class="fa fa-file-download"></i> Descargar </strong></a>
         </div>
     </form>
 </div>

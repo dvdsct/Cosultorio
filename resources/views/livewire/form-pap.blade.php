@@ -1,4 +1,4 @@
-<div class="card card-info">
+<div class="card card-purple">
     <div class="card-header">
         <h3 class="card-title"><strong> FICHA DE SOLICITUD DE LA CITOLOGÍA EXFOLIATIVA (PAP) </strong></h3>
     </div>
