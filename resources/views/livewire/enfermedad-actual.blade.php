@@ -230,15 +230,15 @@
             <div class="modal fade show" id="modal-laboratorio" aria-labelledby="modal-default"
                 style="background-color: rgba(0, 0, 0, 0.5); display:block" aria-hidden="true" wire:ignore.self>
 
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog modal-xl modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header bg-warning">
-                            <h4 class="modal-title"> <strong> NUEVO PEDIDO DE LABORATORIO </strong></h4>
+                            <h4 class="modal-title"> <strong> PEDIDOS DE LABORATORIO </strong></h4>
                             <button type="button" class="close" wire:click='dispatch("modalOnLab")'>
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                             @if ($this->consulta->estado == '3')
                             @else
                                 <div class="col-md-12">

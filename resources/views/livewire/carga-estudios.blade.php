@@ -5,10 +5,10 @@
 
     <div class="modal fade show" id="modal-lg" style="display: block; padding-right: 17px; overflow-y: auto;"
         aria-modal="true" role="dialog">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-warning">
-                    <h4 class="modal-title"> <strong> Estudios de laboratorio </strong></h4>
+                    <h4 class="modal-title"> <strong> RESULTADOS DE LABORATORIO </strong></h4>
                     <button type="button" class="close" wire:click='dispatch("editLab")'>
                         <span aria-hidden="true">×</span>
                     </button>
