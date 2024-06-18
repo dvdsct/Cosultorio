@@ -58,6 +58,7 @@ class PdfController extends Controller
         $osd = $os->filter(function ($oxs) {
             return $oxs->estado == '1';
         });
+        $edad = Carbon::parse($paciente->perfiles->personasfecha_de_nacimiento)->age;
 
         $pdf = Pdf::loadView('Consultorio.pdf.receta', [
             'items' => $items,
