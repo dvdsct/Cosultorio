@@ -51,6 +51,11 @@ class CargaEstudios extends Component
         );
     }
 
+    public function closeModal()
+    {
+
+        $this->estModal = false;
+    }
 
     #[On('editLab')]
     public function cargarEstudios()

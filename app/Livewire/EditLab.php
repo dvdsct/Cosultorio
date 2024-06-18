@@ -13,6 +13,7 @@ class EditLab extends Component
     public function mount($laboratorio){
 
         $this->laboratorio = $laboratorio;
+        $this->valor = $this->laboratorio->valor;
 
     }
 

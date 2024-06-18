@@ -278,7 +278,7 @@
 
         <div class="card-footer d-flex justify-content-between">
             <button type="button" class="btn btn-default">
-                        <a type="button" href="{{route('pdfPap',$colpos->turno_id)}}" >
+                        <a type="button" href="{{route('pap.show',$colpos->turno_id)}}" >
 
                 <i class="fas fa-arrow-left"></i> <strong> Volver </strong></a>
             </button>

@@ -10,7 +10,7 @@ class Laboratorio extends Model
     use HasFactory;
 
     protected $fillable = ['cie10_id',
-    'tipo_laboratorio_id','estado'];
+    'tipo_laboratorio_id','estado','valor'];
 
 
     public function consultas(){
