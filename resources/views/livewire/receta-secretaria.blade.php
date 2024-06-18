@@ -96,7 +96,7 @@
     {{-- Formulario por R/p --}}
     <div class="row mt-4">
         @foreach ($rps as $rp)
-        @livewire('form-rp', ['consulta' => $consulta, 'rp' => $rp])
+        @livewire('form-rp', ['consulta' => $consulta, 'rp' => $rp], key($rp->id))
         @endforeach
     </div>
 

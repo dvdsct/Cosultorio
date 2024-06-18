@@ -8,6 +8,7 @@ use App\Models\Medico;
 use App\Models\Receta;
 use App\Models\RecetaXConsulta;
 use App\Models\Vademecum;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 
@@ -101,22 +102,29 @@ class RecetaSecretaria extends Component
             'estado' => '1'
         ]);
 
+        $this->dispatch('newsRp');
+
         $this->modalRemedioOnOff();
     }
 
 
+    #[On('newsRp')]
+    public function resRp(){
+
+        $this->rps = $this->consulta->recetas;
+    }
 
     public function render()
     {
         $this->rps = $this->consulta->recetas;
 
-        
+
         return view('livewire.receta-secretaria', [
             'vademecum' => Vademecum::select('vademecums.*')
                 ->where('vademecums.droga', 'LIKE',  '%' . $this->query . '%')
                 ->orWhere('vademecums.presentacion', 'LIKE', '%' . $this->query . '%')
                 ->orWhere('vademecums.nombre', 'LIKE', '%' . $this->query . '%')
-                ->paginate(100),
+                ->paginate(10),
         ]);
     }
 }

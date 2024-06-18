@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Cie10;
+use App\Models\Receta;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -44,6 +45,14 @@ class FormRp extends Component
 
         $this->formRp = false;
     }
+
+
+    public function close($id){
+        $rp = Receta::find('id');
+        dd($rp);
+    }
+
+
 
     public function render()
     {
