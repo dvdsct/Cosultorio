@@ -1,6 +1,6 @@
-<div class="col-12">
-    <div class="col-5 px-2">
-        <div class="card card-info" >
+
+    <div class="col-4 px-2">
+        <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title"> <span style="font-style: italic;"> R/p </span> </h3>
                 <button type="button" class="close" wire:click="close({{ $rp->id }})" aria-label="Close">
@@ -15,7 +15,6 @@
                             {{ $rp->vademecums->presentacion }}</code></label>
                 </div>
 
-                {{ $rp->estado }}
 
                 @if ($rp->estado == '1')
                 <div class="form-group">
@@ -57,4 +56,3 @@
             </div>
         </div>
     </div>
-</div>

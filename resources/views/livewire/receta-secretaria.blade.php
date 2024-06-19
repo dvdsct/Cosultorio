@@ -158,10 +158,12 @@
     @endif
 
 
-    <div class="row d-flex justify-content-end">
-        <a class="btn btn-warning" href="{{ route('pdf.show', $consulta->id) }}" target="_blank"> <strong>
-                Descargar
-            </strong></a>
+    <div class="row d-flex justify-content-end pt-2 mb-2">
+        <div class="col-3">
+            <a class="btn btn-warning btn-block" href="{{ route('pdf.show', $consulta->id) }}" target="_blank"> <strong>
+                    <i class="fa fa-file-download fa-2x"></i> <br> Descargar
+                </strong></a>
+        </div>
     </div>
     @endif
 </div>

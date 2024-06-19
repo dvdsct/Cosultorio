@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receta</title>
+    <title>Receta - {{ $paciente }}</title>
 
 
 </head>
@@ -17,10 +17,10 @@
             <!-- CABECERA TABLA IZQUIERDA  -->
             <th style="width: 50%; position: relative; height: auto;">
                 <div style="text-align: center; padding: 1px; top: 10px; left: 0; right: 0;">
-                    <h3 style="padding-top: 5px; margin-top: 0; margin-bottom: 0; font-style: italic; font-family: 'Arial', sans-serif;">{{ $titulo . ' ' .$medico }}</h3>
+                    <h3 style="padding-top: 2px; margin-top: 0; margin-bottom: 0; font-style: italic; font-family: 'Arial', sans-serif;">{{ $titulo . ' ' .$medico }}</h3>
                     <span style="padding-top: 0; font-style: italic; font-size: 10px;">{{ $especialidad }}</span>
-                    <span style="padding-top: 0; font-style: italic; font-size: 10px;">M.P. N° {{ $matricula }}</span>
-                    <p style="padding-top: 0; font-size: 10px;">Papanicolau - Colposcopia - Partos - Cesarea</p>
+                    <span style="padding-top: 0; font-style: italic; font-size: 10px;">M.P. N° {{ $matricula }}</span> <br>
+                    <span style="padding-top: 0; font-size: 10px;">Papanicolau - Colposcopia - Partos - Cesarea</span>
                 </div>
                 <hr>
             </th>
@@ -29,8 +29,8 @@
                 <div style="text-align: center; padding: 1px; top: 10px; left: 0; right: 0;">
                     <h3 style="padding-top: 5px; margin-top: 0; margin-bottom: 0; font-style: italic; font-family: 'Arial', sans-serif;">{{ $titulo . ' ' .$medico }}</h3>
                     <span style="padding-top: 0; font-style: italic; font-size: 10px;">{{ $especialidad }}</span>
-                    <span style="padding-top: 0; font-style: italic; font-size: 10px;">M.P. N° {{ $matricula }}</span>
-                    <p style="padding-top: 0; font-size: 10px;">Papanicolau - Colposcopia - Partos - Cesarea</p>
+                    <span style="padding-top: 0; font-style: italic; font-size: 10px;">M.P. N° {{ $matricula }}</span> <br>
+                    <span style="padding-top: 0; font-size: 10px;">Papanicolau - Colposcopia - Partos - Cesarea</span>
                 </div>
                 <hr>
             </th>
@@ -41,8 +41,8 @@
                 <!-- PACIENTE TABLA DE LA IZQUIERDA -->
                 <td>
                     <ul>
-                        <h4 style="margin: 0; font-family: 'Arial', sans-serif; ">Paciente</h4>
-                        <li style="list-style-type: none;">- {{ $paciente }} - 19 años </li>
+                        <h4 style="margin: 0; font-family: 'Arial', sans-serif;">Paciente</h4>
+                        <li style="list-style-type: none;">- {{ $paciente }} - {{$edad}} años </li>
                         <li style="list-style-type: none;">- {{'OS: '.  $osd->first()->descripcion .' N° Afil:'.  $osd->first()->nro_afil}} Plan:{{$osd->first()->plan}}</li>
                     </ul>
                 </td>
@@ -53,7 +53,7 @@
                         <h4 style="margin: 0; font-family: 'Arial', sans-serif;">Indicaciones</h4>
                         @foreach ($par as $rem)
                         <li style="list-style-type: none;">{{ $rem->vademecums->droga}}
-                            <br>{{ $rem->cantidad . ' cada ' . $rem->indicacion }} horas.</li> <br>
+                            <br>{{ $rem->cantidad . ' ' . $rem->indicacion }}.</li> <br>
                             @endforeach
                         </ul>
                 </td>
@@ -62,11 +62,13 @@
             <tr>
                 <td>
                     <ul>
-                        <h4 style="margin: 0; font-family: 'Arial', sans-serif;">Medicamentos</h4>
                         @foreach ($par as $rem)
+                        <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic;">R/p</h4>
                         <li style="list-style-type: none;">- {{ $rem->vademecums->droga . ' ' . $rem->vademecums->presentacion }}</li>
+                        <li style="list-style-type: none;"> <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic; display: inline-block; margin-bottom: 2px;"> Dx: </h4> 
+                        <!-- {{ $par->first()->ciediez->descripcion }}</li> -->
+                        {{ $rem->ciediez->descripcion }}</li>
                         @endforeach
-                        <li style="list-style-type: none;">- Dx: {{ $par->first()->ciediez->descripcion }}</li>
                     </ul>
                 </td>
                 <td></td>
@@ -82,8 +84,8 @@
                 </td>
 
                 <!-- PIE DE PAGINA DE TABLA DE LA DERECHA -->
-                <td style="position: relative;">
-                <div style="text-align: center;  margin-top:0; padding-top: 10px; height: 3px;">
+                <td>
+                <div style="text-align: center; padding-top: 0;">
                         <h5 class="sanatorio" style="margin: 0;">NUEVO SANATORIO ALVEAR</h5>
                         <p class="direccion" style="margin: 0; font-size: 10px;">Moreno (S) 266 - (0385) 4214727 / 1552</p>
                         <p style="margin: 0; font-size: 10px; padding-bottom: 0;">Santiago del Estero</p>

@@ -46,7 +46,7 @@
                         </td>
                         <td>{{ $c->pacientes->perfiles->personas->apellido . ' ' . $c->pacientes->perfiles->personas->nombre }}</td>
                         <td>{{ $c->ea }}</td>
-                        <td>{{ $c->observaciones }}</td>
+                        <td>{{ $c->first()->observaciones }}</td>
                         <td> <a href="{{route('consulta.show',$c->id)}}" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button></td>
                     </tr>
                     @endforeach

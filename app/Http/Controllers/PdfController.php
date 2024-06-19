@@ -60,7 +60,11 @@ class PdfController extends Controller
         });
         $edad = Carbon::parse($paciente->perfiles->personasfecha_de_nacimiento)->age;
 
-        $pdf = Pdf::loadView('Consultorio.pdf.receta', [
+        // $pdf = Pdf::loadView('Consultorio.pdf.receta', [
+
+        return view('Consultorio.pdf.receta', [
+
+
             'items' => $items,
             'os' => $os,
             'osd' => $osd,
@@ -69,10 +73,12 @@ class PdfController extends Controller
             'medico' => $nombreMedico,
             'matricula' => $matricula,
             'especialidad' => $especialidad,
-            'titulo' => $titulo
+            'titulo' => $titulo,
+            'edad' => $edad
+
         ]);
 
-        return $pdf->stream('consulta_' . $consulta->id . '.pdf');
+        // return $pdf->stream('consulta_' . $consulta->id . '.pdf');
     }
 
 
