@@ -278,9 +278,14 @@
 
         <div class="card-footer d-flex justify-content-between">
             <button type="button" class="btn btn-default">
-                        <a type="button" href="{{route('pap.show',$colpos->turno_id)}}" >
+                        <a type="button" href="{{route('paps.show',$colpos->turno_id)}}" >
 
                 <i class="fas fa-arrow-left"></i> <strong> Volver </strong></a>
+            </button>
+            <button type="button" class="btn btn-default">
+                        <a type="button" href="{{route('pdfColpo',$colpos->turno_id)}}" >
+
+                <i class="fas fa-arrow-left"></i> <strong> imprimir </strong></a>
             </button>
             <button type="submit" class="btn btn-primary ml-auto mr-2"><strong> Finalizar </strong></button>
             <a type="button" href="{{route('pdfPap',$colpos->turno_id)}}"

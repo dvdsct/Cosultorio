@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Colposcopia;
 use App\Models\Consulta;
 use App\Models\ObraSocialXPaciente;
 use App\Models\Pap;
@@ -191,5 +192,53 @@ class PdfController extends Controller
         ]);
 
         return $pdf->stream('pap_' . $pap->id . '.pdf');
+    }
+
+
+
+
+    public function showColpo(string $id)
+    {
+        $colpo = Colposcopia::where('turno_id', $id)->first();
+
+        if (!$colpo) {
+            abort(404); // pap no encontrada
+        }
+
+        // $pap->update(['estado' => '5']);
+
+        $medico = $colpo->medicos->first();
+        $matricula = $medico->matricula;
+        $titulo = $medico->titulo;
+        $especialidad = Str::upper($medico->especialidad);
+        $nombreMedico = $medico->perfiles->personas->nombre . ' ' . $medico->perfiles->personas->apellido;
+
+        $paciente = $colpo->pacientes;
+        $nombrePaciente = $paciente->perfiles->personas->nombre . ' ' . $paciente->perfiles->personas->apellido . ' ' . $paciente->perfiles->personas->dni;
+
+        $os = ObraSocialXPaciente::select('obra_social_x_pacientes.*', 'obra_socials.descripcion')
+            ->leftJoin('obra_socials', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
+            ->where('paciente_id', $paciente->id)
+            ->get();
+
+        $osd = $os->filter(function ($oxs) {
+            return $oxs->estado == '1';
+        });
+
+
+
+        $pdf = Pdf::loadView('Consultorio.pdf.colpo', [
+            'os' => $os,
+            'osd' => $osd,
+            'paciente' => $nombrePaciente,
+            'fecha' => $colpo->turnos->fecha_turno,
+            'medico' => $nombreMedico,
+            'matricula' => $matricula,
+            'especialidad' => $especialidad,
+            'titulo' => $titulo,
+            'colpo' => $colpo
+        ]);
+
+        return $pdf->stream('pap_' . $colpo->id . '.pdf');
     }
 }
