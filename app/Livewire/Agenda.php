@@ -35,6 +35,8 @@ class Agenda extends Component
     public $oss = [];
     public $modal = false;
     public $modalclass = '';
+    public $editForm = '';
+
 
 
     public $os = '1';
@@ -79,7 +81,7 @@ class Agenda extends Component
         $this->onOff = '';
         $this->onOffedit = '';
 
-        $this->reset('dni', 'nombre', 'apellido', 'abono', 'horario');
+        $this->reset('dni', 'nombre', 'apellido', 'abono', 'horario','editForm');
     }
 
 
@@ -121,8 +123,12 @@ class Agenda extends Component
         $this->abono = $this->turno->abonos->first()->monto;
         $this->apellido = $this->turno->pacientes->perfiles->personas->apellido;
         $this->oss =  ObraSocial::all();
-        $this->medicoC = ConsultasXMedico::where('consulta_id', $this->turno->consultas->id)->get();
-        $this->medico = $this->medicoC->first()->id;
+        // $this->medicoC = ConsultasXMedico::where('consulta_id', $this->turno->consultas->id)->get();
+        $this->medicoC = $this->turno->medicos;
+        $this->medico = $this->turno->medicos->id;
+        $this->editForm = 'disabled';
+        // dd($this->medico);
+
 
         $this->onOff = 'disabled';
         $this->onOffedit = 'disabled';
@@ -170,7 +176,7 @@ class Agenda extends Component
                 'fecha_turno' => $this->fecha . ' ' . $this->horario,
             ]);
 
-            $this->medicoC->first()->update([
+            $this->turno->update([
                 'medico_id' => $this->medico
             ]);
 
@@ -204,6 +210,8 @@ class Agenda extends Component
             $abono->update([
                 'monto' => $this->abono ?? 0,
             ]);
+
+
 
             // event(new NewMeet(''));
 
@@ -353,11 +361,12 @@ class Agenda extends Component
                 $axc->abono_id = $abono->id;
                 $axc->save();
             }
+
         }
 
         $this->reset('turno');
         $this->closeModal();
-        event(new NewMeet(''));
+        event(new NewMeet([]));
     }
 
     public function upPaciente()
