@@ -197,7 +197,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Motivo</label>
-                                    <select class="form-control" wire:model='motivo'>
+                                    <select class="form-control" {{ $editForm }} wire:model='motivo'>
                                         <option value="1">PAP - Colpo</option>
                                         <option value="2">Consulta</option>
                                     </select>
