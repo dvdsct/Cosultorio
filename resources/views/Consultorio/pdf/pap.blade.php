@@ -189,25 +189,20 @@
 
             <div class="col_3">
                 <label> <strong>Pap Previo:</strong>
-                    @if($pap->pap_previo->id != '')
-                    {{$pap->pap_previo->created_at}}
+                    @if(empty($pap->pap_previo->id))
                     @else
-
+                    {{$pap->pap_previo->created_at}}
                     @endif
                 </label>
             </div>
 
             <div class="col_3">
                 <label> <strong>Resultado PAP previo:</strong>
-                    @if($pap->pap_previo->descripcion == '1')
-                    No sabe.
-                    @elseif($pap->pap_previo->descripcion == '2')
-                    Insatisfactorio.
-                    @elseif($pap->pap_previo->descripcion == '3')
-                    Negativo/Normal/Inflamatorio.
-                    @elseif($pap->pap_previo->descripcion == '4')
-                    ASC/Atipia/Malignidad
-                    @endif
+                @if(empty($pap->pap_previo))    
+                - 
+                @else
+                {{$pap->pap_previo->descripcion}}
+                @endif
                 </label>
             </div>
         </div>

@@ -277,19 +277,16 @@
 
 
         <div class="card-footer d-flex justify-content-between">
-            <button type="button" class="btn btn-default">
-                        <a type="button" href="{{route('paps.show',$colpos->turno_id)}}" >
-
-                <i class="fas fa-arrow-left"></i> <strong> Volver </strong></a>
+            <button type="button" class="btn btn-default mr-2">
+                <a type="button" href="{{route('paps.show',$colpos->turno_id)}}">
+                    <i class="fas fa-arrow-left"></i> <strong> Volver </strong></a>
             </button>
-            <button type="button" class="btn btn-default">
-                        <a type="button" href="{{route('pdfColpo',$colpos->turno_id)}}" >
 
-                <i class="fas fa-arrow-left"></i> <strong> imprimir </strong></a>
-            </button>
-            <button type="submit" class="btn btn-primary ml-auto mr-2"><strong> Finalizar </strong></button>
-            <a type="button" href="{{route('pdfPap',$colpos->turno_id)}}"
-            class="btn btn-success btn-sm  pt-2" target="_blank" ><strong><i class="fa fa-file-download"></i> Descargar </strong></a>
+             <button type="submit" class="btn btn-success ml-auto mr-2"><strong> Finalizar </strong></button>
+
+            <a class="btn bg-purple btn-sm  pt-2" href="{{route('pdfPap',$colpos->turno_id)}}" target="_blank"><strong><i class="fa fa-file-download"></i> Descargar Pap</strong></a>
+
+            <a class="btn btn-danger btn-sm  pt-2 ml-2" href="{{route('pdfColpo',$colpos->turno_id)}}" target="_blank"><strong><i class="fa fa-file-download"></i> Descargar Colposcopia </strong></a>
         </div>
     </form>
 </div>

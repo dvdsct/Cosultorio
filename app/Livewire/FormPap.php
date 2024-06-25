@@ -56,6 +56,12 @@ class FormPap extends Component
     public function mount($consulta)
     {
         $this->pap = $consulta;
+        
+        if($this->pap->embarazo_actual == 1){
+
+            $this->embarazo = true ;
+        }
+
     }
 
     /* Metodo para habilitar y desabilitar Cirugias precias */
