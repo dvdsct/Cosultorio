@@ -90,7 +90,11 @@
                             {{ $c->cirujias_pre}}
                             @endif
                         </td>
-                        <td style="width:80px"> <button type="button" class="btn btn-block btn-info btn-sm" style="width:80px">Ver</button></td>
+                        <td style="width:80px"> 
+                        <a href="{{route('paps.show',$c->id)}}">
+                        <button type="button" class="btn btn-block btn-info btn-sm" style="width:80px">Ver</button>
+                        </a>
+                    </td>
                     </tr>
                     @endforeach
                 </tbody>

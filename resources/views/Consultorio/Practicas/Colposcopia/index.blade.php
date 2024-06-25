@@ -44,7 +44,11 @@
                         <td>{{ $c->pacientes->perfiles->personas->apellido . ' ' . $c->pacientes->perfiles->personas->nombre }}</td>
                         <td>{{ $c->observaciones}}</td>
                         <td>{{ $c->seguimiento }}</td>
-                        <td style="display: flex; justify-content: flex-end;"> <button type="button" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button></td>
+                        <td style="display: flex; justify-content: flex-end;"> 
+                            <a href="{{route('colpos.show',$c->id)}}">
+                        <button type="button" class="btn btn-block btn-info btn-sm ml-2" style="width:80px">Ver</button>
+                        </a>
+                    </td>
                     </tr>
                     @endforeach
                 </tbody>
