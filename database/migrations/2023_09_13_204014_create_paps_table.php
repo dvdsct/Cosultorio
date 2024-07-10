@@ -39,6 +39,12 @@ return new class extends Migration
             $table->string('embarazo_actual')->nullable();
             $table->string('trata_rad')->nullable(); /* Tratamiento Radiante */
             $table->string('quimio')->nullable();
+            $table->string('fecha_pp')->nullable();
+            $table->unsignedBigInteger('pap_previo_id')->nullable();
+            $table->foreign('pap_previo_id')
+            ->references('id')
+            ->on('pap_previos')
+            ->onDelete('cascade');
 
             $table->softDeletes();
             $table->timestamps();

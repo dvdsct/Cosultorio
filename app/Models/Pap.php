@@ -26,7 +26,9 @@ class Pap extends Model
         'thr',
         'embarazo_actual',
         'trata_rad',
-        'quimio'
+        'quimio',
+        'fecha_pp',
+        'pap_previo_id',
     ];
 
 
