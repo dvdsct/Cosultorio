@@ -245,7 +245,9 @@ class AddImagen extends Component
 
 
             $this->modalImgOff();
-            $this->dispatch('added');
+
+                $this->dispatch('added-img')->to(Pedidos::class);
+            
         }
     }
 

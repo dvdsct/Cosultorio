@@ -10,7 +10,21 @@
                 <i class="fas fa-plus-circle"></i>
             </button>
             @livewire('add-imagen', ['consulta' => $consulta])
-            @livewire('carga-estudios', ['consulta' => $consulta])
+
+            <thead>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
+                @foreach ($consulta->imagenes as $imagen )
+
+                <tr>
+                    <td> {{$imagen}} </td>
+                    <td> </td>
+                </tr>
+                @endforeach
+            </tbody>
+            </table>
         </div>
         <div class="col-4">
 
