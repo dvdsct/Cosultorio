@@ -72,8 +72,9 @@ class FormColp extends Component
     public function mount($consulta)
     {
         $this->colpos = $consulta;
-        $this->responsable_n = explode(' ', $consulta->responsable)[0];
-        $this->responsable_a = explode(' ', $consulta->responsable)[1];
+        $responsableParts = explode(' ', $consulta->responsable);
+        $this->responsable_n = $responsableParts[0];
+        $this->responsable_a = isset($responsableParts[1]) ? $responsableParts[1] : '';
         $this->establecimiento = $consulta->establecimiento;
         $this->localidad = $consulta->localidad;
 

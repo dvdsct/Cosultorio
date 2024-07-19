@@ -190,23 +190,27 @@
             <div class="col_3">
                 <label> <strong>Pap Previo:</strong>
                     @if(empty($pap->pap_previo->id))
+                    {{$pap->fecha_pp}}
                     @else
-                    {{$pap->pap_previo->created_at}}
+                    -
                     @endif
                 </label>
             </div>
 
             <div class="col_3">
                 <label> <strong>Resultado PAP previo:</strong>
-                @if(empty($pap->pap_previo))    
-                - 
-                @else
-                {{$pap->pap_previo->descripcion}}
-                @endif
+                    @if($pap->pap_previo_id == 1)
+                    No sabe.
+                    @elseif($pap->pap_previo_id == 2)
+                    Insatisfactorio.
+                    @elseif($pap->pap_previo_id == 3)
+                    Negativo/Normal/Insatisfactorio.
+                    @elseif($pap->pap_previo_id == 4)
+                    ASC/Atipia/Malignidad
+                    @endif
                 </label>
             </div>
         </div>
-
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
