@@ -39,6 +39,7 @@
 
     </div>
     @else
+    @if($recConsulta)
     <div class="row mt-4">
         <div class="col-6">
             <div class="small-box bg-primary">
@@ -77,6 +78,9 @@
 
 
     </div>
+    @endif
+
+
     <div class=" row pt-0">
         <div class="col-md-6">
             <div style="width: 100%;">
@@ -159,7 +163,7 @@
 
 
     <div class="row d-flex justify-content-end pt-2 mb-2">
-        <div class="col-3">
+        <div class="col">
             <a class="btn btn-warning btn-block" href="{{ route('pdf.show', $consulta->id) }}" target="_blank"> <strong>
                     <i class="fa fa-file-download fa-2x"></i> <br> Descargar
                 </strong></a>

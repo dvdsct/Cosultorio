@@ -1,5 +1,5 @@
 
-    <div class="col-4 px-2">
+    <div class="col px-2">
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title"> <span style="font-style: italic;"> R/p </span> </h3>

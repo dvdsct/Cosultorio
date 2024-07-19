@@ -18,7 +18,7 @@ return new class extends Migration
             ->references('id')
             ->on('pacientes')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('medico_id');
+            $table->unsignedBigInteger('medico_id')->nullable();
             $table->foreign('medico_id')
             ->references('id')
             ->on('medicos')

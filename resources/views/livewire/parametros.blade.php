@@ -56,7 +56,7 @@
                         <h3>FUM</h3>
 
 
-                        <p class="">{{Carbon\Carbon::parse($this->consulta->fum)->locale('es') ->isoFormat('D [de] MMMM [del] YYYY');  }}</p>
+                        <p class="">{{Carbon\Carbon::parse($consulta->fum)->locale('es') ->isoFormat('D [de] MMMM [del] YYYY')  }}</p>
                         @if ($setFumForm)
                             <div class="pl-4">
                                 <input type="checkbox" class=" form-check-input" id="embarazo" wire:model='in_emb'
