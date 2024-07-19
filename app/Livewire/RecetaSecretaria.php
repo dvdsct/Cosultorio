@@ -16,8 +16,9 @@ class RecetaSecretaria extends Component
 {
     public $consulta;
     public $paciente;
-    public $modalMedico = true;
+    public $modalMedico;
     public $medicos;
+    public $recConsulta;
     public $remedio;
     public $rps;
     public $cie10s;
@@ -31,8 +32,14 @@ class RecetaSecretaria extends Component
     public $query = '';
 
 
-    public function mount($consulta, $paciente)
+    public function mount($consulta, $paciente,$tipo)
     {
+        if($tipo == 'consulta'){
+            $this->recConsulta = false;
+
+        }else{
+            $this->modalMedico = true;
+        }
         $this->consulta = $consulta;
         $this->paciente = $paciente;
         $this->medicos = Medico::all();

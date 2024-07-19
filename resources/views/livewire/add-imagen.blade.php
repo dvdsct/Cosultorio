@@ -1,4 +1,6 @@
 <div>
+    <table>
+
     @if ($modal == true)
 
     <div class="modal fade show" id="modal-imagen" aria-labelledby="modal-default" style="background-color: rgba(0, 0, 0, 0.5); display:block" aria-hidden="true">
