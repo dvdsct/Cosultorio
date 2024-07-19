@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PDF Colposcopia</title>
+    <title>PDF Colposcopia </title>
 </head>
 
 <body>
@@ -183,21 +183,21 @@
         </ul>
         <div class="fila">
             <label> <strong>Hallazgos Normales:</strong>
-                @if(empty($colpo->normales))
+                @if(empty($colpo->Hallazgos->normales))
                 -
                 @else
                 Si.
                 @endif
             </label>
             <label> <strong>Anormales Grado 1 (menor):</strong>
-                @if(empty($colpo->anormales_g1))
+                @if(empty($colpo->Hallazgos->anormales_g1))
                 -
                 @else
                 Si.
                 @endif
             </label>
             <label> <strong>Grado 2 (mayor):</strong>
-                @if(empty($colpo->anormales_g2))
+                @if(empty($colpo->Hallazgos->anormales_g2))
                 -
                 @else
                 Si.
@@ -207,21 +207,21 @@
 
         <div class="fila">
             <label> <strong>No especifico:</strong>
-                @if(empty($colpo->no_especifico))
+                @if(empty($colpo->Hallazgos->no_especifico))
                 -
                 @else
                 Si.
                 @endif
             </label>
             <label> <strong>Sospecha de invasión:</strong>
-                @if(empty($colpo->sospecha_inv))
+                @if(empty($colpo->Hallazgos->sospecha_inv))
                 -
                 @else
                 Si.
                 @endif
             </label>
             <label> <strong>Hallazgos Varios:</strong>
-                @if(empty($colpo->varios))
+                @if(empty($colpo->Hallazgos->varios))
                 -
                 @else
                 Si.
@@ -231,21 +231,21 @@
 
         <div class="fila">
             <label> <strong>Biopsia:</strong>
-                @if(empty($colpo->biopsia))
+                @if(empty($colpo->Hallazgos->biopsia))
                 -
                 @else
                 Si.
                 @endif
             </label>
             <label> <strong>ECC (Evaluacion Conducto Cervical):</strong>
-                @if(empty($colpo->ecc))
+                @if(empty($colpo->Hallazgos->ecc))
                 -
                 @else
                 Si.
                 @endif
             </label>
             <label> <strong>Test de Schiller:</strong>
-                @if(empty($colpo->test_schiller))
+                @if(empty($colpo->Hallazgos->test_schiller))
                 Negativo.
                 @else
                 Positivo.
@@ -257,17 +257,71 @@
             <h3>Resultados de la Biopsia</h3>
         </ul>
         <div class="fila">
-            <label> <strong>Negativo:</strong></label>
-            <label> <strong> CIN I:</strong></label>
-            <label> <strong> CIN II:</strong></label>
-            <label> <strong> CIN III:</strong></label>
-            <label> <strong> CIS:</strong></label>
+            <label> <strong>Negativo:</strong>
+                @if(empty($colpo->biopsias->negativo))
+                Si.
+                @else
+                No.
+                @endif
+            </label>
+            <label> <strong> CIN I:</strong>
+                @if(empty($colpo->biopsias->cin_1))
+                -
+                @else
+                Si.
+                @endif
+            </label>
+            <label> <strong> CIN II:</strong>
+                @if(empty($colpo->biopsias->cin_2))
+                Si.
+                @else
+                -
+                @endif
+            </label>
+            <label> <strong> CIN III:</strong>
+                @if(empty($colpo->biopsias->cin_3))
+                -
+                @else
+                Si.
+                @endif
+            </label>
+            <label> <strong> CIS:</strong>
+                @if(empty($colpo->biopsias->cis))
+                Si.
+                @else
+                -
+                @endif
+            </label>
         </div>
         <div class="fila">
-            <label> <strong>Ca Invasor:</strong></label>
-            <label> <strong>Adenocis:</strong></label>
-            <label> <strong>Adeno Ca Invasor:</strong></label>
-            <label> <strong>Otros:</strong></label>
+            <label> <strong>Ca Invasor:</strong>
+                @if(empty($colpo->biopsias->ca_invasor))
+                -
+                @else
+                Si.
+                @endif
+            </label>
+            <label> <strong>Adenocis:</strong>
+                @if(empty($colpo->biopsias->adenocis))
+                Si.
+                @else
+                -
+                @endif
+            </label>
+            <label> <strong>Adeno Ca Invasor:</strong>
+                @if(empty($colpo->biopsias->ac_invasor))
+                -
+                @else
+                Si.
+                @endif
+            </label>
+            <label> <strong>Otros:</strong>
+                @if(empty($colpo->biopsias->otros))
+                Si.
+                @else
+                -
+                @endif
+            </label>
         </div>
 
         <ul>
@@ -275,6 +329,15 @@
         </ul>
         <div class="fila">
             <label> <strong>Escisión:</strong>
+            @if($colpo->tratamiento == 1)
+            Ninguno. 
+            @elseif($colpo->tratamiento == 2)
+            Tipo 1.
+            @elseif($colpo->tratamiento == 3)
+            Tipo 2.
+            @elseif($colpo->tratamiento == 4)
+            Tipo 3.
+            @endif
             </label>
         </div>
 

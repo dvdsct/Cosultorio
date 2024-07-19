@@ -25,6 +25,7 @@ class FormColp extends Component
     public $localidad;
 
     public $vph='0';
+    public $citologia;
 
     /* Citologia Variables  */
     public $ascus='';
@@ -71,6 +72,61 @@ class FormColp extends Component
     public function mount($consulta)
     {
         $this->colpos = $consulta;
+        $this->responsable_n = explode(' ', $consulta->responsable)[0];
+        $this->responsable_a = explode(' ', $consulta->responsable)[1];
+        $this->establecimiento = $consulta->establecimiento;
+        $this->localidad = $consulta->localidad;
+
+        if($this->colpos->test_vph == 1){
+            $this->vph = true;
+        }
+        
+        $citologia = Citologia::find($consulta->citologia_id);
+        if ($citologia) {
+            $this->ascus = (bool) $citologia->asc_us;
+            $this->lsil = (bool) $citologia->l_sil;
+            $this->asch = (bool) $citologia->asc_h;
+            $this->hsil = (bool) $citologia->hsil;
+            $this->ca = (bool) $citologia->ca;
+            $this->otros = (bool) $citologia->otros;
+        }
+    
+        $this->observaciones = $consulta->observaciones;
+
+        if($this->colpos->evaluacion == 1)
+        $this->e_general = true;
+
+        $this->zona_trans = $consulta->zona_trans;
+
+
+        $hallazgo = Hallazgo::find($consulta->hallazgo_id);
+        if ($hallazgo) {
+            $this->hall_normales = (bool) $hallazgo->normales;
+            $this->anormales1 = (bool) $hallazgo->anormales_g1;
+            $this->anormales2 = (bool) $hallazgo->anormales_g2;
+            $this->no_especifico = (bool) $hallazgo->no_especifico;
+            $this->sospecha_inv = (bool) $hallazgo->sospecha_inv;
+            $this->hall_varios = (bool) $hallazgo->varios;
+            $this->biopsia = (bool) $hallazgo->biopsia;
+            $this->evaluacion = (bool) $hallazgo->ecc;
+            $this->schiller = (bool) $hallazgo->test_schiller;
+        }
+
+        $biopsia = Biopsia::find($consulta->biopsia_id);
+        if ($biopsia) {
+            $this->negat = (bool) $biopsia->negativo;
+            $this->cin1 = (bool) $biopsia->cin_1;
+            $this->cin2 = (bool) $biopsia->cin_2;
+            $this->cin3 = (bool) $biopsia->cin_3;
+            $this->cis = (bool) $biopsia->cis;
+            $this->ca_inv = (bool) $biopsia->ca_invasor;
+            $this->adenocis = (bool) $biopsia->adenocis;
+            $this->adeno_ca_inv = (bool) $biopsia->ac_invasor;
+            $this->bio_otros = (bool) $biopsia->otros;
+        }
+
+        $this->tratam = $consulta->tratamiento;
+        $this->seguimiento = $consulta->seguimiento;
     }
 
     public function add_colp()

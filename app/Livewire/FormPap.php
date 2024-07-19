@@ -72,7 +72,7 @@ class FormPap extends Component
         $this->check_pap = $this->pap->check_pap ?? '';
         $this->v_pp = $this->pap->check_pap == 1 ? '' : 'disabled';
         $this->fec_pap_previo = $this->pap->fecha_pp ?? '';
-        $this->pap_prev = $this->pap->pap_prev ?? '';
+        $this->pap_prev = $this->pap->pap_previo_id ?? ''; 
 
         $this->tipo_muestra = $this->pap->tipo_muestra ?? '';
         $this->toma_muestra = $this->pap->met_toma_mue ?? '';
@@ -92,7 +92,7 @@ class FormPap extends Component
         $this->ciru_prev = $this->pap->cirujias_pre ?? [];
 
         if ($this->pap->menopausia == 1) {
-            $this->menop = $this->menop;
+            $this->menop = true;
         }
 
         if ($this->pap->cirujias_pre != '') {
@@ -129,7 +129,7 @@ class FormPap extends Component
         }
     }
 
-    /* Metodo para habilitar y desabilitar Cirugias precias */
+    /* Metodo para habilitar y desabilitar Cirugias previas */
     public function cir_previas()
     {
         if ($this->check_cp == 1) {
