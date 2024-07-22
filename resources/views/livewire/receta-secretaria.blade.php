@@ -161,7 +161,7 @@
     </div>
     @endif
 
-
+    @if($recConsulta)
     <div class="row d-flex justify-content-end pt-2 mb-2">
         <div class="col">
             <a class="btn btn-warning btn-block" href="{{ route('pdf.show', $consulta->id) }}" target="_blank"> <strong>
@@ -169,5 +169,15 @@
                 </strong></a>
         </div>
     </div>
+    @else
+    <div class="row d-flex justify-content-end pt-2 mb-2">
+        <div class="col">
+            <a class="btn btn-danger btn-block" href="{{ route('pdf.show', $consulta->id) }}" target="_blank"> <strong>
+                    <i class="fa fa-file-download fa-2x"></i> <br> Descargar
+                </strong></a>
+        </div>
+    </div>
+    @endif
+
     @endif
 </div>

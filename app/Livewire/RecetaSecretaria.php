@@ -39,6 +39,7 @@ class RecetaSecretaria extends Component
 
         }else{
             $this->modalMedico = true;
+            $this->recConsulta = true;
         }
         $this->consulta = $consulta;
         $this->paciente = $paciente;

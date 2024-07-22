@@ -40,13 +40,6 @@
                                     <tr>
                                         @if ($consulta->estado == '3')
                                             {{-- Receta Consulta Pasada --}}
-                                            <td>
-                                                <!--                                             <div class="btn-group" style="width: 100%;">
-                                                <button type="button" class="btn btn-danger btn-block rounded-left border-right mr-1" style="width: 100%;" wire:click='dispatch("modalOn")'>
-                                                    <strong> Receta </strong>
-                                                </button>
-                                            </div> -->
-                                            </td>
                                         @else
                                             {{-- Receta Consulta Actual --}}
                                             <td>
