@@ -1,30 +1,28 @@
 <div>
     <div class="row">
-        <!-- CARD DE LA RECETA  -->
         <div class="col-4">
-            <div class="card card-purple p-0">
-                <div class="card-header">
+            <div class="card card-purple">
+                <div class="card card-header">
                     <div class="card-title">
-                        <strong>RECETAS</strong>
+                        <strong>RECETA</strong>
                     </div>
                 </div>
-                @livewire('receta-secretaria',['consulta' => $consulta, 'paciente' => $paciente,'consulta'])
+                <div class="card-body">
+                    @livewire('receta-secretaria',['consulta' => $consulta, 'paciente' => $paciente,'consulta'])
+                </div>
             </div>
         </div>
 
-        <!-- CARD DE IMAGENES  -->
         <div class="col-4">
             <div class="card card-primary">
-                <div class="card-header">
+                <div class="card card-header">
                     <div class="card-title">
-                        <strong>IMAGENES</strong>
+                        <strong> IMAGENES </strong>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-flat rounded-left mr-1" wire:click='dispatch("modalImgOn", { tipo:"pedido" })'>
-                    <i class="fas fa-plus-circle"></i> Nuevo pedido de imagen
-                </button>
+                <div class="card-body">
                 @livewire('add-imagen', ['consulta' => $consulta])
-                <table>
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th></th>
@@ -40,18 +38,26 @@
                         @endforeach
                     </tbody>
                 </table>
+                    <div class="col-10">
+                        <button type="button" class="btn btn-primary btn-flat rounded-left mr-1" wire:click='dispatch("modalImgOn", { tipo:"pedido" })'>
+                            <i class="fas fa-plus-circle"></i> Nuevo pedido de imagen
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- CARD DE LABORATORIO -->
         <div class="col-4">
-            <div class="card card-warning p-0">
-                <div class="card-header">
+            <div class="card card-warning">
+                <div class="card card-header">
                     <div class="card-title">
-                        LABORATORIO
+                        <strong> LABORATORIO </strong>
                     </div>
                 </div>
-                Nuevo pedido
+                <div class="card-body">
+                    <p>card 3</p>
+                </div>
+
             </div>
         </div>
     </div>
