@@ -71,7 +71,7 @@
                                     {{-- Laboratorios --}}
 
                                     <tr>
-                                        @if ($this->consulta->estado == '3')
+                                        @if ($consulta->estado == '3')
                                             <td class="px-0">
                                                 <button type="button"
                                                     class="btn btn-warning btn-block rounded-left mr-1"
@@ -107,7 +107,7 @@
 
                                     <!-- -------------------- BOTON DE IMAGEN ----------------------------- -->
 
-                                    <tr>
+                                    <tr>    
                                         @if ($consulta->estado == '3')
                                             <td class="px-0">
                                                 <div class="btn-group" style="width: 70%;">

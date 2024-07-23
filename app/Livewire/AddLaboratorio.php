@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\LaboratorioXConsulta;
 use App\Models\Laboratorio;
 use App\Models\Cie10;
+use Livewire\Attributes\On;
 
 class AddLaboratorio extends Component
 {
@@ -59,8 +60,28 @@ class AddLaboratorio extends Component
     public $microplasma;
     public $ureaplasma;
     public $lysteria;
+    public $cie10s;
+    public $cie10;
+    public $modalLab = false;
 
 
+
+    public function mount($consulta)
+    {
+        $this->consulta = $consulta;
+        $this->cie10s = Cie10::all();
+    }
+
+    #[On('modalLabOn')]
+    public function openModalLab()
+    {
+        if ($this->modalLab) {
+            $this->modalLab = false;
+        } else {
+            
+            $this->modalLab = true;
+        }
+    }
 
     /* Funcion para seleccionar TODAS las practicas */
     public function selectAll()
@@ -885,13 +906,13 @@ class AddLaboratorio extends Component
             }
         }
 
-        $this->dispatch('added')->to(EnfermedadActual::class);
+        $this->openModalLab();
     }
 
     public function render()
     {
 
-        
+
 
         return view('livewire.add-laboratorio');
     }

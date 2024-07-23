@@ -967,6 +967,16 @@ class EnfermedadActual extends Component
         $this->dispatch('added')->to(EnfermedadActual::class);
     }
 
+    public function delAll($categoria)
+    {
+
+        if ($categoria == 'lab') {
+            $this->todas = false;
+            $this->selectAll();
+            $this->setEa();
+        }
+    }
+
 
 
 
@@ -994,16 +1004,6 @@ class EnfermedadActual extends Component
     }
 
 
-
-    public function delAll($categoria)
-    {
-
-        if ($categoria == 'lab') {
-            $this->todas = false;
-            $this->selectAll();
-            $this->setEa();
-        }
-    }
 
 
 

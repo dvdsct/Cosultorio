@@ -134,6 +134,113 @@ class PdfController extends Controller
         return $pdf->stream('turno_' . $consulta->id . '.pdf');
     }
 
+
+    public function pdfImagn(string $id)
+    {
+        $consulta = Consulta::find($id);
+
+        if (!$consulta) {
+            abort(404); // consulta no encontrada
+        }
+
+        $consulta->update(['estado' => '5']);
+
+        $medico = $consulta->medicos->first();
+        $matricula = $medico->matricula;
+        $titulo = $medico->titulo;
+        $especialidad = Str::upper($medico->especialidad);
+        $nombreMedico = $medico->perfiles->personas->nombre . ' ' . $medico->perfiles->personas->apellido;
+        $items = $consulta->imagenes->chunk(2);
+
+        $paciente = $consulta->pacientes;
+        $nombrePaciente = $paciente->perfiles->personas->nombre . ' ' . $paciente->perfiles->personas->apellido . ' ' . $paciente->perfiles->personas->dni;
+
+        $os = ObraSocialXPaciente::select('obra_social_x_pacientes.*', 'obra_socials.descripcion')
+            ->leftJoin('obra_socials', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
+            ->where('paciente_id', $paciente->id)
+            ->get();
+
+        $osd = $os->filter(function ($oxs) {
+            return $oxs->estado == '1';
+        });
+        $edad = Carbon::parse($paciente->perfiles->personasfecha_de_nacimiento)->age;
+
+        $pdf = Pdf::loadView('Consultorio.pdf.imagen', [
+
+        // return view('Consultorio.pdf.imagen', [
+
+
+            'items' => $items,
+            'os' => $os,
+            'osd' => $osd,
+            'paciente' => $nombrePaciente,
+            'fecha' => $consulta->turnos->fecha_turno,
+            'medico' => $nombreMedico,
+            'matricula' => $matricula,
+            'especialidad' => $especialidad,
+            'titulo' => $titulo,
+            'edad' => $edad
+
+        ]);
+
+        return $pdf->stream('consulta_' . $consulta->id . '.pdf');
+
+    }
+    public function pdfLab(string $id)
+    {
+        $consulta = Consulta::find($id);
+
+        if (!$consulta) {
+            abort(404); // consulta no encontrada
+        }
+
+        $consulta->update(['estado' => '5']);
+
+        $medico = $consulta->medicos->first();
+        $matricula = $medico->matricula;
+        $titulo = $medico->titulo;
+        $especialidad = Str::upper($medico->especialidad);
+        $nombreMedico = $medico->perfiles->personas->nombre . ' ' . $medico->perfiles->personas->apellido;
+        $items = $consulta->laboratorios->chunk(2);
+
+        $paciente = $consulta->pacientes;
+        $nombrePaciente = $paciente->perfiles->personas->nombre . ' ' . $paciente->perfiles->personas->apellido . ' ' . $paciente->perfiles->personas->dni;
+
+        $os = ObraSocialXPaciente::select('obra_social_x_pacientes.*', 'obra_socials.descripcion')
+            ->leftJoin('obra_socials', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
+            ->where('paciente_id', $paciente->id)
+            ->get();
+
+        $osd = $os->filter(function ($oxs) {
+            return $oxs->estado == '1';
+        });
+        $edad = Carbon::parse($paciente->perfiles->personasfecha_de_nacimiento)->age;
+
+        // $pdf = Pdf::loadView('Consultorio.pdf.receta', [
+
+        return view('Consultorio.pdf.labs', [
+
+
+            'items' => $items,
+            'os' => $os,
+            'osd' => $osd,
+            'paciente' => $nombrePaciente,
+            'fecha' => $consulta->turnos->fecha_turno,
+            'medico' => $nombreMedico,
+            'matricula' => $matricula,
+            'especialidad' => $especialidad,
+            'titulo' => $titulo,
+            'edad' => $edad
+
+        ]);
+
+        // return $pdf->stream('consulta_' . $consulta->id . '.pdf');
+
+
+    }
+
+
+
     public function edit(string $id)
     {
         //
