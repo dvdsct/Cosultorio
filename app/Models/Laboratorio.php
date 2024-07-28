@@ -13,15 +13,18 @@ class Laboratorio extends Model
     'tipo_laboratorio_id','estado','valor'];
 
 
-    public function consultas(){
-
-        return $this->belongsToMany(Consulta::class, 'laboratorio_x_consultas');
-    }
-
     public function tiposLaboratorios(){
 
         return $this->belongsTo(TipoLaboratorio::class , 'tipo_laboratorio_id');
     }
 
+    public function consultas(){
 
+        return $this->belongsToMany(Consulta::class, 'laboratorio_x_consultas');
+    }
+
+    public function ciediez(){
+
+        return $this->belongsTo(Cie10::class, 'cie10_id');
+    }
 }

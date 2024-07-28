@@ -151,7 +151,7 @@ class PdfController extends Controller
         $especialidad = Str::upper($medico->especialidad);
         $nombreMedico = $medico->perfiles->personas->nombre . ' ' . $medico->perfiles->personas->apellido;
         $items = $consulta->imagenes->chunk(2);
-
+        /* dd($items); */
         $paciente = $consulta->pacientes;
         $nombrePaciente = $paciente->perfiles->personas->nombre . ' ' . $paciente->perfiles->personas->apellido . ' ' . $paciente->perfiles->personas->dni;
 

@@ -9,10 +9,8 @@ class TipoLaboratorio extends Model
 {
     use HasFactory;
 
-
-
     public function laboratorios(){
 
-        return $this->hasMany(TipoLaboratorio::class);
+        return $this->hasMany(Laboratorio::class);
     }
 }

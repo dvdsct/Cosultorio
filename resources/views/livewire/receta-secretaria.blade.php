@@ -82,6 +82,7 @@
 
 
     <div class=" row pt-0">
+    @if($recConsulta)
         <div class="col-md-6">
             <div style="width: 100%;">
                 <label> <strong> Buscar medicamento: </strong> </label>
@@ -95,6 +96,22 @@
                 </div>
             </div>
         </div>
+        @else
+        <!-- DENTRO DE LA CONSULTA -->
+        <div class="col-md-8">
+            <div style="width: 100%;">
+                <label> <strong> Buscar medicamento: </strong> </label>
+                <div class="input-group">
+                    <input type="text" wire:model="query" wire:keydown.enter='searchV' class="form-control float-right" placeholder="Droga/Marca">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 
     {{-- Formulario por R/p --}}
@@ -170,10 +187,11 @@
         </div>
     </div>
     @else
+    <!-- RECETA DENTRO DE LA CONSULTA -->
     <div class="row d-flex justify-content-end pt-2 mb-2">
         <div class="col">
-            <a class="btn bg-purple btn-block" href="{{ route('pdf.show', $consulta->id) }}" target="_blank"> <strong>
-                    <i class="fa fa-file-download fa-2x"></i> <br> Descargar
+            <a class="btn btn-secondary btn-block" href="{{ route('pdf.show', $consulta->id) }}" target="_blank"> <strong>
+                    <i class="fa fa-file-download fa-2x"></i> <br> Generar PDF
                 </strong></a>
         </div>
     </div>

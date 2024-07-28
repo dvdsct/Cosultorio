@@ -21,4 +21,9 @@ class Imagen extends Model
     {
         return $this->belongsToMany(Consulta::class, 'imagen_x_consultas');
     }
+
+    public function ciediez(){
+
+        return $this->belongsTo(Cie10::class, 'cie10_id');
+    }
 }
