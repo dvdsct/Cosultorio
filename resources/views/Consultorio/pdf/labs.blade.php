@@ -135,7 +135,7 @@
                         @endforeach
                         <br>
                         <li style="list-style-type: none; font-family: 'Arial', sans-serif;"> <h4 style="margin: 0; font-style: italic; display: inline-block; margin-bottom: 2px;"> Dx: </h4> 
-                        {{ $item->first()->ciediez->descripcion }}</li>
+                        {{ $item->ciediez->descripcion }}</li>
                     </ul>
                 </td>
             </tr>

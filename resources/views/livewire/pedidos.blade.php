@@ -28,9 +28,14 @@
                             <i class="fas fa-plus-circle"></i> <strong> Nuevo pedido </strong>
                         </button>
                     </div>
+                    <div class="mt-2">
+                        <!-- AGREGAR CIE 10  -->
+                        <strong style="font-style: italic;">Dx: </strong>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -38,6 +43,9 @@
                             @foreach ($consulta->imagenes as $imagen)
                             <tr>
                                 <td>{{ $imagen->tipoImagenes->tipo_img }}</td>
+                                <td><button type="button" class="btn btn-block btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -68,9 +76,14 @@
                             <i class="fas fa-plus-circle"></i> <strong> Nuevo pedido </strong>
                         </button>
                     </div>
+                    <div class="mt-2">
+                        <!-- AGREGAR CIE 10  -->
+                        <strong style="font-style: italic;">Dx: </strong>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -78,6 +91,9 @@
                             @foreach ($consulta->laboratorios as $lab)
                             <tr>
                                 <td>{{ $lab->tiposLaboratorios->descripcion}}</td>
+                                <td><button type="button" class="btn btn-block btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button></td>
                             </tr>
                             @endforeach
                         </tbody>

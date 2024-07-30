@@ -123,9 +123,6 @@
 
 
 
-
-
-
     <!-- MODAL PARA SELECCIONAR MEDICAMENTOS -->
     @if ($modalRemedios)
     <div class="modal fade show" id="modal-default" wire:ignore.self style="background-color: rgba(0, 0, 0, 0.5); display: block;">
