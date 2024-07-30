@@ -44,7 +44,7 @@
                     </table>
                     <div class="row d-flex justify-content-end pt-2 mb-2">
                         <div class="col">
-                            <a class="btn btn-secondary btn-block" href="{{ route('pdfLab', $consulta->id) }}" target="_blank"> <strong>
+                            <a class="btn btn-secondary btn-block" href="{{ route('pdfImagen', $consulta->id) }}" target="_blank"> <strong>
                                     <i class="fa fa-file-download fa-2x"></i> <br> Generar PDF
                                 </strong></a>
                         </div>

@@ -131,7 +131,7 @@
                     </ul>
                     <ul style="margin-left: 1cm;">
                         @foreach ($items as $item)
-                        <li style="font-family: 'Arial', sans-serif;"> {{$item->first()->tiposlaboratorios->descripcion}} </li>
+                        <li style="font-family: 'Arial', sans-serif;"> {{$item->tiposlaboratorios->descripcion}} </li>
                         @endforeach
                         <br>
                         <li style="list-style-type: none; font-family: 'Arial', sans-serif;"> <h4 style="margin: 0; font-style: italic; display: inline-block; margin-bottom: 2px;"> Dx: </h4> 

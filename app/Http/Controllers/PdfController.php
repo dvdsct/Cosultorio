@@ -150,8 +150,8 @@ class PdfController extends Controller
         $titulo = $medico->titulo;
         $especialidad = Str::upper($medico->especialidad);
         $nombreMedico = $medico->perfiles->personas->nombre . ' ' . $medico->perfiles->personas->apellido;
-        $items = $consulta->imagenes->chunk(2);
-        /* dd($items); */
+        $items = $consulta->imagenes;
+        // /* dd($items); */
         $paciente = $consulta->pacientes;
         $nombrePaciente = $paciente->perfiles->personas->nombre . ' ' . $paciente->perfiles->personas->apellido . ' ' . $paciente->perfiles->personas->dni;
 
@@ -201,7 +201,7 @@ class PdfController extends Controller
         $titulo = $medico->titulo;
         $especialidad = Str::upper($medico->especialidad);
         $nombreMedico = $medico->perfiles->personas->nombre . ' ' . $medico->perfiles->personas->apellido;
-        $items = $consulta->laboratorios->chunk(2);
+        $items = $consulta->laboratorios;
 
         $paciente = $consulta->pacientes;
         $nombrePaciente = $paciente->perfiles->personas->nombre . ' ' . $paciente->perfiles->personas->apellido . ' ' . $paciente->perfiles->personas->dni;
@@ -216,9 +216,9 @@ class PdfController extends Controller
         });
         $edad = Carbon::parse($paciente->perfiles->personasfecha_de_nacimiento)->age;
 
-        // $pdf = Pdf::loadView('Consultorio.pdf.receta', [
+        $pdf = Pdf::loadView('Consultorio.pdf.labs', [
 
-        return view('Consultorio.pdf.labs', [
+        // return view('Consultorio.pdf.labs', [
 
 
             'items' => $items,
@@ -234,7 +234,7 @@ class PdfController extends Controller
 
         ]);
 
-        // return $pdf->stream('consulta_' . $consulta->id . '.pdf');
+        return $pdf->stream('consulta_' . $consulta->id . '.pdf');
 
 
     }

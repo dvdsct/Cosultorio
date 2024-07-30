@@ -78,9 +78,10 @@ class DatosPerPaciente extends Component
 
     public function guardarDatos($id)
     {
+        // dd(  $this->consulta->pacientes);
         $fechaNacimiento = Carbon::parse($this->nacimiento)->format('Y-m-d');
 
-        $this->consulta->pacientes->personas->update([
+        $this->consulta->pacientes->perfiles->personas->update([
             'nombre' => $this->nombre,
             'apellido' => $this->apellido,
             'fecha_de_nacimiento' => $fechaNacimiento,
@@ -109,7 +110,7 @@ class DatosPerPaciente extends Component
             ]);
 
             CorreoXPersona::create([
-                'persona_id' => $this->consulta->pacientes->personas->id,
+                'persona_id' => $this->consulta->pacientes->perfiles->personas->id,
                 'correo_id' => $m->id,
                 'estado' => '2'
             ]);
@@ -171,7 +172,7 @@ class DatosPerPaciente extends Component
             ]);
 
             TelefonoXPersona::create([
-                'persona_id' => $this->consulta->pacientes->personas->id,
+                'persona_id' => $this->consulta->pacientes->perfiles->personas->id,
                 'telefono_id' => $x->id
             ]);
         } elseif ($this->nTelefono != null && $this->telefono != null && $this->telForm == false) {
@@ -199,10 +200,10 @@ class DatosPerPaciente extends Component
     public function setForm()
     {
 
-        $this->nombre = $this->consulta->pacientes->personas->nombre ?? '';
-        $this->apellido = $this->consulta->pacientes->personas->apellido ?? '';
-        $this->nacimiento = $this->consulta->pacientes->personas->fecha_de_nacimiento ?? $this->fHoy;
-        $this->dni = $this->consulta->pacientes->personas->dni ?? '';
+        $this->nombre = $this->consulta->pacientes->perfiles->personas->nombre ?? '';
+        $this->apellido = $this->consulta->pacientes->perfiles->personas->apellido ?? '';
+        $this->nacimiento = $this->consulta->pacientes->perfiles->personas->fecha_de_nacimiento ?? $this->fHoy;
+        $this->dni = $this->consulta->pacientes->perfiles->personas->dni ?? '';
 
         $this->emails = $this->consulta->pacientes->perfiles->personas->correos()->orderBy('estado', 'desc')->get();
         if ($this->emails->isEmpty()) {
