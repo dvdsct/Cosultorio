@@ -78,7 +78,7 @@ class AddLaboratorio extends Component
         if ($this->modalLab) {
             $this->modalLab = false;
         } else {
-            
+
             $this->modalLab = true;
         }
     }
@@ -373,100 +373,58 @@ class AddLaboratorio extends Component
 
             if ($this->hemo) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '1',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->hb) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '2',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->hto) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '3',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->glucem) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '4',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->ptog) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '5',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->hb_glico) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '6',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->factor_rh) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '7',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
         }
@@ -476,30 +434,18 @@ class AddLaboratorio extends Component
 
             if ($this->orina) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '8',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->urocult) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '9',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
         }
@@ -509,187 +455,109 @@ class AddLaboratorio extends Component
             // Fibrinogeno 10
             if ($this->fibrino) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '10',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             // Exudado Vaginal y cultivo
             if ($this->flujo_vag) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '11',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             if ($this->coagulogram) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '12',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             if ($this->tsh) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '13',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->fsh) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '14',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->lh) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '15',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->dhea) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '16',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->testost_l) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '17',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->testost_b) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '18',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->h_antimull) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '19',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->ag_chlamidia) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '32',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->microplasma) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '33',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             if ($this->ureaplasma) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '34',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
         }
@@ -698,95 +566,59 @@ class AddLaboratorio extends Component
             // Ferretina N° 20
             if ($this->ferritina) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '20',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             // Transferrina N° 21
             if ($this->transferri) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '21',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             // Anti TTG N° 22
             if ($this->anti_ttg) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '22',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             // Gliadina N° 23
             if ($this->gliadina) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '23',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             // Lysteria N° 35
             if ($this->lysteria) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '35',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             // glucosuria N° 35
             if ($this->glucosuria) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '29',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
         }
@@ -796,79 +628,49 @@ class AddLaboratorio extends Component
             // Chagas N° 24
             if ($this->chagas) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '24',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
             // Toxoplasma N° 25
             if ($this->toxo) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '25',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             // VDRL N° 26
             if ($this->vdrl_cual) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '26',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             // HBS AG N° 27
             if ($this->hbs_ag) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '27',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             // HIV N° 28
             if ($this->hiv) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '28',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
@@ -876,38 +678,30 @@ class AddLaboratorio extends Component
             // Cmv_lgg N° 30
             if ($this->cmv_lgg) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '30',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
 
             // Cmv_lgm N° 31
             if ($this->cmv_lgm) {
                 $lab = Laboratorio::create([
+                    'consulta_id' => $this->consulta->id,
                     'tipo_laboratorio_id' => '31',
                     'estado' => '1',
-                    'cie10_id' => '1'
-                ]);
-
-                LaboratorioXConsulta::create([
-                    'laboratorio_id' => $lab->id,
-                    'consulta_id' => $this->consulta->id,
-                    'estado' => '1',
-
+                    'cie10_id' => $this->cie10
                 ]);
             }
         }
 
         $this->openModalLab();
+        $this->dispatch("added")->To(Pedidos::class);
     }
+
+
+
 
     public function render()
     {

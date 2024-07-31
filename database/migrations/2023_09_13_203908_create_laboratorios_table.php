@@ -23,6 +23,11 @@ return new class extends Migration
             ->references('id')
             ->on('cie10s')
             ->onDelete('cascade');
+            $table->unsignedBigInteger('consulta_id');
+            $table->foreign('consulta_id')
+            ->references('id')
+            ->on('consultas')
+            ->onDelete('cascade');
             $table->string('valor')->nullable();
             $table->string('estado');
             $table->timestamps();

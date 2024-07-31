@@ -194,16 +194,15 @@
                                 <div class="form-group">
                                     <label for="num_afiliado">N° de Afiliado</label>
                                     <input type="text" class="form-control" id="num_afiliado"
-                                        placeholder="N° de Afiliado" wire:model='nroAfil'>
+                                        placeholder="N° de Afiliado" wire:model='nroAfi'>
                                 </div>
                             </div>
-                            <!--           {{ $oso }} -->
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" wire:click='modalDatoPac'>Cerrar</button>
                         <button type="button" class="btn btn-primary"
-                            wire:click="guardarDatos({{ $oso->os_id }})">Guardar</button>
+                            wire:click="guardarDatos({{$oso->id}})">Guardar</button>
 
                     </div>
                 </div>

@@ -19,6 +19,11 @@ return new class extends Migration
             ->references('id')
             ->on('tipo_imagens')
             ->onDelete('cascade');
+            $table->unsignedBigInteger('consulta_id');
+            $table->foreign('consulta_id')
+            ->references('id')
+            ->on('consultas')
+            ->onDelete('cascade');
             $table->unsignedBigInteger('cie10_id');
             $table->foreign('cie10_id')
             ->references('id')

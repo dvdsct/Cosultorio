@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Correo;
 use App\Models\CorreoXPersona;
 use App\Models\ObraSocial;
+use App\Models\ObraSocialXPaciente;
 use App\Models\ObraSocialXPerfil;
 use App\Models\Telefono;
 use App\Models\TelefonoXPersona;
@@ -78,7 +79,7 @@ class DatosPerPaciente extends Component
 
     public function guardarDatos($id)
     {
-        // dd(  $this->consulta->pacientes);
+        dd($id);
         $fechaNacimiento = Carbon::parse($this->nacimiento)->format('Y-m-d');
 
         $this->consulta->pacientes->perfiles->personas->update([
@@ -134,13 +135,13 @@ class DatosPerPaciente extends Component
         // __________________________________________________________________
 
         if ($this->os != null ) {
-            $this->oso  = ObraSocialXPerfil::find($id);
+            $this->oso  = ObraSocialXPaciente::find($id);
             $this->oso->update([
-                'estado' => '2'
+                'estado' => '2' 
             ]);
 
-            ObraSocialXPerfil::firstOrCreate([
-                'perfil_id' => $this->consulta->pacientes->id,
+            ObraSocialXPaciente::firstOrCreate([
+                'paciente_id' => $this->consulta->pacientes->id,
                 'obra_social_id' => $this->os,
                 'plan' => $this->plan,
                 'nro_afil' => $this->nroAfil,
