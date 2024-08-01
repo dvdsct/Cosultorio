@@ -82,7 +82,7 @@
 
 
     <div class=" row pt-0">
-    @if($recConsulta)
+        @if($recConsulta)
         <div class="col-md-6">
             <div style="width: 100%;">
                 <label> <strong> Buscar medicamento: </strong> </label>

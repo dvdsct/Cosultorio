@@ -38,7 +38,11 @@
                     <tr>
                         <td>{{ $p->dni }}</td>
                         <td>{{ $p->apellido . ' ' . $p->nombre }}</td>
-                        <td>{{ Carbon\Carbon::parse( $p->fecha_de_nacimiento)->diffInYears(Carbon\Carbon::now()) }} años</td>
+                        <td>
+                            @if(Carbon\Carbon::parse( $p->fecha_de_nacimiento)->diffInYears(Carbon\Carbon::now()) < 5)
+                             - 
+                             @else {{ Carbon\Carbon::parse( $p->fecha_de_nacimiento)->diffInYears(Carbon\Carbon::now()) }} años 
+                             @endif </td>
                         <td>{{ $p->descripcion }} </td>
                         <td>{{ $p->plan }}</td>
                         <td>{{ $p->nro_afil }}</td>
@@ -48,7 +52,6 @@
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
             </table>
             @endif

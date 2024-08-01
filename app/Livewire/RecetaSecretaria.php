@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Livewire;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
+use Livewire\Component;
 
 use App\Models\Cie10;
 use App\Models\ConsultasXMedico;
@@ -9,11 +12,12 @@ use App\Models\Receta;
 use App\Models\RecetaXConsulta;
 use App\Models\Vademecum;
 use Livewire\Attributes\On;
-use Livewire\Component;
 use Livewire\Attributes\Validate;
 
 class RecetaSecretaria extends Component
 {
+
+    use WithPagination;
     public $consulta;
     public $paciente;
     public $modalMedico;
