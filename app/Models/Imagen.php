@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Imagen extends Model
 {
     use HasFactory;
-    protected $fillable = ['tipo_imagen_id', 'cie10_id',    'estado'];
+    protected $fillable = ['tipo_imagen_id', 'cie10_id',    'consulta_id','estado'];
 
 
 
@@ -19,7 +19,7 @@ class Imagen extends Model
 
     public function consultas()
     {
-        return $this->belongsToMany(Consulta::class, 'imagen_x_consultas');
+        return $this->belongsTo(Consulta::class);
     }
 
     public function ciediez(){

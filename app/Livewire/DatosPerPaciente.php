@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Correo;
 use App\Models\CorreoXPersona;
 use App\Models\ObraSocial;
+use App\Models\ObraSocialXPaciente;
 use App\Models\ObraSocialXPerfil;
 use App\Models\Telefono;
 use App\Models\TelefonoXPersona;
@@ -22,15 +23,11 @@ class DatosPerPaciente extends Component
     public $dni;
     public $email;
     public $telefono;
-    public $nroAfil;
-    public $plan;
-    public $oso;
     public $nTelefono;
 
     // del Modal Completar datos paciente
     public $emails;
     public $emailEdit;
-    public $os;
     public $fHoy;
     public $emailForm = false;
     public $modalDP = false;
@@ -39,13 +36,25 @@ class DatosPerPaciente extends Component
 
 
     public $oss;
+    public $os;
+    public $oso;
+    public $plan;
+    public $nroAfi;
+
+
+
 
     public function mount()
     {
+
+        $this->oso = ObraSocialXPaciente::where('paciente_id', '=', $this->consulta->pacientes->id)
+            ->where('estado', '1')
+            ->first();
+
         $f = Carbon::now();
         $this->fHoy = $f->format('Y-m-d');
-        $this->setForm();
-
+        // $this->setForm();
+        $this->os = $this->oso;
 
         // $this->nacimiento = $this->fHoy;
 
@@ -56,9 +65,11 @@ class DatosPerPaciente extends Component
     {
 
         if ($this->modalDP) {
-
+            
+            // $this->setForm();
             $this->modalDP = false;
         } else {
+            $this->setForm();
 
             $this->modalDP = true;
         }
@@ -76,9 +87,8 @@ class DatosPerPaciente extends Component
         $this->reset('nTelefono');
     }
 
-    public function guardarDatos($id)
+    public function guardarDatos()
     {
-        // dd(  $this->consulta->pacientes);
         $fechaNacimiento = Carbon::parse($this->nacimiento)->format('Y-m-d');
 
         $this->consulta->pacientes->perfiles->personas->update([
@@ -133,20 +143,30 @@ class DatosPerPaciente extends Component
         // __________________________________________________________________
         // __________________________________________________________________
 
-        if ($this->os != null ) {
-            $this->oso  = ObraSocialXPerfil::find($id);
+
+        // dd($this->os .'    '. $this->oso->obra_social_id);
+
+        if ($this->os == $this->oso->obra_social_id) {
             $this->oso->update([
+                'plan' => $this->plan,
+                'nro_afil' => $this->nroAfi,
+            ]);
+        } else {
+            $this->oso->update([
+
                 'estado' => '2'
             ]);
 
-            ObraSocialXPerfil::firstOrCreate([
-                'perfil_id' => $this->consulta->pacientes->id,
+            ObraSocialXPaciente::firstOrCreate([
+                'paciente_id' => $this->consulta->pacientes->id,
                 'obra_social_id' => $this->os,
                 'plan' => $this->plan,
-                'nro_afil' => $this->nroAfil,
+                'nro_afil' => $this->nroAfi,
                 'estado' => '1'
             ]);
         }
+
+
 
 
 
@@ -186,13 +206,11 @@ class DatosPerPaciente extends Component
             $xt->update([
                 'estado' => '2'
             ]);
-
-
         }
 
 
 
-        $this->setForm();
+        // $this->setForm();
 
         $this->modalDatoPac();
     }
@@ -224,25 +242,27 @@ class DatosPerPaciente extends Component
         }
 
 
-
-
         $this->oss = ObraSocial::all();
 
-        $this->plan = $this->oso ?? '';
-        $this->nroAfil = $this->consulta->pacientes->obrasociales->first()->nro_afil ?? '';
+
+
+        $this->os = $this->oso->where('estado', '1')->first()->obra_social_id;
+        $this->plan = $this->oso->plan ?? '';
+        $this->nroAfi = $this->oso->nro_afil ?? '';
     }
 
 
 
     public function render()
     {
-        $this->oso = ObraSocial::select('obra_socials.descripcion', 'obra_social_x_pacientes.nro_afil', 'obra_social_x_pacientes.id as os_id', 'obra_social_x_pacientes.paciente_id')
-            ->leftJoin('obra_social_x_pacientes', 'obra_social_x_pacientes.obra_social_id', '=', 'obra_socials.id')
-            ->where('obra_social_x_pacientes.estado', '1')
-            ->where('obra_social_x_pacientes.paciente_id', $this->consulta->pacientes->id)
+        $this->oss = ObraSocial::all();
+        $this->oso = ObraSocialXPaciente::where('paciente_id', '=', $this->consulta->pacientes->id)
+            ->where('estado', '1')
             ->first();
-        // $this->os = $this->oso->id;
 
+        $f = Carbon::now();
+        $this->fHoy = $f->format('Y-m-d');
+        // $this->os = $this->oso;
 
         return view('livewire.datos-per-paciente');
     }

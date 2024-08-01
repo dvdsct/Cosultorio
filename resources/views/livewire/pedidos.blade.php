@@ -30,7 +30,7 @@
                     </div>
                     <div class="mt-2">
                         <!-- AGREGAR CIE 10  -->
-                        <strong style="font-style: italic;">Dx: </strong>
+                        <strong style="font-style: italic;">Dx: {{$consulta->imagenes->first()->ciediez->descripcion ?? ''}} </strong>
                     </div>
                     <table class="table table-striped">
                         <thead>
@@ -43,7 +43,8 @@
                             @foreach ($consulta->imagenes as $imagen)
                             <tr>
                                 <td>{{ $imagen->tipoImagenes->tipo_img }}</td>
-                                <td><button type="button" class="btn btn-block btn-sm btn-outline-danger">
+                                <td><button type="button" class="btn btn-block btn-sm btn-outline-danger" wire:click='deletedItem({{$imagen->id}}, "img")'
+                                    wire:confirm="Deseas borrar este item?">
                                         <i class="fas fa-trash-alt"></i>
                                     </button></td>
                             </tr>
@@ -78,7 +79,7 @@
                     </div>
                     <div class="mt-2">
                         <!-- AGREGAR CIE 10  -->
-                        <strong style="font-style: italic;">Dx: </strong>
+                        <strong style="font-style: italic;">Dx:{{$consulta->laboratorios->first()->ciediez->descripcion ?? ''}}  </strong>
                     </div>
                     <table class="table table-striped">
                         <thead>
@@ -91,7 +92,8 @@
                             @foreach ($consulta->laboratorios as $lab)
                             <tr>
                                 <td>{{ $lab->tiposLaboratorios->descripcion}}</td>
-                                <td><button type="button" class="btn btn-block btn-sm btn-outline-danger">
+                                <td><button type="button" class="btn btn-block btn-sm btn-outline-danger" wire:click='deletedItem({{$lab->id}}, "lab")'
+                                    wire:confirm="Deseas borrar este item?">
                                         <i class="fas fa-trash-alt"></i>
                                     </button></td>
                             </tr>

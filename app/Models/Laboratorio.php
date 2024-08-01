@@ -10,17 +10,16 @@ class Laboratorio extends Model
     use HasFactory;
 
     protected $fillable = ['cie10_id',
-    'tipo_laboratorio_id','estado','valor'];
+    'tipo_laboratorio_id','estado','valor','consulta_id'];
 
 
     public function tiposLaboratorios(){
 
         return $this->belongsTo(TipoLaboratorio::class , 'tipo_laboratorio_id');
     }
-
-    public function consultas(){
-
-        return $this->belongsToMany(Consulta::class, 'laboratorio_x_consultas');
+    public function consultas()
+    {
+        return $this->belongsTo(Consulta::class);
     }
 
     public function ciediez(){

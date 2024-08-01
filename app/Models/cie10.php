@@ -9,6 +9,11 @@ class Cie10 extends Model
 {
     use HasFactory;
 
+    
+    public function laboratorios()
+    {
+        return $this->hasMany(Laboratorio::class, 'cie10_id');
+    }
 
 
     

@@ -35,7 +35,7 @@
 
                 <div class="col-md-4 d-flex flex-column">
                     <h6>
-                        <strong>Obra Social: </strong> {{ $oso->descripcion ?? '' }}
+                        <strong>Obra Social: </strong> {{ $oso->obrasocialesx->descripcion ?? '' }}
                     </h6>
 
                     
@@ -172,10 +172,10 @@
                                 <div class="form-group">
                                     <label for="obra_social">Obra Social</label>
                                     <select class="form-control" id="obra_soc" wire:model='os'>
-                                        {{-- <option selected value="{{ $oso->id }}">{{ $oso->descripcion }}</option> --}}
+                                        {{-- <option selected value="{{ $os->obra_social_id }}">{{ $os->obrasocialesx->descripcion }}</option> --}}
 
-                                        @foreach ($oss as $o)
-                                            <option value="{{ $o->id }}">{{ $o->descripcion }}</option>
+                                        @foreach($oss as $oscial)
+                                            <option value="{{ $oscial->id }}">{{ $oscial->descripcion }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -194,16 +194,15 @@
                                 <div class="form-group">
                                     <label for="num_afiliado">N° de Afiliado</label>
                                     <input type="text" class="form-control" id="num_afiliado"
-                                        placeholder="N° de Afiliado" wire:model='nroAfil'>
+                                        placeholder="N° de Afiliado" wire:model='nroAfi'>
                                 </div>
                             </div>
-                            <!--           {{ $oso }} -->
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" wire:click='modalDatoPac'>Cerrar</button>
                         <button type="button" class="btn btn-primary"
-                            wire:click="guardarDatos({{ $oso->os_id }})">Guardar</button>
+                            wire:click="guardarDatos()">Guardar</button>
 
                     </div>
                 </div>

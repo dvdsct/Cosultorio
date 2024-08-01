@@ -59,10 +59,12 @@ class AddImagen extends Component
             [$this->eco_tiro, '4'],
             [$this->rmn_pelv, '5'],
             [$this->tac_abd, '6'],
-            [$this->tac_abd_cc, '7'],
-            [$this->tac_pel, '8'],
-            [$this->tac_pel_cc, '9'],
+            [$this->tac_pel, '7'],
+            [$this->tac_pel_cc, '8'],
+            [$this->tac_abd_cc, '9'],
         ];
+
+
     }
 
 
@@ -219,9 +221,9 @@ class AddImagen extends Component
                 [$this->eco_tiro, '4'],
                 [$this->rmn_pelv, '5'],
                 [$this->tac_abd, '6'],
-                [$this->tac_abd_cc, '7'],
-                [$this->tac_pel, '8'],
-                [$this->tac_pel_cc, '9'],
+                [$this->tac_pel, '7'],
+                [$this->tac_pel_cc, '8'],
+                [$this->tac_abd_cc, '9'],
             ];
 
             foreach ($this->tipos as $t) {
@@ -230,15 +232,15 @@ class AddImagen extends Component
                         'tipo_imagen_id' => $t[1],
                         'cie10_id' => $this->cie10,
                         'estado' => '1',
-
-                    ]);
-
-                    ImagenXConsulta::firstOrCreate([
                         'consulta_id' => $this->consulta->id,
-                        'imagen_id' => $i->id,
-                        'estado' => '1',
 
                     ]);
+
+                    // ImagenXConsulta::firstOrCreate([
+                    //     'imagen_id' => $i->id,
+                    //     'estado' => '1',
+
+                    // ]);
                 }
             }
 

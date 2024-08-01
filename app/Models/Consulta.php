@@ -50,12 +50,12 @@ class Consulta extends Model
 
     public function laboratorios()
     {
-        return $this->belongsToMany(Laboratorio::class, 'laboratorio_x_consultas');
+        return $this->hasMany(Laboratorio::class, 'consulta_id');
     }
 
 
     public function imagenes()
     {
-        return $this->belongsToMany(Imagen::class, 'imagen_x_consultas');
+        return $this->hasMany(Imagen::class,'consulta_id');
     }
 }

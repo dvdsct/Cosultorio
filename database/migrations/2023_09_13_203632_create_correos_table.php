@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('correos', function (Blueprint $table) {
             $table->id();
-            $table->string('direccion');
-            $table->string('estado');
+            $table->string('direccion')->nullable();
+            $table->string('estado')->nullable();
             $table->timestamps();
         });
     }
