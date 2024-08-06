@@ -29,7 +29,7 @@
                         </button>
                     </div>
                     <div class="mt-2">
-                        <!-- AGREGAR CIE 10  -->
+                        <!-- CIE 10  -->
                         <strong style="font-style: italic;">Dx: {{$consulta->imagenes->first()->ciediez->descripcion ?? ''}} </strong>
                     </div>
                     <table class="table table-striped">

@@ -42,8 +42,18 @@
                 <td>
                     <ul>
                         <h4 style="margin: 0; font-family: 'Arial', sans-serif;">Paciente</h4>
-                        <li style="list-style-type: none;">- {{ $paciente }} - {{$edad}} años </li>
-                        <li style="list-style-type: none;">- {{'OS: '.  $osd->first()->descripcion .' N° Afil:'.  $osd->first()->nro_afil}} Plan:{{$osd->first()->plan}}</li>
+                        <li style="font-family: 'Arial', sans-serif; list-style-type: none;">- {{ $paciente }} 
+                        @if($edad == 0)
+                        
+                        @else
+                        - {{$edad}} años</li>
+                        @endif
+
+                        @if($osd->first()->descripcion == 'Ninguna')
+                        <li></li>
+                        @else
+                        <li style="font-family: 'Arial', sans-serif; list-style-type: none;">- {{'OS: '.  $osd->first()->descripcion .' N° Afiliado: '.  $osd->first()->nro_afil}} Plan: {{$osd->first()->plan}}</li>
+                        @endif
                     </ul>
                 </td>
 
@@ -52,7 +62,7 @@
                     <ul>
                         <h4 style="margin: 0; font-family: 'Arial', sans-serif;">Indicaciones</h4>
                         @foreach ($par as $rem)
-                        <li style="list-style-type: none;">{{ $rem->vademecums->droga}}
+                        <li style="list-style-type: none; font-family: 'Arial', sans-serif;">{{ $rem->vademecums->droga}}
                             <br>{{ $rem->cantidad . ' ' . $rem->indicacion }}.</li> <br>
                             @endforeach
                         </ul>
@@ -64,8 +74,8 @@
                     <ul>
                         @foreach ($par as $rem)
                         <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic;">R/p</h4>
-                        <li style="list-style-type: none;">- {{ $rem->vademecums->droga . ' ' . $rem->vademecums->presentacion }}</li>
-                        <li style="list-style-type: none;"> <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic; display: inline-block; margin-bottom: 2px;"> Dx: </h4> 
+                        <li style="list-style-type: none; font-family: 'Arial', sans-serif;">- {{ $rem->vademecums->droga . ' ' . $rem->vademecums->presentacion }}</li>
+                        <li style="list-style-type: none; font-family: 'Arial', sans-serif;"> <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic; display: inline-block; margin-bottom: 2px;"> Dx: </h4> 
                         {{ $rem->ciediez->descripcion }}</li>
                         @endforeach
                     </ul>

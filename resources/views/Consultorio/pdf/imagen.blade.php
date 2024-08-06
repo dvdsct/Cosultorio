@@ -126,7 +126,7 @@
                         @if($osd->first()->descripcion == 'Ninguna')
                         <li></li>
                         @else
-                        <li style="font-family: 'Arial', sans-serif;">- {{'OS: '.  $osd->first()->descripcion .' N° Afil:'.  $osd->first()->nro_afil}} Plan:{{$osd->first()->plan}}</li>
+                        <li style="font-family: 'Arial', sans-serif;">- {{'OS: '.  $osd->first()->descripcion .' N° Afiliado:'.  $osd->first()->nro_afil}} Plan:{{$osd->first()->plan}}</li>
                         @endif
                     </ul>
                     <ul style="margin-left: 1cm;">
