@@ -278,15 +278,20 @@
 
         <div class="card-footer d-flex justify-content-between">
             <button type="button" class="btn btn-default mr-2">
-                <a type="button" href="{{route('paps.show',$colpos->turno_id)}}">
-                    <i class="fas fa-arrow-left"></i> <strong> Volver </strong></a>
+            <a type="button" href="{{route('paps.show',$colpos->turnos->paps->id)}}">
+            <i class="fas fa-arrow-left"></i> <strong> Volver </strong></a>
             </button>
 
              <button type="submit" class="btn btn-success ml-auto mr-2"><strong> Finalizar </strong></button>
 
             <a class="btn bg-purple btn-sm  pt-2" href="{{route('pdfPap',$colpos->turno_id)}}" target="_blank"><strong><i class="fa fa-file-download"></i> Descargar Pap</strong></a>
 
+
+            @if($colpos->estado != 3)
+            <a class="btn btn-danger btn-sm  pt-2 ml-2 disabled" href="{{route('pdfColpo',$colpos->turno_id)}}" target="_blank"><strong><i class="fa fa-file-download"></i> Descargar Colposcopia </strong></a>
+            @else
             <a class="btn btn-danger btn-sm  pt-2 ml-2" href="{{route('pdfColpo',$colpos->turno_id)}}" target="_blank"><strong><i class="fa fa-file-download"></i> Descargar Colposcopia </strong></a>
+            @endif
         </div>
     </form>
 </div>

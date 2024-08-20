@@ -193,6 +193,9 @@ class FormPap extends Component
 
     public function add_pap()
     {
+    // Verificar si pap_prev tiene un valor válido o asignar null
+    $papPrevioId = !empty($this->pap_prev) ? $this->pap_prev : null;
+
         // Verificar si el valor de 'otros_anti_con' es '-Seleccionar-' y establecerlo como null
         $otrosAntiCon = $this->anti_otros === '-Seleccionar-' ? null : $this->anti_otros;
         $tipoMuestra = in_array($this->tipo_muestra, ['-Seleccionar-', '1']) ? null : $this->tipo_muestra;
@@ -216,7 +219,7 @@ class FormPap extends Component
             'trata_rad' => $this->trat_rad,
             'quimio' => $this->quimio,
             'fecha_pp' => $this->fec_pap_previo,
-            'pap_previo_id' =>$this->pap_prev,
+            'pap_previo_id' =>$papPrevioId,
             'estado' => '3'
         ]);
 
