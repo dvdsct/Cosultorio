@@ -50,7 +50,7 @@
                         @endif
 
                         @if($osd->first()->descripcion == 'Ninguna')
-                        <li></li>
+                        
                         @else
                         <li style="font-family: 'Arial', sans-serif; list-style-type: none;">- {{'OS: '.  $osd->first()->descripcion .' N° Afiliado: '.  $osd->first()->nro_afil}} Plan: {{$osd->first()->plan}}</li>
                         @endif
@@ -76,7 +76,7 @@
                         <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic;">R/p</h4>
                         <li style="list-style-type: none; font-family: 'Arial', sans-serif;">- {{ $rem->vademecums->droga . ' ' . $rem->vademecums->presentacion }}</li>
                         <li style="list-style-type: none; font-family: 'Arial', sans-serif;"> <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic; display: inline-block; margin-bottom: 2px;"> Dx: </h4> 
-                        {{ $rem->ciediez->codigo }}</li>
+                        {{ $rem->ciediez->codigo }} - {{$rem->ciediez->descripcion}}</li>
                         @endforeach
                     </ul>
                 </td>
