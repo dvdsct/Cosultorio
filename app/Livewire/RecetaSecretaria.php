@@ -136,7 +136,7 @@ class RecetaSecretaria extends Component
                 ->where('vademecums.droga', 'LIKE',  '%' . $this->query . '%')
                 ->orWhere('vademecums.presentacion', 'LIKE', '%' . $this->query . '%')
                 ->orWhere('vademecums.nombre', 'LIKE', '%' . $this->query . '%')
-                ->paginate(10),
+                ->paginate(40),
         ]);
     }
 }

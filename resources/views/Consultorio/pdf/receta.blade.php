@@ -76,7 +76,7 @@
                         <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic;">R/p</h4>
                         <li style="list-style-type: none; font-family: 'Arial', sans-serif;">- {{ $rem->vademecums->droga . ' ' . $rem->vademecums->presentacion }}</li>
                         <li style="list-style-type: none; font-family: 'Arial', sans-serif;"> <h4 style="margin: 0; font-family: 'Arial', sans-serif; font-style: italic; display: inline-block; margin-bottom: 2px;"> Dx: </h4> 
-                        {{ $rem->ciediez->descripcion }}</li>
+                        {{ $rem->ciediez->codigo }}</li>
                         @endforeach
                     </ul>
                 </td>

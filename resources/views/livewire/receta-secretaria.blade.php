@@ -126,21 +126,22 @@
     <!-- MODAL PARA SELECCIONAR MEDICAMENTOS -->
     @if ($modalRemedios)
     <div class="modal fade show" id="modal-default" wire:ignore.self style="background-color: rgba(0, 0, 0, 0.5); display: block;">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h4 class="modal-title"><strong>SELECCIONAR MEDICAMENTO </strong></h4>
-                    <button type="button" class="close" wire:click='modalRemedioOnOff'>
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="max-height: 450px;  overflow-y: auto;">
-                    <!-- Lista Vademecum -->
-                    <div class="row px-2">
-                        <div class="col-12">
-                            @if($vademecum->isEmpty())
-                            <h5 class="font-italic pt-2 pl-3" style="text-align: center;"><strong> No se encontró ningun medicamento con ese nombre!</strong> </h5>
-                            @else
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h4 class="modal-title"><strong>SELECCIONAR MEDICAMENTO </strong></h4>
+                <button type="button" class="close" wire:click='modalRemedioOnOff'>
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                <!-- Lista Vademecum -->
+                <div class="row px-2">
+                    <div class="col-12">
+                        @if($vademecum->isEmpty())
+                        <h5 class="font-italic pt-2 pl-3" style="text-align: center;"><strong>No se encontró ningun medicamento con ese nombre!</strong></h5>
+                        @else
+                        <div>
                             <table id="myTable" class="table table-hover">
                                 <thead>
                                     <th>NOMBRE COMERCIAL</th>
@@ -150,14 +151,19 @@
                                 <tbody>
                                     @foreach ($vademecum as $v)
                                     <tr style="cursor: pointer;">
-                                        <td class="p-0" wire:click='addRp({{ $v->id }})'> <span style="font-size: 12px;">
-                                                <h5> {{ $v->nombre }} </h5>
-                                            </span></td>
-                                        <td class="p-0" wire:click='addRp({{ $v->id }})'> <span style="font-size: 12px;">
-                                                <h5> {{ $v->droga }} </h5>
-                                            </span> </td>
-                                        <td class="p-0" wire:click='addRp({{ $v->id }})'> <span style="font-size: 12px;">
-                                                <h5> {{ $v->presentacion }} </h5>
+                                        <td class="p-0" wire:click='addRp({{ $v->id }})'>
+                                            <span style="font-size: 12px;">
+                                                <h5>{{ $v->nombre }}</h5>
+                                            </span>
+                                        </td>
+                                        <td class="p-0" wire:click='addRp({{ $v->id }})'>
+                                            <span style="font-size: 12px;">
+                                                <h5>{{ $v->droga }}</h5>
+                                            </span>
+                                        </td>
+                                        <td class="p-0" wire:click='addRp({{ $v->id }})'>
+                                            <span style="font-size: 12px;">
+                                                <h5>{{ $v->presentacion }}</h5>
                                             </span>
                                         </td>
                                     </tr>
@@ -165,14 +171,16 @@
                                 </tbody>
                                 <tfoot id="footer-table"></tfoot>
                             </table>
-                            @endif
                         </div>
+                        @endif
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
+
+
     @endif
 
     @if($recConsulta)
