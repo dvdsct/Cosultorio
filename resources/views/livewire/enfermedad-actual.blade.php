@@ -108,13 +108,13 @@
                                 </div>
                                 <!-- SI ES UNA CONSULTA FINALIZADA SOLO MUESTRA EL BOTON DE DESCARGAR -->
                             @else
-                                <div class="col-12 px-0">
-                                    <a type="button" class="btn btn-block btn-secondary mt-2 pt-3"
-                                        style="height: 90%;" href="{{ route('pdf.show', $consulta->id) }}"
-                                        target="_blank">
-                                        <i class="fa fa-file-download fa-2x"></i> <br>
-                                        <span> <strong> DESCARGAR </strong></span>
-                                    </a>
+                            <div class="row">
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-block btn-success disabled mt-2"
+                                            style="height: 90px;" wire:click='finConsulta()'>
+                                            <i class="fa fa-check-circle fa-2x"></i> <br>
+                                            <strong> FINALIZAR CONSULTA </strong></button>
+                                    </div>
                                 </div>
                             @endif
                         </div>
