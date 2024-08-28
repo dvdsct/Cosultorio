@@ -49,21 +49,6 @@
                                                     </strong> </h5>
 
                                             </td>
-                                            <td style="display:flex; justify-content: flex-end;">
-                                                <div class="btn-group" style="width: 60%;">
-                                                    <button type="button"
-                                                        class="btn bg-purple btn-flat rounded-left mr-1"
-                                                        wire:click='dispatch("modalOn")'>
-                                                        <i class="fas fa-plus-circle"></i>
-                                                    </button>
-
-                                                    <button type="button"
-                                                        class="btn bg-purple btn-flat rounded-right mr-5"
-                                                        wire:click='delRecetas'>
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
                                         @endif
                                     </tr>
 
@@ -81,25 +66,8 @@
                                             </td>
                                         @else
                                             <td>
-                                                <h5> <strong> <span>{{ $total_lab }}
+                                                <h5> <strong> <span>{{ count($consulta->laboratorios) }}
                                                             Laboratorio</span> </strong> </h5>
-                                            </td>
-                                            <td style="display:flex; justify-content: flex-end;">
-                                                <div class="btn-group" style="width: 60%;">
-                                                    <button type="button"
-                                                        class="btn btn-warning btn-flat rounded-left mr-1"
-                                                        wire:click='dispatch("modalOnLab")'>
-                                                        <i class="fas fa-plus-circle"></i>
-                                                    </button>
-
-
-
-                                                    <button type="button"
-                                                        class="btn btn-warning btn-flat rounded-right mr-5"
-                                                        wire:click='resetLab'>
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
                                             </td>
                                         @endif
                                     </tr>
@@ -124,23 +92,6 @@
                                                             {{ count($consulta->imagenes) }} Imagen </span> </strong>
                                                 </h5>
                                             </td>
-                                            <td style="display:flex; justify-content: flex-end;">
-                                                <div class="btn-group" style="width: 60%;">
-                                                    <button type="button"
-                                                        class="btn btn-primary btn-flat rounded-left  mr-1"
-                                                        wire:click='dispatch("modalImgOn",{ tipo:"pedido" })'>
-                                                        <i class="fas fa-plus-circle"></i>
-                                                    </button>
-
-
-
-                                                    <button type="button"
-                                                        class="btn btn-primary btn-flat rounded-right mr-5"
-                                                        wire:click='resetImgs'>
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
                                         @endif
                                     </tr>
                                 </tbody>
@@ -148,20 +99,11 @@
                             <!-- SI LA CONSULTA ESTA EN PROGRESO SE MUESTRA EL BOTON DE FINALIZAR Y DESCARGAR -->
                             @if ($consulta->estado != '3')
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-12">
                                         <button type="button" class="btn btn-block btn-success mt-2"
                                             style="height: 90px;" wire:click='finConsulta()'>
                                             <i class="fa fa-check-circle fa-2x"></i> <br>
                                             <strong> FINALIZAR CONSULTA </strong></button>
-                                    </div>
-
-                                    <div class="col-4 pl-0">
-                                        <a type="button" class="btn btn-block btn-secondary mt-2 pt-3"
-                                            style="height: 90%;" href="{{ route('pdf.show', $consulta->id) }}"
-                                            target="_blank">
-                                            <i class="fa fa-file-download fa-2x"></i>
-                                            <span> <strong> DESCARGAR </strong></span>
-                                        </a>
                                     </div>
                                 </div>
                                 <!-- SI ES UNA CONSULTA FINALIZADA SOLO MUESTRA EL BOTON DE DESCARGAR -->
